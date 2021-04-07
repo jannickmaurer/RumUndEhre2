@@ -23,7 +23,7 @@ public class Server {
 		
 		System.out.println("Welcome to Claims - powered by Run und Ehre 2.0");
 		System.out.println("This time, we won't f*ck up");
-		
+		// Creates a new Scanner object and takes the keyboard input for the port number, only numbers allowed
 		try (Scanner scan = new Scanner(System.in)){
 			while(port < 1024 || port > 65535) {
 				System.out.println("Please enter a port number (1024 - 65535) ");
@@ -34,7 +34,7 @@ public class Server {
 					System.out.println("Only numbers, please");
 				}
 			}
-			
+			// Creates a new ListenerThread Object while handing over the port number
 			try {
 				ListenerThread lt = new ListenerThread(port);
 				lt.start();
