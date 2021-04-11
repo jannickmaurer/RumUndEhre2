@@ -6,14 +6,19 @@ import claim.client.model.Model;
 import claim.client.view.View;
 import claim.commons.ServiceLocator;
 import claim.commons.messages.Message;
+import claim.commons.messages.results.ResultCreateAccount;
+import claim.commons.messages.results.ResultDeleteAccount;
+import claim.commons.messages.results.ResultLogin;
+import claim.commons.messages.results.ResultLogout;
 import claim.commons.messages.results.ResultPing;
 
-
+// Created by Samuel & Jannick
 public class Controller {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getServerLogger();
 	private Model model;
 	private View view;
+	private String username;
 
 	public Controller(Model model, View view) {
 		this.model = model;
@@ -35,6 +40,8 @@ public class Controller {
 			view.getRoot().setCenter(view.loginLayout);
 			view.getStage().setTitle("Login");
 		});
+
+		view.getBtCreateAccount().setOnAction(event -> createAccount());
 		
 		// When Model receives a new Message, the Value of the SimpleString Property "LastReceivedMessage" Changes
 		// This Method looks at this change and creates the respective Message Object
@@ -53,6 +60,8 @@ public class Controller {
 		});
 	}
 
+	
+
 	// Does the same thing as the Message Class on Server's Side
 	// It is done here, because we want to trigger actions on the client's GUI
 	private void createMessage(String[] content) {
@@ -61,8 +70,23 @@ public class Controller {
 			if (!msg.isFalse()) msg.process(Controller.this);
 			if (msg.isFalse()) msg.processIfFalse(Controller.this);
 		}
+		if (content[0].equals("ResultCreateAccount")) { msg = new ResultCreateAccount(content);
+			if (!msg.isFalse()) msg.process(Controller.this);
+			if (msg.isFalse()) msg.processIfFalse(Controller.this);
+		}
+		if (content[0].equals("ResultLogin")) { msg = new ResultLogin(content);
+			if (!msg.isFalse()) msg.process(Controller.this);
+			if (msg.isFalse()) msg.processIfFalse(Controller.this);
+		}	
+		if (content[0].equals("ResultLogout")) { msg = new ResultLogout(content);
+			if (!msg.isFalse()) msg.process(Controller.this);
+			if (msg.isFalse()) msg.processIfFalse(Controller.this);
+		}	
+		if (content[0].equals("ResultDeleteAccount")) { msg = new ResultDeleteAccount(content);
+			if (!msg.isFalse()) msg.process(Controller.this);
+			if (msg.isFalse()) msg.processIfFalse(Controller.this);
+		}	
 	}
-
 
 	// Methods for triggering Methods in Model by clicking a Button in View
 	private void connect() {
@@ -72,7 +96,36 @@ public class Controller {
 			logger.warning("Server Down");
 		}
 	}
-
+	private void createAccount() {
+		model.createAccount("Jannick", "12345678");
+	}
+	public void Login() {
+		model.login("Jannick", "12345678");
+	}
+	
+	public void autoLogin() {
+		model.login("Jannick", "12345678");
+	}
+	public void logout() {
+		model.logout();
+	}
+	public void deleteAccount() {
+		model.deleteAccount();
+	}
+	
+	
+	
+	// Messages Success Handling
+	public void loginSuccess() {
+		//GUI bei erfolgreichem Login
+		logger.info("Login Successful");
+	}
+	public void logoutSuccess() {
+		// GUI bei erfolgreichem Logout
+		logger.info("Logout Successful");
+	}
+	
+	//	Messages Failure Handling
 
 
 	// Getter & Setter
@@ -82,5 +135,11 @@ public class Controller {
 	public View getView() {
 		return view;
 	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+
 
 }

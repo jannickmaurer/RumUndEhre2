@@ -2,30 +2,32 @@ package claim.commons.messages.results;
 
 import java.util.logging.Logger;
 
-import claim.commons.messages.Message;
 import claim.client.controller.Controller;
 import claim.commons.ServiceLocator;
+import claim.commons.messages.Message;
 
-// Created by Jannick: Server -> Client Message
-public class ResultPing extends Message {
+// Class implemented by Jannick: Message Server -> Client
+public class ResultCreateAccount extends Message {
+	
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getClientLogger();
-
-	public ResultPing(boolean result) {
-		super(new String[] {"ResultPing", Boolean.toString(result)});
+	
+	// Takes the result and creates new Object
+	public ResultCreateAccount(boolean result) {
+		super(new String[] {"ResultCreateAccount", Boolean.toString(result)});
 	}
 	
-	public ResultPing(String[] content) {
+	public ResultCreateAccount(String[] content) {
 		super(content);
 	}
 	
-	// Method to perform actions on Client Controller
 	@Override
 	public void process(Controller controller) {
-		controller.getModel().setConnected(true);
+		controller.autoLogin();
 	}
+	
+	@Override
 	public void processIfFalse(Controller controller) {
-		controller.getModel().setConnected(false);
+		
 	}
-
 }

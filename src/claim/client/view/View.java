@@ -16,6 +16,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class View {
@@ -26,7 +27,7 @@ public class View {
 	private Model model;
 	public BorderPane root;
 	private Scene scene;
-	
+
 	Menu menuFileLanguage = new Menu();
 	
 	//Layouts für unterschiedliche Spielsituationen
@@ -53,12 +54,14 @@ public class View {
 		private PasswordField pfnewPassword = registrationLayout.getPfNewPassword();
 		private Button btCreateAccount = registrationLayout.getBtCreateAccount();
 		private Button btBack = registrationLayout.getBtBack();
+
 	
 	public View(Stage primaryStage, Model model) {
 		this.primaryStage = primaryStage;
 		this.model = model;
 		
 		root = new BorderPane();
+
 		
 		for (Locale locale : sl.getLocales()) {
             MenuItem language = new MenuItem(locale.getLanguage());
