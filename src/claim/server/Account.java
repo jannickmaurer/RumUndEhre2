@@ -1,6 +1,7 @@
 package claim.server;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.UUID;
 import java.util.logging.Logger;
 
@@ -65,6 +66,14 @@ public class Account {
 			}
 		}	
 		return false;
+	}
+
+	public static void remove(Account account) {
+		synchronized (accounts) {
+			for (Iterator<Account> i = accounts.iterator(); i.hasNext();) {
+				if (account == i.next()) i.remove();
+			}
+		}
 	}
 	
 	

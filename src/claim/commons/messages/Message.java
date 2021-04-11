@@ -55,7 +55,7 @@ public abstract class Message {
 //			if (content[0].equals("CreatePlayroom")) msg = new CreatePlayroom(content);
 //			if (content[0].equals("ListPlayrooms")) msg = new ListPlayrooms(content);
 			if (content[0].equals("Logout")) msg = new Logout(content);
-//			if (content[0].equals("DeleteAccount")) msg = new DeleteAccount(content);
+			if (content[0].equals("DeleteAccount")) msg = new DeleteAccount(content);
 //			if (content[0].equals("DeletePlayroom")) msg = new DeletePlayroom(content);
 //			if (content[0].equals("JoinPlayroom")) msg = new JoinPlayroom(content);
 //			if (content[0].equals("SendMessage")) msg = new SendMessage(content);

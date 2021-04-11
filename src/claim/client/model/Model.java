@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.util.logging.Logger;
 
 import claim.commons.messages.CreateAccount;
+import claim.commons.messages.DeleteAccount;
 import claim.commons.messages.Login;
 import claim.commons.messages.Logout;
 import claim.commons.messages.Message;
@@ -89,6 +90,16 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
+	public void deleteAccount() {
+		String[] content = new String[] { "DeleteAccount", this.token.getValue() };
+		Message msg = new DeleteAccount(content);
+		try {
+			msg.send(socket);
+			logger.info("Client tries to send message: " + msg.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	
@@ -106,6 +117,8 @@ public class Model {
 		this.token.set(token);
 		logger.info("Client set token to: " + this.token.getValue());		
 	}
+
+	
 
 
 

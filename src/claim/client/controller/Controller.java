@@ -7,6 +7,7 @@ import claim.client.view.View;
 import claim.commons.ServiceLocator;
 import claim.commons.messages.Message;
 import claim.commons.messages.results.ResultCreateAccount;
+import claim.commons.messages.results.ResultDeleteAccount;
 import claim.commons.messages.results.ResultLogin;
 import claim.commons.messages.results.ResultLogout;
 import claim.commons.messages.results.ResultPing;
@@ -65,7 +66,11 @@ public class Controller {
 		if (content[0].equals("ResultLogout")) { msg = new ResultLogout(content);
 			if (!msg.isFalse()) msg.process(Controller.this);
 			if (msg.isFalse()) msg.processIfFalse(Controller.this);
-	}	
+		}	
+		if (content[0].equals("ResultDeleteAccount")) { msg = new ResultDeleteAccount(content);
+			if (!msg.isFalse()) msg.process(Controller.this);
+			if (msg.isFalse()) msg.processIfFalse(Controller.this);
+		}	
 	}
 
 	// Methods for triggering Methods in Model by clicking a Button in View
@@ -82,11 +87,15 @@ public class Controller {
 	public void Login() {
 		model.login("Jannick", "12345678");
 	}
-	public void Logout() {
-		model.logout();
-	}
+	
 	public void autoLogin() {
 		model.login("Jannick", "12345678");
+	}
+	public void logout() {
+		model.logout();
+	}
+	public void deleteAccount() {
+		model.deleteAccount();
 	}
 	
 	
@@ -114,7 +123,6 @@ public class Controller {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
 
 
 
