@@ -19,7 +19,22 @@ public class Controller {
 		this.model = model;
 		this.view = view;
 		
-		view.getBtnConnect().setOnAction(event -> connect());
+		view.getBtConnect().setOnAction(event -> connect());
+		
+		view.getBtStart().setOnAction(e -> {
+			view.getRoot().setCenter(view.loginLayout);
+			view.getStage().setTitle("Login");
+		});
+		
+		view.getBtRegistration().setOnAction(e -> {
+			view.getRoot().setCenter(view.registrationLayout);
+			view.getStage().setTitle("Registration");
+		});
+		
+		view.getBtBack().setOnAction(e -> {
+			view.getRoot().setCenter(view.loginLayout);
+			view.getStage().setTitle("Login");
+		});
 		
 		// When Model receives a new Message, the Value of the SimpleString Property "LastReceivedMessage" Changes
 		// This Method looks at this change and creates the respective Message Object
