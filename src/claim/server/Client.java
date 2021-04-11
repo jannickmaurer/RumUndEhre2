@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 import claim.commons.ServiceLocator;
 import claim.commons.messages.Message;
 import claim.server.Client;
+import claim.server.Account;
+
 
 
 //Class implemented by Jannick - some concepts inspired by class material
@@ -15,7 +17,7 @@ public class Client {
 	private static Logger logger = sl.getServerLogger();
 	
 	private static final ArrayList<Client> clients = new ArrayList<>();
-//	private Account account = null;
+	private Account account = null;
 	private String token = null;
 	private Socket socket;
 	private boolean clientReachable = true;
@@ -67,6 +69,13 @@ public class Client {
 		}
 	}
 
+	public Account getAccount() {
+		return account;
+	}
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+	
 	public String getToken() {
 		return token;
 	}

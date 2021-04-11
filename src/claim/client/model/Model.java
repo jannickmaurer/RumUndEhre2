@@ -6,8 +6,11 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.logging.Logger;
 
+import claim.commons.messages.CreateAccount;
+import claim.commons.messages.Login;
 import claim.commons.messages.Message;
 import claim.commons.messages.Ping;
+
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import claim.commons.ServiceLocator;
@@ -21,6 +24,7 @@ public class Model {
 	// Properties to work with in Controller or View:
 	private SimpleStringProperty lastReceivedMessage = new SimpleStringProperty();
 	private SimpleBooleanProperty connected = new SimpleBooleanProperty(false);
+	private SimpleStringProperty token = new SimpleStringProperty();
 	
 
 	
@@ -54,6 +58,31 @@ public class Model {
 		t.start();
 	}
 	
+	// Methods to create Messages
+	public void createAccount(String username, String password) {
+		String[] content = new String[] { "CreateAccount", username, password };
+		Message msg = new CreateAccount(content);
+		try {
+			msg.send(socket);
+			logger.info("Client tries to send message: " + msg.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public void login(String username, String password) {
+		String[] content = new String[] { "Login", username, password };
+		Message msg = new Login(content);
+		try {
+			msg.send(socket);
+			logger.info("Client tries to send message: " + msg.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
 	public void setConnected(Boolean connected) {
 		this.connected.set(connected);
 		logger.info("Client is Connected");
@@ -62,6 +91,15 @@ public class Model {
 	public SimpleStringProperty getLastReceivedMessage() {
 		return this.lastReceivedMessage;
 	}
+
+	public void setToken(String token) {
+		this.token.set(token);
+		logger.info("Client set token to: " + this.token.getValue());		
+	}
+
+
+
+	
 	
 	
 

@@ -1,0 +1,41 @@
+package claim.commons.messages.results;
+
+import java.util.logging.Logger;
+
+import claim.client.controller.Controller;
+import claim.commons.ServiceLocator;
+import claim.commons.messages.Message;
+
+// Created by Jannick: Message Server -> Client
+// String: ResultLogin|Boolean|Token|Username
+
+public class ResultLogin extends Message {
+	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
+	private static Logger logger = sl.getClientLogger();
+	
+	private String token;
+	private String username;
+
+	public ResultLogin(boolean result) {
+		super(new String[] {"ResultLogin", Boolean.toString(result)});
+	}
+	public ResultLogin(String[] content) {
+		super(content);
+		if(content.length > 2) {
+			this.token = content[2];
+			this.username = content[3];
+		}
+	}
+	@Override
+	public void process(Controller controller) {
+		controller.loginSuccess();
+		controller.getModel().setToken(this.token);
+		controller.setUsername(username);
+	}
+	
+	@Override
+	public void processIfFalse(Controller controller) {
+//		controller.somethingFailedLogin();
+	}
+
+}

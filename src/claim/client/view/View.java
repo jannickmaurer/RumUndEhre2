@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 //Class implemented by Samuel
@@ -18,13 +19,17 @@ public class View {
 	
 	private Label lblPort = new Label("Hallo");
 	private Button btnConnect = new Button("Connect");
+	private Button btnCreateAccount = new Button("CreateAccount");
+	private VBox vBox = new VBox();
+	
 	
 	public View(Stage primaryStage, Model model) {
 		this.primaryStage = primaryStage;
 		this.model = model;
+		vBox.getChildren().addAll(btnConnect, btnCreateAccount);
 		
 		root = new BorderPane();
-		root.setCenter(btnConnect);
+		root.setCenter(vBox);
 		
 		scene = new Scene(root, 960, 635);
 		
@@ -37,6 +42,9 @@ public class View {
 	
 	public Button getBtnConnect() {
 		return this.btnConnect;
+	}
+	public Button getBtnCreateAccount() {
+		return this.btnCreateAccount;
 	}
 
 }
