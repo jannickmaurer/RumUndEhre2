@@ -2,6 +2,7 @@ package claim.server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.logging.Logger;
 
 import claim.commons.ServiceLocator;
@@ -27,15 +28,16 @@ public class ListenerThread extends Thread {
 
 	@Override
 	public void run() {
-//		while(true) {
-//			try {
-//				Socket socket = listener.accept();
-//				Client c = new Client(socket);
-//				Client.add(c);
-//			} catch ( Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
+		while(true) {
+			try {
+				Socket socket = listener.accept();
+				Client c = new Client(socket);
+				Client.add(c);
+				logger.info("ListenerThread started and Client " + c.toString() + "added");
+			} catch ( Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 
