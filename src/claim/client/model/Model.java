@@ -8,9 +8,9 @@ import java.util.logging.Logger;
 
 import claim.commons.messages.CreateAccount;
 import claim.commons.messages.Login;
+import claim.commons.messages.Logout;
 import claim.commons.messages.Message;
 import claim.commons.messages.Ping;
-
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import claim.commons.ServiceLocator;
@@ -79,6 +79,16 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
+	public void logout() {
+		String[] content = new String[] { "Logout", this.token.getValue() };
+		Message msg = new Logout(content);
+		try {
+			msg.send(socket);
+			logger.info("Client tries to send message: " + msg.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	
@@ -96,6 +106,8 @@ public class Model {
 		this.token.set(token);
 		logger.info("Client set token to: " + this.token.getValue());		
 	}
+
+
 
 
 

@@ -8,9 +8,10 @@ import claim.commons.ServiceLocator;
 import claim.commons.messages.Message;
 import claim.commons.messages.results.ResultCreateAccount;
 import claim.commons.messages.results.ResultLogin;
+import claim.commons.messages.results.ResultLogout;
 import claim.commons.messages.results.ResultPing;
 
-
+// Created by Samuel & Jannick
 public class Controller {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getServerLogger();
@@ -61,6 +62,10 @@ public class Controller {
 			if (!msg.isFalse()) msg.process(Controller.this);
 			if (msg.isFalse()) msg.processIfFalse(Controller.this);
 		}	
+		if (content[0].equals("ResultLogout")) { msg = new ResultLogout(content);
+			if (!msg.isFalse()) msg.process(Controller.this);
+			if (msg.isFalse()) msg.processIfFalse(Controller.this);
+	}	
 	}
 
 	// Methods for triggering Methods in Model by clicking a Button in View
@@ -73,19 +78,30 @@ public class Controller {
 	}
 	private void createAccount() {
 		model.createAccount("Jannick", "12345678");
-	
-	}
-	public void autoLogin() {
-		model.login("Jannick", "12345678");
 	}
 	public void Login() {
 		model.login("Jannick", "12345678");
 	}
+	public void Logout() {
+		model.logout();
+	}
+	public void autoLogin() {
+		model.login("Jannick", "12345678");
+	}
+	
+	
+	
+	// Messages Success Handling
 	public void loginSuccess() {
 		//GUI bei erfolgreichem Login
 		logger.info("Login Successful");
-		
 	}
+	public void logoutSuccess() {
+		// GUI bei erfolgreichem Logout
+		logger.info("Logout Successful");
+	}
+	
+	//	Messages Failure Handling
 
 
 	// Getter & Setter
