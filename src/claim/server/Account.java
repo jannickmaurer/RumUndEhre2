@@ -74,9 +74,5 @@ public class Account {
 				if (account == i.next()) i.remove();
 			}
 		}
-	}
-	
-	
-	
-	
+	}	
 }
