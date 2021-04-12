@@ -1,5 +1,10 @@
 package claim.server;
 
+/*
+ * David Schürch
+ * Code Source from Poker Project with individual changes.
+ * Code creates a suit and a rank of a card. It can compare the rank of the card.
+ */
 
 public class Card implements Comparable<Card>{
 	public enum Suit { Goblin, Dwarf, Undead, Double, Knight;
@@ -15,12 +20,11 @@ public class Card implements Comparable<Card>{
             }
             return suit;
         }
-	};
+	}
 	
     public enum Rank { Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine;
         @Override
         public String toString() {
-            // Get ordinal value, which ranges from 0 to 9
             int ordinal = this.ordinal();
             return Integer.toString(ordinal);
         }
@@ -34,8 +38,6 @@ public class Card implements Comparable<Card>{
         this.rank = rank;
     }
 
-
-
 	public Suit getSuit() {
         return suit;
     }
@@ -48,7 +50,6 @@ public class Card implements Comparable<Card>{
     public String toString() {
         return rank.toString() + suit.toString();
     }
-	
 	
 	@Override
 	public int compareTo(Card o) {
