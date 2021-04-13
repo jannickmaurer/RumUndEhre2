@@ -23,9 +23,11 @@ public class ResultPing extends Message {
 	@Override
 	public void process(Controller controller) {
 		controller.getModel().setConnected(true);
+		controller.getView().getBtStart().setDisable(false);
 	}
 	public void processIfFalse(Controller controller) {
 		controller.getModel().setConnected(false);
+		controller.somethingFailed();
 	}
 
 }

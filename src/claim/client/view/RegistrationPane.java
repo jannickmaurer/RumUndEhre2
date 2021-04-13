@@ -12,8 +12,8 @@ import javafx.scene.layout.VBox;
 public class RegistrationPane extends VBox {
 	private TextField tfNewUsername = new TextField();
 	private PasswordField pfNewPassword = new PasswordField();
-	private Button btCreateAccount = new Button("Create Account");
-	private Button btBack = new Button("Back");
+	private Button btCreateAccount = new Button();
+	private Button btBack = new Button();
 
 	//Konstruktor
 		public RegistrationPane() {

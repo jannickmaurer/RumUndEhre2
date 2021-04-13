@@ -14,7 +14,7 @@ private static ServiceLocator serviceLocator;
 	
 	final private Locale[] locales = new Locale[] { new Locale("en"), new Locale("de") };
 	
-	private static Logger clientLogger = Logger.getLogger("Jass");
+	private static Logger clientLogger = Logger.getLogger("Claim");
 	private static Logger serverLogger = Logger.getLogger("Server");
 
 	private Configuration configuration;

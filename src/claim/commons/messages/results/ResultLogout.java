@@ -25,6 +25,6 @@ public class ResultLogout extends Message {
 	}
 
 	public void processIfFalse(Controller controller) {
-//		controller.somethingFailed();
+		controller.somethingFailed();
 	}
 }

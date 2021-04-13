@@ -28,6 +28,6 @@ public class ResultCreateAccount extends Message {
 	
 	@Override
 	public void processIfFalse(Controller controller) {
-		
+		controller.somethingFailed();
 	}
 }

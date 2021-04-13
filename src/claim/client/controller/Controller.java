@@ -11,6 +11,7 @@ import claim.commons.messages.results.ResultDeleteAccount;
 import claim.commons.messages.results.ResultLogin;
 import claim.commons.messages.results.ResultLogout;
 import claim.commons.messages.results.ResultPing;
+import javafx.application.Platform;
 
 // Created by Samuel & Jannick
 public class Controller {
@@ -31,17 +32,33 @@ public class Controller {
 			view.getStage().setTitle("Login");
 		});
 		
+		view.getBtLogin().setOnAction(event -> {
+			login();
+		});
+		
 		view.getBtRegistration().setOnAction(e -> {
 			view.getRoot().setCenter(view.registrationLayout);
 			view.getStage().setTitle("Registration");
 		});
 		
+		view.getBtCreateAccount().setOnAction(event -> {
+			createAccount();
+		});
+		
 		view.getBtBack().setOnAction(e -> {
 			view.getRoot().setCenter(view.loginLayout);
 			view.getStage().setTitle("Login");
+			view.getTfNewUsername().setText("");
+			view.getPfnewPassword().setText("");
 		});
-
-		view.getBtCreateAccount().setOnAction(event -> createAccount());
+		
+		view.getBtLogout().setOnAction(e -> {
+			logout();
+		});
+		
+		view.getBtnBackError().setOnAction(e -> {
+			view.errorPopUp.hide();
+		});
 		
 		// When Model receives a new Message, the Value of the SimpleString Property "LastReceivedMessage" Changes
 		// This Method looks at this change and creates the respective Message Object
@@ -88,27 +105,33 @@ public class Controller {
 		}	
 	}
 
-	// Methods for triggering Methods in Model by clicking a Button in View
+	// Methods for triggering Methods in Model by clicking a Button in View, get Values from User Input
 	private void connect() {
 		try {
-			this.model.connect("127.0.0.1", 3333);
+			this.model.connect(view.getTfIP().getText(), Integer.parseInt(view.getTfPort().getText()));
 		} catch (Exception e) {
 			logger.warning("Server Down");
 		}
 	}
+	
 	private void createAccount() {
-		model.createAccount("Jannick", "12345678");
+		model.createAccount(view.getTfNewUsername().getText(), view.getPfnewPassword().getText());
 	}
-	public void Login() {
-		model.login("Jannick", "12345678");
+	
+	public void login() {
+		model.login(view.getTfUsername().getText(), view.getPfPassword().getText());
 	}
 	
 	public void autoLogin() {
-		model.login("Jannick", "12345678");
+		model.login(view.getTfNewUsername().getText(), view.getPfnewPassword().getText());
+		view.getTfNewUsername().setText("");
+		view.getPfnewPassword().setText("");
 	}
+	
 	public void logout() {
 		model.logout();
 	}
+	
 	public void deleteAccount() {
 		model.deleteAccount();
 	}
@@ -117,15 +140,34 @@ public class Controller {
 	
 	// Messages Success Handling
 	public void loginSuccess() {
-		//GUI bei erfolgreichem Login
+		//Runnable um dynamische Anzeige zu gewährleisten
+		Platform.runLater(new Runnable() {
+			public void run() {
+				view.getRoot().setCenter(view.gameLayout);
+				view.getStage().setTitle("Game");
+				view.getTfUsername().setText("");
+				view.getPfPassword().setText("");
+			}
+		});
 		logger.info("Login Successful");
 	}
 	public void logoutSuccess() {
-		// GUI bei erfolgreichem Logout
+		Platform.runLater(new Runnable() {
+			public void run() {
+				view.getRoot().setCenter(view.loginLayout);
+				view.getStage().setTitle("Login");
+			}
+		});
 		logger.info("Logout Successful");
 	}
 	
-	//	Messages Failure Handling
+	public void somethingFailed() {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				view.errorPopUp.show(view.getStage());
+			}
+		});
+	}
 
 
 	// Getter & Setter
