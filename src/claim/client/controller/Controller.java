@@ -60,8 +60,6 @@ public class Controller {
 		});
 	}
 
-	
-
 	// Does the same thing as the Message Class on Server's Side
 	// It is done here, because we want to trigger actions on the client's GUI
 	private void createMessage(String[] content) {
