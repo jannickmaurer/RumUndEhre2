@@ -24,6 +24,6 @@ public class ResultDeleteAccount extends Message {
 	}
 
 	public void processIfFalse(Controller controller) {
-//		controller.somethingFailed();
+		controller.somethingFailed();
 	}
 }

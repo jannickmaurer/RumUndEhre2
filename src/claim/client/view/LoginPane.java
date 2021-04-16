@@ -12,8 +12,8 @@ import javafx.scene.layout.VBox;
 public class LoginPane extends VBox {
 	private TextField tfUsername = new TextField();
 	private PasswordField pfPassword = new PasswordField();
-	private Button btLogin = new Button("Login");
-	private Button btRegistration = new Button("Registration");
+	private Button btLogin = new Button();
+	private Button btRegistration = new Button();
 	
 	//Konstruktor
 	public LoginPane() {

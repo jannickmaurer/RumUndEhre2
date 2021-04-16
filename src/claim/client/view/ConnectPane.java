@@ -10,17 +10,17 @@ import javafx.scene.layout.HBox;
 
 //Layout für Server-Connection
 public class ConnectPane extends HBox {
-	private Label lbPort = new Label("Port:");
-	private Label lbIP = new Label("IP:");
+	private Label lbPort = new Label();
+	private Label lbIP = new Label();
 	private TextField tfPort = new TextField("1111");
 	private TextField tfIP = new TextField("127.0.0.1");
-	private Button btConnect = new Button("Connect");
-	private Button btStart = new Button("Start");
+	private Button btConnect = new Button();
+	private Button btStart = new Button();
 	
 	//Konstruktor
 	public ConnectPane() {
-		//btStart.setDisable(true);
-		this.getChildren().addAll(lbPort, lbIP, tfPort, tfIP, btConnect, btStart);
+		btStart.setDisable(true);
+		this.getChildren().addAll(lbPort,tfPort, lbIP, tfIP, btConnect, btStart);
 	
 		this.setAlignment(Pos.CENTER);
 	}

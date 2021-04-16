@@ -16,7 +16,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class View {
@@ -34,6 +34,10 @@ public class View {
 	public ConnectPane connectLayout = new ConnectPane();
 	public LoginPane loginLayout = new LoginPane();
 	public RegistrationPane registrationLayout = new RegistrationPane();
+	public GamePane gameLayout = new GamePane();
+	
+	public ErrorPopupPane errorPopupLayout = new ErrorPopupPane();
+	public Popup errorPopUp = new Popup();
 	
 	//Elemente aus Connect Layout ansprechen
 	private Label lbPort = connectLayout.getLbPort();
@@ -50,18 +54,23 @@ public class View {
 	private Button btRegistration = loginLayout.getBtRegistration();
 	
 	//Elemente aus Registration Layout ansprechen
-		private TextField tfNewUsername = registrationLayout.getTfNewUsername();
-		private PasswordField pfnewPassword = registrationLayout.getPfNewPassword();
-		private Button btCreateAccount = registrationLayout.getBtCreateAccount();
-		private Button btBack = registrationLayout.getBtBack();
-
+	private TextField tfNewUsername = registrationLayout.getTfNewUsername();
+	private PasswordField pfnewPassword = registrationLayout.getPfNewPassword();
+	private Button btCreateAccount = registrationLayout.getBtCreateAccount();
+	private Button btBack = registrationLayout.getBtBack();
+	
+	//Elemente aus Game Layout ansprechen
+	private Button btLogout = gameLayout.getBtLogout();
+	
+	//Elemente aus Error Layout ansprechen
+	private Label lblError = errorPopupLayout.getLblError();
+	private Button btnBackError = errorPopupLayout.getBtBackError();
 	
 	public View(Stage primaryStage, Model model) {
 		this.primaryStage = primaryStage;
 		this.model = model;
 		
 		root = new BorderPane();
-
 		
 		for (Locale locale : sl.getLocales()) {
             MenuItem language = new MenuItem(locale.getLanguage());
@@ -78,6 +87,10 @@ public class View {
 		root.setTop(menuBar);
 		root.setCenter(connectLayout);
 		
+		//Error Popups bereitstellen
+		errorPopUp.getContent().add(errorPopupLayout);
+		errorPopUp.setAutoHide(false);
+		
 		scene = new Scene(root, 960, 635);
 		
 		primaryStage.setScene(scene);
@@ -89,6 +102,7 @@ public class View {
 		updateTexts();
 	}
 	
+	//Texte anpassen an die ausgewählte Sprache
 	protected void updateTexts() {
 		Translator t = ServiceLocator.getServiceLocator().getTranslator();
 		
@@ -102,7 +116,8 @@ public class View {
 		loginLayout.getPfPassword().setPromptText(t.getString("label.password"));
 		registrationLayout.getTfNewUsername().setPromptText(t.getString("label.username"));
 		registrationLayout.getPfNewPassword().setPromptText(t.getString("label.password"));
-	
+		errorPopupLayout.getLblError().setText(t.getString("label.error"));
+		
 		// Other controls
 		connectLayout.getBtConnect().setText(t.getString("button.run"));
 		connectLayout.getBtStart().setText(t.getString("button.start"));
@@ -110,14 +125,15 @@ public class View {
 		loginLayout.getBtRegistration().setText(t.getString("button.registration"));
 		registrationLayout.getBtCreateAccount().setText(t.getString("button.registration"));
 		registrationLayout.getBtBack().setText(t.getString("button.back"));
-				
+		gameLayout.getBtLogout().setText(t.getString("button.logout"));
+		errorPopupLayout.getBtBackError().setText(t.getString("button.back"));
 	}	
 	
 	//Getter & Setter
 	public Stage getStage() {
 	    return primaryStage;
 	}
-	
+
 	public BorderPane getRoot() {
 		return root;
 	}
@@ -233,4 +249,29 @@ public class View {
 	public void setBtBack(Button btBack) {
 		this.btBack = btBack;
 	}
+
+	public Button getBtLogout() {
+		return btLogout;
+	}
+
+	public void setBtLogout(Button btLogout) {
+		this.btLogout = btLogout;
+	}
+	
+	public Label getLblError() {
+		return lblError;
+	}
+
+	public void setLblError(Label lblError) {
+		this.lblError = lblError;
+	}
+
+	public Button getBtnBackError() {
+		return btnBackError;
+	}
+
+	public void setBtnBackError(Button btnBackError) {
+		this.btnBackError = btnBackError;
+	}
+
 }
