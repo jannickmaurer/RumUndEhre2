@@ -3,16 +3,25 @@ package claim.server;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import claim.commons.Card;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class CardCreation {
+public class DeckOfCards {
 	private final ArrayList<Card> cards = new ArrayList<>();
-    private final SimpleIntegerProperty cardsRemaining = new SimpleIntegerProperty();//test für Test number
+    private final SimpleIntegerProperty cardsRemaining = new SimpleIntegerProperty();
 
 
-	public CardCreation() {
+	public DeckOfCards() {
 		shuffle();
 	}
+	
+    public SimpleIntegerProperty getCardsRemainingProperty() {
+        return cardsRemaining;
+    }
+    //Wahrscheinlich brauch ich den getter nicht
+    public int getCardsRemaining() {
+    	return cardsRemaining.get();
+    }
 
     /**
      * David Schürch
@@ -35,10 +44,13 @@ public class CardCreation {
 			}
 		}
 		Collections.shuffle(cards);
+        cardsRemaining.setValue(cards.size());
+
 	}
 	
-	public ArrayList<Card> getShuffledCard() {
-		return cards;
-	}
-	
+    public Card dealCard() {
+        Card card = (cards.size() > 0) ? cards.remove(cards.size()-1) : null;
+        cardsRemaining.setValue(cards.size());
+        return card;
+    }
 }

@@ -1,4 +1,4 @@
-package claim.server;
+package claim.commons;
 
 /*
  * David Schürch
@@ -37,6 +37,10 @@ public class Card implements Comparable<Card>{
         this.suit = suit;
         this.rank = rank;
     }
+    
+//    public Card(String card) {
+//    	//
+//    }
 
 	public Suit getSuit() {
         return suit;
@@ -46,10 +50,13 @@ public class Card implements Comparable<Card>{
         return rank;
     }
     
-    @Override
-    public String toString() {
-        return rank.toString() + suit.toString();
-    }
+    //
+    
+//	public String toString() {//
+//		String rank = card.getRank().toString();
+//		String suit = card.getSuit().toString();
+//		return suit + "_" + rank;
+//	}
 	
 	@Override
 	public int compareTo(Card o) {
