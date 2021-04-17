@@ -1,7 +1,9 @@
 package claim.client.controller;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import claim.client.Board;
 import claim.client.model.Model;
 import claim.client.view.View;
 import claim.commons.ServiceLocator;
@@ -11,6 +13,8 @@ import claim.commons.messages.results.ResultDeleteAccount;
 import claim.commons.messages.results.ResultLogin;
 import claim.commons.messages.results.ResultLogout;
 import claim.commons.messages.results.ResultPing;
+import claim.commons.messages.results.ResultSendHandCards;
+import claim.commons.messages.results.ResultStartRoundOne;
 import javafx.application.Platform;
 
 // Created by Samuel & Jannick
@@ -20,6 +24,11 @@ public class Controller {
 	private Model model;
 	private View view;
 	private String username;
+	private Board board;
+	
+
+	
+	private boolean roundOneStarted = false;
 
 	public Controller(Model model, View view) {
 		this.model = model;
@@ -101,6 +110,14 @@ public class Controller {
 			if (!msg.isFalse()) msg.process(Controller.this);
 			if (msg.isFalse()) msg.processIfFalse(Controller.this);
 		}	
+		if (content[0].equals("ResultSendHandCards")) { msg = new ResultSendHandCards(content);
+			if (!msg.isFalse()) msg.process(Controller.this);
+			if (msg.isFalse()) msg.processIfFalse(Controller.this);
+		}	
+		if (content[0].equals("ResultStartRoundOne")) { msg = new ResultStartRoundOne(content);
+			if (!msg.isFalse()) msg.process(Controller.this);
+			if (msg.isFalse()) msg.processIfFalse(Controller.this);
+		}	
 	}
 
 	// Methods for triggering Methods in Model by clicking a Button in View, get Values from User Input
@@ -134,9 +151,7 @@ public class Controller {
 		model.deleteAccount();
 	}
 	
-	
-	
-	// Messages Success Handling
+	// Messages Handling
 	public void loginSuccess() {
 		//Runnable um dynamische Anzeige zu gewährleisten
 		Platform.runLater(new Runnable() {
@@ -149,6 +164,7 @@ public class Controller {
 		});
 		logger.info("Login Successful");
 	}
+	
 	public void logoutSuccess() {
 		Platform.runLater(new Runnable() {
 			public void run() {
@@ -166,8 +182,12 @@ public class Controller {
 			}
 		});
 	}
-
-
+	
+	public void startRoundOne() {
+		this.setRoundOneStarted(true);
+		board = new Board();
+	}
+	
 	// Getter & Setter
 	public Model getModel() {
 		return model;
@@ -179,7 +199,23 @@ public class Controller {
 		this.username = username;
 	}
 
+	public boolean isRoundOneStarted() {
+		return roundOneStarted;
+	}
 
+	public void setRoundOneStarted(boolean roundOneStarted) {
+		this.roundOneStarted = roundOneStarted;
+	}
+
+	public Board getBoard() {
+		return board;
+	}
+
+	public void setBoard(Board board) {
+		this.board = board;
+	}
+
+	
 
 
 }

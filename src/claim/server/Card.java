@@ -50,7 +50,7 @@ public class Card implements Comparable<Card>{
     public String toString() {
         return rank.toString() + suit.toString();
     }
-	
+    
 	@Override
 	public int compareTo(Card o) {
 		if(this.getRank().compareTo(o.getRank()) > 0 ) {

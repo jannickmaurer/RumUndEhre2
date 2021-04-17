@@ -19,6 +19,11 @@ public class Account {
 	private final String password;
 	private String token;
 	
+	private ArrayList<String> handCards = new ArrayList<>();
+	private ArrayList<String> followerCards = new ArrayList<>();
+	private ArrayList<String> pointCards = new ArrayList<>();
+	
+
 	public Account(String username, String password) {
 		this.username = username;
 		this.password = password;
@@ -75,4 +80,34 @@ public class Account {
 			}
 		}
 	}	
+	
+
+	public ArrayList<String> getHandCards() {
+		return handCards;
+	}
+	
+	public void addHandCard(String handCard) {
+		handCards.add(handCard);
+	}
+
+	public void setHandCards(ArrayList<String> handCards) {
+		this.handCards.clear();
+		this.handCards = handCards;
+	}
+
+	public ArrayList<String> getFollowerCards() {
+		return followerCards;
+	}
+
+	public void setFollowerCards(ArrayList<String> followerCards) {
+		this.followerCards = followerCards;
+	}
+
+	public ArrayList<String> getPointCards() {
+		return pointCards;
+	}
+
+	public void setPointCards(ArrayList<String> pointCards) {
+		this.pointCards = pointCards;
+	}
 }
