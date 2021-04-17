@@ -2,6 +2,7 @@ package claim.server;
 
 import java.util.ArrayList;
 
+<<<<<<< HEAD
 import claim.commons.Card;
 
 public class Table {
@@ -47,4 +48,18 @@ public class Table {
 //		String suit = card.getSuit().toString();
 //		return suit + "_" + rank;
 //	}
+=======
+public class Table {
+	
+	// Cards on the table - player's cards are stored in Account object
+	private ArrayList<String> tableCards = new ArrayList<>();
+
+	private Account playerOne;
+	private Account playerTwo;
+	
+	public Table(Account playerOne, Account playerTwo) {
+		this.playerOne = playerOne;
+		this.playerTwo = playerTwo;
+	}
+>>>>>>> branch 'main' of https://github.com/jannickmaurer/RumUndEhre2
 }
