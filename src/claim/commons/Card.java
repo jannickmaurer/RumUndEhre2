@@ -1,5 +1,7 @@
 package claim.commons;
 
+import java.util.ArrayList;
+
 /*
  * David Schürch
  * Code Source from Poker Project with individual changes.
@@ -33,14 +35,35 @@ public class Card implements Comparable<Card>{
     private final Suit suit;
     private final Rank rank;
 	
+   // Jannick: Added constructor for creating cards with String:
+//    public Card(String card) {
+//    	String[] temp = card.split("\\_");
+//    	
+//    	if(temp.length > 0) {
+//	    	switch (temp[0]) {
+//	          case "goblin": this.suit = Suit.Goblin; break;
+//	          case "dwarf": this.suit = Suit.Dwarf;  break;
+//	          case "undead": this.suit = Suit.Undead; break;
+//	          case "double": this.suit = Suit.Double; break;
+//	          case "knight": this.suit = Suit.Knight; break;
+//	          }
+//    	} else {
+//    		this.suit = null;
+//    		this.rank = null;
+//    	
+//    	}
+//    	
+//   
+//    
+//    	
+//    }
+    
     public Card(Suit suit, Rank rank) {
         this.suit = suit;
         this.rank = rank;
     }
     
-//    public Card(String card) {
-//    	//
-//    }
+    
 
 	public Suit getSuit() {
         return suit;
@@ -52,11 +75,12 @@ public class Card implements Comparable<Card>{
     
     //
     
-//	public String toString() {//
+	public String toString() {
+		return suit.toString() + "_" + rank.toString();
 //		String rank = card.getRank().toString();
 //		String suit = card.getSuit().toString();
 //		return suit + "_" + rank;
-//	}
+	}
 	
 	@Override
 	public int compareTo(Card o) {

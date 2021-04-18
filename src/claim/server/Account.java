@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.UUID;
 import java.util.logging.Logger;
 
+import claim.commons.Card;
 import claim.commons.ServiceLocator;
 
 
@@ -18,7 +19,14 @@ public class Account {
 	private final String username;
 	private final String password;
 	private String token;
+	private Table table;
+	private Client client;
 	
+	private ArrayList<Card> handCards = new ArrayList<>();
+	private ArrayList<String> followerCards = new ArrayList<>();
+	private ArrayList<String> pointCards = new ArrayList<>();
+	
+
 	public Account(String username, String password) {
 		this.username = username;
 		this.password = password;
@@ -41,7 +49,7 @@ public class Account {
 		}
 	
 	public String toString() {
-		return "Username: " + this.username + " Password: " + this.password;
+		return this.username;
 	}
 
 	public static Account getAccount(String username) {
@@ -75,4 +83,76 @@ public class Account {
 			}
 		}
 	}	
+	
+
+//	public ArrayList<String> getHandCards() {
+//		return handCards;
+//	}
+//	
+//	public void addHandCard(String handCard) {
+//		handCards.add(handCard);
+//	}
+//
+//	public void setHandCards(ArrayList<String> handCards) {
+//		this.handCards.clear();
+//		this.handCards = handCards;
+//	}
+
+	public ArrayList<String> getFollowerCards() {
+		return followerCards;
+	}
+
+	public void setFollowerCards(ArrayList<String> followerCards) {
+		this.followerCards = followerCards;
+	}
+
+	public ArrayList<String> getPointCards() {
+		return pointCards;
+	}
+
+	public void setPointCards(ArrayList<String> pointCards) {
+		this.pointCards = pointCards;
+	}
+
+	public Table getTable() {
+		return table;
+	}
+
+	public void setTable(Table table) {
+		this.table = table;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public ArrayList<Card> getHandCards() {
+		return handCards;
+	}
+
+	public void setHandCards(ArrayList<Card> handCards) {
+		this.handCards = handCards;
+	}
+
+	public static ArrayList<Account> getAccounts() {
+		return accounts;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	
 }

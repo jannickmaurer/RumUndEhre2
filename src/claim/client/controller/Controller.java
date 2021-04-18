@@ -2,11 +2,15 @@ package claim.client.controller;
 
 import java.util.logging.Logger;
 
+import claim.client.model.Board;
 import claim.client.model.Model;
 import claim.client.view.View;
 import claim.commons.ServiceLocator;
 import claim.commons.messages.Message;
+import claim.commons.messages.results.ResultBroadcastJoinPlayroom;
+import claim.commons.messages.results.ResultBroadcastStartRoundOne;
 import claim.commons.messages.results.ResultCreateAccount;
+import claim.commons.messages.results.ResultDealCards;
 import claim.commons.messages.results.ResultDeleteAccount;
 import claim.commons.messages.results.ResultLogin;
 import claim.commons.messages.results.ResultLogout;
@@ -23,10 +27,12 @@ public class Controller {
 	private Model model;
 	private View view;
 	private String username;
+	private Board board;
 
 	public Controller(Model model, View view) {
 		this.model = model;
 		this.view = view;
+		board = new Board();
 		
 		view.getBtConnect().setOnAction(event -> connect());
 		
@@ -95,8 +101,6 @@ public class Controller {
 		});
 	}
 
-	
-
 	// Does the same thing as the Message Class on Server's Side
 	// It is done here, because we want to trigger actions on the client's GUI
 	private void createMessage(String[] content) {
@@ -120,7 +124,21 @@ public class Controller {
 		if (content[0].equals("ResultDeleteAccount")) { msg = new ResultDeleteAccount(content);
 			if (!msg.isFalse()) msg.process(Controller.this);
 			if (msg.isFalse()) msg.processIfFalse(Controller.this);
+		}
+		if (content[0].equals("ResultBroadcastJoinPlayroom")) { msg = new ResultBroadcastJoinPlayroom(content);
+			if (!msg.isFalse()) msg.process(Controller.this);
+			if (msg.isFalse()) msg.processIfFalse(Controller.this);
+		}		
+		if (content[0].equals("ResultBroadcastStartRoundOne")) { msg = new ResultBroadcastStartRoundOne(content);
+			if (!msg.isFalse()) msg.process(Controller.this);
+			if (msg.isFalse()) msg.processIfFalse(Controller.this);
 		}	
+		if (content[0].equals("ResultDealCards")) { msg = new ResultDealCards(content);
+		if (!msg.isFalse()) msg.process(Controller.this);
+		if (msg.isFalse()) msg.processIfFalse(Controller.this);
+	}	
+		
+		
 	}
 
 	// Methods for triggering Methods in Model by clicking a Button in View, get Values from User Input
@@ -154,6 +172,10 @@ public class Controller {
 		model.deleteAccount();
 	}
 	
+	public void startRoundOne() {
+		model.startRoundOne();
+	}
+
 	// Messages Success Handling
 	public void loginSuccess() {
 		//Runnable um dynamische Anzeige zu gewährleisten
@@ -214,7 +236,19 @@ public class Controller {
 		this.username = username;
 	}
 
+	public Board getBoard() {
+		return board;
+	}
 
+	public void setBoard(Board board) {
+		this.board = board;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	
 
 
 }

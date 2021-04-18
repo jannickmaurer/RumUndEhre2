@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import claim.server.Card;
+import claim.commons.Card;
 
 //Warum extends Label? (SD)
 public class CardLabel extends Label {

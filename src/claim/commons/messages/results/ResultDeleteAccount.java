@@ -8,7 +8,7 @@ import claim.commons.messages.Message;
 
 public class ResultDeleteAccount extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
-	private static Logger logger = sl.getServerLogger();
+	private static Logger logger = sl.getClientLogger();
 
 	public ResultDeleteAccount(boolean result) {
 		super(new String[] {"ResultDeleteAccount", Boolean.toString(result)});
