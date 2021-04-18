@@ -15,7 +15,10 @@ import claim.commons.messages.results.ResultDeleteAccount;
 import claim.commons.messages.results.ResultLogin;
 import claim.commons.messages.results.ResultLogout;
 import claim.commons.messages.results.ResultPing;
+import claim.client.view.PlayerPane;
+import claim.client.view.CardLabel;
 import javafx.application.Platform;
+import javafx.event.Event;
 
 // Created by Samuel & Jannick
 public class Controller {
@@ -65,6 +68,21 @@ public class Controller {
 		view.getBtnBackError().setOnAction(e -> {
 			view.errorPopUp.hide();
 		});
+		
+		//SD
+		for (int i = 0; i < view.getGameLayout().getPlayerLayout().getCardLabels().size(); i++) {
+			view.getGameLayout().getPlayerLayout().getCardLabels().get(i).setOnMouseReleased(this::removeTableCard);
+		}
+		
+		//SD
+		for (int i = 0; i < view.getGameLayout().getPlayerLayout().getCardLabels().size(); i++) {
+			view.getGameLayout().getPlayerLayout().getCardLabels().get(i).setOnMouseEntered(this::highlightCard);
+		}
+		
+		//SD
+		for (int i = 0; i < view.getGameLayout().getPlayerLayout().getCardLabels().size(); i++) {
+			view.getGameLayout().getPlayerLayout().getCardLabels().get(i).setOnMouseExited(this::delightCard);
+		}
 		
 		// When Model receives a new Message, the Value of the SimpleString Property "LastReceivedMessage" Changes
 		// This Method looks at this change and creates the respective Message Object
@@ -157,6 +175,7 @@ public class Controller {
 	public void startRoundOne() {
 		model.startRoundOne();
 	}
+
 	
 //	public void playCard() {
 //		model.playCard("knight_1");
@@ -193,7 +212,24 @@ public class Controller {
 			}
 		});
 	}
-
+	
+	//SD
+	private void removeTableCard(Event event) {
+		view.getGameLayout().getPlayerLayout().updatePlayerDisplay();
+		view.getGameLayout().updateGameDisplay();
+	}
+	
+	//SD
+	public void highlightCard(Event event) {
+		CardLabel cl = (CardLabel) event.getSource();
+		cl.setStyle("-fx-effect: dropshadow(three-pass-box, black, 3, 0.2, 0, 0);");
+	}
+	
+	//SD
+	public void delightCard(Event event) {
+		CardLabel cl = (CardLabel) event.getSource();
+		cl.setStyle("-fx-effect: dropshadow(three-pass-box, black, 0, 0, 0, 0);");
+	}
 
 	// Getter & Setter
 	public Model getModel() {

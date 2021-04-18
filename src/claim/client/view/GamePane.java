@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 
 public class GamePane extends BorderPane {
 	private HBox hboxMiddleCards = new HBox();
+	private VBox vboxPlayedCards = new VBox();
 	private CardLabel clCardsDeck = new CardLabel();
 	private CardLabel clNewFollowerDeck = new CardLabel();
 	
@@ -38,13 +39,16 @@ public class GamePane extends BorderPane {
 		
 		VBox vboxCardsDeck = new VBox();
 		Label lbCardsDeck = new Label("Cards Deck");
+		clCardsDeck.setCard();
 		vboxCardsDeck.getChildren().addAll(clCardsDeck, lbCardsDeck);
 		
 		VBox vboxNewFollowerDeck = new VBox();
 		Label lbNewFollowerDeck = new Label("New Follower Deck");
+		clNewFollowerDeck.setCard();
 		vboxNewFollowerDeck.getChildren().addAll(clNewFollowerDeck, lbNewFollowerDeck);
 		
-		hboxMiddleCards.getChildren().addAll(vboxCardsDeck, vboxNewFollowerDeck);
+		hboxMiddleCards.getChildren().addAll(vboxPlayedCards, vboxCardsDeck, vboxNewFollowerDeck);
+		vboxPlayedCards.setSpacing(10);
 		hboxMiddleCards.setSpacing(10);
 		vbPlayer.getChildren().addAll(playerLayout, btLogout);
 			
@@ -52,7 +56,18 @@ public class GamePane extends BorderPane {
 		this.setCenter(hboxMiddleCards);
 		this.setBottom(vbPlayer);
 	}
+	
+	//Gespielte Karten in der Mitte anzeigen
+	public void updateGameDisplay() {
+		vboxPlayedCards.getChildren().clear();
 		
+		CardLabel cl1 = new CardLabel();
+		cl1.setCard();
+		CardLabel cl2 = new CardLabel();
+		cl2.setCard();
+		vboxPlayedCards.getChildren().addAll(cl1, cl2);
+	}
+	
 	//Getter & Setter
 	public Button getBtLogout() {
 		return btLogout;
@@ -62,21 +77,17 @@ public class GamePane extends BorderPane {
 		this.btLogout = btLogout;
 	}
 
-
 	public Label getLbName() {
 		return lbName;
 	}
-
 
 	public void setLbName(Label lbName) {
 		this.lbName = lbName;
 	}
 
-
 	public Label getLbPoints() {
 		return lbPoints;
 	}
-
 
 	public void setLbPoints(Label lbPoints) {
 		this.lbPoints = lbPoints;
@@ -87,19 +98,24 @@ public class GamePane extends BorderPane {
 		return lbPointsPlayer;
 	}
 
-
 	public void setLbPointsPlayer(Label lbPointsPlayer) {
 		this.lbPointsPlayer = lbPointsPlayer;
 	}
-
 
 	public ArrayList getCardLabels() {
 		return cardLabels;
 	}
 
-
 	public void setCardLabels(ArrayList cardLabels) {
 		this.cardLabels = cardLabels;
+	}
+
+	public PlayerPane getPlayerLayout() {
+		return playerLayout;
+	}
+
+	public void setPlayerLayout(PlayerPane playerLayout) {
+		this.playerLayout = playerLayout;
 	}
 	
 }

@@ -3,6 +3,7 @@
 package claim.client.view;
 
 import java.util.ArrayList;
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -24,30 +25,38 @@ public class PlayerPane extends VBox {
 
 	//Konstruktor
 	public PlayerPane() {
-		pointsGrid.add(lbPoints, 0, 0);
-		pointsGrid.add(lbPointsPlayer, 2, 0);
-		
-		VBox vboxScoreDeck = new VBox();
-		Label lbScoreDeck = new Label("Score Deck");
-		vboxScoreDeck.getChildren().addAll(clScoreDeck, lbScoreDeck);
-		
-		VBox vboxFollowerDeck = new VBox();
-		Label lbFollowerDeck = new Label("Follower Deck");
-		vboxFollowerDeck.getChildren().addAll(clFollowerDeck, lbFollowerDeck);
-		
+		cardLabels = new ArrayList<>();
+
 		// Add CardLabels for the cards
 		for (int i = 0; i < 13; i++) {
 			CardLabel cl = new CardLabel();
-			cl.setDisable(true);
-			
+			cl.setCard();
 			hboxCards.getChildren().add(cl);
 			hboxCards.setSpacing(10);
 			cardLabels.add(cl);
 		}
 		
+		pointsGrid.add(lbPoints, 0, 0);
+		pointsGrid.add(lbPointsPlayer, 2, 0);
+		
+		VBox vboxScoreDeck = new VBox();
+		Label lbScoreDeck = new Label("Score Deck");
+		clScoreDeck.setCard();
+		vboxScoreDeck.getChildren().addAll(clScoreDeck, lbScoreDeck);
+		
+		VBox vboxFollowerDeck = new VBox();
+		Label lbFollowerDeck = new Label("Follower Deck");
+		clFollowerDeck.setCard();
+		vboxFollowerDeck.getChildren().addAll(clFollowerDeck, lbFollowerDeck);
+		
 		hboxDecks.getChildren().addAll(vboxScoreDeck, vboxFollowerDeck);
 		hboxDecks.setSpacing(10);
 		this.getChildren().addAll(lbName, pointsGrid, hboxCards, hboxDecks);
+	}
+	
+	//Karte entfernen wenn auf eine Geklickt wird (noch auszubauen)
+	public void updatePlayerDisplay() {
+		hboxCards.getChildren().remove(0);
 	}
 	
 	//Getter & Setter
