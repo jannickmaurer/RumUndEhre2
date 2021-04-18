@@ -52,6 +52,8 @@ public abstract class Message {
 			if (content[0].equals("Ping")) msg = new Ping(content);
 			if (content[0].equals("CreateAccount")) msg = new CreateAccount(content);
 			if (content[0].equals("Login")) msg = new Login(content);
+			if (content[0].equals("PlayCard")) msg = new PlayCard(content);
+			if (content[0].equals("StartRoundOne")) msg = new StartRoundOne(content);
 //			if (content[0].equals("CreatePlayroom")) msg = new CreatePlayroom(content);
 //			if (content[0].equals("ListPlayrooms")) msg = new ListPlayrooms(content);
 			if (content[0].equals("Logout")) msg = new Logout(content);

@@ -15,6 +15,8 @@ import claim.commons.messages.results.ResultDeleteAccount;
 import claim.commons.messages.results.ResultLogin;
 import claim.commons.messages.results.ResultLogout;
 import claim.commons.messages.results.ResultPing;
+import claim.commons.messages.results.ResultPlayCard;
+import claim.commons.messages.results.ResultSendCard;
 import claim.client.view.PlayerPane;
 import claim.client.view.CardLabel;
 import javafx.application.Platform;
@@ -137,7 +139,14 @@ public class Controller {
 		if (!msg.isFalse()) msg.process(Controller.this);
 		if (msg.isFalse()) msg.processIfFalse(Controller.this);
 	}	
-		
+		if (content[0].equals("ResultPlayCard")) { msg = new ResultPlayCard(content);
+		if (!msg.isFalse()) msg.process(Controller.this);
+		if (msg.isFalse()) msg.processIfFalse(Controller.this);
+	}	
+		if (content[0].equals("ResultSendCard")) { msg = new ResultSendCard(content);
+		if (!msg.isFalse()) msg.process(Controller.this);
+		if (msg.isFalse()) msg.processIfFalse(Controller.this);
+	}			
 		
 	}
 
@@ -177,9 +186,9 @@ public class Controller {
 	}
 
 	
-//	public void playCard() {
-//		model.playCard("knight_1");
-//	}
+	public void playCard() {
+		model.playCard("knight_1");
+	}
 	
 	
 	// Messages Success Handling

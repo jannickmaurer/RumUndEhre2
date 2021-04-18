@@ -15,6 +15,7 @@ import claim.commons.messages.Login;
 import claim.commons.messages.Logout;
 import claim.commons.messages.Message;
 import claim.commons.messages.Ping;
+import claim.commons.messages.PlayCard;
 import claim.commons.messages.StartRoundOne;
 import claim.commons.Configuration;
 import claim.commons.Translator;
@@ -117,16 +118,16 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
-//	public void playCard(String card) {
-//		String[] content = new String[] { "PlayCard", this.token.getValue(), card };
-//		Message msg = new PlayCard(content);
-//		try {
-//			msg.send(socket);
-//			logger.info("Client tries to send message: " + msg.toString());
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	public void playCard(String card) {
+		String[] content = new String[] { "PlayCard", this.token.getValue(), card };
+		Message msg = new PlayCard(content);
+		try {
+			msg.send(socket);
+			logger.info("Client tries to send message: " + msg.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	public void setConnected(Boolean connected) {

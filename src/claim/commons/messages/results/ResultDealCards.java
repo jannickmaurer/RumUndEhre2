@@ -31,7 +31,8 @@ public class ResultDealCards extends Message {
 	@Override
 	public void process(Controller controller) {
 		controller.getBoard().addHandCards(handCards);
-		// Both players got their handcards and game can be started
+		
+		// Player got its handcards and game can be started
 	}
 	
 	@Override
