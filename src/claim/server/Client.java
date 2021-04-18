@@ -21,7 +21,7 @@ public class Client {
 	private String token = null;
 	private Socket socket;
 	private boolean clientReachable = true;
-//	private Playroom playroom;
+	private Playroom playroom;
 	
 	public Client(Socket socket) {
 		this.socket = socket;
@@ -96,5 +96,22 @@ public class Client {
 		}
 		return null;
 	}
+
+	public boolean isClientReachable() {
+		return clientReachable;
+	}
+
+	public void setClientReachable(boolean clientReachable) {
+		this.clientReachable = clientReachable;
+	}
+
+	public Playroom getPlayroom() {
+		return playroom;
+	}
+
+	public void setPlayroom(Playroom playroom) {
+		this.playroom = playroom;
+	}
+	
 
 }
