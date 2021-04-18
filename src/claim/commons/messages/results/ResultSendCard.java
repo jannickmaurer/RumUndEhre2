@@ -8,30 +8,39 @@ import claim.commons.ServiceLocator;
 import claim.commons.messages.Message;
 
 // Class implemented by Jannick: Message Server -> Client
-// ResultDealCards|result|Card1| ... Card13
-public class ResultDealCards extends Message {
+// ResultSendCard|result|Reason|Card
+// Possible Reasons: HandCard, FollowerCard, PointCard, TableCard
+public class ResultSendCard extends Message {
 	
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getClientLogger();
 	
-	private ArrayList<String> handCards = new ArrayList<>();
+	private String reason;
+	private String card;
 	
 	// Takes the result and creates new Object
-	public ResultDealCards(boolean result) {
-		super(new String[] {"ResultDealCards", Boolean.toString(result)});
+	public ResultSendCard(boolean result) {
+		super(new String[] {"ResultSendCard", Boolean.toString(result)});
 	}
 	
-	public ResultDealCards(String[] content) {
+	public ResultSendCard(String[] content) {
 		super(content);
-		for(int i = 2; i < content.length; i++) {
-			handCards.add(content[i]);
-		}
+		this.reason = content[2];
+		this.card = content[3];
 	}
 	
 	@Override
 	public void process(Controller controller) {
-		controller.getBoard().addHandCards(handCards);
-		// Both players got their handcards and game can be started
+		switch (this.reason) {
+		// What happens when which card is being sent by the Server?
+			case "HandCard": break;
+			case "FollowerCard": break;
+			case "PointCard": break;
+			case "TableCard" : break;
+		}
+	
+		
+		
 	}
 	
 	@Override

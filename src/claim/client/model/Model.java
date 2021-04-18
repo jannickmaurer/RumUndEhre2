@@ -117,7 +117,16 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
-	
+//	public void playCard(String card) {
+//		String[] content = new String[] { "PlayCard", this.token.getValue(), card };
+//		Message msg = new PlayCard(content);
+//		try {
+//			msg.send(socket);
+//			logger.info("Client tries to send message: " + msg.toString());
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	
 	public void setConnected(Boolean connected) {

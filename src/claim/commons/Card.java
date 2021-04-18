@@ -32,31 +32,35 @@ public class Card implements Comparable<Card>{
         }
     }
 
-    private final Suit suit;
-    private final Rank rank;
+    //  Jannick: "final" entfernt
+    private Suit suit;
+    private Rank rank;
 	
    // Jannick: Added constructor for creating cards with String:
-//    public Card(String card) {
-//    	String[] temp = card.split("\\_");
-//    	
-//    	if(temp.length > 0) {
-//	    	switch (temp[0]) {
-//	          case "goblin": this.suit = Suit.Goblin; break;
-//	          case "dwarf": this.suit = Suit.Dwarf;  break;
-//	          case "undead": this.suit = Suit.Undead; break;
-//	          case "double": this.suit = Suit.Double; break;
-//	          case "knight": this.suit = Suit.Knight; break;
-//	          }
-//    	} else {
-//    		this.suit = null;
-//    		this.rank = null;
-//    	
-//    	}
-//    	
-//   
-//    
-//    	
-//    }
+    public Card(String card) {
+	    String[] temp = card.split("\\_");
+	    if(temp.length > 0) {
+		   	switch (temp[0]) {
+		         case "goblin": this.suit = Suit.Goblin; break;
+		         case "dwarf": this.suit = Suit.Dwarf;  break;
+		         case "undead": this.suit = Suit.Undead; break;
+		         case "double": this.suit = Suit.Double; break;
+		         case "knight": this.suit = Suit.Knight; break;
+	          }
+		   	switch (temp[1]) {
+			   	case "0" : this.rank = Rank.Zero; break;
+			   	case "1" : this.rank = Rank.One; break;
+			   	case "2" : this.rank = Rank.Two; break;
+			   	case "3" : this.rank = Rank.Three; break;
+			   	case "4" : this.rank = Rank.Four; break;
+			   	case "5" : this.rank = Rank.Five; break;
+			   	case "6" : this.rank = Rank.Six; break;
+			   	case "7" : this.rank = Rank.Seven; break;
+			   	case "8" : this.rank = Rank.Eight; break;
+			   	case "9" : this.rank = Rank.Nine; break;
+		   	}
+	   	}
+    }
     
     public Card(Suit suit, Rank rank) {
         this.suit = suit;

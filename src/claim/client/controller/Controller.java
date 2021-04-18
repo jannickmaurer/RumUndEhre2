@@ -158,6 +158,10 @@ public class Controller {
 		model.startRoundOne();
 	}
 	
+//	public void playCard() {
+//		model.playCard("knight_1");
+//	}
+	
 	
 	// Messages Success Handling
 	public void loginSuccess() {

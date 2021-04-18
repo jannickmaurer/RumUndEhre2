@@ -22,6 +22,7 @@ public class Client {
 	private Socket socket;
 	private boolean clientReachable = true;
 	private Playroom playroom;
+	private Boolean loggedIn;
 	
 	public Client(Socket socket) {
 		this.socket = socket;
@@ -111,6 +112,14 @@ public class Client {
 
 	public void setPlayroom(Playroom playroom) {
 		this.playroom = playroom;
+	}
+
+	public Boolean isLoggedIn() {
+		return loggedIn;
+	}
+
+	public void setLoggedIn(Boolean loggedIn) {
+		this.loggedIn = loggedIn;
 	}
 	
 

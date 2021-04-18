@@ -28,12 +28,13 @@ public class Login extends Message {
 	// TBD: Playroom handling once it gets introduced
 	public void process(Client client) {
 		Boolean result = false;
-		if(Account.checkLogin(username, password) == true) {
+		if(Account.checkLogin(username, password) && Playroom.getPlayrooms().get(0).getPlayers().size() < 2) {
 			account = Account.getAccount(username);
 			client.setAccount(account);
 			account.setClient(client);
 			token = account.getToken();
 			client.setToken(token);
+			client.setLoggedIn(true);
 			Playroom.getPlayrooms().get(0).addAccount(client.getAccount());
 			client.setPlayroom(Playroom.getPlayrooms().get(0));
 			result = true;
@@ -42,7 +43,7 @@ public class Login extends Message {
 			
 			for(Client c : Client.getClients()) {
 //				if(client.getPlayroom() == c.getPlayroom()) {
-					if(!c.getAccount().getUsername().equalsIgnoreCase(this.username)) {
+					if(c != client && client.isLoggedIn()) {
 						String[] temp = new String[] {"ResultBroadcastJoinPlayroom", "true", this.username};
 						c.send(new ResultBroadcastJoinPlayroom(temp));
 					}

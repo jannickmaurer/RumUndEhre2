@@ -19,18 +19,14 @@ public class Board {
 	}
 	
 	public void addHandCards(ArrayList<String> handCards) {
-//		for(String s : handCards) {
-//			this.handCards.add(new Card(s));
-//		}
-		
-		System.out.println("HandCards added: ");
 		for(String s : handCards) {
-			System.out.println(s);
+			this.handCards.add(new Card(s));
 		}
-		
-		
+		System.out.println("Handcards Created: ");
+		for (Card c : this.handCards) {
+			System.out.println(c.toString());
+		}
 	}
-	
 
 	public ArrayList<Card> getHandCards() {
 		return handCards;

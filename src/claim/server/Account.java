@@ -21,6 +21,7 @@ public class Account {
 	private String token;
 	private Table table;
 	private Client client;
+	private Card playedCard;
 	
 	private ArrayList<Card> handCards = new ArrayList<>();
 	private ArrayList<String> followerCards = new ArrayList<>();
@@ -152,6 +153,14 @@ public class Account {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public Card getPlayedCard() {
+		return playedCard;
+	}
+
+	public void setPlayedCard(Card playedCard) {
+		this.playedCard = playedCard;
 	}
 
 	
