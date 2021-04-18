@@ -91,7 +91,8 @@ public class View {
 		errorPopUp.getContent().add(errorPopupLayout);
 		errorPopUp.setAutoHide(false);
 		
-		scene = new Scene(root, 960, 635);
+		scene = new Scene(root, 1100, 733);
+		scene.getStylesheets().add(getClass().getResource("Client.css").toExternalForm());
 		
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Connect");
@@ -127,7 +128,7 @@ public class View {
 		registrationLayout.getBtBack().setText(t.getString("button.back"));
 		gameLayout.getBtLogout().setText(t.getString("button.logout"));
 		errorPopupLayout.getBtBackError().setText(t.getString("button.back"));
-	}	
+	}
 	
 	//Getter & Setter
 	public Stage getStage() {
@@ -257,7 +258,7 @@ public class View {
 	public void setBtLogout(Button btLogout) {
 		this.btLogout = btLogout;
 	}
-	
+
 	public Label getLblError() {
 		return lblError;
 	}
@@ -272,6 +273,14 @@ public class View {
 
 	public void setBtnBackError(Button btnBackError) {
 		this.btnBackError = btnBackError;
+	}
+
+	public GamePane getGameLayout() {
+		return gameLayout;
+	}
+
+	public void setGameLayout(GamePane gameLayout) {
+		this.gameLayout = gameLayout;
 	}
 
 }

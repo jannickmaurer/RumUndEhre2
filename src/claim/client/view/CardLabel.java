@@ -14,21 +14,12 @@ public class CardLabel extends Label {
 	
 	public CardLabel() {
 		super();
-		//Wieder entfernen sobald setCard aufgerufen werden kann
-		Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("claim/image/Backside.jpg"));
-		ImageView imv = new ImageView(image);
-		imv.setFitWidth(80);
-		imv.maxWidth(80);
-		imv.setFitHeight(115);
-		imv.maxHeight(115);
-		imv.setPreserveRatio(true);
-		this.setGraphic(imv);
-		//
 	}
-
-	public void setCard(Card card) {
+	
+	//Aussehen der Karte definieren
+	public void setCard() {
 		//String fileName = cardToFileName(card);
-		Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("/Backside.jpg"));
+		Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("claim/image/Backside.jpg"));
 		ImageView imv = new ImageView(image);
 		imv.setFitWidth(80);
 		imv.maxWidth(80);
