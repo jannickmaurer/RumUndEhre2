@@ -44,10 +44,33 @@ public class Table extends Playroom {
 	}
 	
 	
+	//Dave: Falls eine der beiden Karten ein Untoter ist oder beide, muss diese dem Spieler
+	//auf den Punktestapel zugesandt werden der gewonnen hat.
+	public void evaluateWinnerCard(Card cardP1, Card cardP2) {
+		//gibt den Sieger aus. Rückgabewert noch unbekannt, evtl. boolean, zu definieren. Eingabe auch
+		//evtl. zuerst aus String noch Karte machen
+		if(suitToString(cardP1) == "goblin" && suitToString(cardP2) == "knight" ||
+				suitToString(cardP1) == "knight" && suitToString(cardP2) == "goblin") {
+			if(suitToString(cardP1) == "knight") ;//was ist der Rückgabe wert, string int etc.				
+			else ;//was ist der Rückgabe wert, string int etc. möglichst mit Return raus
+		}
+		if(suitToString(cardP1) == suitToString(cardP2) || 
+			(suitToString(cardP1) != "double" && suitToString(cardP2) == "double")) {
+			switch (cardP1.compareTo(cardP2)) {
+			case  1://was ist der Rückgabe wert, string int etc.
+			case  0://Hier gewinnt P1 //was ist der Rückgabe wert, string int etc.
+			case -1://was ist der Rückgabe wert, string int etc.
+			}
+		}else ; //P1 hat gewonnen //was ist der Rückgabe wert, string int etc.
+		
+	}
 	
-//	private String cardToStringName(Card card) {
-//		String rank = card.getRank().toString();
-//		String suit = card.getSuit().toString();
-//		return suit + "_" + rank;
-//	}
+	//Dave: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
+	public String suitToString(Card card) {
+		String cardString = card.toString();
+	    String[] tmp = cardString.split("\\_");
+    	return tmp[0];
+	}
+	
+	
 }

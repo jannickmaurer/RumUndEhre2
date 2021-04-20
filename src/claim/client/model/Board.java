@@ -10,7 +10,9 @@ public class Board {
 	
 	private ArrayList<Card> handCards;
 	private ArrayList<Card> followerCards;
-	private ArrayList<Card> pointCards;
+	private ArrayList<Card> pointCards;//Was sind PointCArds?????
+	private ArrayList<Card> playableHandCards;//Dave
+
 	
 	public Board() {
 		handCards = new ArrayList<>();
@@ -51,6 +53,61 @@ public class Board {
 	public void setPointCards(ArrayList<Card> pointCards) {
 		this.pointCards = pointCards;
 	}
+	
+	
+	//ToDo: Im controller die Methoden EvalutatePlayableHandCards aufrufen und nach dem spielen
+	//      die gebrauchte Karte löschen
+	
+	//
+	
+	
+	//Dave: Entfernt die gespielte Karte aus den HandCards. Return, damit nur 1 Mal eine Karte
+	//entfernt wird
+	public void removePlayedCard(Card removeCard) {
+		for (int i = 0; i < handCards.size()-1; i++) {
+			if(suitToString(handCards.get(i)) == suitToString(removeCard)) {
+				if(handCards.get(i).compareTo(removeCard) == 0) {
+					handCards.remove(i);
+					return;
+				}
+			}
+		}
+	}
+	
+	//Dave: Fügt die spielbaren Karten der ArrayList playableHandCards hinzu
+	public void evaluatePlayableHandCards(Card opponentCard) {
+		sameSuitAsOpponent(opponentCard);
+		if(playableHandCards.isEmpty()) {
+			for(Card card : handCards) {
+				playableHandCards.add(card);
+			}
+		}
+	}
+	
+	//Dave: Alle  spielbaren Karten werden den playableHandCards hinzugefügt sofern die eigenen 
+	//Handkarten die gleiche Farbe oder einen Doppelgänger haben
+	public void sameSuitAsOpponent(Card opponentCard) {
+		if(suitToString(opponentCard) == "double") {
+			for(int i = 0; i < handCards.size()-1; i++) {
+				if(suitToString(handCards.get(i)) == "double") playableHandCards.add(handCards.get(i));
+			}
+		}else {
+			for(int i = 0; i < handCards.size()-1; i++) {
+				if(suitToString(opponentCard) == suitToString(handCards.get(i)) || 
+				   suitToString(handCards.get(i)) == "double") {
+					playableHandCards.add(handCards.get(i));
+				}
+			}
+		}
+	}
+	//Dave: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
+	public String suitToString(Card card) {
+		String cardString = card.toString();
+	    String[] tmp = cardString.split("\\_");
+    	return tmp[0];
+	}
+	
+	
 	
 	
 }
