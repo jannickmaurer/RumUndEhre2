@@ -1,7 +1,5 @@
 package claim.commons;
 
-import java.util.ArrayList;
-
 /*
  * David Schürch
  * Code Source from Poker Project with individual changes.
@@ -66,8 +64,6 @@ public class Card implements Comparable<Card>{
         this.suit = suit;
         this.rank = rank;
     }
-    
-    
 
 	public Suit getSuit() {
         return suit;
@@ -78,6 +74,7 @@ public class Card implements Comparable<Card>{
     }
     
     //
+    
     
 	public String toString() {
 		return suit.toString() + "_" + rank.toString();
