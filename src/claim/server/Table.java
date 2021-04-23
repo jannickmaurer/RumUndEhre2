@@ -45,6 +45,11 @@ public class Table extends Playroom {
 		return "hallo";
 	}
 	
+	public void roundWinnerIs(Card cardP1, Card cardP2) {
+		evaluateWinnerCard(cardP1, cardP2);
+		
+	}
+	
 	
 	//Dave: Falls eine der beiden Karten ein Untoter ist oder beide, muss diese dem Spieler
 	//auf den Punktestapel zugesandt werden der gewonnen hat.
