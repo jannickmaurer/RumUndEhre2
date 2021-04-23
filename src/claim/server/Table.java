@@ -16,7 +16,8 @@ public class Table extends Playroom {
 	private ArrayList<Card> cardsP1 = new ArrayList<>();
 	private ArrayList<Card> cardsP2 = new ArrayList<>();
 	private ArrayList<Card> cardsTable = new ArrayList<>();
-	
+	private ArrayList<Card> undeadsP1 = new ArrayList<>();
+	private ArrayList<Card> undeadsP2 = new ArrayList<>();
 	
 	
 	//Entweder das so belassen oder in unsere Kontrollerklasse einfügen, respektive generieren
@@ -71,9 +72,14 @@ public class Table extends Playroom {
 		}else ; //P1 hat gewonnen //was ist der Rückgabe wert, string int etc.	
 	}
 	
-	public void isUndead(Card cardP1, Card cardP2, String winner) {
+	public void addUndead(Card cardP1, Card cardP2, String winner) {
 		if(suitToString(cardP1) == "undead" || suitToString(cardP2) == "undead") {
-			
+			switch (winner) {
+			case "P1":	if(suitToString(cardP1) == "undead") undeadsP1.add(cardP1);
+						if(suitToString(cardP2) == "undead") undeadsP1.add(cardP2); break;
+			case "P2":  if(suitToString(cardP1) == "undead") undeadsP2.add(cardP1);
+						if(suitToString(cardP2) == "undead") undeadsP2.add(cardP2); break;
+			}
 		}
 	}
 	
