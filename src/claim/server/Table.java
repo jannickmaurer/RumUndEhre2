@@ -32,16 +32,21 @@ public class Table extends Playroom {
 	public void deal() {
 		deck = new DeckOfCards();
 		Card card;
+		System.out.println("Methode deal: Wert von getCardsRemaining vor dem ausgeben: "+ deck.getCardsRemaining());
 		for (int i = 0; i < 3; i++) {
 			if (deck.getCardsRemaining() > 26) {
+				System.out.println("Methode deal: Wert von getCardsRemaining nach jedem ausgeben an Spieler: "+ deck.getCardsRemaining());
 				for (int j = 0; j < 13; j++) {
 					card = deck.dealCard();
 					if (i == 0) cardsP1.add(card);
 					else cardsP2.add(card);
 				}
 			} else {
-				card = deck.dealCard();
-				cardsTable.add(card);
+				System.out.println("Methode deal: Wert von getCardsRemaining nur für Tischkarten: "+ deck.getCardsRemaining());
+				for (int j = 0; j < deck.getCardsRemaining(); j++) {
+					card = deck.dealCard();
+					cardsTable.add(card);
+				}
 			}
 		}
 	}
@@ -60,7 +65,7 @@ public class Table extends Playroom {
 	public void roundWinnerIs(Card cardP1, Card cardP2) {
 		String winner = evaluateWinnerCard(cardP1, cardP2);
 		addUndead(cardP1, cardP2, winner);
-		
+		//return Statement an Jannick in Absprache mit Ihm einfügen
 	}
 	
 	
@@ -101,6 +106,10 @@ public class Table extends Playroom {
 			}
 		}
 	}
+	
+	/*
+	 * TODO: Neue Methode die 
+	 */
 	
 	//Dave: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
 	public String suitToString(Card card) {
