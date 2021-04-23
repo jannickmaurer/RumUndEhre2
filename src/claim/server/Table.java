@@ -67,10 +67,18 @@ public class Table extends Playroom {
 	 * - Wer oder wie greifen wir aud die tmpUndeads zu, respektive macht jannick das direkt oder
 	 *   muss ich noch eine zugriffs methode schreiben. 
 	 */
-	public void finishRound(Card cardP1, Card cardP2) {
+	public void finishRound(Card cardP1, Card cardP2, Card actualTableCard) {//evtl.auslesen aus Array
 		String winner = evaluateWinnerCard(cardP1, cardP2);
 		addUndead(cardP1, cardP2, winner);
 		//return Statement an Jannick in Absprache mit Ihm einfügen
+		switch (winner) {
+		case "P1": wonCardsP1.add(actualTableCard);
+				   wonCardsP2.add(getNextTableCard()); break;
+		case "P2": wonCardsP2.add(actualTableCard);
+				   wonCardsP1.add(getNextTableCard()); break;
+
+		}
+
 	}
 	
 	
@@ -113,8 +121,12 @@ public class Table extends Playroom {
 	}
 	
 	/*
-	 * TODO: Neue Methode die die Karten für den Rundensieger zurück gibt
+	 * David: Gibt die letzte Karte der Tischkarten zurück und löscht diese
 	 */
+	public Card getNextTableCard() {
+        Card card = (cardsTable.size() > 0) ? cardsTable.remove(cardsTable.size()-1) : null;
+		return card;
+	}
 	
 	//Dave: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
 	public String suitToString(Card card) {
