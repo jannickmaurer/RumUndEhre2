@@ -11,6 +11,10 @@ public class Table extends Playroom {
 	public Table() {
 		super();
 	}
+	
+	/*
+	 * TODO: ACHTUNG tableCards und cardsTable, einer muss weg --> tableCards behalten
+	 */
 
 	private DeckOfCards deck;
 	private ArrayList<Card> cardsP1 = new ArrayList<>();
@@ -47,6 +51,16 @@ public class Table extends Playroom {
 		return "hallo";
 	}
 	
+	
+	/*
+	 * TODO: Karte bekommen mit Jannick anschauen, ob die allenfalls als string kommt und gewandelt
+	 * werden muss.
+	 * ---------------------
+	 * Rückgabe mit Jannick anschauen:
+	 * - Mit was für einem Datentyp gebe ich den Sieger zurück?? 
+	 * - Wer oder wie greifen wir aud die tmpUndeads zu, respektive macht jannick das direkt oder
+	 *   muss ich noch eine zugriffs methode schreiben. 
+	 */
 	public void roundWinnerIs(Card cardP1, Card cardP2) {
 		String winner = evaluateWinnerCard(cardP1, cardP2);
 		addUndead(cardP1, cardP2, winner);
@@ -75,7 +89,11 @@ public class Table extends Playroom {
 		return "P1";
 	}
 	
+	/*
+	 * David: Add "Undead" cards to the winners ArrayList
+	 */
 	public void addUndead(Card cardP1, Card cardP2, String winner) {
+		tmpUndeads.clear();
 		if(suitToString(cardP1) == "undead" || suitToString(cardP2) == "undead") {
 			switch (winner) {
 			case "P1":	if(suitToString(cardP1) == "undead") undeadsP1.add(cardP1); tmpUndeads.add(cardP1);
