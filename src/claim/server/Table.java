@@ -17,6 +17,8 @@ public class Table extends Playroom {
 	private ArrayList<Card> cardsP2 = new ArrayList<>();
 	private ArrayList<Card> cardsTable = new ArrayList<>();
 	
+	
+	
 	//Entweder das so belassen oder in unsere Kontrollerklasse einfügen, respektive generieren
 	/*
 	 * TODO: TXT
@@ -61,8 +63,13 @@ public class Table extends Playroom {
 			case  0://Hier gewinnt P1 //was ist der Rückgabe wert, string int etc.
 			case -1://was ist der Rückgabe wert, string int etc.
 			}
-		}else ; //P1 hat gewonnen //was ist der Rückgabe wert, string int etc.
-		
+		}else ; //P1 hat gewonnen //was ist der Rückgabe wert, string int etc.	
+	}
+	
+	public void isUndead(Card cardP1, Card cardP2, String winner) {
+		if(suitToString(cardP1) == "undead" || suitToString(cardP2) == "undead") {
+			
+		}
 	}
 	
 	//Dave: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
