@@ -23,6 +23,9 @@ public class Table extends Playroom {
 	private ArrayList<Card> undeadsP1 = new ArrayList<>();
 	private ArrayList<Card> undeadsP2 = new ArrayList<>();
 	private ArrayList<Card> tmpUndeads = new ArrayList<>();
+	private ArrayList<Card> wonCardsP1 = new ArrayList<>();
+	private ArrayList<Card> wonCardsP2 = new ArrayList<>();
+
 	
 	
 	//Entweder das so belassen oder in unsere Kontrollerklasse einfügen, respektive generieren
@@ -51,7 +54,9 @@ public class Table extends Playroom {
 		}
 	}
 	
-	
+//	public void finishRound(Card cadrP1, Card cardP2) {
+//		
+//	}
 	
 	/*
 	 * TODO: Karte bekommen mit Jannick anschauen, ob die allenfalls als string kommt und gewandelt
@@ -62,7 +67,7 @@ public class Table extends Playroom {
 	 * - Wer oder wie greifen wir aud die tmpUndeads zu, respektive macht jannick das direkt oder
 	 *   muss ich noch eine zugriffs methode schreiben. 
 	 */
-	public void roundWinnerIs(Card cardP1, Card cardP2) {
+	public void finishRound(Card cardP1, Card cardP2) {
 		String winner = evaluateWinnerCard(cardP1, cardP2);
 		addUndead(cardP1, cardP2, winner);
 		//return Statement an Jannick in Absprache mit Ihm einfügen
@@ -108,7 +113,7 @@ public class Table extends Playroom {
 	}
 	
 	/*
-	 * TODO: Neue Methode die 
+	 * TODO: Neue Methode die die Karten für den Rundensieger zurück gibt
 	 */
 	
 	//Dave: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
