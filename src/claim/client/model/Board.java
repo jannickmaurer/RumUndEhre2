@@ -10,7 +10,7 @@ public class Board {
 	
 	private ArrayList<Card> handCards;
 	private ArrayList<Card> followerCards;
-	private ArrayList<Card> pointCards;//Was sind PointCArds?????
+	private ArrayList<Card> pointCards;//Was sind PointCArds?????  Untote?
 	private ArrayList<Card> playableHandCards;//Dave
 
 	
