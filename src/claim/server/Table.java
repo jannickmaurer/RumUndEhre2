@@ -14,6 +14,8 @@ public class Table extends Playroom {
 	
 	/*
 	 * TODO: ACHTUNG tableCards und cardsTable, einer muss weg --> tableCards behalten
+	 * - Wie versendet Jannick die Tischkarten?? sollte immer über getTableCards laufen, damit
+	 *   die gespielte Karte gelöscht wird
 	 */
 
 	private DeckOfCards deck;
@@ -23,8 +25,8 @@ public class Table extends Playroom {
 	private ArrayList<Card> undeadsP1 = new ArrayList<>();
 	private ArrayList<Card> undeadsP2 = new ArrayList<>();
 	private ArrayList<Card> tmpUndeads = new ArrayList<>();
-	private ArrayList<Card> wonCardsP1 = new ArrayList<>();
-	private ArrayList<Card> wonCardsP2 = new ArrayList<>();
+	private ArrayList<Card> followerCardsP1 = new ArrayList<>();
+	private ArrayList<Card> followerCardsP2 = new ArrayList<>();
 
 	
 	
@@ -72,10 +74,10 @@ public class Table extends Playroom {
 		addUndead(cardP1, cardP2, winner);
 		//return Statement an Jannick in Absprache mit Ihm einfügen
 		switch (winner) {
-		case "P1": wonCardsP1.add(actualTableCard);
-				   wonCardsP2.add(getNextTableCard()); break;
-		case "P2": wonCardsP2.add(actualTableCard);
-				   wonCardsP1.add(getNextTableCard()); break;
+		case "P1": followerCardsP1.add(actualTableCard);
+				   followerCardsP2.add(getNextTableCard()); break;
+		case "P2": followerCardsP2.add(actualTableCard);
+				   followerCardsP1.add(getNextTableCard()); break;
 
 		}
 
