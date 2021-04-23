@@ -1,6 +1,7 @@
 package claim.server;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import claim.commons.Card;
 
@@ -172,14 +173,22 @@ public class Table extends Playroom {
 		
 	}
 	
-	private String winnerFraction(ArrayList cardsP1, ArrayList cardsP2) {
+	/*
+	 * David: Vergleicht die Anzahl Anhänger einer Fraktion und gibt den Spieler der gewonnen hat zurück
+	 */
+	private String winnerFraction(ArrayList<Card> cardsP1, ArrayList<Card> cardsP2) {
 		if(cardsP1.size() > cardsP2.size()) return "P1";
 		if(cardsP1.size() < cardsP2.size()) return "P2";
-		if(cardsP1.size() == cardsP2.size()) {
+		if(cardsP1.size() == 0 && cardsP2.size() == 0) return "NONE";
+		Collections.sort(cardsP1);
+		Collections.sort(cardsP2);	
+		Card cardP1 = (Card) cardsP1.remove(cardsP1.size()-1);
+		Card cardP2;
+		
+//		if(cardsP1.size() == cardsP2.size()) {}
 			
-		}
-
-		return "";
+		return "NONE";	
+		
 	}
 
 	
@@ -189,6 +198,15 @@ public class Table extends Playroom {
 	 */
 	public Card getNextTableCard() {
         Card card = (cardsTable.size() > 0) ? cardsTable.remove(cardsTable.size()-1) : null;
+		return card;
+	}
+	
+	/*
+	 * David: Sortiert die Karten und gibt die letzte Karte, welche die Höchste ist zurück
+	 */
+	private Card getHighestCard(ArrayList<Card> cards) {
+		Collections.sort(cards);
+        Card card = (cards.size() > 0) ? cards.remove(cards.size()-1) : null;
 		return card;
 	}
 	
