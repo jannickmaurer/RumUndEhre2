@@ -54,22 +54,23 @@ public class Table extends Playroom {
 	
 	//Dave: Falls eine der beiden Karten ein Untoter ist oder beide, muss diese dem Spieler
 	//auf den Punktestapel zugesandt werden der gewonnen hat.
-	public void evaluateWinnerCard(Card cardP1, Card cardP2) {
+	public String evaluateWinnerCard(Card cardP1, Card cardP2) {
 		//gibt den Sieger aus. Rückgabewert noch unbekannt, evtl. boolean, zu definieren. Eingabe auch
 		//evtl. zuerst aus String noch Karte machen
 		if(suitToString(cardP1) == "goblin" && suitToString(cardP2) == "knight" ||
 				suitToString(cardP1) == "knight" && suitToString(cardP2) == "goblin") {
-			if(suitToString(cardP1) == "knight") ;//was ist der Rückgabe wert, string int etc.				
-			else ;//was ist der Rückgabe wert, string int etc. möglichst mit Return raus
+			if(suitToString(cardP1) == "knight") return "P1";				
+			else return "P2";
 		}
 		if(suitToString(cardP1) == suitToString(cardP2) || 
 			(suitToString(cardP1) != "double" && suitToString(cardP2) == "double")) {
 			switch (cardP1.compareTo(cardP2)) {
-			case  1://was ist der Rückgabe wert, string int etc.
-			case  0://Hier gewinnt P1 //was ist der Rückgabe wert, string int etc.
-			case -1://was ist der Rückgabe wert, string int etc.
+			case  1: return "P1";
+			case  0: return "P1";
+			case -1: return "P2";
 			}
-		}else ; //P1 hat gewonnen //was ist der Rückgabe wert, string int etc.	
+		}
+		return "P1";
 	}
 	
 	public void addUndead(Card cardP1, Card cardP2, String winner) {
