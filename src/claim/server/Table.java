@@ -26,10 +26,10 @@ public class Table extends Playroom {
 	private ArrayList<Card> cardsTable = new ArrayList<>();
 	private ArrayList<Card> undeadsP1 = new ArrayList<>();
 	private ArrayList<Card> undeadsP2 = new ArrayList<>();
-	private ArrayList<Card> tmpUndeads = new ArrayList<>();
 	private ArrayList<Card> followerCardsP1 = new ArrayList<>();
 	private ArrayList<Card> followerCardsP2 = new ArrayList<>();
-	
+	public ArrayList<Card> tmpUndeads = new ArrayList<>();
+
 	public String roundWinner;
 	public Card followerCardP1;
 	public Card followerCardP2;
@@ -98,7 +98,7 @@ public class Table extends Playroom {
 	
 	//Dave: Falls eine der beiden Karten ein Untoter ist oder beide, muss diese dem Spieler
 	//auf den Punktestapel zugesandt werden der gewonnen hat.
-	public String evaluateWinnerCard(Card cardP1, Card cardP2) {
+	private String evaluateWinnerCard(Card cardP1, Card cardP2) {
 		//gibt den Sieger aus. Rückgabewert noch unbekannt, evtl. boolean, zu definieren. Eingabe auch
 		//evtl. zuerst aus String noch Karte machen
 		if(suitToString(cardP1) == "goblin" && suitToString(cardP2) == "knight" ||
@@ -120,7 +120,7 @@ public class Table extends Playroom {
 	/*
 	 * David: Add "Undead" cards to the winners ArrayList
 	 */
-	public void addUndead(Card cardP1, Card cardP2, String roundWinner) {
+	private void addUndead(Card cardP1, Card cardP2, String roundWinner) {
 		tmpUndeads.clear();
 		if(suitToString(cardP1) == "undead" || suitToString(cardP2) == "undead") {
 			switch (roundWinner) {
@@ -138,10 +138,49 @@ public class Table extends Playroom {
 	 * David: Wertet den Sieger des Spiels aus
 	 */
 	public void gameWinner() {
+		ArrayList<Card> goblinP1 = new ArrayList<>();
+		ArrayList<Card> goblinP2 = new ArrayList<>();
+		ArrayList<Card> dwarfP1 = new ArrayList<>();
+		ArrayList<Card> dwarfP2 = new ArrayList<>();
+		ArrayList<Card> knightP1 = new ArrayList<>();
+		ArrayList<Card> knightP2 = new ArrayList<>();
+		ArrayList<Card> doubleP1 = new ArrayList<>();
+		ArrayList<Card> doubleP2 = new ArrayList<>();
+		
+		
+//		followerCardsP1.split();
+//		followerCardsP2.split();
+		
+		for (Card card : followerCardsP1) {
+			switch (suitToString(card)) {
+			case "goblin": goblinP1.add(card); break;
+			case "dwarf" : dwarfP1.add(card);  break;
+			case "knigth": knightP1.add(card); break;
+			case "double": doubleP1.add(card); break;
+			}
+		}
+		
+		for (Card card : followerCardsP2) {
+			switch (suitToString(card)) {
+			case "goblin": goblinP2.add(card); break;
+			case "dwarf" : dwarfP2.add(card);  break;
+			case "knigth": knightP2.add(card); break;
+			case "double": doubleP2.add(card); break;
+			}
+		}
 		
 		
 	}
 	
+	private String winnerFraction(ArrayList cardsP1, ArrayList cardsP2) {
+		if(cardsP1.size() > cardsP2.size()) return "P1";
+		if(cardsP1.size() < cardsP2.size()) return "P2";
+		if(cardsP1.size() == cardsP2.size()) {
+			
+		}
+
+		return "";
+	}
 
 	
 	
@@ -154,7 +193,7 @@ public class Table extends Playroom {
 	}
 	
 	//Dave: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
-	public String suitToString(Card card) {
+	private String suitToString(Card card) {
 		String cardString = card.toString();
 	    String[] tmp = cardString.split("\\_");
     	return tmp[0];
