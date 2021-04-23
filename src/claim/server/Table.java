@@ -18,6 +18,7 @@ public class Table extends Playroom {
 	private ArrayList<Card> cardsTable = new ArrayList<>();
 	private ArrayList<Card> undeadsP1 = new ArrayList<>();
 	private ArrayList<Card> undeadsP2 = new ArrayList<>();
+	private ArrayList<Card> tmpUndeads = new ArrayList<>();
 	
 	
 	//Entweder das so belassen oder in unsere Kontrollerklasse einfügen, respektive generieren
@@ -47,7 +48,8 @@ public class Table extends Playroom {
 	}
 	
 	public void roundWinnerIs(Card cardP1, Card cardP2) {
-		evaluateWinnerCard(cardP1, cardP2);
+		String winner = evaluateWinnerCard(cardP1, cardP2);
+		addUndead(cardP1, cardP2, winner);
 		
 	}
 	
@@ -76,10 +78,12 @@ public class Table extends Playroom {
 	public void addUndead(Card cardP1, Card cardP2, String winner) {
 		if(suitToString(cardP1) == "undead" || suitToString(cardP2) == "undead") {
 			switch (winner) {
-			case "P1":	if(suitToString(cardP1) == "undead") undeadsP1.add(cardP1);
-						if(suitToString(cardP2) == "undead") undeadsP1.add(cardP2); break;
-			case "P2":  if(suitToString(cardP1) == "undead") undeadsP2.add(cardP1);
-						if(suitToString(cardP2) == "undead") undeadsP2.add(cardP2); break;
+			case "P1":	if(suitToString(cardP1) == "undead") undeadsP1.add(cardP1); tmpUndeads.add(cardP1);
+						if(suitToString(cardP2) == "undead") undeadsP1.add(cardP2); tmpUndeads.add(cardP2);
+						break;
+			case "P2":  if(suitToString(cardP1) == "undead") undeadsP2.add(cardP1); tmpUndeads.add(cardP1);
+						if(suitToString(cardP2) == "undead") undeadsP2.add(cardP2); tmpUndeads.add(cardP2);
+						break;
 			}
 		}
 	}
