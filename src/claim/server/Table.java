@@ -46,10 +46,6 @@ public class Table extends Playroom {
 		}
 	}
 	
-	public String getPlayerCards() {
-		
-		return "hallo";
-	}
 	
 	
 	/*
