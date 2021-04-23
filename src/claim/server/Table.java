@@ -16,6 +16,8 @@ public class Table extends Playroom {
 	 * TODO: ACHTUNG tableCards und cardsTable, einer muss weg --> tableCards behalten
 	 * - Wie versendet Jannick die Tischkarten?? sollte immer über getTableCards laufen, damit
 	 *   die gespielte Karte gelöscht wird
+	 * - Soll für die offene Tischkarte eine eigene Card auf dem Table eröffnet werden bevor diese 
+	 *   versendet wir? Könnte ich bruachen, ansonsten muss ich sie bekommen
 	 */
 
 	private DeckOfCards deck;
@@ -27,6 +29,10 @@ public class Table extends Playroom {
 	private ArrayList<Card> tmpUndeads = new ArrayList<>();
 	private ArrayList<Card> followerCardsP1 = new ArrayList<>();
 	private ArrayList<Card> followerCardsP2 = new ArrayList<>();
+	
+	public String roundWinner;
+	public Card followerCardP1;
+	public Card followerCardP2;
 
 	
 	
@@ -70,17 +76,23 @@ public class Table extends Playroom {
 	 *   muss ich noch eine zugriffs methode schreiben. 
 	 */
 	public void finishRound(Card cardP1, Card cardP2, Card actualTableCard) {//evtl.auslesen aus Array
-		String winner = evaluateWinnerCard(cardP1, cardP2);
-		addUndead(cardP1, cardP2, winner);
-		//return Statement an Jannick in Absprache mit Ihm einfügen
-		switch (winner) {
-		case "P1": followerCardsP1.add(actualTableCard);
-				   followerCardsP2.add(getNextTableCard()); break;
-		case "P2": followerCardsP2.add(actualTableCard);
-				   followerCardsP1.add(getNextTableCard()); break;
+		roundWinner = ""; //eigentlich unnötig
+		followerCardP1 = null; //eigentlich unnötig
+		followerCardP2 = null; //eigentlich unnötig
+		
+		roundWinner = evaluateWinnerCard(cardP1, cardP2);
+		addUndead(cardP1, cardP2, roundWinner);
 
+		switch (roundWinner) {
+		case "P1": followerCardP1 = actualTableCard;
+				   followerCardsP1.add(followerCardP1);
+				   followerCardP2 = getNextTableCard();
+				   followerCardsP2.add(followerCardP2); break;
+		case "P2": followerCardP2 = actualTableCard;
+				   followerCardsP2.add(followerCardP2);
+				   followerCardP1 = getNextTableCard();
+				   followerCardsP1.add(followerCardP1); break;
 		}
-
 	}
 	
 	
@@ -108,10 +120,10 @@ public class Table extends Playroom {
 	/*
 	 * David: Add "Undead" cards to the winners ArrayList
 	 */
-	public void addUndead(Card cardP1, Card cardP2, String winner) {
+	public void addUndead(Card cardP1, Card cardP2, String roundWinner) {
 		tmpUndeads.clear();
 		if(suitToString(cardP1) == "undead" || suitToString(cardP2) == "undead") {
-			switch (winner) {
+			switch (roundWinner) {
 			case "P1":	if(suitToString(cardP1) == "undead") undeadsP1.add(cardP1); tmpUndeads.add(cardP1);
 						if(suitToString(cardP2) == "undead") undeadsP1.add(cardP2); tmpUndeads.add(cardP2);
 						break;
@@ -121,6 +133,17 @@ public class Table extends Playroom {
 			}
 		}
 	}
+	
+	/*
+	 * David: Wertet den Sieger des Spiels aus
+	 */
+	public void gameWinner() {
+		
+		
+	}
+	
+
+	
 	
 	/*
 	 * David: Gibt die letzte Karte der Tischkarten zurück und löscht diese
