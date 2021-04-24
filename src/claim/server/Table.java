@@ -138,10 +138,19 @@ public class Table extends Playroom {
 		}
 	}
 	
+	public String winner() {
+		String win = "NoWinner";
+		gameWinner();
+		if(fractionPointsP1 >= 3) return "P1isTheWinner";
+		if(fractionPointsP2 >= 3) return "P2isTheWinner";
+		return win;
+	}
+	
 	/*
 	 * David: Wertet den Sieger des Spiels aus
 	 */
-	public void gameWinner() {
+	private void gameWinner() {
+		String gameWinner;
 		ArrayList<Card> goblinP1 = new ArrayList<>();
 		ArrayList<Card> goblinP2 = new ArrayList<>();
 		ArrayList<Card> dwarfP1  = new ArrayList<>();
@@ -150,10 +159,6 @@ public class Table extends Playroom {
 		ArrayList<Card> knightP2 = new ArrayList<>();
 		ArrayList<Card> doubleP1 = new ArrayList<>();
 		ArrayList<Card> doubleP2 = new ArrayList<>();
-		
-		
-//		followerCardsP1.split();
-//		followerCardsP2.split();
 		
 		for (Card card : followerCardsP1) {
 			switch (suitToString(card)) {
@@ -175,11 +180,9 @@ public class Table extends Playroom {
 		
 		addFractionPoint(winnerFraction(goblinP1, goblinP2));
 		addFractionPoint(winnerFraction(dwarfP1, dwarfP2));
-		addFractionPoint(winnerFraction(undeadsP1, undeadsP2));
 		addFractionPoint(winnerFraction(knightP1, knightP2));
 		addFractionPoint(winnerFraction(doubleP1, doubleP2));
-		
-		
+		addFractionPoint(winnerFraction(undeadsP1, undeadsP2));
 	}
 	
 	/*
@@ -209,7 +212,6 @@ public class Table extends Playroom {
 		case "NONE": break;
 		}
 	}
-	
 	
 	/*
 	 * David: Gibt die letzte Karte der Tischkarten zurück und löscht diese
