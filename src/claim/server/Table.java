@@ -30,6 +30,8 @@ public class Table extends Playroom {
 	private ArrayList<Card> followerCardsP1 = new ArrayList<>();
 	private ArrayList<Card> followerCardsP2 = new ArrayList<>();
 	public ArrayList<Card> tmpUndeads = new ArrayList<>();
+	private int fractionPointsP1;
+	private int fractionPointsP2;
 
 	public String roundWinner;
 	public Card followerCardP1;
@@ -100,6 +102,7 @@ public class Table extends Playroom {
 	//Dave: Falls eine der beiden Karten ein Untoter ist oder beide, muss diese dem Spieler
 	//auf den Punktestapel zugesandt werden der gewonnen hat.
 	private String evaluateWinnerCard(Card cardP1, Card cardP2) {
+		String win = "P1";
 		//gibt den Sieger aus. Rückgabewert noch unbekannt, evtl. boolean, zu definieren. Eingabe auch
 		//evtl. zuerst aus String noch Karte machen
 		if(suitToString(cardP1) == "goblin" && suitToString(cardP2) == "knight" ||
@@ -110,12 +113,12 @@ public class Table extends Playroom {
 		if(suitToString(cardP1) == suitToString(cardP2) || 
 			(suitToString(cardP1) != "double" && suitToString(cardP2) == "double")) {
 			switch (cardP1.compareTo(cardP2)) {
-			case  1: return "P1";
-			case  0: return "P1";
-			case -1: return "P2";
+			case  1: break;
+			case  0: break;
+			case -1: win = "P2"; break;
 			}
 		}
-		return "P1";
+		return win;
 	}
 	
 	/*
@@ -141,8 +144,8 @@ public class Table extends Playroom {
 	public void gameWinner() {
 		ArrayList<Card> goblinP1 = new ArrayList<>();
 		ArrayList<Card> goblinP2 = new ArrayList<>();
-		ArrayList<Card> dwarfP1 = new ArrayList<>();
-		ArrayList<Card> dwarfP2 = new ArrayList<>();
+		ArrayList<Card> dwarfP1  = new ArrayList<>();
+		ArrayList<Card> dwarfP2  = new ArrayList<>();
 		ArrayList<Card> knightP1 = new ArrayList<>();
 		ArrayList<Card> knightP2 = new ArrayList<>();
 		ArrayList<Card> doubleP1 = new ArrayList<>();
@@ -170,6 +173,12 @@ public class Table extends Playroom {
 			}
 		}
 		
+		addFractionPoint(winnerFraction(goblinP1, goblinP2));
+		addFractionPoint(winnerFraction(dwarfP1, dwarfP2));
+		addFractionPoint(winnerFraction(undeadsP1, undeadsP2));
+		addFractionPoint(winnerFraction(knightP1, knightP2));
+		addFractionPoint(winnerFraction(doubleP1, doubleP2));
+		
 		
 	}
 	
@@ -177,20 +186,29 @@ public class Table extends Playroom {
 	 * David: Vergleicht die Anzahl Anhänger einer Fraktion und gibt den Spieler der gewonnen hat zurück
 	 */
 	private String winnerFraction(ArrayList<Card> cardsP1, ArrayList<Card> cardsP2) {
+		String win = "NONE";
 		if(cardsP1.size() > cardsP2.size()) return "P1";
 		if(cardsP1.size() < cardsP2.size()) return "P2";
 		if(cardsP1.size() == 0 && cardsP2.size() == 0) return "NONE";
-		Collections.sort(cardsP1);
-		Collections.sort(cardsP2);	
-		Card cardP1 = (Card) cardsP1.remove(cardsP1.size()-1);
-		Card cardP2;
-		
-//		if(cardsP1.size() == cardsP2.size()) {}
-			
-		return "NONE";	
-		
+		else
+			switch (getHighestCard(cardsP1).compareTo(getHighestCard(cardsP2))) {
+			case  1: win = "P1";	break;
+			case  0: win = "NONE";	break; 
+			case -1: win = "P2";	break;
+			}
+		return win;	
 	}
-
+	
+	/*
+	 * David: Fügt dem Sieger einer Fraktion einen Punkt hinzu
+	 */
+	private void addFractionPoint(String winner) {
+		switch (winner) {
+		case "P1"  : fractionPointsP1++; break;
+		case "P2"  : fractionPointsP2++; break;
+		case "NONE": break;
+		}
+	}
 	
 	
 	/*
