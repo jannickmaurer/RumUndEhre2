@@ -16,9 +16,8 @@ public class CardLabel extends Label {
 		super();
 	}
 	
-	//Aussehen der Karte definieren
-	public void setCard() {
-		//String fileName = cardToFileName(card);
+	//Aussehen des Decks definieren
+	public void setDeck() {
 		Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("claim/image/Backside.jpg"));
 		ImageView imv = new ImageView(image);
 		imv.setFitWidth(80);
@@ -28,12 +27,25 @@ public class CardLabel extends Label {
 		imv.setPreserveRatio(true);
 		this.setGraphic(imv);
 	}
-
-	/*
-	 * private String cardToFileName(Card card) { String rank =
-	 * card.getRank().toString(); String suit = card.getSuit().toString(); return
-	 * rank + "_of_" + suit + "_FR" + ".jpg"; }
-	 */
+	
+	//Aussehen der Karte definieren
+	public void setCard(Card card) {
+		String fileName = cardToFileName(card);
+		Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("claim/image/" + fileName));
+		ImageView imv = new ImageView(image);
+		imv.setFitWidth(80);
+		imv.maxWidth(80);
+		imv.setFitHeight(115);
+		imv.maxHeight(115);
+		imv.setPreserveRatio(true);
+		this.setGraphic(imv);
+	}
+	
+	private String cardToFileName(Card card) {
+		String rank = card.getRank().toString();
+		String suit = card.getSuit().toString();
+		return suit + "_" + rank + ".jpg";
+	}
 
 	public String getCardNameAsString() {
 		return cardNameAsString;

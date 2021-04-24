@@ -73,7 +73,7 @@ public class Controller {
 		
 		//SD
 		for (int i = 0; i < view.getGameLayout().getPlayerLayout().getCardLabels().size(); i++) {
-			view.getGameLayout().getPlayerLayout().getCardLabels().get(i).setOnMouseReleased(this::removeTableCard);
+			view.getGameLayout().getPlayerLayout().getCardLabels().get(i).setOnMouseReleased(this::sendTableCard);
 		}
 		
 		//SD
@@ -223,9 +223,27 @@ public class Controller {
 	}
 	
 	//SD
-	private void removeTableCard(Event event) {
-		view.getGameLayout().getPlayerLayout().updatePlayerDisplay();
-		view.getGameLayout().updateGameDisplay();
+	public void deal() {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				view.getGameLayout().getPlayerLayout().deal(board.getHandCards());
+			}
+		});
+	}
+	
+	//SD
+	private void sendTableCard(Event event) {
+		CardLabel cl = (CardLabel) event.getSource();
+		model.playCard(cl.getCardNameAsString());
+	}
+	
+	public void updatePlayerPane(String playedCard) {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				System.out.println(playedCard);
+				view.getGameLayout().getPlayerLayout().updatePlayerDisplay(board.getHandCards(), playedCard);
+			}
+		});
 	}
 	
 	//SD

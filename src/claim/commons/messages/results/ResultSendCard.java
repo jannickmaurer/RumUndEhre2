@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import claim.client.controller.Controller;
 import claim.commons.ServiceLocator;
 import claim.commons.messages.Message;
+import claim.commons.Card;
 
 // Class implemented by Jannick: Message Server -> Client
 // ResultSendCard|result|Reason|Card
@@ -33,7 +34,10 @@ public class ResultSendCard extends Message {
 	public void process(Controller controller) {
 		switch (this.reason) {
 		// What happens when which card is being sent by the Server?
-			case "HandCard": break;
+			case "HandCard": 
+				controller.getBoard().removePlayedCard(new Card(card));
+				controller.updatePlayerPane(card);
+			break;
 			case "FollowerCard": break;
 			case "PointCard": break;
 			case "TableCard" : break;

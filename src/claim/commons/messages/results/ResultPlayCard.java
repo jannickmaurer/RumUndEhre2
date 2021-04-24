@@ -22,7 +22,7 @@ public class ResultPlayCard extends Message {
 	
 	@Override
 	public void process(Controller controller) {
-
+		
 	}
 	public void processIfFalse(Controller controller) {
 		controller.somethingFailed();
