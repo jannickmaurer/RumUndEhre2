@@ -138,6 +138,9 @@ public class Table extends Playroom {
 		}
 	}
 	
+	/*
+	 * David: Falls es einen Sieger gibt, wird der als String zurück gegeben
+	 */
 	public String winner() {
 		String win = "NoWinner";
 		gameWinner();
