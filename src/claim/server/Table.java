@@ -1,6 +1,7 @@
 package claim.server;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import claim.commons.Card;
 
@@ -14,6 +15,10 @@ public class Table extends Playroom {
 	
 	/*
 	 * TODO: ACHTUNG tableCards und cardsTable, einer muss weg --> tableCards behalten
+	 * - Wie versendet Jannick die Tischkarten?? sollte immer über getTableCards laufen, damit
+	 *   die gespielte Karte gelöscht wird
+	 * - Soll für die offene Tischkarte eine eigene Card auf dem Table eröffnet werden bevor diese 
+	 *   versendet wir? Könnte ich bruachen, ansonsten muss ich sie bekommen
 	 */
 
 	private DeckOfCards deck;
@@ -22,7 +27,16 @@ public class Table extends Playroom {
 	private ArrayList<Card> cardsTable = new ArrayList<>();
 	private ArrayList<Card> undeadsP1 = new ArrayList<>();
 	private ArrayList<Card> undeadsP2 = new ArrayList<>();
-	private ArrayList<Card> tmpUndeads = new ArrayList<>();
+	private ArrayList<Card> followerCardsP1 = new ArrayList<>();
+	private ArrayList<Card> followerCardsP2 = new ArrayList<>();
+	public ArrayList<Card> tmpUndeads = new ArrayList<>();
+	private int fractionPointsP1;
+	private int fractionPointsP2;
+
+	public String roundWinner;
+	public Card followerCardP1;
+	public Card followerCardP2;
+
 	
 	
 	//Entweder das so belassen oder in unsere Kontrollerklasse einfügen, respektive generieren
@@ -51,7 +65,9 @@ public class Table extends Playroom {
 		}
 	}
 	
-	
+//	public void finishRound(Card cadrP1, Card cardP2) {
+//		
+//	}
 	
 	/*
 	 * TODO: Karte bekommen mit Jannick anschauen, ob die allenfalls als string kommt und gewandelt
@@ -62,16 +78,31 @@ public class Table extends Playroom {
 	 * - Wer oder wie greifen wir aud die tmpUndeads zu, respektive macht jannick das direkt oder
 	 *   muss ich noch eine zugriffs methode schreiben. 
 	 */
-	public void roundWinnerIs(Card cardP1, Card cardP2) {
-		String winner = evaluateWinnerCard(cardP1, cardP2);
-		addUndead(cardP1, cardP2, winner);
-		//return Statement an Jannick in Absprache mit Ihm einfügen
+	public void finishRound(Card cardP1, Card cardP2, Card actualTableCard) {//evtl.auslesen aus Array
+		roundWinner = ""; //eigentlich unnötig
+		followerCardP1 = null; //eigentlich unnötig
+		followerCardP2 = null; //eigentlich unnötig
+		
+		roundWinner = evaluateWinnerCard(cardP1, cardP2);
+		addUndead(cardP1, cardP2, roundWinner);
+
+		switch (roundWinner) {
+		case "P1": followerCardP1 = actualTableCard;
+				   followerCardsP1.add(followerCardP1);
+				   followerCardP2 = getNextTableCard();
+				   followerCardsP2.add(followerCardP2); break;
+		case "P2": followerCardP2 = actualTableCard;
+				   followerCardsP2.add(followerCardP2);
+				   followerCardP1 = getNextTableCard();
+				   followerCardsP1.add(followerCardP1); break;
+		}
 	}
 	
 	
 	//Dave: Falls eine der beiden Karten ein Untoter ist oder beide, muss diese dem Spieler
 	//auf den Punktestapel zugesandt werden der gewonnen hat.
-	public String evaluateWinnerCard(Card cardP1, Card cardP2) {
+	private String evaluateWinnerCard(Card cardP1, Card cardP2) {
+		String win = "P1";
 		//gibt den Sieger aus. Rückgabewert noch unbekannt, evtl. boolean, zu definieren. Eingabe auch
 		//evtl. zuerst aus String noch Karte machen
 		if(suitToString(cardP1) == "goblin" && suitToString(cardP2) == "knight" ||
@@ -82,21 +113,21 @@ public class Table extends Playroom {
 		if(suitToString(cardP1) == suitToString(cardP2) || 
 			(suitToString(cardP1) != "double" && suitToString(cardP2) == "double")) {
 			switch (cardP1.compareTo(cardP2)) {
-			case  1: return "P1";
-			case  0: return "P1";
-			case -1: return "P2";
+			case  1: break;
+			case  0: break;
+			case -1: win = "P2"; break;
 			}
 		}
-		return "P1";
+		return win;
 	}
 	
 	/*
 	 * David: Add "Undead" cards to the winners ArrayList
 	 */
-	public void addUndead(Card cardP1, Card cardP2, String winner) {
+	private void addUndead(Card cardP1, Card cardP2, String roundWinner) {
 		tmpUndeads.clear();
 		if(suitToString(cardP1) == "undead" || suitToString(cardP2) == "undead") {
-			switch (winner) {
+			switch (roundWinner) {
 			case "P1":	if(suitToString(cardP1) == "undead") undeadsP1.add(cardP1); tmpUndeads.add(cardP1);
 						if(suitToString(cardP2) == "undead") undeadsP1.add(cardP2); tmpUndeads.add(cardP2);
 						break;
@@ -107,12 +138,100 @@ public class Table extends Playroom {
 		}
 	}
 	
+	public String winner() {
+		String win = "NoWinner";
+		gameWinner();
+		if(fractionPointsP1 >= 3) return "P1isTheWinner";
+		if(fractionPointsP2 >= 3) return "P2isTheWinner";
+		return win;
+	}
+	
 	/*
-	 * TODO: Neue Methode die 
+	 * David: Wertet den Sieger des Spiels aus
 	 */
+	private void gameWinner() {
+		String gameWinner;
+		ArrayList<Card> goblinP1 = new ArrayList<>();
+		ArrayList<Card> goblinP2 = new ArrayList<>();
+		ArrayList<Card> dwarfP1  = new ArrayList<>();
+		ArrayList<Card> dwarfP2  = new ArrayList<>();
+		ArrayList<Card> knightP1 = new ArrayList<>();
+		ArrayList<Card> knightP2 = new ArrayList<>();
+		ArrayList<Card> doubleP1 = new ArrayList<>();
+		ArrayList<Card> doubleP2 = new ArrayList<>();
+		
+		for (Card card : followerCardsP1) {
+			switch (suitToString(card)) {
+			case "goblin": goblinP1.add(card); break;
+			case "dwarf" : dwarfP1.add(card);  break;
+			case "knigth": knightP1.add(card); break;
+			case "double": doubleP1.add(card); break;
+			}
+		}
+		
+		for (Card card : followerCardsP2) {
+			switch (suitToString(card)) {
+			case "goblin": goblinP2.add(card); break;
+			case "dwarf" : dwarfP2.add(card);  break;
+			case "knigth": knightP2.add(card); break;
+			case "double": doubleP2.add(card); break;
+			}
+		}
+		
+		addFractionPoint(winnerFraction(goblinP1, goblinP2));
+		addFractionPoint(winnerFraction(dwarfP1, dwarfP2));
+		addFractionPoint(winnerFraction(knightP1, knightP2));
+		addFractionPoint(winnerFraction(doubleP1, doubleP2));
+		addFractionPoint(winnerFraction(undeadsP1, undeadsP2));
+	}
+	
+	/*
+	 * David: Vergleicht die Anzahl Anhänger einer Fraktion und gibt den Spieler der gewonnen hat zurück
+	 */
+	private String winnerFraction(ArrayList<Card> cardsP1, ArrayList<Card> cardsP2) {
+		String win = "NONE";
+		if(cardsP1.size() > cardsP2.size()) return "P1";
+		if(cardsP1.size() < cardsP2.size()) return "P2";
+		if(cardsP1.size() == 0 && cardsP2.size() == 0) return "NONE";
+		else
+			switch (getHighestCard(cardsP1).compareTo(getHighestCard(cardsP2))) {
+			case  1: win = "P1";	break;
+			case  0: win = "NONE";	break; 
+			case -1: win = "P2";	break;
+			}
+		return win;	
+	}
+	
+	/*
+	 * David: Fügt dem Sieger einer Fraktion einen Punkt hinzu
+	 */
+	private void addFractionPoint(String winner) {
+		switch (winner) {
+		case "P1"  : fractionPointsP1++; break;
+		case "P2"  : fractionPointsP2++; break;
+		case "NONE": break;
+		}
+	}
+	
+	/*
+	 * David: Gibt die letzte Karte der Tischkarten zurück und löscht diese
+	 */
+	public Card getNextTableCard() {
+        Card card = (cardsTable.size() > 0) ? cardsTable.remove(cardsTable.size()-1) : null;
+		return card;
+	}
+	
+	/*
+	 * David: Sortiert die Karten und gibt die letzte Karte, welche die Höchste ist zurück
+	 */
+	private Card getHighestCard(ArrayList<Card> cards) {
+		Collections.sort(cards);
+        Card card = (cards.size() > 0) ? cards.remove(cards.size()-1) : null;
+		return card;
+	}
 	
 	//Dave: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
-	public String suitToString(Card card) {
+	private String suitToString(Card card) {
 		String cardString = card.toString();
 	    String[] tmp = cardString.split("\\_");
     	return tmp[0];
