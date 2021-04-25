@@ -1,6 +1,7 @@
 package claim.client.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import claim.commons.Card;
 
@@ -36,6 +37,7 @@ public class Board {
 
 	public void setHandCards(ArrayList<Card> handCards) {
 		this.handCards = handCards;
+//		this.handCards = sortHandCards(handCards); //HandKarten werden nach dem ausgeben noch sortiert
 	}
 
 	public ArrayList<Card> getFollowerCards() {
@@ -107,7 +109,40 @@ public class Board {
     	return tmp[0];
 	}
 	
-	
+	//Dave: Sortiert am Anfang die Handkarten, damit gleiche Fraktionen nebeneinander sind
+	//Mit Jannick anschauen bzgl. aufruf This.handcards = handcards;
+//	private ArrayList<Card> sortHandCards(ArrayList<Card> handCards) {
+//		ArrayList<Card> sortedHandCards = new ArrayList<>();
+//		ArrayList<Card> goblinCards = new ArrayList<>();
+//		ArrayList<Card> dwarfCards = new ArrayList<>();
+//		ArrayList<Card> undeadCards = new ArrayList<>();
+//		ArrayList<Card> doubleCards = new ArrayList<>();
+//		ArrayList<Card> knightCards = new ArrayList<>();
+//		
+//		for(Card card : handCards) {
+//			switch (suitToString(card)) {
+//			case "goblin": goblinCards.add(card); break;
+//			case "dwarf" : dwarfCards.add(card);  break;
+//			case "undead": undeadCards.add(card); break;
+//			case "double": doubleCards.add(card); break;
+//			case "knight": knightCards.add(card); break;		
+//			}
+//		}
+//		
+//		Collections.sort(goblinCards);
+//		Collections.sort(dwarfCards);
+//		Collections.sort(undeadCards);
+//		Collections.sort(doubleCards);
+//		Collections.sort(knightCards);
+//		
+//		if(goblinCards.isEmpty() == false) for (Card card : goblinCards) sortedHandCards.add(card);
+//		if(dwarfCards.isEmpty() == false)  for (Card card : dwarfCards)  sortedHandCards.add(card);
+//		if(undeadCards.isEmpty() == false) for (Card card : undeadCards) sortedHandCards.add(card);
+//		if(doubleCards.isEmpty() == false) for (Card card : doubleCards) sortedHandCards.add(card);
+//		if(knightCards.isEmpty() == false) for (Card card : knightCards) sortedHandCards.add(card);
+//
+//		return sortedHandCards;
+//	}
 	
 	
 }
