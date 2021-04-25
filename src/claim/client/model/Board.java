@@ -59,8 +59,7 @@ public class Board {
 	
 	//ToDo: Im controller die Methoden EvalutatePlayableHandCards aufrufen und nach dem spielen
 	//      die gebrauchte Karte löschen
-	
-	//
+	//		sortHandCards einbinden in Code, bei setHandCards kurz mit Jannick schauen
 	
 	
 	//Dave: Entfernt die gespielte Karte aus den HandCards. Return, damit nur 1 Mal eine Karte
@@ -78,8 +77,9 @@ public class Board {
 	
 	//Dave: Fügt die spielbaren Karten der ArrayList playableHandCards hinzu
 	public void evaluatePlayableHandCards(Card opponentCard) {
+		playableHandCards.clear();
 		sameSuitAsOpponent(opponentCard);
-		if(playableHandCards.isEmpty()) {
+		if(playableHandCards.isEmpty() == true) {
 			for(Card card : handCards) {
 				playableHandCards.add(card);
 			}
