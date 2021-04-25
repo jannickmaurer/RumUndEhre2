@@ -39,12 +39,12 @@ public class GamePane extends BorderPane {
 		
 		VBox vboxCardsDeck = new VBox();
 		Label lbCardsDeck = new Label("Cards Deck");
-		clCardsDeck.setCard();
+		clCardsDeck.setDeck();
 		vboxCardsDeck.getChildren().addAll(clCardsDeck, lbCardsDeck);
 		
 		VBox vboxNewFollowerDeck = new VBox();
 		Label lbNewFollowerDeck = new Label("New Follower Deck");
-		clNewFollowerDeck.setCard();
+		clNewFollowerDeck.setDeck();
 		vboxNewFollowerDeck.getChildren().addAll(clNewFollowerDeck, lbNewFollowerDeck);
 		
 		hboxMiddleCards.getChildren().addAll(vboxPlayedCards, vboxCardsDeck, vboxNewFollowerDeck);
@@ -62,9 +62,9 @@ public class GamePane extends BorderPane {
 		vboxPlayedCards.getChildren().clear();
 		
 		CardLabel cl1 = new CardLabel();
-		cl1.setCard();
+		cl1.setDeck();
 		CardLabel cl2 = new CardLabel();
-		cl2.setCard();
+		cl2.setDeck();
 		vboxPlayedCards.getChildren().addAll(cl1, cl2);
 	}
 	

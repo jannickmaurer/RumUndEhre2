@@ -26,12 +26,12 @@ public class OtherPlayerPane extends VBox {
 		
 		VBox vboxScoreDeck = new VBox();
 		Label lbScoreDeck = new Label("Score Deck");
-		clScoreDeck.setCard();
+		clScoreDeck.setDeck();
 		vboxScoreDeck.getChildren().addAll(clScoreDeck, lbScoreDeck);
 		
 		VBox vboxFollowerDeck = new VBox();
 		Label lbFollowerDeck = new Label("Follower Deck");
-		clFollowerDeck.setCard();
+		clFollowerDeck.setDeck();
 		vboxFollowerDeck.getChildren().addAll(clFollowerDeck, lbFollowerDeck);
 		
 		hboxDecks.getChildren().addAll(vboxScoreDeck, vboxFollowerDeck);
