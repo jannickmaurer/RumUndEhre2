@@ -11,7 +11,6 @@ public class Table extends Playroom {
 
 	public Table() {
 		super();
-		deal();
 	}
 	
 	/*
