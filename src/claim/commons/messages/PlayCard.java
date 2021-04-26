@@ -43,6 +43,7 @@ public class PlayCard extends Message {
 			}
 			result = true;
 		} 
-		client.send(new ResultPlayCard(result));
+		String[] temp = new String[] {"ResultPlayCard", Boolean.toString(result), this.card};
+		client.send(new ResultPlayCard(temp));
 	}
 }
