@@ -28,27 +28,17 @@ public class DeckOfCards {
     /**
      * David Schürch
      * Shuffle creates all Cards without knight zero and knight one. It creates the goblin zero five times
-     *  r///////mit equals anstelle == oder !=
      */
 	public void shuffle() {
 		cards.clear();
 		for (Card.Suit suit : Card.Suit.values()) {
 			for (Card.Rank rank : Card.Rank.values()) {
-//				if(!suit.toString().equalsIgnoreCase("knight") && (!rank.toString().equalsIgnoreCase("zero") || !rank.toString().equalsIgnoreCase("one"))) {
-//					if(suit.toString().equalsIgnoreCase("goblin") && rank.toString().equalsIgnoreCase("zero")){
-//						for(int i=0; i<4; i++) {
-//							Card card = new Card(suit, rank);
-//							cards.add(card);
-//						}
-//					}
-					Card card = new Card(suit, rank);
-					cards.add(card);
-					
-//				}	
+				Card card = new Card(suit, rank, true);
+				cards.add(card);
 			}
 		}
-		for(int i = 0; i<4; i++) {
-			cards.add(new Card(Suit.Goblin, Rank.Zero));
+		for(int i = 0; i < 4; i++) {
+			cards.add(new Card(Suit.Goblin, Rank.Zero, true));
 		}
 		for(int i = 0; i < cards.size(); i++) {
 			if(cards.get(i).getSuit() == Suit.Knight && cards.get(i).getRank() == Rank.Zero){
