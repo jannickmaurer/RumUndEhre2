@@ -63,6 +63,27 @@ public class Table extends Playroom {
 				}
 			}
 		}
+//		System.out.println("Deal:");
+//		System.out.print("P1:");
+//		System.out.print(cardsP1.size());
+//		for(Card c: cardsP1) {
+//			
+//			System.out.print(c.toString());
+//		}
+//		System.out.println();
+//		System.out.print("P2:");
+//		System.out.print(cardsP2.size());
+//		for(Card c: cardsP2) {
+//			
+//			System.out.print(c.toString());
+//		}
+//		System.out.println();
+//		System.out.print("Table:");
+//		System.out.print(cardsTable.size());
+//		for(Card c: cardsTable) {
+//			
+//			System.out.print(c.toString());
+//		}
 	}
 	
 //	public void finishRound(Card cadrP1, Card cardP2) {

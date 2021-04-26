@@ -18,16 +18,16 @@ public class Playroom implements Serializable {
 		players = new ArrayList<>();
 		numberOfPlayers.set(0);
 		gameStarted.addListener((o, OldValue, NewValue) -> {
-		if(NewValue.booleanValue()) {
-			table = new Table();
-			table.deal();
-			//TBD: Cards from account ArrayList
-			for(Account a : players) {
-				String[] content = new String[] {"ResultDealCards", "true", "goblin_4","goblin_5","dwarf_4","goblin_3",
-						"goblin_3","goblin_3","goblin_3","knight_3","goblin_3","goblin_3","undead_3","goblin_3","goblin_3"};
-				a.getClient().send(new ResultDealCards(content));
-			}
-		}
+//		if(NewValue.booleanValue()) {
+//			table = new Table();
+//			table.deal();
+//			//TBD: Cards from account ArrayList
+//			for(Account a : players) {
+//				String[] content = new String[] {"ResultDealCards", "true", "goblin_4","goblin_5","dwarf_4","goblin_3",
+//						"goblin_3","goblin_3","goblin_3","knight_3","goblin_3","goblin_3","undead_3","goblin_3","goblin_3"};
+//				a.getClient().send(new ResultDealCards(content));
+//			}
+//		}
 	});
 //		numberOfPlayers.addListener((o, OldValue, NewValue) -> {
 //			if(NewValue.intValue() == 2) {
