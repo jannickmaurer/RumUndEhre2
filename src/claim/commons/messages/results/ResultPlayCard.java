@@ -7,10 +7,11 @@ import claim.client.controller.Controller;
 import claim.commons.ServiceLocator;
 
 // Created by Jannick: Server -> Client Message
-// ResultPlacCard|result
+// ResultPlayCard|result|Card
 public class ResultPlayCard extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getClientLogger();
+	String card;
 
 	public ResultPlayCard(boolean result) {
 		super(new String[] {"ResultPlayCard", Boolean.toString(result)});
@@ -18,6 +19,7 @@ public class ResultPlayCard extends Message {
 	
 	public ResultPlayCard(String[] content) {
 		super(content);
+		this.card = content[2];
 	}
 	
 	@Override
