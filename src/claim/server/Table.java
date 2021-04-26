@@ -7,7 +7,7 @@ import claim.commons.Card;
 
 public class Table extends Playroom {
 	// Cards on the table - player's cards are stored in Account object
-	private ArrayList<String> tableCards = new ArrayList<>();
+	//private ArrayList<String> tableCards = new ArrayList<>();
 
 	public Table() {
 		super();

@@ -48,5 +48,8 @@ public class Server {
 		}
 				
 	}
+	
+//	DeckOfCards deck = new DeckOfCards();
+	
 
 }
