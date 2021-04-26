@@ -29,10 +29,16 @@ public class Card implements Comparable<Card>{
             return Integer.toString(ordinal);
         }
     }
+    
+    public boolean Playable (){ 
+//    	boolean playable = true;
+    	return playable = true;
+    }
 
-    //  Jannick: "final" entfernt
+    //  David: Boolean playable in ganzer Klasse hinzugefügt
     private Suit suit;
     private Rank rank;
+    private Boolean playable;
 	
    // Jannick: Added constructor for creating cards with String:
     public Card(String card) {
@@ -60,9 +66,10 @@ public class Card implements Comparable<Card>{
 	   	}
     }
     
-    public Card(Suit suit, Rank rank) {
+    public Card(Suit suit, Rank rank, Boolean playable) {
         this.suit = suit;
         this.rank = rank;
+        this.playable = playable;
     }
 
 	public Suit getSuit() {
@@ -72,6 +79,14 @@ public class Card implements Comparable<Card>{
     public Rank getRank() {
         return rank;
     }    
+    
+    public Boolean getPlayable() {
+    	return playable;
+    }
+    
+    public void setPlayable(Boolean playable) {
+    	this.playable = playable;
+    }
     
 	public String toString() {
 		return suit.toString() + "_" + rank.toString();
