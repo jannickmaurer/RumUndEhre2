@@ -13,7 +13,7 @@ public class DeckOfCards {
 
 	public DeckOfCards() {
 		shuffle();
-	}
+	} 
 	
     public SimpleIntegerProperty getCardsRemainingProperty() {
         return cardsRemaining;
@@ -44,6 +44,10 @@ public class DeckOfCards {
 			}
 		}
 		Collections.shuffle(cards);
+		System.out.println("Method: DeckOfCards: Print all created Cards");
+		for(Card card : cards) {
+		System.out.println(card.toString());
+		}
         cardsRemaining.setValue(cards.size());
 
 	}
