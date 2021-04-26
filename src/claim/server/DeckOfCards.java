@@ -26,6 +26,7 @@ public class DeckOfCards {
     /**
      * David Schürch
      * Shuffle creates all Cards without knight zero and knight one. It creates the goblin zero five times
+     *  r///////mit equals anstelle == oder !=
      */
 	public void shuffle() {
 		cards.clear();
