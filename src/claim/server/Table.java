@@ -11,6 +11,7 @@ public class Table extends Playroom {
 
 	public Table() {
 		super();
+		deal();
 	}
 	
 	/*
@@ -61,6 +62,7 @@ public class Table extends Playroom {
 					card = deck.dealCard();
 					cardsTable.add(card);
 				}
+				System.out.println("Methode Deal in Table: "+cardsTable.size());
 			}
 		}
 //		System.out.println("Deal:");
@@ -126,13 +128,13 @@ public class Table extends Playroom {
 		String win = "P1";
 		//gibt den Sieger aus. Rückgabewert noch unbekannt, evtl. boolean, zu definieren. Eingabe auch
 		//evtl. zuerst aus String noch Karte machen
-		if(suitToString(cardP1) == "goblin" && suitToString(cardP2) == "knight" ||
-				suitToString(cardP1) == "knight" && suitToString(cardP2) == "goblin") {
-			if(suitToString(cardP1) == "knight") return "P1";				
+		if(suitToString(cardP1).equals("goblin") && suitToString(cardP2).equals("knight") ||
+				suitToString(cardP1).equals("knight") && suitToString(cardP2).equals("goblin")) {
+			if(suitToString(cardP1).equals("knight")) return "P1";				
 			else return "P2";
 		}
-		if(suitToString(cardP1) == suitToString(cardP2) || 
-			(suitToString(cardP1) != "double" && suitToString(cardP2) == "double")) {
+		if(suitToString(cardP1).equals(suitToString(cardP2)) || 
+			(!suitToString(cardP1).equals("double") && suitToString(cardP2).equals("double"))) {
 			switch (cardP1.compareTo(cardP2)) {
 			case  1: break;
 			case  0: break;
@@ -147,13 +149,13 @@ public class Table extends Playroom {
 	 */
 	private void addUndead(Card cardP1, Card cardP2, String roundWinner) {
 		tmpUndeads.clear();
-		if(suitToString(cardP1) == "undead" || suitToString(cardP2) == "undead") {
+		if(suitToString(cardP1).equals("undead") || suitToString(cardP2).equals("undead")) {
 			switch (roundWinner) {
-			case "P1":	if(suitToString(cardP1) == "undead") undeadsP1.add(cardP1); tmpUndeads.add(cardP1);
-						if(suitToString(cardP2) == "undead") undeadsP1.add(cardP2); tmpUndeads.add(cardP2);
+			case "P1":	if(suitToString(cardP1).equals("undead")) undeadsP1.add(cardP1); tmpUndeads.add(cardP1);
+						if(suitToString(cardP2).equals("undead")) undeadsP1.add(cardP2); tmpUndeads.add(cardP2);
 						break;
-			case "P2":  if(suitToString(cardP1) == "undead") undeadsP2.add(cardP1); tmpUndeads.add(cardP1);
-						if(suitToString(cardP2) == "undead") undeadsP2.add(cardP2); tmpUndeads.add(cardP2);
+			case "P2":  if(suitToString(cardP1).equals("undead")) undeadsP2.add(cardP1); tmpUndeads.add(cardP1);
+						if(suitToString(cardP2).equals("undead")) undeadsP2.add(cardP2); tmpUndeads.add(cardP2);
 						break;
 			}
 		}

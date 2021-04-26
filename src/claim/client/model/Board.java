@@ -66,7 +66,7 @@ public class Board {
 	//entfernt wird
 	public void removePlayedCard(Card removeCard) {
 		for (int i = 0; i < handCards.size()-1; i++) {
-			if(suitToString(handCards.get(i)) == suitToString(removeCard)) {
+			if(suitToString(handCards.get(i)).equals(suitToString(removeCard))) {
 				if(handCards.get(i).compareTo(removeCard) == 0) {
 					handCards.remove(i);
 					return;
@@ -89,14 +89,14 @@ public class Board {
 	//Dave: Alle  spielbaren Karten werden den playableHandCards hinzugefügt sofern die eigenen 
 	//Handkarten die gleiche Farbe oder einen Doppelgänger haben
 	public void sameSuitAsOpponent(Card opponentCard) {
-		if(suitToString(opponentCard) == "double") {
+		if(suitToString(opponentCard).equals("double")) {
 			for(int i = 0; i < handCards.size()-1; i++) {
-				if(suitToString(handCards.get(i)) == "double") playableHandCards.add(handCards.get(i));
+				if(suitToString(handCards.get(i)).equals("double")) playableHandCards.add(handCards.get(i));
 			}
 		}else {
 			for(int i = 0; i < handCards.size()-1; i++) {
-				if(suitToString(opponentCard) == suitToString(handCards.get(i)) || 
-				   suitToString(handCards.get(i)) == "double") {
+				if(suitToString(opponentCard).equals(suitToString(handCards.get(i))) || 
+				   suitToString(handCards.get(i)).equals("double")) {
 					playableHandCards.add(handCards.get(i));
 				}
 			}

@@ -52,7 +52,6 @@ public class Server {
 				
 	}
 	
-//	DeckOfCards deck = new DeckOfCards();
-	
+//	Table table = new Table();
 
 }
