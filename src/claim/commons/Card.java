@@ -71,10 +71,7 @@ public class Card implements Comparable<Card>{
 
     public Rank getRank() {
         return rank;
-    }
-    
-    //
-    
+    }    
     
 	public String toString() {
 		return suit.toString() + "_" + rank.toString();
