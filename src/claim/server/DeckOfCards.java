@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import claim.commons.Card;
+import claim.commons.Card.Rank;
+import claim.commons.Card.Suit;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class DeckOfCards {
@@ -31,20 +33,34 @@ public class DeckOfCards {
 		cards.clear();
 		for (Card.Suit suit : Card.Suit.values()) {
 			for (Card.Rank rank : Card.Rank.values()) {
-				if(suit.toString() != "knight" && (rank.toString()!= "zero" || rank.toString() != "one")) {
-					if(suit.toString() == "goblin" && rank.toString() == "zero"){
-						for(int i=0; i<4; i++) {
-							Card card = new Card(suit, rank);
-							cards.add(card);
-						}
-					}
+//				if(!suit.toString().equalsIgnoreCase("knight") && (!rank.toString().equalsIgnoreCase("zero") || !rank.toString().equalsIgnoreCase("one"))) {
+//					if(suit.toString().equalsIgnoreCase("goblin") && rank.toString().equalsIgnoreCase("zero")){
+//						for(int i=0; i<4; i++) {
+//							Card card = new Card(suit, rank);
+//							cards.add(card);
+//						}
+//					}
 					Card card = new Card(suit, rank);
 					cards.add(card);
-				}	
+					
+//				}	
+			}
+		}
+		for(int i = 0; i<4; i++) {
+			cards.add(new Card(Suit.Goblin, Rank.Zero));
+		}
+		for(int i = 0; i < cards.size(); i++) {
+			if(cards.get(i).getSuit() == Suit.Knight && cards.get(i).getRank() == Rank.Zero){
+				cards.remove(i);
+			} 
+			if(cards.get(i).getSuit() == Suit.Knight && cards.get(i).getRank() == Rank.One){
+				cards.remove(i);
 			}
 		}
 		Collections.shuffle(cards);
 		System.out.println("Method: DeckOfCards: Print all created Cards");
+		System.out.println(cards.size());
+		Collections.sort(cards);
 		for(Card card : cards) {
 		System.out.println(card.toString());
 		}
