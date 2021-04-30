@@ -1,8 +1,97 @@
 //Implemented by Samuel
 
 #root{
-    -fx-background-image: url("background.jpg");
-    -fx-background-repeat: stretch;   
-    -fx-background-size: 900 506;
+    -fx-background-image: url("../../image/background.jpg");
     -fx-background-position: center center;
+}
+
+#connect {
+	-fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+#login {
+	-fx-spacing: 10;
+}
+
+#registration {
+	-fx-spacing: 10;
+}
+
+#game {
+	-fx-spacing: 10;
+}
+
+#player {
+	-fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+#otherPlayer {
+	-fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+#popupError {
+	-fx-background-color: rgba(244, 238, 232, 1);
+	-fx-hgap: 10;
+    -fx-vgap: 10;
+	-fx-min-width: 900px;
+	-fx-min-height: 650px;
+	-fx-valignment: center;
+}
+
+#textError {
+  	-fx-text-fill: rgba(20, 20, 20, 1);
+}
+
+.label {
+	-fx-font-size: 16px;
+	-fx-font-family: 'sans-serif';
+  	-fx-text-fill: rgba(255, 255, 255, 1);
+}
+
+.button {
+	-fx-background-color: rgba(192, 96, 20, 1);
+	-fx-text-fill: rgba(255, 255, 255, 1);
+	-fx-background-radius: 1px;
+	-fx-min-width: 175px;
+	-fx-min-height: 30px;
+}
+
+.button:hover {
+	-fx-background-color: rgba(66, 70, 66, 1);
+	-fx-text-fill: rgba(255, 255, 255, 1);
+}
+
+.text-field {
+	-fx-background-radius: 1px;
+	-fx-alignment: center;
+	-fx-padding: 5 0 5 0;
+	-fx-focus-color: rgba(192, 96, 20, 1);
+	-fx-min-width: 175px;
+	-fx-max-width: 175px;
+	-fx-min-height: 30px;
+}
+
+.menu-bar {
+    -fx-background-color: rgba(66, 70, 66, 1);
+    -fx-alignment: center-left;
+    -fx-min-height: 50px;
+}
+
+.menu-bar .menu-button:hover, .menu-bar .menu-button:focused, .menu-bar .menu-button:showing {
+    -fx-background: rgba(83, 97, 98, 1);
+    -fx-min-height: 50px;
+}
+
+.menu-item {
+    -fx-background: rgba(66, 70, 66, 1);
+    -fx-min-width: 200px;
+}
+
+.context-menu {
+    -fx-skin: "com.sun.javafx.scene.control.skin.ContextMenuSkin";
+    -fx-background-color: rgba(83, 97, 98, 1);
+    -fx-min-width: 120px;
 }

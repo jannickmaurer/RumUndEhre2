@@ -15,6 +15,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -94,6 +95,7 @@ public class View {
 		
 		scene = new Scene(root, 1100, 733);
 		scene.getStylesheets().add(getClass().getResource("Client.css").toExternalForm());
+		
 		root.setTop(menuBar);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Connect");

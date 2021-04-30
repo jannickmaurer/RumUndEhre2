@@ -13,7 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class PlayerPane extends VBox {
+public class PlayerPane extends GridPane {
 	private Label lbName = new Label("Name");
 	private Label lbPoints = new Label("Punkte");
 	private HBox hboxCards = new HBox();
@@ -54,7 +54,15 @@ public class PlayerPane extends VBox {
 		
 		hboxDecks.getChildren().addAll(vboxScoreDeck, vboxFollowerDeck);
 		hboxDecks.setSpacing(10);
-		this.getChildren().addAll(lbName, pointsGrid, hboxCards, hboxDecks);
+		
+		this.add(lbName, 0, 0);
+		this.add(lbPoints, 0, 1);
+		this.add(lbPointsPlayer, 1, 1);
+		this.add(hboxCards, 0, 2, 2, 1);
+		this.add(hboxDecks, 0, 3, 2, 1);
+		
+		this.setId("player");
+		this.setAlignment(Pos.CENTER);
 	}
 	
 	

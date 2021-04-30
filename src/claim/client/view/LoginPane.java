@@ -19,6 +19,7 @@ public class LoginPane extends VBox {
 	public LoginPane() {
 		this.getChildren().addAll(tfUsername, pfPassword, btLogin, btRegistration);
 		
+		this.setId("login");
 		this.setAlignment(Pos.CENTER);
 	}
 	

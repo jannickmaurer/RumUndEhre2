@@ -2,6 +2,7 @@
 
 package claim.client.view;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,14 +15,15 @@ public class ErrorPopupPane extends GridPane {
 	
 	//Konstruktor
 	public ErrorPopupPane() {
-		VBox v1 = new VBox();
-		v1.setId("VBox");
-		v1.getChildren().addAll(lblError, btBackError);
-		this.add(v1, 0, 0);
 		
-		this.setAlignment(Pos.TOP_CENTER);
-		this.setHgap(20);
-		this.setVgap(10);
+		this.add(lblError, 0, 0);
+		this.add(btBackError, 0, 1);
+		
+		this.setId("popupError");
+		lblError.setId("textError");
+		this.setAlignment(Pos.CENTER);
+		this.setHalignment(btBackError, HPos.CENTER);
+		
 	}
 	
 	//Getter & Setter

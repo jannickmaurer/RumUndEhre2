@@ -19,6 +19,7 @@ public class RegistrationPane extends VBox {
 		public RegistrationPane() {
 			this.getChildren().addAll(tfNewUsername, pfNewPassword, btCreateAccount, btBack);
 			
+			this.setId("registration");
 			this.setAlignment(Pos.CENTER);
 		}
 		

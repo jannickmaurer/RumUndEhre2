@@ -266,11 +266,11 @@ public class Controller {
 	
 	//SD - Gespielte Karten in der Mitte anzeigen
 		public void updateGameDisplay() {
-			view.getGameLayout().getVboxPlayedCards().getChildren().clear();
+			view.getGameLayout().getMiddleGameLayout().getVboxPlayedCards().getChildren().clear();
 			
 			CardLabel cl1 = new CardLabel();
 			cl1.setCard();
-			view.getGameLayout().getVboxPlayedCards().getChildren().add(cl1);
+			view.getGameLayout().getMiddleGameLayout().getVboxPlayedCards().getChildren().add(cl1);
 		}
 	
 	//SD

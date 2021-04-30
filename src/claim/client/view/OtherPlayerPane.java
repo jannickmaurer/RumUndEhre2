@@ -3,27 +3,25 @@
 package claim.client.view;
 
 import java.util.ArrayList;
+
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class OtherPlayerPane extends VBox {
+public class OtherPlayerPane extends GridPane {
 	private Label lbName = new Label("Name");
 	private Label lbPoints = new Label("Punkte");
 	private HBox hboxDecks = new HBox();
 	private CardLabel clScoreDeck = new CardLabel();
 	private CardLabel clFollowerDeck = new CardLabel();
 	
-	private GridPane pointsGrid = new GridPane();
 	private Label lbPointsPlayer = new Label("0");
 
 	//Konstruktor
-	public OtherPlayerPane() {
-		pointsGrid.add(lbPoints, 0, 0);
-		pointsGrid.add(lbPointsPlayer, 2, 0);
-		
+	public OtherPlayerPane() {		
 		VBox vboxScoreDeck = new VBox();
 		Label lbScoreDeck = new Label("Score Deck");
 		clScoreDeck.setDeck();
@@ -36,8 +34,15 @@ public class OtherPlayerPane extends VBox {
 		
 		hboxDecks.getChildren().addAll(vboxScoreDeck, vboxFollowerDeck);
 		hboxDecks.setSpacing(10);
-		this.getChildren().addAll(lbName, pointsGrid, hboxDecks);
-	}
+		
+		this.add(lbName, 0, 0);
+		this.add(lbPoints, 0, 1);
+		this.add(lbPointsPlayer, 1, 1);
+		this.add(hboxDecks, 0, 2, 2, 1);
+		
+		this.setId("otherPlayer");
+		this.setAlignment(Pos.CENTER);	
+		}
 	
 	//Getter & Setter
 	public Label getLbName() {

@@ -4,21 +4,21 @@ package claim.client.view;
 
 import java.util.ArrayList;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class GamePane extends BorderPane {
-	private HBox hboxMiddleCards = new HBox();
-	private VBox vboxPlayedCards = new VBox();
-	private CardLabel clCardsDeck = new CardLabel();
-	private CardLabel clNewFollowerDeck = new CardLabel();
+public class GamePane  extends VBox {
+	
 	
 	//Layouts für unterschiedliche Areas
 	public PlayerPane playerLayout = new PlayerPane();
 	public OtherPlayerPane otherPlayerLayout = new OtherPlayerPane();
+	public MiddleGamePane middleGameLayout = new MiddleGamePane();
 	
 	//Elemente aus Player Layout ansprechen
 	private Label lbName = playerLayout.getLbName();
@@ -30,44 +30,24 @@ public class GamePane extends BorderPane {
 	private Label lbOtherName = otherPlayerLayout.getLbName();
 	private Label lbOtherPoints = otherPlayerLayout.getLbPoints();
 	private Label lbOtherPointsPlayer = otherPlayerLayout.getLbPointsPlayer();
-	
+
 	private Button btLogout = new Button();
 	private VBox vbPlayer = new VBox();
 	
 	//Konstruktor
 	public GamePane() {
 		
-		VBox vboxCardsDeck = new VBox();
-		Label lbCardsDeck = new Label("Cards Deck");
-		clCardsDeck.setDeck();
-		vboxCardsDeck.getChildren().addAll(clCardsDeck, lbCardsDeck);
 		
-		VBox vboxNewFollowerDeck = new VBox();
-		Label lbNewFollowerDeck = new Label("New Follower Deck");
-		clNewFollowerDeck.setDeck();
-		vboxNewFollowerDeck.getChildren().addAll(clNewFollowerDeck, lbNewFollowerDeck);
 		
-		hboxMiddleCards.getChildren().addAll(vboxPlayedCards, vboxCardsDeck, vboxNewFollowerDeck);
-		vboxPlayedCards.setSpacing(10);
-		hboxMiddleCards.setSpacing(10);
-		vbPlayer.getChildren().addAll(playerLayout, btLogout);
-			
-		this.setTop(otherPlayerLayout);
-		this.setCenter(hboxMiddleCards);
-		this.setBottom(vbPlayer);
+		this.getChildren().addAll(otherPlayerLayout, middleGameLayout, playerLayout, btLogout);
+		
+		this.setId("game");
+		this.setAlignment(Pos.CENTER);
 	}
 	
 	
 
-	//Getter & Setter
-	public VBox getVboxPlayedCards() {
-		return vboxPlayedCards;
-	}
-
-	public void setVboxPlayedCards(VBox vboxPlayedCards) {
-		this.vboxPlayedCards = vboxPlayedCards;
-	}
-	
+	//Getter & Setter	
 	public Button getBtLogout() {
 		return btLogout;
 	}
@@ -115,6 +95,14 @@ public class GamePane extends BorderPane {
 
 	public void setPlayerLayout(PlayerPane playerLayout) {
 		this.playerLayout = playerLayout;
+	}
+
+	public MiddleGamePane getMiddleGameLayout() {
+		return middleGameLayout;
+	}
+
+	public void setMiddleGameLayout(MiddleGamePane middleGameLayout) {
+		this.middleGameLayout = middleGameLayout;
 	}
 	
 }

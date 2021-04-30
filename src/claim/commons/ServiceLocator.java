@@ -12,7 +12,7 @@ private static ServiceLocator serviceLocator;
 	final private Class<?> APP_CLASS = Claim.class;
     final private String APP_NAME = "Claim";
 	
-	final private Locale[] locales = new Locale[] { new Locale("en"), new Locale("de") };
+	final private Locale[] locales = new Locale[] { new Locale("EN"), new Locale("DE") };
 	
 	private static Logger clientLogger = Logger.getLogger("Claim");
 	private static Logger serverLogger = Logger.getLogger("Server");
