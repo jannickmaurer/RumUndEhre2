@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import claim.client.model.Board;
 import claim.client.model.Model;
 import claim.client.view.View;
+import claim.commons.Card;
 import claim.commons.ServiceLocator;
 import claim.commons.messages.Message;
 import claim.commons.messages.results.ResultBroadcastJoinPlayroom;
@@ -222,11 +223,18 @@ public class Controller {
 		});
 	}
 	
-	//SD
+	//SD - Karten zu Beginn des Spiels austeilen
 	public void deal() {
 		Platform.runLater(new Runnable() {
 			public void run() {
-				view.getGameLayout().getPlayerLayout().deal(board.getHandCards());
+				for (int i = 0; i < 13; i++) {
+					System.out.println("Karte " + i);
+					Card card = null;
+					//Was macht diese Zeile? -SD
+					CardLabel cl = (CardLabel) view.getGameLayout().getPlayerLayout().getHboxCards().getChildren().get(i);
+					cl.setCard();
+					cl.setCardNameAsString("undead_2");
+				}
 			}
 		});
 	}
@@ -237,14 +245,33 @@ public class Controller {
 		model.playCard(cl.getCardNameAsString());
 	}
 	
+	//SD - Karten entfernen
 	public void updatePlayerPane(String playedCard) {
 		Platform.runLater(new Runnable() {
 			public void run() {
 				System.out.println(playedCard);
-				view.getGameLayout().getPlayerLayout().updatePlayerDisplay(board.getHandCards(), playedCard);
+				CardLabel clToRemove = new CardLabel();
+				for(CardLabel cl : view.getGameLayout().getPlayerLayout().getCardLabels()) {
+					if(cl.getCardNameAsString().equals(playedCard)) {
+						clToRemove = cl;
+					}
+				}
+				view.getGameLayout().getPlayerLayout().getCardLabels().remove(clToRemove);
+				view.getGameLayout().getPlayerLayout().getHboxCards().getChildren().remove(clToRemove);
+				
+				updateGameDisplay();
 			}
 		});
 	}
+	
+	//SD - Gespielte Karten in der Mitte anzeigen
+		public void updateGameDisplay() {
+			view.getGameLayout().getVboxPlayedCards().getChildren().clear();
+			
+			CardLabel cl1 = new CardLabel();
+			cl1.setCard();
+			view.getGameLayout().getVboxPlayedCards().getChildren().add(cl1);
+		}
 	
 	//SD
 	public void highlightCard(Event event) {

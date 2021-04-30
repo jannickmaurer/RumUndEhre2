@@ -12,6 +12,7 @@ import claim.commons.Card;
 public class CardLabel extends Label {
 	public String cardNameAsString;
 	
+	//Warum super?
 	public CardLabel() {
 		super();
 	}
@@ -19,6 +20,18 @@ public class CardLabel extends Label {
 	//Aussehen des Decks definieren
 	public void setDeck() {
 		Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("claim/image/Backside.jpg"));
+		ImageView imv = new ImageView(image);
+		imv.setFitWidth(80);
+		imv.maxWidth(80);
+		imv.setFitHeight(115);
+		imv.maxHeight(115);
+		imv.setPreserveRatio(true);
+		this.setGraphic(imv);
+	}
+	
+	//ZUM TESTEN SD
+	public void setCard() {
+		Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("claim/image/undead_2.jpg"));
 		ImageView imv = new ImageView(image);
 		imv.setFitWidth(80);
 		imv.maxWidth(80);

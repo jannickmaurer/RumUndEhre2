@@ -34,10 +34,7 @@ public class ResultSendCard extends Message {
 	public void process(Controller controller) {
 		switch (this.reason) {
 		// What happens when which card is being sent by the Server?
-			case "HandCard": 
-				controller.getBoard().removePlayedCard(new Card(card));
-				controller.updatePlayerPane(card);
-			break;
+			case "HandCard": break;
 			case "FollowerCard": break;
 			case "PointCard": break;
 			case "TableCard" : break;

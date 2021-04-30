@@ -71,6 +71,7 @@ public class View {
 		this.model = model;
 		
 		root = new BorderPane();
+		root.setId("root");
 		
 		for (Locale locale : sl.getLocales()) {
             MenuItem language = new MenuItem(locale.getLanguage());
@@ -84,7 +85,7 @@ public class View {
 		
 		MenuBar menuBar = new MenuBar();
 		menuBar.getMenus().addAll(menuFileLanguage);
-		root.setTop(menuBar);
+		
 		root.setCenter(connectLayout);
 		
 		//Error Popups bereitstellen
@@ -93,7 +94,7 @@ public class View {
 		
 		scene = new Scene(root, 1100, 733);
 		scene.getStylesheets().add(getClass().getResource("Client.css").toExternalForm());
-		
+		root.setTop(menuBar);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Connect");
 	}

@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import claim.commons.messages.Message;
 import claim.client.controller.Controller;
+import claim.commons.Card;
 import claim.commons.ServiceLocator;
 
 // Created by Jannick: Server -> Client Message
@@ -24,7 +25,8 @@ public class ResultPlayCard extends Message {
 	
 	@Override
 	public void process(Controller controller) {
-		
+		controller.getBoard().removePlayedCard(new Card(card));
+		controller.updatePlayerPane(card);
 	}
 	public void processIfFalse(Controller controller) {
 		controller.somethingFailed();

@@ -42,11 +42,11 @@ public class Server {
 				e.printStackTrace();
 			}
 			logger.info("Server started on port: " + port + " You may now connect a client");
-//			DeckOfCards dc = new DeckOfCards();
-//			Playroom pr  = new Playroom();
-//			Playroom.add(pr);
-			Table table = new Table();
-			table.deal();
+			DeckOfCards dc = new DeckOfCards();
+			Playroom pr  = new Playroom();
+			Playroom.add(pr);
+//			Table table = new Table();
+//			table.deal();
 //			logger.info("New Playroom added: " + pr.toString());
 		}
 				

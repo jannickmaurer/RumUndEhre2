@@ -57,18 +57,17 @@ public class GamePane extends BorderPane {
 		this.setBottom(vbPlayer);
 	}
 	
-	//Gespielte Karten in der Mitte anzeigen
-	public void updateGameDisplay() {
-		vboxPlayedCards.getChildren().clear();
-		
-		CardLabel cl1 = new CardLabel();
-		cl1.setDeck();
-		CardLabel cl2 = new CardLabel();
-		cl2.setDeck();
-		vboxPlayedCards.getChildren().addAll(cl1, cl2);
+	
+
+	//Getter & Setter
+	public VBox getVboxPlayedCards() {
+		return vboxPlayedCards;
+	}
+
+	public void setVboxPlayedCards(VBox vboxPlayedCards) {
+		this.vboxPlayedCards = vboxPlayedCards;
 	}
 	
-	//Getter & Setter
 	public Button getBtLogout() {
 		return btLogout;
 	}

@@ -29,7 +29,8 @@ public class ResultBroadcastStartRoundOne extends Message {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Game started");	
+		System.out.println("Game started");
+		controller.deal();
 	// Start Game in GUI	
 	}
 	

@@ -57,42 +57,23 @@ public class PlayerPane extends VBox {
 		this.getChildren().addAll(lbName, pointsGrid, hboxCards, hboxDecks);
 	}
 	
-	//Karten zu Beginn des Spiels austeilen
-	public void deal(ArrayList<Card> handCards) {
-		ArrayList<Card> handCardsList = new ArrayList<>();
-		ArrayList<Card> playableCardsList = new ArrayList<>();
-		handCardsList = handCards;
-
-		for (int i = 0; i < handCardsList.size(); i++) {
-			Card card = null;
-			CardLabel cl = (CardLabel) hboxCards.getChildren().get(i);
-			cl.setCard(handCardsList.get(i));
-			cl.setCardNameAsString(handCardsList.get(i).toString());
-		}
-				
-	}
+	
 	
 	//Karte entfernen wenn eine gespielt wird (noch auszubauen)
-	public void updatePlayerDisplay(ArrayList<Card> handCards, String playedCard) {
-		ArrayList<Card> handCardsList = new ArrayList<>();
-		handCardsList = handCards;
-				
-		CardLabel clToRemove = new CardLabel();
-		for(CardLabel cl : cardLabels) {
-			if(cl.getCardNameAsString().equals(playedCard)) {
-				clToRemove = cl;
-			}
-		}
-		cardLabels.remove(clToRemove);
-		hboxCards.getChildren().remove(clToRemove);
-
-		for (int i = 0; i < handCardsList.size(); i++) {
-			Card card = null;
-			CardLabel cl = (CardLabel) hboxCards.getChildren().get(i);
-			cl.setCard(handCardsList.get(i));
-			cl.setCardNameAsString(handCardsList.get(i).toString());
-		}
-	}
+	/*
+	 * public void updatePlayerDisplay(ArrayList<Card> handCards, String playedCard)
+	 * { ArrayList<Card> handCardsList = new ArrayList<>(); handCardsList =
+	 * handCards;
+	 * 
+	 * CardLabel clToRemove = new CardLabel(); for(CardLabel cl : cardLabels) {
+	 * if(cl.getCardNameAsString().equals(playedCard)) { clToRemove = cl; } }
+	 * cardLabels.remove(clToRemove); hboxCards.getChildren().remove(clToRemove);
+	 * 
+	 * for (int i = 0; i < handCardsList.size(); i++) { Card card = null; CardLabel
+	 * cl = (CardLabel) hboxCards.getChildren().get(i);
+	 * cl.setCard(handCardsList.get(i));
+	 * cl.setCardNameAsString(handCardsList.get(i).toString()); } }
+	 */
 	
 	//Getter & Setter
 	public HBox getHboxCards() {
