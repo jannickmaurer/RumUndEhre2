@@ -11,10 +11,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class OtherPlayerPane extends GridPane {
+public class OtherPlayerPane extends VBox {
 	private Label lbName = new Label("Name");
 	private Label lbPoints = new Label("Punkte");
 	private HBox hboxDecks = new HBox();
+	private HBox hboxPoints = new HBox();
 	private CardLabel clScoreDeck = new CardLabel();
 	private CardLabel clFollowerDeck = new CardLabel();
 	
@@ -25,20 +26,24 @@ public class OtherPlayerPane extends GridPane {
 		VBox vboxScoreDeck = new VBox();
 		Label lbScoreDeck = new Label("Score Deck");
 		clScoreDeck.setDeck();
+		vboxScoreDeck.setAlignment(Pos.CENTER);
 		vboxScoreDeck.getChildren().addAll(clScoreDeck, lbScoreDeck);
 		
 		VBox vboxFollowerDeck = new VBox();
 		Label lbFollowerDeck = new Label("Follower Deck");
 		clFollowerDeck.setDeck();
+		vboxFollowerDeck.setAlignment(Pos.CENTER);
 		vboxFollowerDeck.getChildren().addAll(clFollowerDeck, lbFollowerDeck);
 		
 		hboxDecks.getChildren().addAll(vboxScoreDeck, vboxFollowerDeck);
+		hboxDecks.setAlignment(Pos.CENTER);
 		hboxDecks.setSpacing(10);
 		
-		this.add(lbName, 0, 0);
-		this.add(lbPoints, 0, 1);
-		this.add(lbPointsPlayer, 1, 1);
-		this.add(hboxDecks, 0, 2, 2, 1);
+		hboxPoints.getChildren().addAll(lbPoints, lbPointsPlayer);
+		hboxPoints.setAlignment(Pos.CENTER);
+		hboxPoints.setSpacing(10);
+		
+		this.getChildren().addAll(lbName, hboxPoints, hboxDecks);
 		
 		this.setId("otherPlayer");
 		this.setAlignment(Pos.CENTER);	

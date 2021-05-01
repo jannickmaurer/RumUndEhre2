@@ -7,12 +7,11 @@ import java.util.ArrayList;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-public class GamePane  extends VBox {
+public class GamePane extends GridPane {
 	
 	
 	//Layouts für unterschiedliche Areas
@@ -25,22 +24,24 @@ public class GamePane  extends VBox {
 	private Label lbPoints = playerLayout.getLbPoints();
 	private Label lbPointsPlayer = playerLayout.getLbPointsPlayer();
 	private ArrayList cardLabels = playerLayout.getCardLabels();
+	private Button btLogout = playerLayout.getBtLogout();
 	
 	//Elemente aus Other Player Layout ansprechen
 	private Label lbOtherName = otherPlayerLayout.getLbName();
 	private Label lbOtherPoints = otherPlayerLayout.getLbPoints();
 	private Label lbOtherPointsPlayer = otherPlayerLayout.getLbPointsPlayer();
 
-	private Button btLogout = new Button();
+	
 	private VBox vbPlayer = new VBox();
 	
 	//Konstruktor
 	public GamePane() {
 		
+		this.add(otherPlayerLayout, 0, 0);
+		this.add(middleGameLayout, 0, 1);
+		this.add(playerLayout, 0, 2);
 		
-		
-		this.getChildren().addAll(otherPlayerLayout, middleGameLayout, playerLayout, btLogout);
-		
+		GridPane.setVgrow(middleGameLayout, Priority.ALWAYS);
 		this.setId("game");
 		this.setAlignment(Pos.CENTER);
 	}

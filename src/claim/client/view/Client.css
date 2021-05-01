@@ -19,17 +19,22 @@
 }
 
 #game {
-	-fx-spacing: 10;
+	-fx-hgap: 10;
+    -fx-vgap: 10;
+    -fx-padding: 20;
+}
+
+#middleGame {
+	-fx-hgap: 10;
+    -fx-vgap: 10;
 }
 
 #player {
-	-fx-hgap: 10;
-    -fx-vgap: 10;
+	-fx-spacing: 10;
 }
 
 #otherPlayer {
-	-fx-hgap: 10;
-    -fx-vgap: 10;
+	-fx-spacing: 10;
 }
 
 #popupError {

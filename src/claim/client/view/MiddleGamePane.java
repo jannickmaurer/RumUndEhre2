@@ -30,11 +30,12 @@ public class MiddleGamePane extends GridPane {
 		VBox vboxNewFollowerDeck = new VBox();
 		Label lbNewFollowerDeck = new Label("New Follower Deck");
 		clNewFollowerDeck.setDeck();
-		clNewFollowerDeck.setAlignment(Pos.CENTER);
+		vboxNewFollowerDeck.setAlignment(Pos.CENTER);
 		vboxNewFollowerDeck.getChildren().addAll(clNewFollowerDeck, lbNewFollowerDeck);
 		
 		vboxPlayedCards.setAlignment(Pos.CENTER);
 		hboxMiddleCards.getChildren().addAll(vboxPlayedCards, vboxCardsDeck, vboxNewFollowerDeck);
+		hboxMiddleCards.setSpacing(10);
 		
 		this.add(hboxMiddleCards, 0, 0);
 		
