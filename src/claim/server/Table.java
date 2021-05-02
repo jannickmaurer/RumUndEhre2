@@ -20,7 +20,7 @@ public class Table {
 //		super();
 	}
 	/*
-	 * TODO: ACHTUNG tableCards und cardsTable, einer muss weg --> tableCards behalten
+	 * TODO: ACHTUNG tableCards und tableCards, einer muss weg --> tableCards behalten
 	 * - Wie versendet Jannick die Tischkarten?? sollte immer über getTableCards laufen, damit
 	 *   die gespielte Karte gelöscht wird
 	 * - Soll für die offene Tischkarte eine eigene Card auf dem Table eröffnet werden bevor diese 
@@ -28,16 +28,20 @@ public class Table {
 	 */
 
 	private DeckOfCards deck;
+
 //	private ArrayList<Card> cardsP1 = new ArrayList<>();
 //	private ArrayList<Card> cardsP2 = new ArrayList<>();
 	private ArrayList<Card> cardsTable = new ArrayList<>();
+	private ArrayList<Card> tableCards = new ArrayList<>();
 //	private ArrayList<Card> undeadsP1 = new ArrayList<>();
 //	private ArrayList<Card> undeadsP2 = new ArrayList<>();
+
 	private ArrayList<Card> followerCardsP1 = new ArrayList<>();
 	private ArrayList<Card> followerCardsP2 = new ArrayList<>();
 	public ArrayList<Card> tmpUndeads = new ArrayList<>();
 	private int fractionPointsP1;
 	private int fractionPointsP2;
+	private Card actualTableCard;
 
 	public String roundWinner;
 	public Card followerCardP1;
@@ -66,11 +70,18 @@ public class Table {
 				System.out.println("Methode deal: Wert von getCardsRemaining nur für Tischkarten: "+ deck.getCardsRemaining());
 				for (int j = 0; j < deck.getCardsRemaining(); j++) {
 					card = deck.dealCard();
-					cardsTable.add(card);
+					tableCards.add(card);
 				}
+
 				System.out.println("Methode Deal in Table: "+ cardsTable.size());
+
+				System.out.println("Methode Deal in Table: "+tableCards.size());
+
 			}
 		}
+		
+
+
 //		System.out.println("Deal:");
 //		System.out.print("P1:");
 //		System.out.print(cardsP1.size());
@@ -87,8 +98,8 @@ public class Table {
 //		}
 //		System.out.println();
 //		System.out.print("Table:");
-//		System.out.print(cardsTable.size());
-//		for(Card c: cardsTable) {
+//		System.out.print(tableCards.size());
+//		for(Card c: tableCards) {
 //			
 //			System.out.print(c.toString());
 //		}
@@ -107,7 +118,7 @@ public class Table {
 	 * - Wer oder wie greifen wir aud die tmpUndeads zu, respektive macht jannick das direkt oder
 	 *   muss ich noch eine zugriffs methode schreiben. 
 	 */
-	public void finishRound(Card cardP1, Card cardP2, Card actualTableCard) {//evtl.auslesen aus Array
+	public void finishRound(Card cardP1, Card cardP2) {//, Card actualTableCard entfernt//evtl.auslesen aus Array
 		roundWinner = ""; //eigentlich unnötig
 		followerCardP1 = null; //eigentlich unnötig
 		followerCardP2 = null; //eigentlich unnötig
@@ -249,7 +260,8 @@ public class Table {
 	 * David: Gibt die letzte Karte der Tischkarten zurück und löscht diese
 	 */
 	public Card getNextTableCard() {
-        Card card = (cardsTable.size() > 0) ? cardsTable.remove(cardsTable.size()-1) : null;
+        Card card = (tableCards.size() > 0) ? tableCards.remove(tableCards.size()-1) : null;
+        actualTableCard = card;
 		return card;
 	}
 	
