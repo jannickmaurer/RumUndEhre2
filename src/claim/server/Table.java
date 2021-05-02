@@ -65,9 +65,8 @@ public class Table extends Playroom {
 			}
 		}
 		
-		public void getTableCard() {
-			
-		}
+
+
 //		System.out.println("Deal:");
 //		System.out.print("P1:");
 //		System.out.print(cardsP1.size());
