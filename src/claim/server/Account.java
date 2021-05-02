@@ -24,8 +24,8 @@ public class Account {
 	private Card playedCard;
 	
 	private ArrayList<Card> handCards = new ArrayList<>();
-	private ArrayList<String> followerCards = new ArrayList<>();
-	private ArrayList<String> pointCards = new ArrayList<>();
+	private ArrayList<Card> followerCards = new ArrayList<>();
+	private ArrayList<Card> undeadCards = new ArrayList<>();
 	
 
 	public Account(String username, String password) {
@@ -98,21 +98,31 @@ public class Account {
 //		this.handCards.clear();
 //		this.handCards = handCards;
 //	}
+	
+	public void addHandCard(Card handCard) {
+		this.handCards.add(handCard);
+	}
+	public void addFollowerCard(Card followerCard) {
+		this.followerCards.add(followerCard);
+	}
+	public void addUndeadCard(Card undeadCard) {
+		this.undeadCards.add(undeadCard);
+	}
 
-	public ArrayList<String> getFollowerCards() {
+	public ArrayList<Card> getFollowerCards() {
 		return followerCards;
 	}
 
-	public void setFollowerCards(ArrayList<String> followerCards) {
+	public void setFollowerCards(ArrayList<Card> followerCards) {
 		this.followerCards = followerCards;
 	}
 
-	public ArrayList<String> getPointCards() {
-		return pointCards;
+	public ArrayList<Card> getPointCards() {
+		return undeadCards;
 	}
 
-	public void setPointCards(ArrayList<String> pointCards) {
-		this.pointCards = pointCards;
+	public void setPointCards(ArrayList<Card> pointCards) {
+		this.undeadCards = pointCards;
 	}
 
 	public Table getTable() {

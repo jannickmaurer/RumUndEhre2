@@ -5,14 +5,20 @@ import java.util.Collections;
 
 import claim.commons.Card;
 
-public class Table extends Playroom {
+public class Table {
 	// Cards on the table - player's cards are stored in Account object
 	//private ArrayList<String> tableCards = new ArrayList<>();
+	private ArrayList<Account> players = new ArrayList<>();
 
 	public Table() {
-		super();
+//		super();
 	}
-	
+	public Table(ArrayList<Account> players) {
+		for(Account a : players) {
+			this.players.add(a);
+		}
+//		super();
+	}
 	/*
 	 * TODO: ACHTUNG tableCards und cardsTable, einer muss weg --> tableCards behalten
 	 * - Wie versendet Jannick die Tischkarten?? sollte immer über getTableCards laufen, damit
@@ -22,11 +28,11 @@ public class Table extends Playroom {
 	 */
 
 	private DeckOfCards deck;
-	private ArrayList<Card> cardsP1 = new ArrayList<>();
-	private ArrayList<Card> cardsP2 = new ArrayList<>();
+//	private ArrayList<Card> cardsP1 = new ArrayList<>();
+//	private ArrayList<Card> cardsP2 = new ArrayList<>();
 	private ArrayList<Card> cardsTable = new ArrayList<>();
-	private ArrayList<Card> undeadsP1 = new ArrayList<>();
-	private ArrayList<Card> undeadsP2 = new ArrayList<>();
+//	private ArrayList<Card> undeadsP1 = new ArrayList<>();
+//	private ArrayList<Card> undeadsP2 = new ArrayList<>();
 	private ArrayList<Card> followerCardsP1 = new ArrayList<>();
 	private ArrayList<Card> followerCardsP2 = new ArrayList<>();
 	public ArrayList<Card> tmpUndeads = new ArrayList<>();
@@ -52,8 +58,9 @@ public class Table extends Playroom {
 				System.out.println("Methode deal: Wert von getCardsRemaining nach jedem ausgeben an Spieler: "+ deck.getCardsRemaining());
 				for (int j = 0; j < 13; j++) {
 					card = deck.dealCard();
-					if (i == 0) cardsP1.add(card);
-					else cardsP2.add(card);
+					
+					if (i == 0) players.get(0).addHandCard(card);
+					else players.get(1).addHandCard(card);
 				}
 			} else {
 				System.out.println("Methode deal: Wert von getCardsRemaining nur für Tischkarten: "+ deck.getCardsRemaining());
@@ -61,7 +68,7 @@ public class Table extends Playroom {
 					card = deck.dealCard();
 					cardsTable.add(card);
 				}
-				System.out.println("Methode Deal in Table: "+cardsTable.size());
+				System.out.println("Methode Deal in Table: "+ cardsTable.size());
 			}
 		}
 //		System.out.println("Deal:");
@@ -150,11 +157,11 @@ public class Table extends Playroom {
 		tmpUndeads.clear();
 		if(suitToString(cardP1).equals("undead") || suitToString(cardP2).equals("undead")) {
 			switch (roundWinner) {
-			case "P1":	if(suitToString(cardP1).equals("undead")) undeadsP1.add(cardP1); tmpUndeads.add(cardP1);
-						if(suitToString(cardP2).equals("undead")) undeadsP1.add(cardP2); tmpUndeads.add(cardP2);
+			case "P1":	if(suitToString(cardP1).equals("undead")) players.get(0).addUndeadCard(cardP1); tmpUndeads.add(cardP1);
+						if(suitToString(cardP2).equals("undead")) players.get(0).addUndeadCard(cardP2); tmpUndeads.add(cardP2);
 						break;
-			case "P2":  if(suitToString(cardP1).equals("undead")) undeadsP2.add(cardP1); tmpUndeads.add(cardP1);
-						if(suitToString(cardP2).equals("undead")) undeadsP2.add(cardP2); tmpUndeads.add(cardP2);
+			case "P2":  if(suitToString(cardP1).equals("undead")) players.get(1).addUndeadCard(cardP1); tmpUndeads.add(cardP1);
+						if(suitToString(cardP2).equals("undead")) players.get(1).addUndeadCard(cardP2); tmpUndeads.add(cardP2);
 						break;
 			}
 		}
@@ -202,12 +209,12 @@ public class Table extends Playroom {
 			case "double": doubleP2.add(card); break;
 			}
 		}
-		
-		addFractionPoint(winnerFraction(goblinP1, goblinP2));
-		addFractionPoint(winnerFraction(dwarfP1, dwarfP2));
-		addFractionPoint(winnerFraction(knightP1, knightP2));
-		addFractionPoint(winnerFraction(doubleP1, doubleP2));
-		addFractionPoint(winnerFraction(undeadsP1, undeadsP2));
+		// Muss auf Accounts angepasst werden:
+//		addFractionPoint(winnerFraction(goblinP1, goblinP2));
+//		addFractionPoint(winnerFraction(dwarfP1, dwarfP2));
+//		addFractionPoint(winnerFraction(knightP1, knightP2));
+//		addFractionPoint(winnerFraction(doubleP1, doubleP2));
+//		addFractionPoint(winnerFraction(undeadsP1, undeadsP2));
 	}
 	
 	/*

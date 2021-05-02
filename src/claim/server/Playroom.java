@@ -2,12 +2,18 @@ package claim.server;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
+import claim.commons.Card;
+import claim.commons.ServiceLocator;
 import claim.commons.messages.results.ResultDealCards;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class Playroom implements Serializable {
+	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
+	private static Logger logger = sl.getServerLogger();
+	
 	protected static final ArrayList<Playroom> playrooms = new ArrayList<>();
 	protected SimpleIntegerProperty numberOfPlayers = new SimpleIntegerProperty();
 	protected SimpleBooleanProperty gameStarted = new SimpleBooleanProperty();
@@ -18,16 +24,20 @@ public class Playroom implements Serializable {
 		players = new ArrayList<>();
 		numberOfPlayers.set(0);
 		gameStarted.addListener((o, OldValue, NewValue) -> {
-//		if(NewValue.booleanValue()) {
-//			table = new Table();
-//			table.deal();
-//			//TBD: Cards from account ArrayList
-//			for(Account a : players) {
-//				String[] content = new String[] {"ResultDealCards", "true", "goblin_4","goblin_5","dwarf_4","goblin_3",
-//						"goblin_3","goblin_3","goblin_3","knight_3","goblin_3","goblin_3","undead_3","goblin_3","goblin_3"};
-//				a.getClient().send(new ResultDealCards(content));
-//			}
-//		}
+		if(NewValue.booleanValue()) {
+			table = new Table(this.players);
+			table.deal();
+			//TBD: Cards from account ArrayList
+			for(Account a : players) {
+				String[] temp = new String[] {"ResultDealCards", "true"};
+				ArrayList<String> cards = new ArrayList<>();
+				for(Card c : a.getHandCards()) {
+					cards.add(c.toString());
+				}
+				String[] content = combineArrayAndArrayList(temp, cards);
+				a.getClient().send(new ResultDealCards(content));
+			}
+		}
 	});
 //		numberOfPlayers.addListener((o, OldValue, NewValue) -> {
 //			if(NewValue.intValue() == 2) {
@@ -39,9 +49,21 @@ public class Playroom implements Serializable {
 //		});
 	}
 	
+	public String[] combineArrayAndArrayList(String[] array, ArrayList<String> list) {
+		String[] content = new String[array.length + list.size()];
+		for (int i = 0; i < array.length; i++)
+			content[i] = array[i];
+		for (int i = 0; i < list.size(); i++)
+			content[i + array.length] = list.get(i);
+		return content;
+	}
+	
 	public void addAccount(Account a) {
 		if(numberOfPlayers.get() < 2) players.add(a);
+		logger.info("Client added to Playroom: " + a.toString());
+		logger.info("NUmber of Players in ArrayList: " + players.size());
 		numberOfPlayers.set(numberOfPlayers.get()+1);
+		logger.info("Number of Players in Playroom: " + numberOfPlayers.get() );
 	}
 	
 	public static void add(Playroom playroom) {
