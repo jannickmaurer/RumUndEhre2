@@ -14,7 +14,7 @@ public class Table extends Playroom {
 	}
 	
 	/*
-	 * TODO: ACHTUNG tableCards und cardsTable, einer muss weg --> tableCards behalten
+	 * TODO: ACHTUNG tableCards und tableCards, einer muss weg --> tableCards behalten
 	 * - Wie versendet Jannick die Tischkarten?? sollte immer über getTableCards laufen, damit
 	 *   die gespielte Karte gelöscht wird
 	 * - Soll für die offene Tischkarte eine eigene Card auf dem Table eröffnet werden bevor diese 
@@ -24,7 +24,7 @@ public class Table extends Playroom {
 	private DeckOfCards deck;
 	private ArrayList<Card> cardsP1 = new ArrayList<>();
 	private ArrayList<Card> cardsP2 = new ArrayList<>();
-	private ArrayList<Card> cardsTable = new ArrayList<>();
+	private ArrayList<Card> tableCards = new ArrayList<>();
 	private ArrayList<Card> undeadsP1 = new ArrayList<>();
 	private ArrayList<Card> undeadsP2 = new ArrayList<>();
 	private ArrayList<Card> followerCardsP1 = new ArrayList<>();
@@ -59,10 +59,14 @@ public class Table extends Playroom {
 				System.out.println("Methode deal: Wert von getCardsRemaining nur für Tischkarten: "+ deck.getCardsRemaining());
 				for (int j = 0; j < deck.getCardsRemaining(); j++) {
 					card = deck.dealCard();
-					cardsTable.add(card);
+					tableCards.add(card);
 				}
-				System.out.println("Methode Deal in Table: "+cardsTable.size());
+				System.out.println("Methode Deal in Table: "+tableCards.size());
 			}
+		}
+		
+		public void getTableCard() {
+			
 		}
 //		System.out.println("Deal:");
 //		System.out.print("P1:");
@@ -80,8 +84,8 @@ public class Table extends Playroom {
 //		}
 //		System.out.println();
 //		System.out.print("Table:");
-//		System.out.print(cardsTable.size());
-//		for(Card c: cardsTable) {
+//		System.out.print(tableCards.size());
+//		for(Card c: tableCards) {
 //			
 //			System.out.print(c.toString());
 //		}
@@ -242,7 +246,7 @@ public class Table extends Playroom {
 	 * David: Gibt die letzte Karte der Tischkarten zurück und löscht diese
 	 */
 	public Card getNextTableCard() {
-        Card card = (cardsTable.size() > 0) ? cardsTable.remove(cardsTable.size()-1) : null;
+        Card card = (tableCards.size() > 0) ? tableCards.remove(tableCards.size()-1) : null;
 		return card;
 	}
 	
