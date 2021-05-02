@@ -32,6 +32,7 @@ public class Table extends Playroom {
 	public ArrayList<Card> tmpUndeads = new ArrayList<>();
 	private int fractionPointsP1;
 	private int fractionPointsP2;
+	private Card actualTableCard;
 
 	public String roundWinner;
 	public Card followerCardP1;
@@ -103,7 +104,7 @@ public class Table extends Playroom {
 	 * - Wer oder wie greifen wir aud die tmpUndeads zu, respektive macht jannick das direkt oder
 	 *   muss ich noch eine zugriffs methode schreiben. 
 	 */
-	public void finishRound(Card cardP1, Card cardP2, Card actualTableCard) {//evtl.auslesen aus Array
+	public void finishRound(Card cardP1, Card cardP2) {//, Card actualTableCard entfernt//evtl.auslesen aus Array
 		roundWinner = ""; //eigentlich unnötig
 		followerCardP1 = null; //eigentlich unnötig
 		followerCardP2 = null; //eigentlich unnötig
@@ -246,6 +247,7 @@ public class Table extends Playroom {
 	 */
 	public Card getNextTableCard() {
         Card card = (tableCards.size() > 0) ? tableCards.remove(tableCards.size()-1) : null;
+        actualTableCard = card;
 		return card;
 	}
 	
