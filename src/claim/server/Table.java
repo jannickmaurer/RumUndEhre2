@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import claim.commons.Card;
+import claim.commons.Card.Rank;
+import claim.commons.Card.Suit;
 
 public class Table {
 	// Cards on the table - player's cards are stored in Account object
@@ -32,22 +34,22 @@ public class Table {
 //	private ArrayList<Card> cardsP1 = new ArrayList<>();
 //	private ArrayList<Card> cardsP2 = new ArrayList<>();
 	private ArrayList<Card> cardsTable = new ArrayList<>();
-	private ArrayList<Card> tableCards = new ArrayList<>();
+	public ArrayList<Card> tableCards = new ArrayList<>();
 //	private ArrayList<Card> undeadsP1 = new ArrayList<>();
 //	private ArrayList<Card> undeadsP2 = new ArrayList<>();
 
-	private ArrayList<Card> followerCardsP1 = new ArrayList<>();
-	private ArrayList<Card> followerCardsP2 = new ArrayList<>();
+	public ArrayList<Card> followerCardsP1 = new ArrayList<>();
+	public ArrayList<Card> followerCardsP2 = new ArrayList<>();
 	public ArrayList<Card> tmpUndeads = new ArrayList<>();
 	private int fractionPointsP1;
 	private int fractionPointsP2;
-	private Card actualTableCard;
+	public Card actualTableCard;
 
 	public String roundWinner;
 	public Card followerCardP1;
 	public Card followerCardP2;
 
-	
+
 	
 	//Entweder das so belassen oder in unsere Kontrollerklasse einfügen, respektive generieren
 	/*
@@ -127,21 +129,21 @@ public class Table {
 		addUndead(cardP1, cardP2, roundWinner);
 
 		switch (roundWinner) {
-		case "P1": followerCardP1 = actualTableCard;
+		case "P1": followerCardP1 = actualTableCard;					
 				   followerCardsP1.add(followerCardP1);
 				   followerCardP2 = getNextTableCard();
-				   followerCardsP2.add(followerCardP2); break;
+				   followerCardsP2.add(followerCardP2);  break;
 		case "P2": followerCardP2 = actualTableCard;
 				   followerCardsP2.add(followerCardP2);
 				   followerCardP1 = getNextTableCard();
-				   followerCardsP1.add(followerCardP1); break;
+				   followerCardsP1.add(followerCardP1);  break;
 		}
 	}
 	
 	
 	//Dave: Falls eine der beiden Karten ein Untoter ist oder beide, muss diese dem Spieler
 	//auf den Punktestapel zugesandt werden der gewonnen hat.
-	private String evaluateWinnerCard(Card cardP1, Card cardP2) {
+	public String evaluateWinnerCard(Card cardP1, Card cardP2) {
 		String win = "P1";
 		//gibt den Sieger aus. Rückgabewert noch unbekannt, evtl. boolean, zu definieren. Eingabe auch
 		//evtl. zuerst aus String noch Karte machen
