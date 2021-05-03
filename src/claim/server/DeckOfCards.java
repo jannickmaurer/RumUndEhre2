@@ -9,8 +9,8 @@ import claim.commons.Card.Suit;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class DeckOfCards {
-//	private final ArrayList<Card> cards = new ArrayList<>();
-	public ArrayList<Card> cards = new ArrayList<>();
+	private final ArrayList<Card> cards = new ArrayList<>();
+//	public ArrayList<Card> cards = new ArrayList<>();
     private final SimpleIntegerProperty cardsRemaining = new SimpleIntegerProperty();
 
 
@@ -22,7 +22,7 @@ public class DeckOfCards {
         return cardsRemaining;
     }
     //Wahrscheinlich brauch ich den getter nicht
-    public int getCardsRemaining() {
+   public int getCardsRemaining() {
     	return cardsRemaining.get();
     }
 
@@ -50,12 +50,6 @@ public class DeckOfCards {
 			}
 		}
 		Collections.shuffle(cards);
-//		System.out.println("Method: DeckOfCards: Print all created Cards");
-//		System.out.println(cards.size());
-//		Collections.sort(cards);
-//		for(Card card : cards) {
-//		System.out.println(card.toString());
-//		}
         cardsRemaining.setValue(cards.size());
 
 	}

@@ -10,9 +10,11 @@ class DeckOfCardsTest {
 
 	@Test
 	void testShuffle() {
+		int i = 0;
 		DeckOfCards d = new DeckOfCards();
 		for(Card c : d.cards) {
-			System.out.println("Erstellte Karte: "+c);
+			i++;
+			System.out.println("Erstellte Karte: "+c+"   "+i);
 		}
 	}
 
