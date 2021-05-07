@@ -184,7 +184,9 @@ public class Table {
 				   followerCardP1 = getNextTableCard();
 				   players.get(0).getFollowerCards().add(followerCardP1); 
 				   winner = 1; break;
+
 		}	
+
 //		for(Account a : players) {
 		String temp = getNextTableCard().toString();
 		for(int i = 0; players.size() > i; i++) {
@@ -196,6 +198,7 @@ public class Table {
 			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
 		   }
 		}
+
 		
 		this.playedCards.set(0);
 		
@@ -203,6 +206,7 @@ public class Table {
 			a.clearPlayedCard();
 		}
 		
+
 	}
 
 		
