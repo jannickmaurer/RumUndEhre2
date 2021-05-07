@@ -4,11 +4,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import claim.commons.Card;
+import claim.commons.Card.Rank;
+import claim.commons.Card.Suit;
+import claim.commons.messages.results.ResultBroadcastFinishRound;
+import claim.commons.messages.results.ResultSendCard;
+import javafx.beans.property.SimpleIntegerProperty;
 
 public class Table {
 	// Cards on the table - player's cards are stored in Account object
 	//private ArrayList<String> tableCards = new ArrayList<>();
 	private ArrayList<Account> players = new ArrayList<>();
+	private SimpleIntegerProperty playedCards = new SimpleIntegerProperty();
 
 	public Table() {
 //		super();
@@ -16,7 +22,24 @@ public class Table {
 	public Table(ArrayList<Account> players) {
 		for(Account a : players) {
 			this.players.add(a);
+//		this.players = players;
+			System.out.println("Player zu Table added: " + a.getUsername());
 		}
+	
+		playedCards.set(0);
+		playedCards.addListener((o, OldValue, NewValue) -> {
+			if(NewValue.intValue() > 1) {
+//				try {
+//					Thread.sleep(2000);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+				finishRound();
+				
+			}
+		
+		});
 //		super();
 	}
 	/*
@@ -32,22 +55,23 @@ public class Table {
 //	private ArrayList<Card> cardsP1 = new ArrayList<>();
 //	private ArrayList<Card> cardsP2 = new ArrayList<>();
 	private ArrayList<Card> cardsTable = new ArrayList<>();
-	private ArrayList<Card> tableCards = new ArrayList<>();
+	public ArrayList<Card> tableCards = new ArrayList<>();
 //	private ArrayList<Card> undeadsP1 = new ArrayList<>();
 //	private ArrayList<Card> undeadsP2 = new ArrayList<>();
 
-	private ArrayList<Card> followerCardsP1 = new ArrayList<>();
-	private ArrayList<Card> followerCardsP2 = new ArrayList<>();
+	public ArrayList<Card> followerCardsP1 = new ArrayList<>();
+	public ArrayList<Card> followerCardsP2 = new ArrayList<>();
 	public ArrayList<Card> tmpUndeads = new ArrayList<>();
 	private int fractionPointsP1;
 	private int fractionPointsP2;
-	private Card actualTableCard;
+	public Card actualTableCard;
 
 	public String roundWinner;
 	public Card followerCardP1;
 	public Card followerCardP2;
+	private String undeadString;
 
-	
+
 	
 	//Entweder das so belassen oder in unsere Kontrollerklasse einfügen, respektive generieren
 	/*
@@ -118,30 +142,140 @@ public class Table {
 	 * - Wer oder wie greifen wir aud die tmpUndeads zu, respektive macht jannick das direkt oder
 	 *   muss ich noch eine zugriffs methode schreiben. 
 	 */
-	public void finishRound(Card cardP1, Card cardP2) {//, Card actualTableCard entfernt//evtl.auslesen aus Array
+//	public void finishRound(Card cardP1, Card cardP2) {//, Card actualTableCard entfernt//evtl.auslesen aus Array
+//		roundWinner = ""; //eigentlich unnötig
+//		followerCardP1 = null; //eigentlich unnötig
+//		followerCardP2 = null; //eigentlich unnötig
+//		
+//		roundWinner = evaluateWinnerCard(cardP1, cardP2);
+//		addUndead(cardP1, cardP2, roundWinner);
+//
+//		switch (roundWinner) {
+//		case "P1": followerCardP1 = actualTableCard;					
+//				   followerCardsP1.add(followerCardP1);
+//				   followerCardP2 = getNextTableCard();
+//				   followerCardsP2.add(followerCardP2);  break;
+//		case "P2": followerCardP2 = actualTableCard;
+//				   followerCardsP2.add(followerCardP2);
+//				   followerCardP1 = getNextTableCard();
+//				   followerCardsP1.add(followerCardP1);  break;
+//		}
+//	}
+	
+	public void finishRound() {//, Card actualTableCard entfernt//evtl.auslesen aus Array
 		roundWinner = ""; //eigentlich unnötig
 		followerCardP1 = null; //eigentlich unnötig
 		followerCardP2 = null; //eigentlich unnötig
+		int winner = 0;
 		
-		roundWinner = evaluateWinnerCard(cardP1, cardP2);
-		addUndead(cardP1, cardP2, roundWinner);
+		
+		System.out.println("Karte übergeben: " + players.get(0).getPlayedCard());
+		System.out.println("Karte übergeben: " + players.get(1).getPlayedCard());
+		roundWinner = evaluateWinnerCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
+		addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), roundWinner);
 
 		switch (roundWinner) {
-		case "P1": followerCardP1 = actualTableCard;
-				   followerCardsP1.add(followerCardP1);
+		case "P1": followerCardP1 = actualTableCard;					
+				   players.get(0).getFollowerCards().add(followerCardP1);
 				   followerCardP2 = getNextTableCard();
-				   followerCardsP2.add(followerCardP2); break;
+				   players.get(1).getFollowerCards().add(followerCardP2); break; 
 		case "P2": followerCardP2 = actualTableCard;
-				   followerCardsP2.add(followerCardP2);
+				   players.get(1).getFollowerCards().add(followerCardP2);
 				   followerCardP1 = getNextTableCard();
-				   followerCardsP1.add(followerCardP1); break;
+				   players.get(0).getFollowerCards().add(followerCardP1); 
+				   winner = 1; break;
+
+		}	
+
+//		for(Account a : players) {
+		String temp = getNextTableCard().toString();
+		for(int i = 0; players.size() > i; i++) {
+		   if(undeadString != "None") {
+			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(winner).getUsername(), temp};
+			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+		   }else {
+			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(winner).getUsername(), temp, undeadString};
+			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+		   }
 		}
+
+		
+		this.playedCards.set(0);
+		
+		for(Account a: players) {
+			a.clearPlayedCard();
+		}
+		
+
 	}
+
+		
+//		
+//		for(int i = 0; players.size() > i; i++) {
+//			switch(roundWinner) {
+//			case "P1":	if( i == 0) {
+//<<<<<<< HEAD
+//						String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), undeadString};
+//=======
+//						String[] content = {"ResultBroadcastFinishRound", "true", players.get(i).getUsername(), undeadString};
+//						players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+//>>>>>>> branch 'main' of https://github.com/jannickmaurer/RumUndEhre2
+//						}else {
+//<<<<<<< HEAD
+//						String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), getNextTableCard().toString()};
+//=======
+//						String[] content = {"ResultBroadcastFinishRound", "true", players.get(i).getUsername(), getNextTableCard().toString()};
+//						players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+//>>>>>>> branch 'main' of https://github.com/jannickmaurer/RumUndEhre2
+//						}
+//						
+//			case "P2":  if( i == 1) {
+//<<<<<<< HEAD
+//					    String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), undeadString};
+//=======
+//					    String[] content = {"ResultBroadcastFinishRound", "true", players.get(i).getUsername(), undeadString};
+//					    players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+//>>>>>>> branch 'main' of https://github.com/jannickmaurer/RumUndEhre2
+//					    }else {
+//<<<<<<< HEAD
+//					    String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), getNextTableCard().toString()};
+//=======
+//					    String[] content = {"ResultBroadcastFinishRound", "true", players.get(i).getUsername(), getNextTableCard().toString()};
+//					    players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+//>>>>>>> branch 'main' of https://github.com/jannickmaurer/RumUndEhre2
+//					    }
+//			}
+			
+		
+//		
+//		for(Account a : players) {
+//			if(roundWinner == "P1") {
+//				String[] content = {"ResultFinishRound", "true", players.get(0).getUsername(), undeadString};
+//				
+//			}
+//		}
+//		
+//		
+//		for(Account a : players) {
+//			if(winner == 0) {
+//			String[] content = {"ResultFinishRound", "true", players.get(winner).getUsername(), undeadString};
+//			
+//			}
+
+			
+			
+		
+		
+		
+		
+		
+		
+	
 	
 	
 	//Dave: Falls eine der beiden Karten ein Untoter ist oder beide, muss diese dem Spieler
-	//auf den Punktestapel zugesandt werden der gewonnen hat.
-	private String evaluateWinnerCard(Card cardP1, Card cardP2) {
+	//auf den Punktestapel zugesandt werden der  hat.
+	public String evaluateWinnerCard(Card cardP1, Card cardP2) {
 		String win = "P1";
 		//gibt den Sieger aus. Rückgabewert noch unbekannt, evtl. boolean, zu definieren. Eingabe auch
 		//evtl. zuerst aus String noch Karte machen
@@ -175,6 +309,12 @@ public class Table {
 						if(suitToString(cardP2).equals("undead")) players.get(1).addUndeadCard(cardP2); tmpUndeads.add(cardP2);
 						break;
 			}
+		}
+		undeadString = "None";
+		switch(tmpUndeads.size()) {
+		case 0: undeadString = "None"; break;
+		case 1: undeadString = tmpUndeads.get(0).toString(); break;
+		case 2: undeadString = tmpUndeads.get(0).toString()+"|"+tmpUndeads.get(1); break;
 		}
 	}
 	
@@ -279,6 +419,24 @@ public class Table {
 		String cardString = card.toString();
 	    String[] tmp = cardString.split("\\_");
     	return tmp[0];
+	}
+	
+	public void sendTableCard() {
+		String temp = getNextTableCard().toString();
+		for(Account a : players) {
+			String[] content = {"ResultSendCard", "true", "TableCard", temp};
+			a.getClient().send(new ResultSendCard(content));
+		}
+	}
+	public SimpleIntegerProperty getPlayedCards() {
+		return playedCards;
+	}
+	public void setPlayedCards(SimpleIntegerProperty playedCards) {
+		this.playedCards = playedCards;
+	}
+	
+	public void increasePlayedCards() {
+		this.playedCards.set(this.playedCards.get() + 1);
 	}
 	
 	

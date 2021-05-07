@@ -9,7 +9,7 @@ import claim.commons.Card;
 // All logic realted to game, cards, etc. on client side
 public class Board {
 	
-	private ArrayList<Card> handCards;
+	public ArrayList<Card> handCards;
 	private ArrayList<Card> followerCards;
 	private ArrayList<Card> pointCards;//Was sind PointCArds?????  Untote?
 //	private ArrayList<Card> playableHandCards;//Dave	//Auskommentiert - NEU Playable
@@ -57,6 +57,9 @@ public class Board {
 
 	public void setPointCards(ArrayList<Card> pointCards) {
 		this.pointCards = pointCards;
+	}
+	public void addUndead(Card undead) {
+		this.undeadCards.add(undead);
 	}
 	
 	

@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import claim.client.controller.Controller;
 import claim.commons.ServiceLocator;
+import claim.commons.messages.results.ResultBroadcastFinishRound;
 import claim.server.Client;
 
 // Created by Jannick
@@ -57,7 +58,8 @@ public abstract class Message {
 //			if (content[0].equals("CreatePlayroom")) msg = new CreatePlayroom(content);
 //			if (content[0].equals("ListPlayrooms")) msg = new ListPlayrooms(content);
 			if (content[0].equals("Logout")) msg = new Logout(content);
-			if (content[0].equals("DeleteAccount")) msg = new DeleteAccount(content);
+			if (content[0].equals("GetNextTableCard")) msg = new GetNextTableCard(content);
+			
 //			if (content[0].equals("DeletePlayroom")) msg = new DeletePlayroom(content);
 //			if (content[0].equals("JoinPlayroom")) msg = new JoinPlayroom(content);
 //			if (content[0].equals("SendMessage")) msg = new SendMessage(content);
@@ -69,6 +71,9 @@ public abstract class Message {
 //			if (content[0].equals("Disconnect")) msg = new Disconnect(content);
 //			if (content[0].equals("SendTrumpf")) msg = new SendTrumpf(content);
 //			if (content[0].equals("StartRound")) msg = new StartRound(content);
+			
+			
+			
 
 		} catch (IOException e) {
 			e.printStackTrace();
