@@ -6,11 +6,14 @@ import java.util.Collections;
 import claim.commons.Card;
 import claim.commons.Card.Rank;
 import claim.commons.Card.Suit;
+import claim.commons.messages.results.ResultSendCard;
+import javafx.beans.property.SimpleIntegerProperty;
 
 public class Table {
 	// Cards on the table - player's cards are stored in Account object
 	//private ArrayList<String> tableCards = new ArrayList<>();
 	private ArrayList<Account> players = new ArrayList<>();
+	private SimpleIntegerProperty playedCards = new SimpleIntegerProperty();
 
 	public Table() {
 //		super();
@@ -19,6 +22,13 @@ public class Table {
 		for(Account a : players) {
 			this.players.add(a);
 		}
+		playedCards.addListener((o, OldValue, NewValue) -> {
+			if(NewValue.intValue() > 1) {
+				finishRound();
+				
+			}
+		
+		});
 //		super();
 	}
 	/*
@@ -120,29 +130,69 @@ public class Table {
 	 * - Wer oder wie greifen wir aud die tmpUndeads zu, respektive macht jannick das direkt oder
 	 *   muss ich noch eine zugriffs methode schreiben. 
 	 */
-	public void finishRound(Card cardP1, Card cardP2) {//, Card actualTableCard entfernt//evtl.auslesen aus Array
+//	public void finishRound(Card cardP1, Card cardP2) {//, Card actualTableCard entfernt//evtl.auslesen aus Array
+//		roundWinner = ""; //eigentlich unnötig
+//		followerCardP1 = null; //eigentlich unnötig
+//		followerCardP2 = null; //eigentlich unnötig
+//		
+//		roundWinner = evaluateWinnerCard(cardP1, cardP2);
+//		addUndead(cardP1, cardP2, roundWinner);
+//
+//		switch (roundWinner) {
+//		case "P1": followerCardP1 = actualTableCard;					
+//				   followerCardsP1.add(followerCardP1);
+//				   followerCardP2 = getNextTableCard();
+//				   followerCardsP2.add(followerCardP2);  break;
+//		case "P2": followerCardP2 = actualTableCard;
+//				   followerCardsP2.add(followerCardP2);
+//				   followerCardP1 = getNextTableCard();
+//				   followerCardsP1.add(followerCardP1);  break;
+//		}
+//	}
+	
+	public void finishRound() {//, Card actualTableCard entfernt//evtl.auslesen aus Array
 		roundWinner = ""; //eigentlich unnötig
 		followerCardP1 = null; //eigentlich unnötig
 		followerCardP2 = null; //eigentlich unnötig
+		int winner = 0;
 		
-		roundWinner = evaluateWinnerCard(cardP1, cardP2);
-		addUndead(cardP1, cardP2, roundWinner);
+		roundWinner = evaluateWinnerCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
+		addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), roundWinner);
 
 		switch (roundWinner) {
 		case "P1": followerCardP1 = actualTableCard;					
-				   followerCardsP1.add(followerCardP1);
+				   players.get(0).getFollowerCards().add(followerCardP1);
 				   followerCardP2 = getNextTableCard();
-				   followerCardsP2.add(followerCardP2);  break;
+				   players.get(1).getFollowerCards().add(followerCardP2);   break;
 		case "P2": followerCardP2 = actualTableCard;
-				   followerCardsP2.add(followerCardP2);
+				   players.get(1).getFollowerCards().add(followerCardP2);
 				   followerCardP1 = getNextTableCard();
-				   followerCardsP1.add(followerCardP1);  break;
+				   players.get(0).getFollowerCards().add(followerCardP1);  
+				   winner = 1; break;
 		}
+		
+		for(Account a : players) {
+			
+			String[] content = {"ResultFinishRound", "true", players.get(winner).getUsername()};
+			
+			if(winner == 0) {
+				
+				
+			}
+			
+			
+			
+		}
+		
+		
+		
+		
+		
 	}
 	
 	
 	//Dave: Falls eine der beiden Karten ein Untoter ist oder beide, muss diese dem Spieler
-	//auf den Punktestapel zugesandt werden der gewonnen hat.
+	//auf den Punktestapel zugesandt werden der  hat.
 	public String evaluateWinnerCard(Card cardP1, Card cardP2) {
 		String win = "P1";
 		//gibt den Sieger aus. Rückgabewert noch unbekannt, evtl. boolean, zu definieren. Eingabe auch
@@ -281,6 +331,23 @@ public class Table {
 		String cardString = card.toString();
 	    String[] tmp = cardString.split("\\_");
     	return tmp[0];
+	}
+	
+	public void sendTableCard() {
+		for(Account a : players) {
+			String[] content = {"ResultSendCard", "true", "TableCard", getNextTableCard().toString()};
+			a.getClient().send(new ResultSendCard(content));
+		}
+	}
+	public SimpleIntegerProperty getPlayedCards() {
+		return playedCards;
+	}
+	public void setPlayedCards(SimpleIntegerProperty playedCards) {
+		this.playedCards = playedCards;
+	}
+	
+	public void increasePlayedCards() {
+		this.playedCards.set(this.playedCards.get() + 1);
 	}
 	
 	

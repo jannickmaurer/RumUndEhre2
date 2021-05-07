@@ -35,6 +35,7 @@ public class PlayCard extends Message {
 		Boolean result = false;
 		if(this.token.equals(client.getToken())) {
 			client.getAccount().setPlayedCard(new Card(card));
+			
 			for(Client c : Client.getClients()) {
 				if(c != client) {
 					String[] content = new String[] {"ResultSendCard", "true", "HandCard", this.card};

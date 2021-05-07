@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import claim.client.controller.Controller;
 import claim.commons.ServiceLocator;
+import claim.commons.messages.results.ResultFinishRound;
 import claim.server.Client;
 
 // Created by Jannick
@@ -69,6 +70,9 @@ public abstract class Message {
 //			if (content[0].equals("Disconnect")) msg = new Disconnect(content);
 //			if (content[0].equals("SendTrumpf")) msg = new SendTrumpf(content);
 //			if (content[0].equals("StartRound")) msg = new StartRound(content);
+			if (content[0].equals("ResultFinishRound")) msg = new ResultFinishRound(content);
+			
+			
 
 		} catch (IOException e) {
 			e.printStackTrace();
