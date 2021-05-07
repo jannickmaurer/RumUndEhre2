@@ -14,6 +14,7 @@ import claim.commons.messages.results.ResultBroadcastStartRoundOne;
 import claim.commons.messages.results.ResultCreateAccount;
 import claim.commons.messages.results.ResultDealCards;
 import claim.commons.messages.results.ResultDeleteAccount;
+import claim.commons.messages.results.ResultGetNextTableCard;
 import claim.commons.messages.results.ResultLogin;
 import claim.commons.messages.results.ResultLogout;
 import claim.commons.messages.results.ResultPing;
@@ -152,7 +153,13 @@ public class Controller {
 		if (content[0].equals("ResultBroadcastFinishRound")) { msg = new ResultBroadcastFinishRound(content);
 		if (!msg.isFalse()) msg.process(Controller.this);
 		if (msg.isFalse()) msg.processIfFalse(Controller.this);
-	}		
+	}	
+		if (content[0].equals("ResultGetNextTableCard")) { msg = new ResultGetNextTableCard(content);
+		if (!msg.isFalse()) msg.process(Controller.this);
+		if (msg.isFalse()) msg.processIfFalse(Controller.this);
+	}	
+		
+		
 		
 		
 		
@@ -197,7 +204,10 @@ public class Controller {
 	public void playCard() {
 		model.playCard("knight_1");
 	}
-	
+	public void getNextTableCard() {
+		model.getNextTableCard();
+	}
+
 	
 	// Messages Success Handling
 	public void loginSuccess() {

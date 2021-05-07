@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import claim.commons.messages.CreateAccount;
 import claim.commons.messages.DeleteAccount;
+import claim.commons.messages.GetNextTableCard;
 import claim.commons.messages.Login;
 import claim.commons.messages.Logout;
 import claim.commons.messages.Message;
@@ -121,6 +122,16 @@ public class Model {
 	public void playCard(String card) {
 		String[] content = new String[] { "PlayCard", this.token.getValue(), card };
 		Message msg = new PlayCard(content);
+		try {
+			msg.send(socket);
+			logger.info("Client tries to send message: " + msg.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public void getNextTableCard() {
+		String[] content = new String[] { "GetNextTableCard", this.token.getValue(),};
+		Message msg = new GetNextTableCard(content);
 		try {
 			msg.send(socket);
 			logger.info("Client tries to send message: " + msg.toString());

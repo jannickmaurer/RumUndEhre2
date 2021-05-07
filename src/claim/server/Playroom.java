@@ -118,5 +118,10 @@ public class Playroom implements Serializable {
 		this.numberOfPlayers = numberOfPlayers;
 	}
 	
+	public void test() {
+		System.out.println("Karte auf Playroom Account " + this.players.get(0).getPlayedCard());
+		System.out.println("Karte auf Playroom Account " + this.players.get(1).getPlayedCard());
+	}
+	
 	
 }

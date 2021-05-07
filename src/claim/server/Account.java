@@ -170,7 +170,13 @@ public class Account {
 	}
 
 	public void setPlayedCard(Card playedCard) {
+		System.out.println("PlayedCard bei Account auf: " + playedCard.toString());
 		this.playedCard = playedCard;
+	}
+
+	public void clearPlayedCard() {
+		this.playedCard = null;
+		
 	}
 
 	

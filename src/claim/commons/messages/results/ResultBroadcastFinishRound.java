@@ -27,10 +27,10 @@ public class ResultBroadcastFinishRound extends Message {
 		super(content);
 		this.winner = content[2];
 		this.TableCard = content[3];
-		if(content.length > 3) {
+		if(content.length > 4) {
 			undeads.add(new Card(content[4]));
 		}
-		if(content.length > 4) {
+		if(content.length > 5) {
 			undeads.add(new Card(content[5]));
 		}
 		
@@ -39,15 +39,18 @@ public class ResultBroadcastFinishRound extends Message {
 	public void process(Controller controller) {
 		if(controller.getUsername().equalsIgnoreCase(this.winner)) {
 			// Runde gewonnen
+			System.out.println("Ich habe gewonnen");
+			
 			if(!undeads.isEmpty()) {
 				for(Card c : undeads) {
 					controller.getBoard().addUndead(c);
 				}
 			}
+			// Button next Table Card auf enabled
 		
 		} else {
 			// Table Karte, die der Verlierer erhält, anzeigen
-			
+			System.out.println("Ich habe verloren");
 		}
 		
 		

@@ -22,9 +22,19 @@ public class Table {
 	public Table(ArrayList<Account> players) {
 		for(Account a : players) {
 			this.players.add(a);
+//		this.players = players;
+			System.out.println("Player zu Table added: " + a.getUsername());
 		}
+	
+		playedCards.set(0);
 		playedCards.addListener((o, OldValue, NewValue) -> {
 			if(NewValue.intValue() > 1) {
+//				try {
+//					Thread.sleep(2000);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 				finishRound();
 				
 			}
@@ -158,6 +168,9 @@ public class Table {
 		followerCardP2 = null; //eigentlich unnötig
 		int winner = 0;
 		
+		
+		System.out.println("Karte übergeben: " + players.get(0).getPlayedCard());
+		System.out.println("Karte übergeben: " + players.get(1).getPlayedCard());
 		roundWinner = evaluateWinnerCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
 		addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), roundWinner);
 
@@ -169,17 +182,25 @@ public class Table {
 		case "P2": followerCardP2 = actualTableCard;
 				   players.get(1).getFollowerCards().add(followerCardP2);
 				   followerCardP1 = getNextTableCard();
-				   players.get(0).getFollowerCards().add(followerCardP1); break;
+				   players.get(0).getFollowerCards().add(followerCardP1); 
+				   winner = 1; break;
 		}	
 //		for(Account a : players) {
+		String temp = getNextTableCard().toString();
 		for(int i = 0; players.size() > i; i++) {
 		   if(undeadString != "None") {
-			   String[] content = {"ResultFinishRound", "true", players.get(winner).getUsername()};
+			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(winner).getUsername(), temp};
 			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
 		   }else {
-			   String[] content = {"ResultFinishRound", "true", players.get(winner).getUsername(), undeadString};
+			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(winner).getUsername(), temp, undeadString};
 			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
 		   }
+		}
+		
+		this.playedCards.set(0);
+		
+		for(Account a: players) {
+			a.clearPlayedCard();
 		}
 		
 	}
@@ -397,8 +418,9 @@ public class Table {
 	}
 	
 	public void sendTableCard() {
+		String temp = getNextTableCard().toString();
 		for(Account a : players) {
-			String[] content = {"ResultSendCard", "true", "TableCard", getNextTableCard().toString()};
+			String[] content = {"ResultSendCard", "true", "TableCard", temp};
 			a.getClient().send(new ResultSendCard(content));
 		}
 	}
