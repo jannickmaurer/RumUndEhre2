@@ -8,11 +8,12 @@ import claim.commons.ServiceLocator;
 import claim.commons.messages.Message;
 
 // Class implemented by Jannick: Message Server -> Client
-// ResultDealCards|result|Card1| ... Card13
+// ResultDealCards|result|FirstUser|Card1| ... Card13
 public class ResultDealCards extends Message {
 	
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getClientLogger();
+	private String firstUser;
 	
 	private ArrayList<String> handCards = new ArrayList<>();
 	
@@ -23,7 +24,8 @@ public class ResultDealCards extends Message {
 	
 	public ResultDealCards(String[] content) {
 		super(content);
-		for(int i = 2; i < content.length; i++) {
+		firstUser = content[2];
+		for(int i = 3; i < content.length; i++) {
 			handCards.add(content[i]);
 		}
 	}
