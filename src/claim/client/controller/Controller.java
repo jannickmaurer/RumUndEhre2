@@ -1,5 +1,6 @@
 package claim.client.controller;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import claim.client.model.Board;
@@ -224,16 +225,15 @@ public class Controller {
 	}
 	
 	//SD - Karten zu Beginn des Spiels austeilen
-	public void deal() {
+	public void deal(ArrayList<Card> handCards) {
 		Platform.runLater(new Runnable() {
 			public void run() {
-				for (int i = 0; i < 13; i++) {
-					System.out.println("Karte " + i);
+				for (int i = 0; i < handCards.size(); i++) {
 					Card card = null;
 					//Was macht diese Zeile? -SD
 					CardLabel cl = (CardLabel) view.getGameLayout().getPlayerLayout().getHboxCards().getChildren().get(i);
-					cl.setCard();
-					cl.setCardNameAsString("undead_2");
+					cl.setCard(handCards.get(i));
+					cl.setCardNameAsString(handCards.get(i).toString());
 				}
 			}
 		});
@@ -249,7 +249,6 @@ public class Controller {
 	public void updatePlayerPane(String playedCard) {
 		Platform.runLater(new Runnable() {
 			public void run() {
-				System.out.println(playedCard);
 				CardLabel clToRemove = new CardLabel();
 				for(CardLabel cl : view.getGameLayout().getPlayerLayout().getCardLabels()) {
 					if(cl.getCardNameAsString().equals(playedCard)) {
@@ -259,17 +258,17 @@ public class Controller {
 				view.getGameLayout().getPlayerLayout().getCardLabels().remove(clToRemove);
 				view.getGameLayout().getPlayerLayout().getHboxCards().getChildren().remove(clToRemove);
 				
-				updateGameDisplay();
+				updateGameDisplay(playedCard);
 			}
 		});
 	}
 	
 	//SD - Gespielte Karten in der Mitte anzeigen
-		public void updateGameDisplay() {
+		public void updateGameDisplay(String playedCard) {
 			view.getGameLayout().getMiddleGameLayout().getVboxPlayedCards().getChildren().clear();
 			
 			CardLabel cl1 = new CardLabel();
-			cl1.setCard();
+			cl1.setCard(playedCard);
 			view.getGameLayout().getMiddleGameLayout().getVboxPlayedCards().getChildren().add(cl1);
 		}
 	

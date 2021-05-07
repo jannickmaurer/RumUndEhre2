@@ -30,7 +30,7 @@ public class ResultBroadcastStartRoundOne extends Message {
 			e.printStackTrace();
 		}
 		System.out.println("Game started");
-		controller.deal();
+		controller.deal(controller.getBoard().getHandCards());
 	// Start Game in GUI	
 	}
 	
