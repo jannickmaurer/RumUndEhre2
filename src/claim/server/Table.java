@@ -6,6 +6,7 @@ import java.util.Collections;
 import claim.commons.Card;
 import claim.commons.Card.Rank;
 import claim.commons.Card.Suit;
+import claim.commons.messages.results.ResultFinishRound;
 import claim.commons.messages.results.ResultSendCard;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -174,17 +175,24 @@ public class Table {
 				   winner = 1; break;
 		}
 		
+		
+		
 		for(int i = 0; players.size() > i; i++) {
 			switch(roundWinner) {
 			case "P1":	if( i == 0) {
-						String[] content = {"ResultFinishRound", "true", players.get(0).getUsername(), undeadString};
+						String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), undeadString};
+						players.get(i).getClient().send(new ResultFinishRound(content));
 						}else {
-						String[] content = {"ResultFinishRound", "true", players.get(0).getUsername(), getNextTableCard().toString()};
+						String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), getNextTableCard().toString()};
+						players.get(i).getClient().send(new ResultFinishRound(content));
 						}
+						
 			case "P2":  if( i == 1) {
-					    String[] content = {"ResultFinishRound", "true", players.get(0).getUsername(), undeadString};
+					    String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), undeadString};
+					    players.get(i).getClient().send(new ResultFinishRound(content));
 					    }else {
-					    String[] content = {"ResultFinishRound", "true", players.get(0).getUsername(), getNextTableCard().toString()};
+					    String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), getNextTableCard().toString()};
+					    players.get(i).getClient().send(new ResultFinishRound(content));
 					    }
 			}
 			
@@ -212,7 +220,7 @@ public class Table {
 		
 		
 		
-	}
+	
 	
 	
 	//Dave: Falls eine der beiden Karten ein Untoter ist oder beide, muss diese dem Spieler
@@ -253,7 +261,7 @@ public class Table {
 			}
 		}
 		switch(tmpUndeads.size()) {
-		case 0: undeadString = "None"; break;
+		case 0: break;
 		case 1: undeadString = tmpUndeads.get(0).toString(); break;
 		case 2: undeadString = tmpUndeads.get(0).toString()+"|"+tmpUndeads.get(1); break;
 		}
