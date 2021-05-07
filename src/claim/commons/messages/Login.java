@@ -51,9 +51,9 @@ public class Login extends Message {
 			}
 			
 			if(client.getPlayroom().getNumberOfPlayers() > 1) {
-				for(Client c : Client.getClients()) {
-					c.send(new ResultBroadcastStartRoundOne(true));
-				}
+//				for(Client c : Client.getClients()) {
+//					c.send(new ResultBroadcastStartRoundOne(true));
+//				}
 				Playroom.getPlayrooms().get(0).setGameStarted(true);
 			}
 			
