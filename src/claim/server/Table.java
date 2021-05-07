@@ -58,6 +58,7 @@ public class Table {
 	public String roundWinner;
 	public Card followerCardP1;
 	public Card followerCardP2;
+	private String undeadString;
 
 
 	
@@ -163,7 +164,9 @@ public class Table {
 		case "P1": followerCardP1 = actualTableCard;					
 				   players.get(0).getFollowerCards().add(followerCardP1);
 				   followerCardP2 = getNextTableCard();
-				   players.get(1).getFollowerCards().add(followerCardP2);   break;
+				   players.get(1).getFollowerCards().add(followerCardP2); 
+
+				   break;
 		case "P2": followerCardP2 = actualTableCard;
 				   players.get(1).getFollowerCards().add(followerCardP2);
 				   followerCardP1 = getNextTableCard();
@@ -172,14 +175,19 @@ public class Table {
 		}
 		
 		for(Account a : players) {
-			
-			String[] content = {"ResultFinishRound", "true", players.get(winner).getUsername()};
-			
-			if(winner == 0) {
-				
+			if(roundWinner == "P1") {
+				String[] content = {"ResultFinishRound", "true", players.get(0).getUsername(), undeadString};
 				
 			}
+		}
+		
+		
+		for(Account a : players) {
+			if(winner == 0) {
+			String[] content = {"ResultFinishRound", "true", players.get(winner).getUsername(), undeadString};
 			
+			}
+
 			
 			
 		}
@@ -227,6 +235,11 @@ public class Table {
 						if(suitToString(cardP2).equals("undead")) players.get(1).addUndeadCard(cardP2); tmpUndeads.add(cardP2);
 						break;
 			}
+		}
+		switch(tmpUndeads.size()) {
+		case 0: undeadString = "None"; break;
+		case 1: undeadString = tmpUndeads.get(0).toString(); break;
+		case 2: undeadString = tmpUndeads.get(0).toString()+"|"+tmpUndeads.get(1); break;
 		}
 	}
 	
