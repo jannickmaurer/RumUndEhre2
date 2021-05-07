@@ -9,10 +9,9 @@ import claim.commons.ServiceLocator;
 import claim.commons.messages.Message;
 
 // Created by Jannick: Message Server -> Client
-// String in case winner: ResultFinishRound|Boolean|Username Winner|Undead1|Undead2
-// String in case loser: ResultFinishRound|Boolean|Username Winner|TableCardLoser
+// String: ResultFinishRound|Boolean|Username Winner|TableCard|Undead1|Undead2
 
-public class ResultFinishRound extends Message {
+public class ResultBroadcastFinishRound extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getClientLogger();
 	
@@ -21,10 +20,10 @@ public class ResultFinishRound extends Message {
 	private ArrayList<Card> undeads = new ArrayList<>();
 	
 
-	public ResultFinishRound(boolean result) {
-		super(new String[] {"ResultFinishRound", Boolean.toString(result)});
+	public ResultBroadcastFinishRound(boolean result) {
+		super(new String[] {"ResultBroadcastFinishRound", Boolean.toString(result)});
 	}
-	public ResultFinishRound(String[] content) {
+	public ResultBroadcastFinishRound(String[] content) {
 		super(content);
 		this.winner = content[2];
 		

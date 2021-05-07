@@ -8,6 +8,7 @@ import claim.client.view.View;
 import claim.commons.Card;
 import claim.commons.ServiceLocator;
 import claim.commons.messages.Message;
+import claim.commons.messages.results.ResultBroadcastFinishRound;
 import claim.commons.messages.results.ResultBroadcastJoinPlayroom;
 import claim.commons.messages.results.ResultBroadcastStartRoundOne;
 import claim.commons.messages.results.ResultCreateAccount;
@@ -147,7 +148,13 @@ public class Controller {
 		if (content[0].equals("ResultSendCard")) { msg = new ResultSendCard(content);
 		if (!msg.isFalse()) msg.process(Controller.this);
 		if (msg.isFalse()) msg.processIfFalse(Controller.this);
-	}			
+	}		
+		if (content[0].equals("ResultBroadcastFinishRound")) { msg = new ResultBroadcastFinishRound(content);
+		if (!msg.isFalse()) msg.process(Controller.this);
+		if (msg.isFalse()) msg.processIfFalse(Controller.this);
+	}		
+		
+		
 		
 	}
 

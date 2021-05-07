@@ -6,7 +6,7 @@ import java.util.Collections;
 import claim.commons.Card;
 import claim.commons.Card.Rank;
 import claim.commons.Card.Suit;
-import claim.commons.messages.results.ResultFinishRound;
+import claim.commons.messages.results.ResultBroadcastFinishRound;
 import claim.commons.messages.results.ResultSendCard;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -180,19 +180,19 @@ public class Table {
 		for(int i = 0; players.size() > i; i++) {
 			switch(roundWinner) {
 			case "P1":	if( i == 0) {
-						String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), undeadString};
-						players.get(i).getClient().send(new ResultFinishRound(content));
+						String[] content = {"ResultBroadcastFinishRound", "true", players.get(i).getUsername(), undeadString};
+						players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
 						}else {
-						String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), getNextTableCard().toString()};
-						players.get(i).getClient().send(new ResultFinishRound(content));
+						String[] content = {"ResultBroadcastFinishRound", "true", players.get(i).getUsername(), getNextTableCard().toString()};
+						players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
 						}
 						
 			case "P2":  if( i == 1) {
-					    String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), undeadString};
-					    players.get(i).getClient().send(new ResultFinishRound(content));
+					    String[] content = {"ResultBroadcastFinishRound", "true", players.get(i).getUsername(), undeadString};
+					    players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
 					    }else {
-					    String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), getNextTableCard().toString()};
-					    players.get(i).getClient().send(new ResultFinishRound(content));
+					    String[] content = {"ResultBroadcastFinishRound", "true", players.get(i).getUsername(), getNextTableCard().toString()};
+					    players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
 					    }
 			}
 			
