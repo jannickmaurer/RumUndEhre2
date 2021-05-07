@@ -174,19 +174,35 @@ public class Table {
 				   winner = 1; break;
 		}
 		
-		for(Account a : players) {
-			if(roundWinner == "P1") {
-				String[] content = {"ResultFinishRound", "true", players.get(0).getUsername(), undeadString};
-				
+		for(int i = 0; players.size() > i; i++) {
+			switch(roundWinner) {
+			case "P1":	if( i == 0) {
+						String[] content = {"ResultFinishRound", "true", players.get(0).getUsername(), undeadString};
+						}else {
+						String[] content = {"ResultFinishRound", "true", players.get(0).getUsername(), getNextTableCard().toString()};
+						}
+			case "P2":  if( i == 1) {
+					    String[] content = {"ResultFinishRound", "true", players.get(0).getUsername(), undeadString};
+					    }else {
+					    String[] content = {"ResultFinishRound", "true", players.get(0).getUsername(), getNextTableCard().toString()};
+					    }
 			}
-		}
-		
-		
-		for(Account a : players) {
-			if(winner == 0) {
-			String[] content = {"ResultFinishRound", "true", players.get(winner).getUsername(), undeadString};
 			
-			}
+		}
+//		
+//		for(Account a : players) {
+//			if(roundWinner == "P1") {
+//				String[] content = {"ResultFinishRound", "true", players.get(0).getUsername(), undeadString};
+//				
+//			}
+//		}
+//		
+//		
+//		for(Account a : players) {
+//			if(winner == 0) {
+//			String[] content = {"ResultFinishRound", "true", players.get(winner).getUsername(), undeadString};
+//			
+//			}
 
 			
 			
