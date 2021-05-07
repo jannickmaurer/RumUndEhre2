@@ -151,7 +151,7 @@ public class Board {
 	
 	//Dave: Sortiert am Anfang die Handkarten, damit gleiche Fraktionen nebeneinander sind
 	//Mit Jannick anschauen bzgl. aufruf This.handcards = handcards;
-	private void sortHandCards() {
+	public void sortHandCards() {
 		ArrayList<Card> goblinCards = new ArrayList<>();
 		ArrayList<Card> dwarfCards = new ArrayList<>();
 		ArrayList<Card> undeadCards = new ArrayList<>();

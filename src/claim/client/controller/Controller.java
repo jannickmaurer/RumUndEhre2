@@ -243,6 +243,7 @@ public class Controller {
 	
 	//SD - Karten zu Beginn des Spiels austeilen
 	public void deal(ArrayList<Card> handCards) {
+		board.sortHandCards(); //Handkarten werden noch sortiert
 		Platform.runLater(new Runnable() {
 			public void run() {
 				for (int i = 0; i < handCards.size(); i++) {
@@ -260,6 +261,7 @@ public class Controller {
 	private void sendTableCard(Event event) {
 		CardLabel cl = (CardLabel) event.getSource();
 		model.playCard(cl.getCardNameAsString());
+		board.removePlayedCard(new Card(cl.getCardNameAsString())); //NEU GESPIELTE KARTE WIRD GELÖSCHT
 	}
 	
 	//SD - Karten entfernen
