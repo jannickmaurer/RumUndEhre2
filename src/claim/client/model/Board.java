@@ -58,6 +58,9 @@ public class Board {
 	public void setPointCards(ArrayList<Card> pointCards) {
 		this.pointCards = pointCards;
 	}
+	public void addUndead(Card undead) {
+		this.undeadCards.add(undead);
+	}
 	
 	
 	//ToDo: Im controller die Methoden EvalutatePlayableHandCards aufrufen und nach dem spielen
