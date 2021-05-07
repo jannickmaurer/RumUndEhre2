@@ -87,6 +87,10 @@ public class View {
 		MenuBar menuBar = new MenuBar();
 		menuBar.getMenus().addAll(menuFileLanguage);
 		
+		//Buttons Login und CreateAccount erst verfügbar wenn beide Textfelder Eingaben haben
+		btLogin.disableProperty().bind(tfUsername.textProperty().isEmpty() .or(pfPassword.textProperty().isEmpty()));
+		btCreateAccount.disableProperty().bind(tfNewUsername.textProperty().isEmpty() .or(pfnewPassword.textProperty().isEmpty()));
+		
 		root.setCenter(connectLayout);
 		
 		//Error Popups bereitstellen
