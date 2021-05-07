@@ -6,6 +6,7 @@ import java.util.Collections;
 import claim.commons.Card;
 import claim.commons.Card.Rank;
 import claim.commons.Card.Suit;
+import claim.commons.messages.results.ResultBroadcastFinishRound;
 import claim.commons.messages.results.ResultSendCard;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -164,31 +165,63 @@ public class Table {
 		case "P1": followerCardP1 = actualTableCard;					
 				   players.get(0).getFollowerCards().add(followerCardP1);
 				   followerCardP2 = getNextTableCard();
-				   players.get(1).getFollowerCards().add(followerCardP2); 
-
-				   break;
+				   players.get(1).getFollowerCards().add(followerCardP2); break; 
 		case "P2": followerCardP2 = actualTableCard;
 				   players.get(1).getFollowerCards().add(followerCardP2);
 				   followerCardP1 = getNextTableCard();
-				   players.get(0).getFollowerCards().add(followerCardP1);  
-				   winner = 1; break;
+				   players.get(0).getFollowerCards().add(followerCardP1); break;
+		}	
+//		for(Account a : players) {
+		for(int i = 0; players.size() > i; i++) {
+		   if(undeadString != "None") {
+			   String[] content = {"ResultFinishRound", "true", players.get(winner).getUsername()};
+			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+		   }else {
+			   String[] content = {"ResultFinishRound", "true", players.get(winner).getUsername(), undeadString};
+			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+		   }
 		}
 		
-		for(int i = 0; players.size() > i; i++) {
-			switch(roundWinner) {
-			case "P1":	if( i == 0) {
-						String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), undeadString};
-						}else {
-						String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), getNextTableCard().toString()};
-						}
-			case "P2":  if( i == 1) {
-					    String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), undeadString};
-					    }else {
-					    String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), getNextTableCard().toString()};
-					    }
-			}
+	}
+
+		
+//		
+//		for(int i = 0; players.size() > i; i++) {
+//			switch(roundWinner) {
+//			case "P1":	if( i == 0) {
+//<<<<<<< HEAD
+//						String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), undeadString};
+//=======
+//						String[] content = {"ResultBroadcastFinishRound", "true", players.get(i).getUsername(), undeadString};
+//						players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+//>>>>>>> branch 'main' of https://github.com/jannickmaurer/RumUndEhre2
+//						}else {
+//<<<<<<< HEAD
+//						String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), getNextTableCard().toString()};
+//=======
+//						String[] content = {"ResultBroadcastFinishRound", "true", players.get(i).getUsername(), getNextTableCard().toString()};
+//						players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+//>>>>>>> branch 'main' of https://github.com/jannickmaurer/RumUndEhre2
+//						}
+//						
+//			case "P2":  if( i == 1) {
+//<<<<<<< HEAD
+//					    String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), undeadString};
+//=======
+//					    String[] content = {"ResultBroadcastFinishRound", "true", players.get(i).getUsername(), undeadString};
+//					    players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+//>>>>>>> branch 'main' of https://github.com/jannickmaurer/RumUndEhre2
+//					    }else {
+//<<<<<<< HEAD
+//					    String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), getNextTableCard().toString()};
+//=======
+//					    String[] content = {"ResultBroadcastFinishRound", "true", players.get(i).getUsername(), getNextTableCard().toString()};
+//					    players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+//>>>>>>> branch 'main' of https://github.com/jannickmaurer/RumUndEhre2
+//					    }
+//			}
 			
-		}
+		
 //		
 //		for(Account a : players) {
 //			if(roundWinner == "P1") {
@@ -206,13 +239,13 @@ public class Table {
 
 			
 			
-		}
 		
 		
 		
 		
 		
-	}
+		
+	
 	
 	
 	//Dave: Falls eine der beiden Karten ein Untoter ist oder beide, muss diese dem Spieler
@@ -252,6 +285,7 @@ public class Table {
 						break;
 			}
 		}
+		undeadString = "None";
 		switch(tmpUndeads.size()) {
 		case 0: undeadString = "None"; break;
 		case 1: undeadString = tmpUndeads.get(0).toString(); break;
