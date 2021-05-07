@@ -13,18 +13,16 @@ import javafx.scene.layout.VBox;
 
 public class MiddleGamePane extends GridPane {
 	private HBox hboxMiddleCards = new HBox();
-	private VBox vboxPlayedCards = new VBox();
+	private VBox vboxCardsDeck = new VBox();
+	private GridPane playedCards = new GridPane();
 	
-	private CardLabel clCardsDeck = new CardLabel();
 	private CardLabel clNewFollowerDeck = new CardLabel();
 
 	//Konstruktor
 	public MiddleGamePane() {		
-		VBox vboxCardsDeck = new VBox();
 		Label lbCardsDeck = new Label("Cards Deck");
-		clCardsDeck.setDeck();
 		vboxCardsDeck.setAlignment(Pos.CENTER);
-		vboxCardsDeck.getChildren().addAll(clCardsDeck, lbCardsDeck);
+		vboxCardsDeck.getChildren().addAll(lbCardsDeck);
 		
 		
 		VBox vboxNewFollowerDeck = new VBox();
@@ -33,8 +31,14 @@ public class MiddleGamePane extends GridPane {
 		vboxNewFollowerDeck.setAlignment(Pos.CENTER);
 		vboxNewFollowerDeck.getChildren().addAll(clNewFollowerDeck, lbNewFollowerDeck);
 		
-		vboxPlayedCards.setAlignment(Pos.CENTER);
-		hboxMiddleCards.getChildren().addAll(vboxPlayedCards, vboxCardsDeck, vboxNewFollowerDeck);
+		Label lbOpponentCard = new Label("Opponent card");
+		Label lbMyCard = new Label("My Card");
+		
+		playedCards.add(lbOpponentCard, 0, 0);
+		playedCards.add(lbMyCard, 0, 3);
+		
+		playedCards.setId("playedCards");
+		hboxMiddleCards.getChildren().addAll(playedCards, vboxCardsDeck, vboxNewFollowerDeck);
 		hboxMiddleCards.setSpacing(10);
 		
 		this.add(hboxMiddleCards, 0, 0);
@@ -44,6 +48,14 @@ public class MiddleGamePane extends GridPane {
 		}
 
 	//Getter & Setter
+	public VBox getVboxCardsDeck() {
+		return vboxCardsDeck;
+	}
+
+	public void setVboxCardsDeck(VBox vboxCardsDeck) {
+		this.vboxCardsDeck = vboxCardsDeck;
+	}
+	
 	public HBox getHboxMiddleCards() {
 		return hboxMiddleCards;
 	}
@@ -52,28 +64,20 @@ public class MiddleGamePane extends GridPane {
 		this.hboxMiddleCards = hboxMiddleCards;
 	}
 
-	public VBox getVboxPlayedCards() {
-		return vboxPlayedCards;
-	}
-
-	public void setVboxPlayedCards(VBox vboxPlayedCards) {
-		this.vboxPlayedCards = vboxPlayedCards;
-	}
-
-	public CardLabel getClCardsDeck() {
-		return clCardsDeck;
-	}
-
-	public void setClCardsDeck(CardLabel clCardsDeck) {
-		this.clCardsDeck = clCardsDeck;
-	}
-
 	public CardLabel getClNewFollowerDeck() {
 		return clNewFollowerDeck;
 	}
 
 	public void setClNewFollowerDeck(CardLabel clNewFollowerDeck) {
 		this.clNewFollowerDeck = clNewFollowerDeck;
+	}
+
+	public GridPane getPlayedCards() {
+		return playedCards;
+	}
+
+	public void setPlayedCards(GridPane playedCards) {
+		this.playedCards = playedCards;
 	}
 	
 }

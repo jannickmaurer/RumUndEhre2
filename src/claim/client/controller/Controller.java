@@ -281,13 +281,33 @@ public class Controller {
 	}
 	
 	//SD - Gespielte Karten in der Mitte anzeigen
-		public void updateGameDisplay(String playedCard) {
-			view.getGameLayout().getMiddleGameLayout().getVboxPlayedCards().getChildren().clear();
-			
-			CardLabel cl1 = new CardLabel();
-			cl1.setCard(playedCard);
-			view.getGameLayout().getMiddleGameLayout().getVboxPlayedCards().getChildren().add(cl1);
-		}
+	public void updateGameDisplay(String playedCard) {
+		//view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().clear();
+		
+		CardLabel cl1 = new CardLabel();
+		cl1.setCard(playedCard);
+		view.getGameLayout().getMiddleGameLayout().getPlayedCards().add(cl1, 0, 2);
+	}
+	
+	public void otherPlayerCard(String card) {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				CardLabel cl2 = new CardLabel();
+				cl2.setCard(card);
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().add(cl2, 0, 1);
+			}
+		});
+	}
+	
+	public void tableCard(String card) {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				CardLabel cl3 = new CardLabel();
+				cl3.setCard(card);
+				view.getGameLayout().getMiddleGameLayout().getVboxCardsDeck().getChildren().add(cl3);
+			}
+		});
+	}
 	
 	//SD
 	public void highlightCard(Event event) {
@@ -323,8 +343,5 @@ public class Controller {
 	public String getUsername() {
 		return username;
 	}
-
-	
-
 
 }

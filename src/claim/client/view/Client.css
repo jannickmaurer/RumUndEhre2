@@ -29,6 +29,11 @@
     -fx-vgap: 10;
 }
 
+#playedCards {
+	-fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
 #player {
 	-fx-spacing: 10;
 }

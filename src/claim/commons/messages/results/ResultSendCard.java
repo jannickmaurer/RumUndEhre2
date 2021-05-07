@@ -34,10 +34,16 @@ public class ResultSendCard extends Message {
 	public void process(Controller controller) {
 		switch (this.reason) {
 		// What happens when which card is being sent by the Server?
-			case "HandCard": System.out.println("Handcard auf Client " + card);;
+			case "HandCard":
+				System.out.println("Handcard auf Client " + card);
+				controller.otherPlayerCard(card);
+				break;
 			case "FollowerCard": break;
 			case "PointCard": break;
-			case "TableCard" : System.out.println("Tischkarte auf Client " + card);
+			case "TableCard" :
+				System.out.println("Tischkarte auf Client " + card);
+				controller.tableCard(card);
+				break;
 		}
 	
 		
