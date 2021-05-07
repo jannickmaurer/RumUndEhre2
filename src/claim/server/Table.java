@@ -177,14 +177,14 @@ public class Table {
 		for(int i = 0; players.size() > i; i++) {
 			switch(roundWinner) {
 			case "P1":	if( i == 0) {
-						String[] content = {"ResultFinishRound", "true", players.get(0).getUsername(), undeadString};
+						String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), undeadString};
 						}else {
-						String[] content = {"ResultFinishRound", "true", players.get(0).getUsername(), getNextTableCard().toString()};
+						String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), getNextTableCard().toString()};
 						}
 			case "P2":  if( i == 1) {
-					    String[] content = {"ResultFinishRound", "true", players.get(0).getUsername(), undeadString};
+					    String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), undeadString};
 					    }else {
-					    String[] content = {"ResultFinishRound", "true", players.get(0).getUsername(), getNextTableCard().toString()};
+					    String[] content = {"ResultFinishRound", "true", players.get(i).getUsername(), getNextTableCard().toString()};
 					    }
 			}
 			
