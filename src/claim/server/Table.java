@@ -169,9 +169,9 @@ public class Table {
 		case "P2": followerCardP2 = actualTableCard;
 				   players.get(1).getFollowerCards().add(followerCardP2);
 				   followerCardP1 = getNextTableCard();
-				   players.get(0).getFollowerCards().add(followerCardP1); break;
+				   players.get(0).getFollowerCards().add(followerCardP1); 
 		}	
-//		for(Account a : players) {
+
 		for(int i = 0; players.size() > i; i++) {
 		   if(undeadString != "None") {
 			   String[] content = {"ResultFinishRound", "true", players.get(winner).getUsername()};
@@ -181,7 +181,6 @@ public class Table {
 			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
 		   }
 		}
-		
 	}
 
 		
