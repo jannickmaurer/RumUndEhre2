@@ -26,12 +26,28 @@ public class ResultBroadcastFinishRound extends Message {
 	public ResultBroadcastFinishRound(String[] content) {
 		super(content);
 		this.winner = content[2];
+		this.TableCard = content[3];
+		if(content.length > 3) {
+			undeads.add(new Card(content[4]));
+		}
+		if(content.length > 4) {
+			undeads.add(new Card(content[5]));
+		}
 		
 	}
 	@Override
 	public void process(Controller controller) {
 		if(controller.getUsername().equalsIgnoreCase(this.winner)) {
+			// Runde gewonnen
+			if(!undeads.isEmpty()) {
+				for(Card c : undeads) {
+					controller.getBoard().addUndead(c);
+				}
+			}
 		
+		} else {
+			// Table Karte, die der Verlierer erhält, anzeigen
+			
 		}
 		
 		
