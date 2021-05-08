@@ -71,6 +71,10 @@ public class Controller {
 			logout();
 		});
 		
+		view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setOnAction(e -> {
+			this.getNextTableCard();
+		});
+		
 		view.getBtnBackError().setOnAction(e -> {
 			view.errorPopUp.hide();
 		});
@@ -306,7 +310,7 @@ public class Controller {
 			public void run() {
 				CardLabel cl3 = new CardLabel();
 				cl3.setCard(card);
-				view.getGameLayout().getMiddleGameLayout().getVboxCardsDeck().getChildren().add(cl3);
+				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().add(cl3, 0, 1);
 			}
 		});
 	}
