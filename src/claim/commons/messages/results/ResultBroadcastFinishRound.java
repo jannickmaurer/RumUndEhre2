@@ -15,10 +15,10 @@ public class ResultBroadcastFinishRound extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getClientLogger();
 	
-	private String winner;
+	private String winner; 
 	private String TableCard;
 	private ArrayList<Card> undeads = new ArrayList<>();
-	
+	//nach senden sieger darf spieler, gegner alles inaktivieren
 
 	public ResultBroadcastFinishRound(boolean result) {
 		super(new String[] {"ResultBroadcastFinishRound", Boolean.toString(result)});
