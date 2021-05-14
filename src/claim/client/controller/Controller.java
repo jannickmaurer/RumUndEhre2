@@ -296,6 +296,7 @@ public class Controller {
 	}
 	
 	public void otherPlayerCard(String card) {
+		board.setPlayableHC(new Card(card)); //NEU Handkarten werden spielbar gesetzt
 		Platform.runLater(new Runnable() {
 			public void run() {
 				CardLabel cl2 = new CardLabel();
