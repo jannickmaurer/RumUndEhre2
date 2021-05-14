@@ -336,6 +336,12 @@ public class Controller {
 		cl.setStyle("-fx-effect: dropshadow(three-pass-box, black, 0, 0, 0, 0);");
 	}
 	
+	public void enableTableCardButton(String firstUser) {
+		if (firstUser.equals(this.getUsername())) {
+			view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setDisable(false);	
+		}
+	}
+	
 	public void enableTableCardButton() {
 		view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setDisable(false);	
 	}
