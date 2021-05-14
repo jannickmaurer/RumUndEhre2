@@ -93,7 +93,7 @@ public class Table {
 				}
 			} else {
 				System.out.println("Methode deal: Wert von getCardsRemaining nur für Tischkarten: "+ deck.getCardsRemaining());
-				for (int j = 0; j < deck.getCardsRemaining(); j++) {
+				for (int j = 0; j < 26; j++) {
 					System.out.println("Table: Methode deal: "+deck.getCardsRemaining());
 					card = deck.dealCard();
 					tableCards.add(card);
