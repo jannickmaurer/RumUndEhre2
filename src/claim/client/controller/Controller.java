@@ -35,6 +35,9 @@ public class Controller {
 	private View view;
 	private String username;
 	private Board board;
+	private Boolean onTurn = false;
+
+	
 
 	public Controller(Model model, View view) {
 		this.model = model;
@@ -331,6 +334,52 @@ public class Controller {
 		CardLabel cl = (CardLabel) event.getSource();
 		cl.setStyle("-fx-effect: dropshadow(three-pass-box, black, 0, 0, 0, 0);");
 	}
+	
+	public void enableTableCardButton(String firstUser) {
+		if (firstUser.equals(this.getUsername())) {
+			view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setDisable(false);	
+		}
+	}
+	
+	public void enableTableCardButton() {
+			view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setDisable(false);	
+	}
+	
+	public void disableTableCardButton() {
+		view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setDisable(true);	
+}
+	
+
+	public void enableHandCards() {
+		if (onTurn) {
+			board.setPlayableHC();
+			for (int i = 0; i < board.getHandCards().size(); i++) {
+				if(board.getHandCards().get(i).getPlayable())
+					for(CardLabel cl : view.getGameLayout().getPlayerLayout().getCardLabels()) {
+						if(cl.getCardNameAsString().equals(board.getHandCards().get(i).toString())) {
+							cl.setDisable(false);
+						}
+					}
+			}
+		}
+	}
+	
+	public void disableHandCards() {
+		for(CardLabel cl : view.getGameLayout().getPlayerLayout().getCardLabels()) {
+			cl.setDisable(true);	
+		}
+	}
+	
+	public void enablePlayableHC() {
+		for (int i = 0; i < board.getHandCards().size(); i++) {
+			if(board.getHandCards().get(i).getPlayable())
+				for(CardLabel cl : view.getGameLayout().getPlayerLayout().getCardLabels()) {
+					if(cl.getCardNameAsString().equals(board.getHandCards().get(i).toString())) {
+						cl.setDisable(false);
+					}
+				}
+		}
+	}
 
 	// Getter & Setter
 	public Model getModel() {
@@ -355,4 +404,11 @@ public class Controller {
 		return username;
 	}
 
+	public Boolean getOnTurn() {
+		return onTurn;
+	}
+
+	public void setOnTurn(Boolean onTurn) {
+		this.onTurn = onTurn;
+	}
 }

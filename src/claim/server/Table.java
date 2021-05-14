@@ -1,5 +1,6 @@
 package claim.server;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -189,7 +190,7 @@ public class Table {
 //		for(Account a : players) {
 		String temp = getNextTableCard().toString();
 		for(int i = 0; players.size() > i; i++) {
-		   if(undeadString != "None") {
+		   if(!undeadString.equalsIgnoreCase("None")) {
 			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(winner).getUsername(), temp};
 			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
 		   }else {

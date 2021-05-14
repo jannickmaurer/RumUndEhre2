@@ -63,6 +63,7 @@ public class MiddleGamePane extends HBox {
 		
 		tableCardsDeck.add(lbCardsDeck, 0, 0);
 		tableCardsDeck.add(btNextTableCard, 0, 2);
+		btNextTableCard.setDisable(true);
 		tableCardsDeck.setAlignment(Pos.CENTER);
 		tableCardsDeck.setHalignment(lbCardsDeck, HPos.CENTER);
 		tableCardsDeck.setId("nextTableCard");

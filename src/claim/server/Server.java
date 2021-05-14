@@ -21,6 +21,8 @@ public class Server {
 			directory = args[1];
 		}
 		
+		Account.readAccounts();
+		
 		System.out.println("Welcome to Claims - powered by Run und Ehre 2.0");
 		System.out.println("This time, we won't f*ck up");
 		// Creates a new Scanner object and takes the keyboard input for the port number, only numbers allowed
@@ -50,6 +52,10 @@ public class Server {
 			logger.info("New Playroom added: " + pr.toString());
 		}
 				
+	}
+	
+	public static String getDirectory() {
+		return directory;
 	}
 	
 //	Table table = new Table();
