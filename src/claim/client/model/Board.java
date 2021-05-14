@@ -33,43 +33,21 @@ public class Board {
 			System.out.println(card.toString());
 		}
 	}
-
-	public ArrayList<Card> getHandCards() {
-		return handCards;
-	}
-
-	public void setHandCards(ArrayList<Card> handCards) {
-		this.handCards = handCards;
-//		this.handCards = sortHandCards(handCards); //HandKarten werden nach dem ausgeben noch sortiert
-	}
-
-	public ArrayList<Card> getFollowerCards() {
-		return followerCards;
-	}
-
-	public void setFollowerCards(ArrayList<Card> followerCards) {
-		this.followerCards = followerCards;
-	}
-
-	public ArrayList<Card> getPointCards() {
-		return pointCards;
-	}
-
-	public void setPointCards(ArrayList<Card> pointCards) {
-		this.pointCards = pointCards;
-	}
-	public void addUndead(Card undead) {
-		this.undeadCards.add(undead);
-	}
-	
 	
 	//ToDo: Im controller die Methoden EvalutatePlayableHandCards aufrufen und nach dem spielen
 	//      die gebrauchte Karte löschen
 	//		sortHandCards einbinden in Code, bei setHandCards kurz mit Jannick schauen
 	
 	
-	//Dave: Entfernt die gespielte Karte aus den HandCards. Return, damit nur 1 Mal eine Karte
-	//entfernt wird
+	public void allHCPlayable(){
+		for(Card card : handCards) {
+			card.setPlayable(true);
+		}
+	}
+	/*
+	 * David Schürch
+	 * Entfernt die gespielte Karte aud der ArrayList Handcards
+	 */
 	public void removePlayedCard(Card removeCard) {
 		for (int i = 0; i < handCards.size()-1; i++) {
 			if(suitToString(handCards.get(i)).equals(suitToString(removeCard))) {
@@ -81,39 +59,7 @@ public class Board {
 		}
 	}
 	
-	//Dave: Fügt die spielbaren Karten der ArrayList playableHandCards hinzu
-	//Auskommentiert - NEU Playable
-	
-//	public void evaluatePlayableHandCards(Card opponentCard) {
-//		playableHandCards.clear();
-//		sameSuitAsOpponent(opponentCard);
-//		if(playableHandCards.isEmpty() == true) {
-//			for(Card card : handCards) {
-//				playableHandCards.add(card);
-//			}
-//		}
-//	}
-	
-	
-	//Dave: Alle  spielbaren Karten werden den playableHandCards hinzugefügt sofern die eigenen 
-	//Handkarten die gleiche Farbe oder einen Doppelgänger haben
-	//Auskommentiert - NEU Playable
 
-//	public void sameSuitAsOpponent(Card opponentCard) {
-//		if(suitToString(opponentCard).equals("double")) {
-//			for(int i = 0; i < handCards.size()-1; i++) {
-//				if(suitToString(handCards.get(i)).equals("double")) playableHandCards.add(handCards.get(i));
-//			}
-//		}else {
-//			for(int i = 0; i < handCards.size()-1; i++) {
-//				if(suitToString(opponentCard).equals(suitToString(handCards.get(i))) || 
-//				   suitToString(handCards.get(i)).equals("double")) {
-//					playableHandCards.add(handCards.get(i));
-//				}
-//			}
-//		}
-//	}
-	
 	public void setPlayableHC(Card opponentCard) {
 		boolean hasPlayableCards = false;
 		for(Card card : handCards) {
@@ -149,8 +95,10 @@ public class Board {
     	return tmp[0];
 	}
 	
-	//Dave: Sortiert am Anfang die Handkarten, damit gleiche Fraktionen nebeneinander sind
-	//Mit Jannick anschauen bzgl. aufruf This.handcards = handcards;
+	/*
+	 * David Schürch
+	 * Sortiert bei Aufruf die Handkarten des Spielers 
+	 */
 	public void sortHandCards() {
 		ArrayList<Card> goblinCards = new ArrayList<>();
 		ArrayList<Card> dwarfCards = new ArrayList<>();
@@ -182,6 +130,32 @@ public class Board {
 		if(doubleCards.isEmpty() == false) for (Card card : doubleCards) handCards.add(card);
 		if(knightCards.isEmpty() == false) for (Card card : knightCards) handCards.add(card);
 	}
-	
-	
+
+	public ArrayList<Card> getHandCards() {
+		return handCards;
+	}
+
+	public void setHandCards(ArrayList<Card> handCards) {
+		this.handCards = handCards;
+//		this.handCards = sortHandCards(handCards); //HandKarten werden nach dem ausgeben noch sortiert
+	}
+
+	public ArrayList<Card> getFollowerCards() {
+		return followerCards;
+	}
+
+	public void setFollowerCards(ArrayList<Card> followerCards) {
+		this.followerCards = followerCards;
+	}
+
+	public ArrayList<Card> getPointCards() {
+		return pointCards;
+	}
+
+	public void setPointCards(ArrayList<Card> pointCards) {
+		this.pointCards = pointCards;
+	}
+	public void addUndead(Card undead) {
+		this.undeadCards.add(undead);
+	}
 }
