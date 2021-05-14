@@ -261,15 +261,7 @@ public class Table {
 //			
 //			}
 
-			
-			
-		
-		
-		
-		
-		
-		
-	
+
 	
 	
 	//Dave: Falls eine der beiden Karten ein Untoter ist oder beide, muss diese dem Spieler

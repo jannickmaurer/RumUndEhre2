@@ -56,7 +56,6 @@ public class Board {
 			card.setPlayable(true);
 		}
 	}
-	
 
 	public void setPlayableHC(Card opponentCard) {
 		boolean hasPlayableCards = false;
