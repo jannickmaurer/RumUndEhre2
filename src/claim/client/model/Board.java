@@ -40,7 +40,7 @@ public class Board {
 	 * Entfernt die gespielte Karte aud der ArrayList Handcards
 	 */
 	public void removePlayedCard(Card removeCard) {
-		for (int i = 0; i < handCards.size()-1; i++) {
+		for (int i = 0; i < handCards.size(); i++) {
 			if(suitToString(handCards.get(i)).equals(suitToString(removeCard))) {
 				if(handCards.get(i).compareTo(removeCard) == 0) {
 					handCards.remove(i);
@@ -62,14 +62,15 @@ public class Board {
 			card.setPlayable(false);
 		}
 		if(suitToString(opponentCard).equals("double")) {
-			for(int i = 0; i < handCards.size()-1; i++) {
+			for(int i = 0; i < handCards.size(); i++) {
 				if(suitToString(handCards.get(i)).equals("double")) {
 					handCards.get(i).setPlayable(true);
 					hasPlayableCards = true;
 				}
 			}
 		}else {
-			for(int i = 0; i < handCards.size()-1; i++) {
+			for(int i = 0; i < handCards.size(); i++) {
+				System.out.println("Deal im Board: "+handCards.get(i).toString());
 				if(suitToString(opponentCard).equals(suitToString(handCards.get(i))) || 
 				   suitToString(handCards.get(i)).equals("double")) {
 					handCards.get(i).setPlayable(true);
