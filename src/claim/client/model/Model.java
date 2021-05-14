@@ -19,6 +19,7 @@ import claim.commons.messages.Logout;
 import claim.commons.messages.Message;
 import claim.commons.messages.Ping;
 import claim.commons.messages.PlayCard;
+import claim.commons.messages.SendMessage;
 import claim.commons.messages.StartRoundOne;
 import claim.commons.Configuration;
 import claim.commons.Translator;
@@ -157,6 +158,17 @@ public class Model {
 	public void disconnect() {
 		String[] content = new String[] { "Disconnect", this.token.getValue(),};
 		Message msg = new Disconnect(content);
+		try {
+			msg.send(socket);
+			logger.info("Client tries to send message: " + msg.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void sendMessage(String message) {
+		String[] content = new String[] { "SendMessage", this.token.getValue(), message};
+		Message msg = new SendMessage(content);
 		try {
 			msg.send(socket);
 			logger.info("Client tries to send message: " + msg.toString());

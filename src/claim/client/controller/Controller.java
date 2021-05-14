@@ -266,6 +266,11 @@ public class Controller {
 	public void getNextTableCard() {
 		model.getNextTableCard();
 	}
+	
+	public void sendMessage() {
+		String message = "Hallo"; // aus GUI nehmen
+		model.sendMessage(message);
+	}
 
 	
 	// Messages Success Handling
