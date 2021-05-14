@@ -287,7 +287,7 @@ public class Table {
         	System.out.println("Table | getNextTableCard() | der Siger des gesamten Spiels ist: "+win);
     		for(Account a : players) {
     			String[] content = {"ResultSendGameWinner", "true", win};
-    			a.getClient().send(new ResultSendGameWinner(content));
+    		//	a.getClient().send(new ResultSendGameWinner(content));
     		}
         }
         Card card = (tableCards.size() > 0) ? tableCards.remove(tableCards.size()-1) : null;
