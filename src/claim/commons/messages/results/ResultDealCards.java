@@ -34,6 +34,10 @@ public class ResultDealCards extends Message {
 	public void process(Controller controller) {
 		controller.getBoard().addHandCards(handCards);
 		controller.deal(controller.getBoard().getHandCards());
+		controller.enableTableCardButton(firstUser);
+		if(firstUser.equals(controller.getUsername())) {
+			controller.setOnTurn(true);
+		}
 		// Player got its handcards and game can be started
 	}
 	

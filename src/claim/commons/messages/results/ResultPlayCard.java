@@ -27,6 +27,7 @@ public class ResultPlayCard extends Message {
 	public void process(Controller controller) {
 		controller.getBoard().removePlayedCard(new Card(card));
 		controller.updatePlayerPane(card);
+		controller.disableHandCards();
 	}
 	public void processIfFalse(Controller controller) {
 		controller.somethingFailed();

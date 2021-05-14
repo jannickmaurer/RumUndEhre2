@@ -29,7 +29,7 @@ public class Playroom implements Serializable {
 			table.deal();
 			//TBD: Cards from account ArrayList
 			for(Account a : players) {
-				String[] temp = new String[] {"ResultDealCards", players.get(0).getUsername(), "true"};
+				String[] temp = new String[] {"ResultDealCards", "true", players.get(0).getUsername()};
 				ArrayList<String> cards = new ArrayList<>();
 				for(Card c : a.getHandCards()) {
 					cards.add(c.toString());

@@ -38,12 +38,15 @@ public class ResultSendCard extends Message {
 				System.out.println("Handcard auf Client " + card);
 				controller.otherPlayerCard(card);
 				controller.getBoard().setPlayableHC(new Card(card));
+				controller.enablePlayableHC();
 				break;
 			case "FollowerCard": break;
 			case "PointCard": break;
 			case "TableCard" :
 				System.out.println("Tischkarte auf Client " + card);
 				controller.tableCard(card);
+				controller.enableHandCards();
+				controller.disableTableCardButton();
 				break;
 		}
 	
