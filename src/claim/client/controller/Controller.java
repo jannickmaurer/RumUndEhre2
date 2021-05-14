@@ -25,6 +25,7 @@ import claim.client.view.PlayerPane;
 import claim.client.view.CardLabel;
 import javafx.application.Platform;
 import javafx.event.Event;
+import javafx.geometry.HPos;
 
 // Created by Samuel & Jannick
 public class Controller {
@@ -293,6 +294,7 @@ public class Controller {
 		CardLabel cl1 = new CardLabel();
 		cl1.setCard(playedCard);
 		view.getGameLayout().getMiddleGameLayout().getPlayedCards().add(cl1, 0, 2);
+		view.getGameLayout().getMiddleGameLayout().getPlayedCards().setHalignment(cl1, HPos.CENTER);
 	}
 	
 	public void otherPlayerCard(String card) {
@@ -302,6 +304,7 @@ public class Controller {
 				CardLabel cl2 = new CardLabel();
 				cl2.setCard(card);
 				view.getGameLayout().getMiddleGameLayout().getPlayedCards().add(cl2, 0, 1);
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().setHalignment(cl2, HPos.CENTER);
 			}
 		});
 	}
@@ -312,6 +315,7 @@ public class Controller {
 				CardLabel cl3 = new CardLabel();
 				cl3.setCard(card);
 				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().add(cl3, 0, 1);
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().setHalignment(cl3, HPos.CENTER);
 			}
 		});
 	}

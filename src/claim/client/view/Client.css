@@ -25,8 +25,7 @@
 }
 
 #middleGame {
-	-fx-hgap: 10;
-    -fx-vgap: 10;
+	-fx-spacing: 10;
 }
 
 #playedCards {
