@@ -1,5 +1,12 @@
 package claim.server;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.UUID;
@@ -9,8 +16,10 @@ import claim.commons.Card;
 import claim.commons.ServiceLocator;
 
 
+
+
 // Implemented by Jannick: Represents a Player's Account (User)
-public class Account {
+public class Account implements Serializable {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getServerLogger(); 
 	
@@ -18,14 +27,14 @@ public class Account {
 	
 	private final String username;
 	private final String password;
-	private String token;
-	private Table table;
-	private Client client;
-	private Card playedCard;
+	private transient String token;
+	private transient Table table;
+	private transient Client client;
+	private transient Card playedCard;
 	
-	private ArrayList<Card> handCards = new ArrayList<>();
-	private ArrayList<Card> followerCards = new ArrayList<>();
-	private ArrayList<Card> undeadCards = new ArrayList<>();
+	private transient ArrayList<Card> handCards = new ArrayList<>();
+	private transient ArrayList<Card> followerCards = new ArrayList<>();
+	private transient ArrayList<Card> undeadCards = new ArrayList<>();
 	
 
 	public Account(String username, String password) {
@@ -38,6 +47,7 @@ public class Account {
 	public static void add(Account ac) {
 		synchronized(accounts) {
 			accounts.add(ac);
+			saveAccounts();
 		}
 	}
 	
@@ -85,6 +95,35 @@ public class Account {
 		}
 	}	
 	
+	public static void saveAccounts() {
+		File accountFile = new File(Server.getDirectory() + "accounts.sav");
+		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(accountFile))) {
+			synchronized (accounts) {
+				out.writeInt(accounts.size());
+				for (Account account : accounts) {
+					out.writeObject(account);
+				}
+				out.flush();
+				out.close();
+			}
+		} catch (IOException e) {
+			logger.severe("Unable to save accounts: " + e.getMessage());
+		}
+	}
+	
+	public static void readAccounts() {
+		File accountFile = new File(Server.getDirectory() + "accounts.sav");
+		try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(accountFile))) {
+			int num = in.readInt();
+			for (int i = 0; i < num; i++) {
+				Account account = (Account) in.readObject();
+				accounts.add(account);
+				logger.info("Loaded account " + account.getUsername());
+			}
+		} catch (Exception e) {
+			logger.severe("Unable to read accounts: " + e.getMessage());
+		}
+	}
 
 //	public ArrayList<String> getHandCards() {
 //		return handCards;
