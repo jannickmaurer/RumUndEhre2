@@ -44,6 +44,7 @@ public class Client {
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
+					clientReachable = false;
 				}
 			}
 		};

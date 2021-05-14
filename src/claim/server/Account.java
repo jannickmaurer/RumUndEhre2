@@ -36,6 +36,8 @@ public class Account implements Serializable {
 	private transient ArrayList<Card> followerCards = new ArrayList<>();
 	private transient ArrayList<Card> undeadCards = new ArrayList<>();
 	
+	
+	
 
 	public Account(String username, String password) {
 		this.username = username;
@@ -123,6 +125,17 @@ public class Account implements Serializable {
 		} catch (Exception e) {
 			logger.severe("Unable to read accounts: " + e.getMessage());
 		}
+	}
+	
+	public void clearAccount() {
+		this.token = null;
+		this.table = null;
+		this.client = null;
+		this.playedCard = null;
+		if(!this.handCards.isEmpty()) this.handCards.clear();
+		if(!this.followerCards.isEmpty()) this.followerCards.clear();
+		if(!this.undeadCards.isEmpty()) this.undeadCards.clear();
+		logger.info("Account : " + this.username + " cleared");
 	}
 
 //	public ArrayList<String> getHandCards() {

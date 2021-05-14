@@ -7,6 +7,7 @@ import java.util.Collections;
 import claim.commons.Card;
 import claim.commons.Card.Rank;
 import claim.commons.Card.Suit;
+import claim.commons.messages.results.ResultBroadcastEvaluateWinner;
 import claim.commons.messages.results.ResultBroadcastFinishRound;
 import claim.commons.messages.results.ResultSendCard;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -315,6 +316,7 @@ public class Table {
     	return tmp[0];
 	}
 	
+	//Jannick: calls the getNextTableCard() method and sends it to both clients
 	public void sendTableCard() {
 		String temp = getNextTableCard().toString();
 		for(Account a : players) {
@@ -322,6 +324,38 @@ public class Table {
 			a.getClient().send(new ResultSendCard(content));
 		}
 	}
+	
+	//Jannick: calls the winner() method and sends a new message with the winner to both clients
+	public void evaluateWinner() {
+		String[] content = {"ResultBroadcastEvaluateWinner", "true", winner()};
+		for(Account a : players) {
+			a.getClient().send(new ResultBroadcastEvaluateWinner(content));
+		}
+		
+		
+	}
+	
+	//Jannick: Stoppt das Schwitzen
+	public void stopGame(Account a) {
+		removeAccount(a);
+		this.playedCards.set(0);
+	}
+	
+	public void removeAccount(Account a) {
+		for(int i = 0; i < players.size(); i++) {
+			if(a.getUsername().equalsIgnoreCase(players.get(i).getUsername())) {
+				players.remove(i);
+			}
+	}
+		
+		
+//		for(Account ac : players) {
+//			if(ac.getUsername().equals(a.getUsername())) {
+//				players.remove(ac);
+//			}
+//		}
+	}
+	
 	public SimpleIntegerProperty getPlayedCards() {
 		return playedCards;
 	}

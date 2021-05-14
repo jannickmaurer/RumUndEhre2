@@ -6,12 +6,12 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Logger;
 
 import claim.commons.Card;
 import claim.commons.ServiceLocator;
 import claim.commons.messages.results.ResultDealCards;
-
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -92,6 +92,31 @@ public class Playroom implements Serializable {
 		logger.info("NUmber of Players in ArrayList: " + players.size());
 		numberOfPlayers.set(numberOfPlayers.get()+1);
 		logger.info("Number of Players in Playroom: " + numberOfPlayers.get() );
+	}
+	
+	public void removeAccount(Account a) {
+		for(int i = 0; i < players.size(); i++) {
+			if(a.getUsername().equalsIgnoreCase(players.get(i).getUsername())) {
+				players.remove(i);
+			}
+		}
+		
+		
+//		for(Account ac : players) {
+//			if(ac.getUsername().equals(a.getUsername())) {
+//				players.remove(ac);
+//			}
+//		}
+	}
+	
+	public void stopGame(Account a) {
+		removeAccount(a);
+		this.numberOfPlayers.set(numberOfPlayers.get()-1);
+		if(gameStarted.get()) {
+			this.gameStarted.set(false);
+			this.table.stopGame(a);
+		}
+		
 	}
 	
 	public static void add(Playroom playroom) {

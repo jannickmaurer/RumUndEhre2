@@ -52,6 +52,7 @@ public abstract class Message {
 			//Following section creates the specific Message object by looking at the first part of the String Array
 			if (content[0].equals("Ping")) msg = new Ping(content);
 			if (content[0].equals("CreateAccount")) msg = new CreateAccount(content);
+			if (content[0].equals("DeleteAccount")) msg = new DeleteAccount(content);
 			if (content[0].equals("Login")) msg = new Login(content);
 			if (content[0].equals("PlayCard")) msg = new PlayCard(content);
 			if (content[0].equals("StartRoundOne")) msg = new StartRoundOne(content);
@@ -59,16 +60,17 @@ public abstract class Message {
 //			if (content[0].equals("ListPlayrooms")) msg = new ListPlayrooms(content);
 			if (content[0].equals("Logout")) msg = new Logout(content);
 			if (content[0].equals("GetNextTableCard")) msg = new GetNextTableCard(content);
+			if (content[0].equals("EvaluateWinner")) msg = new EvaluateWinner(content);
 			
 //			if (content[0].equals("DeletePlayroom")) msg = new DeletePlayroom(content);
 //			if (content[0].equals("JoinPlayroom")) msg = new JoinPlayroom(content);
-//			if (content[0].equals("SendMessage")) msg = new SendMessage(content);
+			if (content[0].equals("SendMessage")) msg = new SendMessage(content);
 //			if (content[0].equals("Text")) msg = new Text(content);
 //			if (content[0].equals("LeavePlayroom")) msg = new LeavePlayroom(content);
 //			if (content[0].equals("StartGame")) msg = new StartGame(content);
 //			if (content[0].equals("EndGame")) msg = new EndGame(content);
 //			if (content[0].equals("SendTableCard")) msg = new SendTableCard(content);
-//			if (content[0].equals("Disconnect")) msg = new Disconnect(content);
+			if (content[0].equals("Disconnect")) msg = new Disconnect(content);
 //			if (content[0].equals("SendTrumpf")) msg = new SendTrumpf(content);
 //			if (content[0].equals("StartRound")) msg = new StartRound(content);
 			

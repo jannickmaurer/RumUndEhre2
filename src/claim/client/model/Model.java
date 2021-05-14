@@ -11,6 +11,8 @@ import java.util.logging.Logger;
 
 import claim.commons.messages.CreateAccount;
 import claim.commons.messages.DeleteAccount;
+import claim.commons.messages.Disconnect;
+import claim.commons.messages.EvaluateWinner;
 import claim.commons.messages.GetNextTableCard;
 import claim.commons.messages.Login;
 import claim.commons.messages.Logout;
@@ -60,6 +62,7 @@ public class Model {
 						lastReceivedMessage.setValue(msgText);
 					} catch (IOException e) {
 						e.printStackTrace();
+						closeSocket();
 					}
 				}
 			}
@@ -140,10 +143,36 @@ public class Model {
 		}
 	}
 	
+	public void evaluateWinner() {
+		String[] content = new String[] { "EvaluateWinner", this.token.getValue(),};
+		Message msg = new EvaluateWinner(content);
+		try {
+			msg.send(socket);
+			logger.info("Client tries to send message: " + msg.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void disconnect() {
+		String[] content = new String[] { "Disconnect", this.token.getValue(),};
+		Message msg = new Disconnect(content);
+		try {
+			msg.send(socket);
+			logger.info("Client tries to send message: " + msg.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public void setConnected(Boolean connected) {
 		this.connected.set(connected);
 		logger.info("Client is Connected");
+	}
+	
+	public Boolean isConnected() {
+		return this.connected.get();
 	}
 
 	public SimpleStringProperty getLastReceivedMessage() {
@@ -157,6 +186,14 @@ public class Model {
 	public void setToken(String token) {
 		this.token.set(token);
 		logger.info("Client set token to: " + this.token.getValue());		
+	}
+	
+	public void closeSocket() {
+		if (socket != null)
+			try {
+				socket.close();
+			} catch (IOException e) {
+			}
 	}
 	
 	//Analog Chatroom Project at FHNW 2019

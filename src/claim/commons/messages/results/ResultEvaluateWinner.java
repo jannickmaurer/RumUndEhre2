@@ -5,30 +5,28 @@ import java.util.logging.Logger;
 import claim.client.controller.Controller;
 import claim.commons.Card;
 import claim.commons.ServiceLocator;
+import claim.commons.messages.Message;
 
 //Class implemented by Jannick: Message Server -> Client
-//ResultGameWinner| true |GameWinnerAccountName
-//Possible Reasons: HandCard, FollowerCard, PointCard, TableCard
+//ResultEvaluateWinner|result|
 
-public class ResultGameWinner {
+
+public class ResultEvaluateWinner extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getClientLogger();
-	
-	private String gameWinner;
-	
+
 	// Takes the result and creates new Object
-	public ResultGameWinner(boolean result) {
-		super(new String[] {"ResultGameWinner", Boolean.toString(result)});
+	public ResultEvaluateWinner(boolean result) {
+		super(new String[] {"ResultEvaluateWinner", Boolean.toString(result)});
 	}
 	
-	public ResultGameWinner(String[] content) {
+	public ResultEvaluateWinner(String[] content) {
 		super(content);
-		this.gameWinner = content[2];
 	}
 	
 	@Override
 	public void process(Controller controller) {
-		
+		// Gewinner anzeigen -> Danach, neues Spiel starten oder nur logout?
 	}
 	
 	@Override

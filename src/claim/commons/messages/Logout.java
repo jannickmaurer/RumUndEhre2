@@ -4,6 +4,8 @@ import java.util.logging.Logger;
 
 import claim.commons.ServiceLocator;
 import claim.commons.messages.results.ResultLogout;
+import claim.commons.messages.results.ResultPlayerLoggedOut;
+import claim.server.Account;
 import claim.server.Client;
 
 public class Logout extends Message {
@@ -20,9 +22,22 @@ public class Logout extends Message {
 	public void process(Client client) {
 		boolean result = false;
 		if(this.token.equals(client.getToken())) {
+			client.getPlayroom().stopGame(client.getAccount());
+			client.getAccount().clearAccount();
 			client.setToken(null); 
 			client.setAccount(null); 
+			client.setLoggedIn(false);
+			if(!client.getPlayroom().getPlayers().isEmpty()) {
+				for(Account a : client.getPlayroom().getPlayers()) {
+					a.getClient().send(new ResultPlayerLoggedOut(true));
+				}
+			}
 			result = true;
+			logger.info("Account logged out, remaining players on Server: " );
+			for(Account ac : client.getPlayroom().getPlayers()) {
+				logger.info(ac.toString() + " remaining on Server");
+			}
+		
 		}
 		client.send(new ResultLogout(result));
 	}
