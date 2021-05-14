@@ -99,7 +99,6 @@ public class Table {
 
 				System.out.println("Methode Deal in Table: "+ cardsTable.size());
 
-				System.out.println("Methode Deal in Table: "+tableCards.size());
 
 			}
 		}

@@ -34,16 +34,8 @@ public class Board {
 		}
 	}
 	
-	//ToDo: Im controller die Methoden EvalutatePlayableHandCards aufrufen und nach dem spielen
-	//      die gebrauchte Karte löschen
-	//		sortHandCards einbinden in Code, bei setHandCards kurz mit Jannick schauen
 	
-	
-	public void allHCPlayable(){
-		for(Card card : handCards) {
-			card.setPlayable(true);
-		}
-	}
+
 	/*
 	 * David Schürch
 	 * Entfernt die gespielte Karte aud der ArrayList Handcards
@@ -56,6 +48,12 @@ public class Board {
 					return;
 				}
 			}
+		}
+	}
+	
+	public void setPlayableHC(){
+		for(Card card : handCards) {
+			card.setPlayable(true);
 		}
 	}
 	

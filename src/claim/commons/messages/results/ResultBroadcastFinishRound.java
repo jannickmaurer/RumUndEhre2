@@ -47,6 +47,7 @@ public class ResultBroadcastFinishRound extends Message {
 				}
 			}
 			// Button next Table Card auf enabled
+			
 		
 		} else {
 			// Table Karte, die der Verlierer erhält, anzeigen
