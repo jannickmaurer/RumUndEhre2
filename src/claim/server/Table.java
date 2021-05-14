@@ -174,27 +174,28 @@ public class Table {
 		roundWinner = evaluateWinnerCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
 		addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), roundWinner);
 
+		Card temp = getNextTableCard();
 		switch (roundWinner) {
 		case "P1": followerCardP1 = actualTableCard;					
 				   players.get(0).getFollowerCards().add(followerCardP1);
-				   followerCardP2 = getNextTableCard();
+				   followerCardP2 = temp;
 				   players.get(1).getFollowerCards().add(followerCardP2); break; 
 		case "P2": followerCardP2 = actualTableCard;
 				   players.get(1).getFollowerCards().add(followerCardP2);
-				   followerCardP1 = getNextTableCard();
+				   followerCardP1 = temp;
 				   players.get(0).getFollowerCards().add(followerCardP1); 
 				   winner = 1; break;
 
 		}	
 
 //		for(Account a : players) {
-		String temp = getNextTableCard().toString();
+//		String temp = getNextTableCard().toString();
 		for(int i = 0; players.size() > i; i++) {
-		   if(!undeadString.equalsIgnoreCase("None")) {
-			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(winner).getUsername(), temp};
+		   if(undeadString.equalsIgnoreCase("None")) {
+			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(winner).getUsername(), temp.toString()};
 			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
-		   }else {
-			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(winner).getUsername(), temp, undeadString};
+		   } else {
+			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(winner).getUsername(), temp.toString(), undeadString};
 			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
 		   }
 		}
@@ -392,8 +393,11 @@ public class Table {
 	 * David: Gibt die letzte Karte der Tischkarten zurück und löscht diese
 	 */
 	public Card getNextTableCard() {
+		
         Card card = (tableCards.size() > 0) ? tableCards.remove(tableCards.size()-1) : null;
         actualTableCard = card;
+        System.out.println("Get next Table Card: " + card.toString());
+        System.out.println("Size Table Cards: " + tableCards.size());
 		return card;
 	}
 	

@@ -36,6 +36,7 @@ public class Controller {
 	private String username;
 	private Board board;
 	private Boolean onTurn = false;
+	private Boolean cardPlayed = false;
 
 	
 
@@ -411,4 +412,13 @@ public class Controller {
 	public void setOnTurn(Boolean onTurn) {
 		this.onTurn = onTurn;
 	}
+
+	public Boolean getCardPlayed() {
+		return cardPlayed;
+	}
+
+	public void setCardPlayed(Boolean cardPlayed) {
+		this.cardPlayed = cardPlayed;
+	}
+	
 }

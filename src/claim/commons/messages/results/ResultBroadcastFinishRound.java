@@ -50,14 +50,14 @@ public class ResultBroadcastFinishRound extends Message {
 			}
 			// Button next Table Card auf enabled
 			controller.enableTableCardButton();
-		
+			controller.setOnTurn(true);
 		} else {
 			// Table Karte, die der Verlierer erhält, anzeigen
 			System.out.println("Ich habe verloren");
+			controller.setOnTurn(false);
 		}
 		
-		
-	
+		controller.setCardPlayed(false);
 	}
 	
 	@Override
