@@ -98,7 +98,7 @@ public class Table {
 					tableCards.add(card);
 				}
 
-				System.out.println("Methode Deal in Table: "+ cardsTable.size());
+				System.out.println("Methode Deal in Table: "+ tableCards.size());
 
 
 			}
