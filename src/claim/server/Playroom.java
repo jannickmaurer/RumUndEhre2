@@ -1,5 +1,9 @@
 package claim.server;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.logging.Logger;
@@ -7,6 +11,7 @@ import java.util.logging.Logger;
 import claim.commons.Card;
 import claim.commons.ServiceLocator;
 import claim.commons.messages.results.ResultDealCards;
+
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -55,6 +60,22 @@ public class Playroom implements Serializable {
 //			}
 //		});
 	}
+	
+//	public static void savePlayrooms() {
+//		File playroomFile = new File(Server.getDirectory() + "playrooms.sav");
+//		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(playroomFile))) {
+//			synchronized (playrooms) {
+//				out.writeInt(playrooms.size());
+//				for (Playroom playroom : playrooms) {
+//					out.writeObject(playroom);
+//				}
+//				out.flush();
+//				out.close();
+//			}
+//		} catch (IOException e) {
+//			logger.severe("Unable to save playrooms: " + e.getMessage());
+//		}
+//	}
 	
 	public String[] combineArrayAndArrayList(String[] array, ArrayList<String> list) {
 		String[] content = new String[array.length + list.size()];
