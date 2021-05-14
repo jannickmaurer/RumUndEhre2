@@ -28,6 +28,8 @@ public class ResultPlayCard extends Message {
 		controller.getBoard().removePlayedCard(new Card(card));
 		controller.updatePlayerPane(card);
 		controller.disableHandCards();
+		controller.setOnTurn(false);
+		controller.setCardPlayed(true);
 	}
 	public void processIfFalse(Controller controller) {
 		controller.somethingFailed();

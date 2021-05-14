@@ -35,6 +35,10 @@ public class Controller {
 	private View view;
 	private String username;
 	private Board board;
+	private Boolean onTurn = false;
+	private Boolean cardPlayed = false;
+
+	
 
 	public Controller(Model model, View view) {
 		this.model = model;
@@ -355,4 +359,19 @@ public class Controller {
 		return username;
 	}
 
+	public Boolean getOnTurn() {
+		return onTurn;
+	}
+
+	public void setOnTurn(Boolean onTurn) {
+		this.onTurn = onTurn;
+	}
+
+	public Boolean getCardPlayed() {
+		return cardPlayed;
+	}
+
+	public void setCardPlayed(Boolean cardPlayed) {
+		this.cardPlayed = cardPlayed;
+	}
 }

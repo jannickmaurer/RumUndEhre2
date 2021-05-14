@@ -22,7 +22,7 @@ public class ResultGetNextTableCard extends Message {
 	// Method to perform actions on Client Controller
 	@Override
 	public void process(Controller controller) {
-		//Button disablen
+//		controller.setOnTurn(true);
 	}
 	public void processIfFalse(Controller controller) {
 		controller.somethingFailed();
