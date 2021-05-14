@@ -290,6 +290,7 @@ public class Table {
 //    			a.getClient().send(new ResultSendGameWinner(content));
 //    		}
 //        }
+
         Card card = (tableCards.size() > 0) ? tableCards.remove(tableCards.size()-1) : null;
         actualTableCard = card;
         System.out.println("Get next Table Card: " + card.toString());

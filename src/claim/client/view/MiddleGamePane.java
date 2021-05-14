@@ -34,32 +34,25 @@ public class MiddleGamePane extends HBox {
 		Label lbNewFollowerDeck = new Label("New Follower Card");
 		clNewFollowerDeck.setDeck();
 		
-		Label lbOpponentCard = new Label("Opponent card");
-		Label lbMyCard = new Label("My Card");
-		
-		Rectangle r1 = new Rectangle();
-		r1.setWidth(92);
-		r1.setHeight(135);
-		r1.setArcWidth(10);
-		r1.setArcHeight(10);
-		r1.setFill(Color.rgb(244, 238, 232));
-		
-		Rectangle r2 = new Rectangle();
-		r2.setWidth(92);
-		r2.setHeight(135);
-		r2.setArcWidth(10);
-		r2.setArcHeight(10);
-		r2.setFill(Color.rgb(244, 238, 232));
-		
-		playedCards.add(lbOpponentCard, 0, 0);
-		playedCards.add(r1, 0, 1);
-		playedCards.add(r2, 0, 2);
-		playedCards.add(lbMyCard, 0, 3);
-		playedCards.setAlignment(Pos.CENTER);
-		playedCards.setHalignment(r1, HPos.CENTER);
-		playedCards.setHalignment(r2, HPos.CENTER);
-		playedCards.setHalignment(lbMyCard, HPos.CENTER);
-		playedCards.setId("playedCards");
+		/*
+		 * Label lbOpponentCard = new Label("Opponent card"); Label lbMyCard = new
+		 * Label("My Card");
+		 * 
+		 * Rectangle r1 = new Rectangle(); r1.setWidth(92); r1.setHeight(135);
+		 * r1.setArcWidth(10); r1.setArcHeight(10); r1.setFill(Color.rgb(244, 238,
+		 * 232));
+		 * 
+		 * Rectangle r2 = new Rectangle(); r2.setWidth(92); r2.setHeight(135);
+		 * r2.setArcWidth(10); r2.setArcHeight(10); r2.setFill(Color.rgb(244, 238,
+		 * 232));
+		 * 
+		 * playedCards.add(lbOpponentCard, 0, 0); playedCards.add(r1, 0, 1);
+		 * playedCards.add(r2, 0, 2); playedCards.add(lbMyCard, 0, 3);
+		 * playedCards.setAlignment(Pos.CENTER); playedCards.setHalignment(r1,
+		 * HPos.CENTER); playedCards.setHalignment(r2, HPos.CENTER);
+		 * playedCards.setHalignment(lbMyCard, HPos.CENTER);
+		 * playedCards.setId("playedCards");
+		 */
 		
 		tableCardsDeck.add(lbCardsDeck, 0, 0);
 		tableCardsDeck.add(btNextTableCard, 0, 2);
