@@ -33,7 +33,7 @@ public class ResultDealCards extends Message {
 	@Override
 	public void process(Controller controller) {
 		controller.getBoard().addHandCards(handCards);
-		controller.deal();
+		controller.deal(controller.getBoard().getHandCards());
 		// Player got its handcards and game can be started
 	}
 	

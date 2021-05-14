@@ -29,9 +29,9 @@ public class CardLabel extends Label {
 		this.setGraphic(imv);
 	}
 	
-	//ZUM TESTEN SD
-	public void setCard() {
-		Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("claim/image/undead_2.jpg"));
+	//Karte in der Mitte des Spielfelds
+	public void setCard(String card) {
+		Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("claim/image/" + card + ".jpg"));
 		ImageView imv = new ImageView(image);
 		imv.setFitWidth(87);
 		imv.maxWidth(87);

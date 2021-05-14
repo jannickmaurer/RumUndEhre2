@@ -1,5 +1,6 @@
 package claim.client.controller;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import claim.client.model.Board;
@@ -24,6 +25,7 @@ import claim.client.view.PlayerPane;
 import claim.client.view.CardLabel;
 import javafx.application.Platform;
 import javafx.event.Event;
+import javafx.geometry.HPos;
 
 // Created by Samuel & Jannick
 public class Controller {
@@ -68,6 +70,10 @@ public class Controller {
 		
 		view.getBtLogout().setOnAction(e -> {
 			logout();
+		});
+		
+		view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setOnAction(e -> {
+			this.getNextTableCard();
 		});
 		
 		view.getBtnBackError().setOnAction(e -> {
@@ -241,16 +247,16 @@ public class Controller {
 	}
 	
 	//SD - Karten zu Beginn des Spiels austeilen
-	public void deal() {
+	public void deal(ArrayList<Card> handCards) {
+		board.sortHandCards(); //Handkarten werden noch sortiert
 		Platform.runLater(new Runnable() {
 			public void run() {
-				for (int i = 0; i < 13; i++) {
-					System.out.println("Karte " + i);
+				for (int i = 0; i < handCards.size(); i++) {
 					Card card = null;
 					//Was macht diese Zeile? -SD
 					CardLabel cl = (CardLabel) view.getGameLayout().getPlayerLayout().getHboxCards().getChildren().get(i);
-					cl.setCard();
-					cl.setCardNameAsString("undead_2");
+					cl.setCard(handCards.get(i));
+					cl.setCardNameAsString(handCards.get(i).toString());
 				}
 			}
 		});
@@ -260,13 +266,13 @@ public class Controller {
 	private void sendTableCard(Event event) {
 		CardLabel cl = (CardLabel) event.getSource();
 		model.playCard(cl.getCardNameAsString());
+		board.removePlayedCard(new Card(cl.getCardNameAsString())); //NEU GESPIELTE KARTE WIRD GELÖSCHT
 	}
 	
 	//SD - Karten entfernen
 	public void updatePlayerPane(String playedCard) {
 		Platform.runLater(new Runnable() {
 			public void run() {
-				System.out.println(playedCard);
 				CardLabel clToRemove = new CardLabel();
 				for(CardLabel cl : view.getGameLayout().getPlayerLayout().getCardLabels()) {
 					if(cl.getCardNameAsString().equals(playedCard)) {
@@ -276,19 +282,43 @@ public class Controller {
 				view.getGameLayout().getPlayerLayout().getCardLabels().remove(clToRemove);
 				view.getGameLayout().getPlayerLayout().getHboxCards().getChildren().remove(clToRemove);
 				
-				updateGameDisplay();
+				updateGameDisplay(playedCard);
 			}
 		});
 	}
 	
 	//SD - Gespielte Karten in der Mitte anzeigen
-		public void updateGameDisplay() {
-			view.getGameLayout().getMiddleGameLayout().getVboxPlayedCards().getChildren().clear();
-			
-			CardLabel cl1 = new CardLabel();
-			cl1.setCard();
-			view.getGameLayout().getMiddleGameLayout().getVboxPlayedCards().getChildren().add(cl1);
-		}
+	public void updateGameDisplay(String playedCard) {
+		//view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().clear();
+		
+		CardLabel cl1 = new CardLabel();
+		cl1.setCard(playedCard);
+		view.getGameLayout().getMiddleGameLayout().getPlayedCards().add(cl1, 0, 2);
+		view.getGameLayout().getMiddleGameLayout().getPlayedCards().setHalignment(cl1, HPos.CENTER);
+	}
+	
+	public void otherPlayerCard(String card) {
+		board.setPlayableHC(new Card(card)); //NEU Handkarten werden spielbar gesetzt
+		Platform.runLater(new Runnable() {
+			public void run() {
+				CardLabel cl2 = new CardLabel();
+				cl2.setCard(card);
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().add(cl2, 0, 1);
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().setHalignment(cl2, HPos.CENTER);
+			}
+		});
+	}
+	
+	public void tableCard(String card) {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				CardLabel cl3 = new CardLabel();
+				cl3.setCard(card);
+				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().add(cl3, 0, 1);
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().setHalignment(cl3, HPos.CENTER);
+			}
+		});
+	}
 	
 	//SD
 	public void highlightCard(Event event) {
@@ -324,8 +354,5 @@ public class Controller {
 	public String getUsername() {
 		return username;
 	}
-
-	
-
 
 }

@@ -43,7 +43,7 @@ public class Playroom implements Serializable {
 //				// TODO Auto-generated catch block
 //				e.printStackTrace();
 //			}
-			table.sendTableCard();
+			//SD - table.sendTableCard();
 		}
 	});
 //		numberOfPlayers.addListener((o, OldValue, NewValue) -> {

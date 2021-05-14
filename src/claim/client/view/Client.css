@@ -25,6 +25,20 @@
 }
 
 #middleGame {
+	-fx-spacing: 10;
+}
+
+#playedCards {
+	-fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+#nextTableCard {
+	-fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+#newFollowerCard {
 	-fx-hgap: 10;
     -fx-vgap: 10;
 }

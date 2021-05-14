@@ -36,7 +36,7 @@ public class PlayerPane extends VBox {
 		cardLabels = new ArrayList<>();
 
 		// Add CardLabels zu Beginn damit diese Ansprechbar sind (Hervorheben etc.)for the cards
-		for (int i = 0; i < 13; i++) {
+		for (int i = 0; i < 12; i++) {
 			CardLabel cl = new CardLabel();
 			hboxCards.getChildren().add(cl);
 			hboxCards.setSpacing(10);

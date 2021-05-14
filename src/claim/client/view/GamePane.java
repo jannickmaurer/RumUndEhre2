@@ -26,6 +26,9 @@ public class GamePane extends GridPane {
 	private ArrayList cardLabels = playerLayout.getCardLabels();
 	private Button btLogout = playerLayout.getBtLogout();
 	
+	//Elemente aus Middle Game Layout ansprechen
+	private Button btNextTableCard = middleGameLayout.getBtNextTableCard();
+	
 	//Elemente aus Other Player Layout ansprechen
 	private Label lbOtherName = otherPlayerLayout.getLbName();
 	private Label lbOtherPoints = otherPlayerLayout.getLbPoints();
