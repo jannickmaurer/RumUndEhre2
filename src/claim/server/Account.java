@@ -218,5 +218,8 @@ public class Account implements Serializable {
 		
 	}
 
+	public ArrayList<Card> getUndeadCards() {
+		return undeadCards;
+	}
 	
 }

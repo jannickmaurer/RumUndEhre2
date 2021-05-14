@@ -12,7 +12,6 @@ public class Board {
 	public ArrayList<Card> handCards;
 	private ArrayList<Card> followerCards;
 	private ArrayList<Card> pointCards;//Was sind PointCArds?????  Untote?
-//	private ArrayList<Card> playableHandCards;//Dave	//Auskommentiert - NEU Playable
 	private ArrayList<Card> undeadCards;
 	
 	public Board() {
@@ -41,7 +40,7 @@ public class Board {
 	 * Entfernt die gespielte Karte aud der ArrayList Handcards
 	 */
 	public void removePlayedCard(Card removeCard) {
-		for (int i = 0; i < handCards.size()-1; i++) {
+		for (int i = 0; i < handCards.size(); i++) {
 			if(suitToString(handCards.get(i)).equals(suitToString(removeCard))) {
 				if(handCards.get(i).compareTo(removeCard) == 0) {
 					handCards.remove(i);
@@ -63,18 +62,24 @@ public class Board {
 			card.setPlayable(false);
 		}
 		if(suitToString(opponentCard).equals("double")) {
-			for(int i = 0; i < handCards.size()-1; i++) {
+			for(int i = 0; i < handCards.size(); i++) {
 				if(suitToString(handCards.get(i)).equals("double")) {
 					handCards.get(i).setPlayable(true);
 					hasPlayableCards = true;
 				}
 			}
 		}else {
-			for(int i = 0; i < handCards.size()-1; i++) {
-				if(suitToString(opponentCard).equals(suitToString(handCards.get(i))) || 
-				   suitToString(handCards.get(i)).equals("double")) {
+			for(int i = 0; i < handCards.size(); i++) {
+				if(suitToString(opponentCard).equals(suitToString(handCards.get(i)))){
 					handCards.get(i).setPlayable(true);
 					hasPlayableCards = true;
+				}
+			}
+			if(hasPlayableCards) {
+				for(int i = 0; i < handCards.size(); i++) {
+					if(suitToString(handCards.get(i)).equals("double")){
+						handCards.get(i).setPlayable(true);
+					}
 				}
 			}
 		}
