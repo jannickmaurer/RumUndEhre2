@@ -55,7 +55,7 @@ public class Table {
 
 //	private ArrayList<Card> cardsP1 = new ArrayList<>();
 //	private ArrayList<Card> cardsP2 = new ArrayList<>();
-	private ArrayList<Card> cardsTable = new ArrayList<>();
+//	private ArrayList<Card> cardsTable = new ArrayList<>();
 	public ArrayList<Card> tableCards = new ArrayList<>();
 //	private ArrayList<Card> undeadsP1 = new ArrayList<>();
 //	private ArrayList<Card> undeadsP2 = new ArrayList<>();
@@ -94,11 +94,12 @@ public class Table {
 			} else {
 				System.out.println("Methode deal: Wert von getCardsRemaining nur für Tischkarten: "+ deck.getCardsRemaining());
 				for (int j = 0; j < deck.getCardsRemaining(); j++) {
+					System.out.println("Table: Methode deal: "+deck.getCardsRemaining());
 					card = deck.dealCard();
 					tableCards.add(card);
 				}
 
-				System.out.println("Methode Deal in Table: "+ cardsTable.size());
+				System.out.println("Methode Deal in Table: "+ tableCards.size());
 
 
 			}

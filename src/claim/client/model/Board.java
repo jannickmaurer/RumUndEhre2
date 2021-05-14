@@ -12,7 +12,6 @@ public class Board {
 	public ArrayList<Card> handCards;
 	private ArrayList<Card> followerCards;
 	private ArrayList<Card> pointCards;//Was sind PointCArds?????  Untote?
-//	private ArrayList<Card> playableHandCards;//Dave	//Auskommentiert - NEU Playable
 	private ArrayList<Card> undeadCards;
 	
 	public Board() {
