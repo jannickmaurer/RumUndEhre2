@@ -16,20 +16,22 @@ class BoardTest {
 
 		b.handCards.add(new Card(Suit.Goblin, Rank.Zero, true));
 		b.handCards.add(new Card(Suit.Goblin, Rank.Zero, true));
-		b.handCards.add(new Card(Suit.Double, Rank.Three, false));
+		b.handCards.add(new Card(Suit.Undead, Rank.Zero, false));
 		b.handCards.add(new Card(Suit.Double, Rank.Four, true));
 		b.handCards.add(new Card(Suit.Goblin, Rank.Zero, true));
 		
-		Card c = new Card(Suit.Goblin, Rank.Zero, true);
-		b.removePlayedCard(c);
+		Card c = new Card(Suit.Undead, Rank.Zero, true);
+	//	b.removePlayedCard(c);
 		
 //		System.out.println("Gespielte Karte: "+c);
 //		for(int i= 0; i < 4; i++) {
 //			System.out.println("Handkarten: "+i+" "+b.handCards.get(i));
 //		}
 		
+//		for(Card cd : b.handCards) System.out.println("HandkarteArray :"+cd.toString());
+		
 		b.setPlayableHC(c);
-		for(int i= 0; i < 4; i++) {
+		for(int i= 0; i < b.handCards.size(); i++) {
 			System.out.println("Handkarten: "+i+" "+b.handCards.get(i));
 			System.out.println("Handkarten Playable? "+i+" "+b.handCards.get(i).getPlayable());
 		}

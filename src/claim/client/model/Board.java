@@ -70,7 +70,7 @@ public class Board {
 			}
 		}else {
 			for(int i = 0; i < handCards.size(); i++) {
-				System.out.println("Deal im Board: "+handCards.get(i).toString());
+//				System.out.println("Deal im Board: "+handCards.get(i).toString());
 				if(suitToString(opponentCard).equals(suitToString(handCards.get(i))) || 
 				   suitToString(handCards.get(i)).equals("double")) {
 					handCards.get(i).setPlayable(true);
