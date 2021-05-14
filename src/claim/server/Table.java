@@ -204,8 +204,8 @@ public class Table {
 	public String winner() {
 		String win = "NoWinner";
 		gameWinner();
-		if(fractionPointsP1 >= 3) return "P1isTheWinner";
-		if(fractionPointsP2 >= 3) return "P2isTheWinner";
+		if(fractionPointsP1 >= 3) return players.get(0).toString();
+		if(fractionPointsP2 >= 3) return players.get(1).toString();
 		return win;
 	}
 	
@@ -279,7 +279,17 @@ public class Table {
 	 * David: Gibt die letzte Karte der Tischkarten zurück und löscht diese
 	 */
 	public Card getNextTableCard() {
-  //      if(tableCards.isEmpty())
+		
+		//Siegerauswertung direkt. Neue Message muss noch erstellt werden
+		
+        if(tableCards.isEmpty()) {
+        	String win = winner();
+        	System.out.println("Table | getNextTableCard() | der Siger des gesamten Spiels ist: "+win);
+    		for(Account a : players) {
+    			String[] content = {"ResultSendGameWinner", "true", win};
+    			a.getClient().send(new ResultSendGameWinner(content));
+    		}
+        }
         Card card = (tableCards.size() > 0) ? tableCards.remove(tableCards.size()-1) : null;
         actualTableCard = card;
         System.out.println("Get next Table Card: " + card.toString());
