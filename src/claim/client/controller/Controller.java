@@ -26,6 +26,10 @@ import claim.client.view.CardLabel;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 // Created by Samuel & Jannick
 public class Controller {
@@ -319,7 +323,7 @@ public class Controller {
 				CardLabel cl3 = new CardLabel();
 				cl3.setCard(card);
 				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().add(cl3, 0, 1);
-				view.getGameLayout().getMiddleGameLayout().getPlayedCards().setHalignment(cl3, HPos.CENTER);
+				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().setHalignment(cl3, HPos.CENTER);
 			}
 		});
 	}
@@ -379,6 +383,49 @@ public class Controller {
 					}
 				}
 		}
+	}
+	
+	public void clearMiddleLayout() {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().clear();
+				//view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().remove(CardLabel cl3);
+			}
+		});
+	}
+	
+	public void createPlayedCardLayout() {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				Label lbOpponentCard = new Label("Opponent card");
+				Label lbMyCard = new Label("My Card");
+				
+				Rectangle r1 = new Rectangle();
+				r1.setWidth(92);
+				r1.setHeight(135);
+				r1.setArcWidth(10);
+				r1.setArcHeight(10);
+				r1.setFill(Color.rgb(244, 238, 232));
+				
+				Rectangle r2 = new Rectangle();
+				r2.setWidth(92);
+				r2.setHeight(135);
+				r2.setArcWidth(10);
+				r2.setArcHeight(10);
+				r2.setFill(Color.rgb(244, 238, 232));
+				
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().add(lbOpponentCard, 0, 0);
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().add(r1, 0, 1);
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().add(r2, 0, 2);
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().add(lbMyCard, 0, 3);
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().setAlignment(Pos.CENTER);
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().setHalignment(r1, HPos.CENTER);
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().setHalignment(r2, HPos.CENTER);
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().setHalignment(lbMyCard, HPos.CENTER);
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().setId("playedCards");
+			}
+		});
+		
 	}
 
 	// Getter & Setter
