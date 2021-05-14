@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -16,7 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class MiddleGamePane extends GridPane {
+public class MiddleGamePane extends HBox {
 	private HBox hboxMiddleCards = new HBox();
 	private GridPane playedCards = new GridPane();
 	private GridPane tableCardsDeck = new GridPane();
@@ -38,14 +39,14 @@ public class MiddleGamePane extends GridPane {
 		
 		Rectangle r1 = new Rectangle();
 		r1.setWidth(92);
-		r1.setHeight(130);
+		r1.setHeight(135);
 		r1.setArcWidth(10);
 		r1.setArcHeight(10);
 		r1.setFill(Color.rgb(244, 238, 232));
 		
 		Rectangle r2 = new Rectangle();
 		r2.setWidth(92);
-		r2.setHeight(130);
+		r2.setHeight(135);
 		r2.setArcWidth(10);
 		r2.setArcHeight(10);
 		r2.setFill(Color.rgb(244, 238, 232));
@@ -55,26 +56,26 @@ public class MiddleGamePane extends GridPane {
 		playedCards.add(r2, 0, 2);
 		playedCards.add(lbMyCard, 0, 3);
 		playedCards.setAlignment(Pos.CENTER);
+		playedCards.setHalignment(r1, HPos.CENTER);
+		playedCards.setHalignment(r2, HPos.CENTER);
+		playedCards.setHalignment(lbMyCard, HPos.CENTER);
 		playedCards.setId("playedCards");
 		
 		tableCardsDeck.add(lbCardsDeck, 0, 0);
 		tableCardsDeck.add(btNextTableCard, 0, 2);
 		tableCardsDeck.setAlignment(Pos.CENTER);
+		tableCardsDeck.setHalignment(lbCardsDeck, HPos.CENTER);
 		tableCardsDeck.setId("nextTableCard");
 
 		newFollowerCard.add(lbNewFollowerDeck, 0, 0);
 		newFollowerCard.add(clNewFollowerDeck, 0, 1);
 		newFollowerCard.setAlignment(Pos.CENTER);
+		newFollowerCard.setHalignment(clNewFollowerDeck,HPos.CENTER);
 		newFollowerCard.setId("newFollowerCard");
 
-		hboxMiddleCards.getChildren().addAll(playedCards, tableCardsDeck, newFollowerCard);
-		hboxMiddleCards.setAlignment(Pos.CENTER);
-		hboxMiddleCards.setSpacing(10);
-		
-		this.add(hboxMiddleCards, 0, 0);
-		
+		this.getChildren().addAll(playedCards, tableCardsDeck, newFollowerCard);
 		this.setId("middleGame");
-		//this.setAlignment(Pos.CENTER);	
+		this.setAlignment(Pos.CENTER);
 		}
 
 	//Getter & Setter
