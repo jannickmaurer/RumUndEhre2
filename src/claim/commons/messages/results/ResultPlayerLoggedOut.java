@@ -23,7 +23,7 @@ public class ResultPlayerLoggedOut extends Message {
 	// Method to perform actions on Client Controller
 	@Override
 	public void process(Controller controller) {
-		// Spiel auf GUI unterbrechen und Button zum Logout anzeigen
+		controller.gameOver();
 	}
 	public void processIfFalse(Controller controller) {
 	

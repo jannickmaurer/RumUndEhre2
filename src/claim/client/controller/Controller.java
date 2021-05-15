@@ -85,8 +85,17 @@ public class Controller {
 			logout();
 		});
 		
+		view.getBtLogoutGameOver().setOnAction(e -> {
+			logout();
+			view.gameOverPopUp.hide();
+		});
+		
 		view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setOnAction(e -> {
 			this.getNextTableCard();
+		});
+		
+		view.getGameLayout().getMiddleGameLayout().getBtEvaluateWinner().setOnAction(e -> {
+			this.evaluateWinner();
 		});
 		
 		view.getBtnBackError().setOnAction(e -> {
@@ -304,6 +313,23 @@ public class Controller {
 		});
 	}
 	
+	public void gameOver() {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				view.gameOverPopUp.show(view.getStage());
+			}
+		});
+	}
+	
+	public void winner(String winner) {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				view.gameOverPopUp.show(view.getStage());
+				view.getLblWinner().setText("Der Gewinner ist: " + winner + ". Gut gemacht!");
+			}
+		});
+	}
+	
 	//SD - Karten zu Beginn des Spiels austeilen
 	public void deal(ArrayList<Card> handCards) {
 		board.sortHandCards(); //Handkarten werden noch sortiert
@@ -351,8 +377,8 @@ public class Controller {
 		
 		CardLabel cl1 = new CardLabel();
 		cl1.setCard(playedCard);
-		view.getGameLayout().getMiddleGameLayout().getPlayedCards().add(cl1, 0, 2);
-		view.getGameLayout().getMiddleGameLayout().getPlayedCards().setHalignment(cl1, HPos.CENTER);
+		view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().remove(2);
+		view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().add(2, cl1);
 	}
 	
 	public void otherPlayerCard(String card) {
@@ -361,8 +387,8 @@ public class Controller {
 			public void run() {
 				CardLabel cl2 = new CardLabel();
 				cl2.setCard(card);
-				view.getGameLayout().getMiddleGameLayout().getPlayedCards().add(cl2, 0, 1);
-				view.getGameLayout().getMiddleGameLayout().getPlayedCards().setHalignment(cl2, HPos.CENTER);
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().remove(1);
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().add(1, cl2);
 			}
 		});
 	}
@@ -372,8 +398,32 @@ public class Controller {
 			public void run() {
 				CardLabel cl3 = new CardLabel();
 				cl3.setCard(card);
-				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().add(cl3, 0, 1);
-				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().setHalignment(cl3, HPos.CENTER);
+				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().remove(1);
+				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().add(1, cl3);
+			}
+		});
+	}
+	
+	public void clearMyCard() {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				CardLabel cl4 = new CardLabel();
+				cl4.setDeck();
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().remove(1);
+				//view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().remove(2);
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().add(1, cl4);
+				//view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().add(2, cl4);
+			}
+		});
+	}
+	
+	public void clearOpponentCard() {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				CardLabel cl4 = new CardLabel();
+				cl4.setDeck();
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().remove(2);
+				view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().add(2, cl4);
 			}
 		});
 	}
@@ -433,49 +483,6 @@ public class Controller {
 					}
 				}
 		}
-	}
-	
-	public void clearMiddleLayout() {
-		Platform.runLater(new Runnable() {
-			public void run() {
-				view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().clear();
-				//view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().remove(CardLabel cl3);
-			}
-		});
-	}
-	
-	public void createPlayedCardLayout() {
-		Platform.runLater(new Runnable() {
-			public void run() {
-				Label lbOpponentCard = new Label("Opponent card");
-				Label lbMyCard = new Label("My Card");
-				
-				Rectangle r1 = new Rectangle();
-				r1.setWidth(92);
-				r1.setHeight(135);
-				r1.setArcWidth(10);
-				r1.setArcHeight(10);
-				r1.setFill(Color.rgb(244, 238, 232));
-				
-				Rectangle r2 = new Rectangle();
-				r2.setWidth(92);
-				r2.setHeight(135);
-				r2.setArcWidth(10);
-				r2.setArcHeight(10);
-				r2.setFill(Color.rgb(244, 238, 232));
-				
-				view.getGameLayout().getMiddleGameLayout().getPlayedCards().add(lbOpponentCard, 0, 0);
-				view.getGameLayout().getMiddleGameLayout().getPlayedCards().add(r1, 0, 1);
-				view.getGameLayout().getMiddleGameLayout().getPlayedCards().add(r2, 0, 2);
-				view.getGameLayout().getMiddleGameLayout().getPlayedCards().add(lbMyCard, 0, 3);
-				view.getGameLayout().getMiddleGameLayout().getPlayedCards().setAlignment(Pos.CENTER);
-				view.getGameLayout().getMiddleGameLayout().getPlayedCards().setHalignment(r1, HPos.CENTER);
-				view.getGameLayout().getMiddleGameLayout().getPlayedCards().setHalignment(r2, HPos.CENTER);
-				view.getGameLayout().getMiddleGameLayout().getPlayedCards().setHalignment(lbMyCard, HPos.CENTER);
-				view.getGameLayout().getMiddleGameLayout().getPlayedCards().setId("playedCards");
-			}
-		});
-		
 	}
 
 	// Getter & Setter

@@ -29,18 +29,15 @@
 }
 
 #playedCards {
-	-fx-hgap: 10;
-    -fx-vgap: 10;
+	-fx-spacing: 10;
 }
 
 #nextTableCard {
-	-fx-hgap: 10;
-    -fx-vgap: 10;
+	-fx-spacing: 10;
 }
 
 #newFollowerCard {
-	-fx-hgap: 10;
-    -fx-vgap: 10;
+	-fx-spacing: 10;
 }
 
 #player {
@@ -61,6 +58,10 @@
 }
 
 #textError {
+  	-fx-text-fill: rgba(20, 20, 20, 1);
+}
+
+#textOver {
   	-fx-text-fill: rgba(20, 20, 20, 1);
 }
 

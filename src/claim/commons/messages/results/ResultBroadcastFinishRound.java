@@ -56,7 +56,6 @@ public class ResultBroadcastFinishRound extends Message {
 			System.out.println("Ich habe verloren");
 			controller.setOnTurn(false);
 		}
-		controller.clearMiddleLayout();
 		controller.setCardPlayed(false);
 	}
 	

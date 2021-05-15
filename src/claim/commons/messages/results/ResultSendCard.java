@@ -48,9 +48,10 @@ public class ResultSendCard extends Message {
 			case "TableCard" :
 				System.out.println("Tischkarte auf Client " + card);
 				controller.tableCard(card);
-				controller.createPlayedCardLayout();
 				controller.enableHandCards();
 				controller.disableTableCardButton();
+				controller.clearMyCard();
+				controller.clearOpponentCard();
 				break;
 		}
 	

@@ -27,7 +27,7 @@ public class ResultBroadcastEvaluateWinner extends Message {
 	@Override
 	public void process(Controller controller) {
 		System.out.println("Winner is: " + this.winner);
-		// Show winner in both clients and process
+		controller.winner(winner);
 	}
 	
 	@Override

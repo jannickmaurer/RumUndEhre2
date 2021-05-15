@@ -40,6 +40,12 @@ public class View {
 	public ErrorPopupPane errorPopupLayout = new ErrorPopupPane();
 	public Popup errorPopUp = new Popup();
 	
+	public GameOverPopupPane gameOverPopupLayout = new GameOverPopupPane();
+	public Popup gameOverPopUp = new Popup();
+	
+	public WinnerPopupPane winnerPopupLayout = new WinnerPopupPane();
+	public Popup winnerPopUp = new Popup();
+	
 	//Elemente aus Connect Layout ansprechen
 	private Label lbPort = connectLayout.getLbPort();
 	private Label lbIP = connectLayout.getLbIP();
@@ -66,6 +72,14 @@ public class View {
 	//Elemente aus Error Layout ansprechen
 	private Label lblError = errorPopupLayout.getLblError();
 	private Button btnBackError = errorPopupLayout.getBtBackError();
+	
+	//Elemente aus GameOver Layout ansprechen
+	private Label lblOver = gameOverPopupLayout.getLblOver();
+	private Button btLogoutGameOver = gameOverPopupLayout.getBtLogout();
+	
+	//Elemente aus Winner Layout ansprechen
+	private Label lblWinner = winnerPopupLayout.getLblWinner();
+	private Button btLogoutWinner = winnerPopupLayout.getBtLogout();
 	
 	public View(Stage primaryStage, Model model) {
 		this.primaryStage = primaryStage;
@@ -96,6 +110,12 @@ public class View {
 		//Error Popups bereitstellen
 		errorPopUp.getContent().add(errorPopupLayout);
 		errorPopUp.setAutoHide(false);
+		
+		gameOverPopUp.getContent().add(gameOverPopupLayout);
+		gameOverPopUp.setAutoHide(false);
+		
+		winnerPopUp.getContent().add(winnerPopupLayout);
+		winnerPopUp.setAutoHide(false);
 		
 		scene = new Scene(root, 1100, 733);
 		scene.getStylesheets().add(getClass().getResource("Client.css").toExternalForm());
@@ -135,11 +155,45 @@ public class View {
 		registrationLayout.getBtBack().setText(t.getString("button.back"));
 		gameLayout.getBtLogout().setText(t.getString("button.logout"));
 		errorPopupLayout.getBtBackError().setText(t.getString("button.back"));
+		gameOverPopupLayout.getBtLogout().setText(t.getString("button.logout"));
+		winnerPopupLayout.getBtLogout().setText(t.getString("button.logout"));
 	}
 	
 	//Getter & Setter
 	public Stage getStage() {
 	    return primaryStage;
+	}
+
+	public Label getLblWinner() {
+		return lblWinner;
+	}
+
+	public void setLblWinner(Label lblWinner) {
+		this.lblWinner = lblWinner;
+	}
+
+	public Button getBtLogoutWinner() {
+		return btLogoutWinner;
+	}
+
+	public void setBtLogoutWinner(Button btLogoutWinner) {
+		this.btLogoutWinner = btLogoutWinner;
+	}
+
+	public Label getLblOver() {
+		return lblOver;
+	}
+
+	public void setLblOver(Label lblOver) {
+		this.lblOver = lblOver;
+	}
+
+	public Button getBtLogoutGameOver() {
+		return btLogoutGameOver;
+	}
+
+	public void setBtLogoutGameOver(Button btLogoutGameOver) {
+		this.btLogoutGameOver = btLogoutGameOver;
 	}
 
 	public BorderPane getRoot() {

@@ -19,12 +19,16 @@ import javafx.scene.shape.Rectangle;
 
 public class MiddleGamePane extends HBox {
 	private HBox hboxMiddleCards = new HBox();
-	private GridPane playedCards = new GridPane();
-	private GridPane tableCardsDeck = new GridPane();
-	private GridPane newFollowerCard = new GridPane();
+	private VBox playedCards = new VBox();
+	private VBox tableCardsDeck = new VBox();
+	private VBox newFollowerCard = new VBox();
 
 	private Button btNextTableCard = new Button("Next");
+	private Button btEvaluateWinner = new Button("Evaluate Winner");
 
+	private CardLabel clMyCard = new CardLabel();
+	private CardLabel clOpponentCard = new CardLabel();
+	private CardLabel clTableCardDeck = new CardLabel();
 	private CardLabel clNewFollowerDeck = new CardLabel();
 
 	//Konstruktor
@@ -34,52 +38,42 @@ public class MiddleGamePane extends HBox {
 		Label lbNewFollowerDeck = new Label("New Follower Card");
 		clNewFollowerDeck.setDeck();
 		
-		/*
-		 * Label lbOpponentCard = new Label("Opponent card"); Label lbMyCard = new
-		 * Label("My Card");
-		 * 
-		 * Rectangle r1 = new Rectangle(); r1.setWidth(92); r1.setHeight(135);
-		 * r1.setArcWidth(10); r1.setArcHeight(10); r1.setFill(Color.rgb(244, 238,
-		 * 232));
-		 * 
-		 * Rectangle r2 = new Rectangle(); r2.setWidth(92); r2.setHeight(135);
-		 * r2.setArcWidth(10); r2.setArcHeight(10); r2.setFill(Color.rgb(244, 238,
-		 * 232));
-		 * 
-		 * playedCards.add(lbOpponentCard, 0, 0); playedCards.add(r1, 0, 1);
-		 * playedCards.add(r2, 0, 2); playedCards.add(lbMyCard, 0, 3);
-		 * playedCards.setAlignment(Pos.CENTER); playedCards.setHalignment(r1,
-		 * HPos.CENTER); playedCards.setHalignment(r2, HPos.CENTER);
-		 * playedCards.setHalignment(lbMyCard, HPos.CENTER);
-		 * playedCards.setId("playedCards");
-		 */
+		Label lbOpponentCard = new Label("Opponent card");
+		Label lbMyCard = new Label("My Card");
+
+		clMyCard.setDeck();
+		clOpponentCard.setDeck();
 		
-		tableCardsDeck.add(lbCardsDeck, 0, 0);
-		tableCardsDeck.add(btNextTableCard, 0, 2);
+		playedCards.getChildren().add(lbOpponentCard);
+		playedCards.getChildren().add(clOpponentCard);
+		playedCards.getChildren().add(clMyCard);
+		playedCards.getChildren().add(lbMyCard);
+		playedCards.setAlignment(Pos.CENTER);
+		playedCards.setId("playedCards");
+		
+		clTableCardDeck.setDeck();
+		
+		tableCardsDeck.getChildren().add(lbCardsDeck);
+		tableCardsDeck.getChildren().add(clTableCardDeck);
+		tableCardsDeck.getChildren().add(btNextTableCard);
 		btNextTableCard.setDisable(true);
 		tableCardsDeck.setAlignment(Pos.CENTER);
-		tableCardsDeck.setHalignment(lbCardsDeck, HPos.CENTER);
 		tableCardsDeck.setId("nextTableCard");
 
-		newFollowerCard.add(lbNewFollowerDeck, 0, 0);
-		newFollowerCard.add(clNewFollowerDeck, 0, 1);
+		newFollowerCard.getChildren().add(lbNewFollowerDeck);
+		newFollowerCard.getChildren().add(clNewFollowerDeck);
+		newFollowerCard.getChildren().add(btEvaluateWinner);
+		btEvaluateWinner.setVisible(false);
+		
 		newFollowerCard.setAlignment(Pos.CENTER);
-		newFollowerCard.setHalignment(clNewFollowerDeck,HPos.CENTER);
 		newFollowerCard.setId("newFollowerCard");
 
 		this.getChildren().addAll(playedCards, tableCardsDeck, newFollowerCard);
 		this.setId("middleGame");
 		this.setAlignment(Pos.CENTER);
-		}
+	}
 
 	//Getter & Setter
-	public GridPane getTableCardsDeck() {
-		return tableCardsDeck;
-	}
-
-	public void setTableCardsDeck(GridPane tableCardsDeck) {
-		this.tableCardsDeck = tableCardsDeck;
-	}
 
 	public Button getBtNextTableCard() {
 		return btNextTableCard;
@@ -105,12 +99,60 @@ public class MiddleGamePane extends HBox {
 		this.clNewFollowerDeck = clNewFollowerDeck;
 	}
 
-	public GridPane getPlayedCards() {
+	public VBox getPlayedCards() {
 		return playedCards;
 	}
 
-	public void setPlayedCards(GridPane playedCards) {
+	public void setPlayedCards(VBox playedCards) {
 		this.playedCards = playedCards;
+	}
+
+	public VBox getTableCardsDeck() {
+		return tableCardsDeck;
+	}
+
+	public void setTableCardsDeck(VBox tableCardsDeck) {
+		this.tableCardsDeck = tableCardsDeck;
+	}
+
+	public VBox getNewFollowerCard() {
+		return newFollowerCard;
+	}
+
+	public void setNewFollowerCard(VBox newFollowerCard) {
+		this.newFollowerCard = newFollowerCard;
+	}
+
+	public Button getBtEvaluateWinner() {
+		return btEvaluateWinner;
+	}
+
+	public void setBtEvaluateWinner(Button btEvaluateWinner) {
+		this.btEvaluateWinner = btEvaluateWinner;
+	}
+
+	public CardLabel getClMyCard() {
+		return clMyCard;
+	}
+
+	public void setClMyCard(CardLabel clMyCard) {
+		this.clMyCard = clMyCard;
+	}
+
+	public CardLabel getClOpponentCard() {
+		return clOpponentCard;
+	}
+
+	public void setClOpponentCard(CardLabel clOpponentCard) {
+		this.clOpponentCard = clOpponentCard;
+	}
+
+	public CardLabel getClTableCardDeck() {
+		return clTableCardDeck;
+	}
+
+	public void setClTableCardDeck(CardLabel clTableCardDeck) {
+		this.clTableCardDeck = clTableCardDeck;
 	}
 	
 }
