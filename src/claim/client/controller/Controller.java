@@ -488,6 +488,7 @@ public class Controller {
 
 	public void enableHandCards() {
 		if (onTurn) {
+			System.out.println("An der Reihe");
 			board.setPlayableHC();
 			for (int i = 0; i < board.getHandCards().size(); i++) {
 				if(board.getHandCards().get(i).getPlayable())
