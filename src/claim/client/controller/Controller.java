@@ -29,6 +29,7 @@ import claim.commons.messages.results.ResultSendMessage;
 import claim.client.view.PlayerPane;
 import claim.client.view.CardLabel;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.Event;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
@@ -46,6 +47,7 @@ public class Controller {
 	private Board board;
 	private Boolean onTurn = false;
 	private Boolean cardPlayed = false;
+	private SimpleIntegerProperty playedRounds = new SimpleIntegerProperty();
 
 	
 
@@ -53,6 +55,7 @@ public class Controller {
 		this.model = model;
 		this.view = view;
 		board = new Board();
+		this.playedRounds.set(0);
 		
 		view.getBtConnect().setOnAction(event -> connect());
 		
@@ -130,6 +133,18 @@ public class Controller {
 				createMessage(content);
 				// Empties the Value of the StringProperty
 				model.getLastReceivedMessage().setValue("");
+			}
+		});
+		
+		this.playedRounds.addListener((o, oldValue, newValue) -> {
+			if (newValue.intValue() == 13) {
+				
+				if(onTurn) {
+					// Button anzeigen
+				}
+				this.playedRounds.set(0);
+				
+				
 			}
 		});
 		
@@ -556,4 +571,17 @@ public class Controller {
 	public void setCardPlayed(Boolean cardPlayed) {
 		this.cardPlayed = cardPlayed;
 	}
+
+	public SimpleIntegerProperty getPlayedRounds() {
+		return playedRounds;
+	}
+
+	public void setPlayedRounds(SimpleIntegerProperty playedRounds) {
+		this.playedRounds = playedRounds;
+	}
+	
+	public void increasePlayedRounds() {
+		this.playedRounds.set(this.playedRounds.get() + 1);
+	}
+	
 }
