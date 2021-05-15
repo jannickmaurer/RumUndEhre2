@@ -38,8 +38,13 @@ public class Login extends Message {
 			Playroom.getPlayrooms().get(0).addAccount(client.getAccount());
 			client.setPlayroom(Playroom.getPlayrooms().get(0));
 			result = true;
-			String[] content = new String[] {"ResultLogin", Boolean.toString(result), token, this.username};
-			client.send(new ResultLogin(content));
+			if(client.getPlayroom().getPlayers().size() > 1) {
+				String[] content = new String[] {"ResultLogin", Boolean.toString(result), token, this.username, client.getPlayroom().getPlayers().get(0).getUsername()};
+				client.send(new ResultLogin(content));	
+			} else {
+				String[] content = new String[] {"ResultLogin", Boolean.toString(result), token, this.username};
+				client.send(new ResultLogin(content));	
+			};
 			
 			for(Client c : Client.getClients()) {
 //				if(client.getPlayroom() == c.getPlayroom()) {

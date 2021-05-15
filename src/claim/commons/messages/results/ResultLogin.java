@@ -7,7 +7,7 @@ import claim.commons.ServiceLocator;
 import claim.commons.messages.Message;
 
 // Created by Jannick: Message Server -> Client
-// String: ResultLogin|Boolean|Token|Username
+// String: ResultLogin|Boolean|Token|Username|UsernameOpponent
 
 public class ResultLogin extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
@@ -15,6 +15,7 @@ public class ResultLogin extends Message {
 	
 	private String token;
 	private String username;
+	private String opponent;
 
 	public ResultLogin(boolean result) {
 		super(new String[] {"ResultLogin", Boolean.toString(result)});
@@ -24,6 +25,9 @@ public class ResultLogin extends Message {
 		if(content.length > 2) {
 			this.token = content[2];
 			this.username = content[3];
+		}
+		if(content.length > 3) {
+			this.opponent = content[4];
 		}
 	}
 	@Override
