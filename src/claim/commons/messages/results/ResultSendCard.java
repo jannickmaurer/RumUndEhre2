@@ -50,8 +50,10 @@ public class ResultSendCard extends Message {
 				controller.tableCard(card);
 				controller.enableHandCards();
 				controller.disableTableCardButton();
+				controller.clearFollowerCard();
 				controller.clearMyCard();
 				controller.clearOpponentCard();
+				
 				break;
 		}
 	

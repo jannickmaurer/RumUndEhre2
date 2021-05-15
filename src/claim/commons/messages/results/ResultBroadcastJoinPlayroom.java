@@ -27,7 +27,7 @@ public class ResultBroadcastJoinPlayroom extends Message {
 	@Override
 	public void process(Controller controller) {
 		System.out.println("Second Player joined: " + this.username);
-		// Show username of opposite player in GUI
+		controller.updateOpponent(username);
 	}
 	
 	@Override

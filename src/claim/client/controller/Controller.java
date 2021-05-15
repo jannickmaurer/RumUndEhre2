@@ -288,6 +288,7 @@ public class Controller {
 		Platform.runLater(new Runnable() {
 			public void run() {
 				view.getRoot().setCenter(view.gameLayout);
+				view.getGameLayout().getLbName().setText(username);
 				view.getStage().setTitle("Game");
 				view.getTfUsername().setText("");
 				view.getPfPassword().setText("");
@@ -328,6 +329,15 @@ public class Controller {
 				view.getLblWinner().setText("Der Gewinner ist: " + winner + ". Gut gemacht!");
 			}
 		});
+	}
+	
+	public void updateOpponent(String username2) {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				view.getGameLayout().getLbOtherName().setText(username2);
+			}
+		});
+		
 	}
 	
 	//SD - Karten zu Beginn des Spiels austeilen
@@ -410,9 +420,7 @@ public class Controller {
 				CardLabel cl4 = new CardLabel();
 				cl4.setDeck();
 				view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().remove(1);
-				//view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().remove(2);
 				view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().add(1, cl4);
-				//view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().add(2, cl4);
 			}
 		});
 	}
@@ -427,6 +435,30 @@ public class Controller {
 			}
 		});
 	}
+	
+	public void showNewFollowerCard(String tableCard) {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				CardLabel cl5 = new CardLabel();
+				cl5.setCard(tableCard);
+				view.getGameLayout().getMiddleGameLayout().getNewFollowerCard().getChildren().remove(1);
+				view.getGameLayout().getMiddleGameLayout().getNewFollowerCard().getChildren().add(1, cl5);
+			}
+		});
+	}
+	
+	public void clearFollowerCard() {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				CardLabel cl6 = new CardLabel();
+				cl6.setDeck();
+				view.getGameLayout().getMiddleGameLayout().getNewFollowerCard().getChildren().remove(1);
+				view.getGameLayout().getMiddleGameLayout().getNewFollowerCard().getChildren().add(1, cl6);
+			}
+		});
+	}
+	
+	
 	
 	//SD
 	public void highlightCard(Event event) {

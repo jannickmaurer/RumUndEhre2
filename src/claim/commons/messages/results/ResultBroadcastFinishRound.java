@@ -54,6 +54,7 @@ public class ResultBroadcastFinishRound extends Message {
 		} else {
 			// Table Karte, die der Verlierer erhält, anzeigen
 			System.out.println("Ich habe verloren");
+			controller.showNewFollowerCard(TableCard);
 			controller.setOnTurn(false);
 		}
 		controller.setCardPlayed(false);

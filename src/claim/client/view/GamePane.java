@@ -109,4 +109,38 @@ public class GamePane extends GridPane {
 		this.middleGameLayout = middleGameLayout;
 	}
 	
+	public Label getLbOtherName() {
+		return lbOtherName;
+	}
+
+
+
+	public void setLbOtherName(Label lbOtherName) {
+		this.lbOtherName = lbOtherName;
+	}
+
+
+
+	public Label getLbOtherPoints() {
+		return lbOtherPoints;
+	}
+
+
+
+	public void setLbOtherPoints(Label lbOtherPoints) {
+		this.lbOtherPoints = lbOtherPoints;
+	}
+
+
+
+	public Label getLbOtherPointsPlayer() {
+		return lbOtherPointsPlayer;
+	}
+
+
+
+	public void setLbOtherPointsPlayer(Label lbOtherPointsPlayer) {
+		this.lbOtherPointsPlayer = lbOtherPointsPlayer;
+	}
+	
 }
