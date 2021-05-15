@@ -13,13 +13,13 @@ import javafx.scene.layout.VBox;
 
 public class OtherPlayerPane extends VBox {
 	private Label lbName = new Label("Name");
-	private Label lbPoints = new Label("Punkte");
+	//private Label lbPoints = new Label("Punkte");
 	private HBox hboxDecks = new HBox();
-	private HBox hboxPoints = new HBox();
+	//private HBox hboxPoints = new HBox();
 	private CardLabel clScoreDeck = new CardLabel();
 	private CardLabel clFollowerDeck = new CardLabel();
 	
-	private Label lbPointsPlayer = new Label("0");
+	//private Label lbPointsPlayer = new Label("0");
 
 	//Konstruktor
 	public OtherPlayerPane() {		
@@ -39,11 +39,11 @@ public class OtherPlayerPane extends VBox {
 		hboxDecks.setAlignment(Pos.CENTER);
 		hboxDecks.setSpacing(10);
 		
-		hboxPoints.getChildren().addAll(lbPoints, lbPointsPlayer);
-		hboxPoints.setAlignment(Pos.CENTER);
-		hboxPoints.setSpacing(10);
+		//hboxPoints.getChildren().addAll(lbPoints, lbPointsPlayer);
+		//hboxPoints.setAlignment(Pos.CENTER);
+		//hboxPoints.setSpacing(10);
 		
-		this.getChildren().addAll(lbName, hboxPoints, hboxDecks);
+		this.getChildren().addAll(lbName, hboxDecks);
 		
 		this.setId("otherPlayer");
 		this.setAlignment(Pos.CENTER);	
@@ -56,21 +56,5 @@ public class OtherPlayerPane extends VBox {
 
 	public void setLbName(Label lbName) {
 		this.lbName = lbName;
-	}
-
-	public Label getLbPoints() {
-		return lbPoints;
-	}
-
-	public void setLbPoints(Label lbPoints) {
-		this.lbPoints = lbPoints;
-	}
-
-	public Label getLbPointsPlayer() {
-		return lbPointsPlayer;
-	}
-
-	public void setLbPointsPlayer(Label lbPointsPlayer) {
-		this.lbPointsPlayer = lbPointsPlayer;
 	}
 }

@@ -35,6 +35,9 @@ public class ResultLogin extends Message {
 		controller.loginSuccess();
 		controller.getModel().setToken(this.token);
 		controller.setUsername(username);
+		if(opponent != null ) {
+			controller.updateOpponent(opponent);
+		}
 	}
 	
 	@Override

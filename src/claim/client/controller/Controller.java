@@ -141,6 +141,7 @@ public class Controller {
 				
 				if(onTurn) {
 					// Button anzeigen
+					view.getGameLayout().getMiddleGameLayout().getBtEvaluateWinner().setVisible(true);
 				}
 				this.playedRounds.set(0);
 				
@@ -340,7 +341,7 @@ public class Controller {
 	public void winner(String winner) {
 		Platform.runLater(new Runnable() {
 			public void run() {
-				view.gameOverPopUp.show(view.getStage());
+				view.winnerPopUp.show(view.getStage());
 				view.getLblWinner().setText("Der Gewinner ist: " + winner + ". Gut gemacht!");
 			}
 		});

@@ -21,8 +21,8 @@ public class GamePane extends GridPane {
 	
 	//Elemente aus Player Layout ansprechen
 	private Label lbName = playerLayout.getLbName();
-	private Label lbPoints = playerLayout.getLbPoints();
-	private Label lbPointsPlayer = playerLayout.getLbPointsPlayer();
+	//private Label lbPoints = playerLayout.getLbPoints();
+	//private Label lbPointsPlayer = playerLayout.getLbPointsPlayer();
 	private ArrayList cardLabels = playerLayout.getCardLabels();
 	private Button btLogout = playerLayout.getBtLogout();
 	
@@ -31,8 +31,8 @@ public class GamePane extends GridPane {
 	
 	//Elemente aus Other Player Layout ansprechen
 	private Label lbOtherName = otherPlayerLayout.getLbName();
-	private Label lbOtherPoints = otherPlayerLayout.getLbPoints();
-	private Label lbOtherPointsPlayer = otherPlayerLayout.getLbPointsPlayer();
+	//private Label lbOtherPoints = otherPlayerLayout.getLbPoints();
+	//private Label lbOtherPointsPlayer = otherPlayerLayout.getLbPointsPlayer();
 
 	
 	private VBox vbPlayer = new VBox();
@@ -68,23 +68,6 @@ public class GamePane extends GridPane {
 		this.lbName = lbName;
 	}
 
-	public Label getLbPoints() {
-		return lbPoints;
-	}
-
-	public void setLbPoints(Label lbPoints) {
-		this.lbPoints = lbPoints;
-	}
-
-
-	public Label getLbPointsPlayer() {
-		return lbPointsPlayer;
-	}
-
-	public void setLbPointsPlayer(Label lbPointsPlayer) {
-		this.lbPointsPlayer = lbPointsPlayer;
-	}
-
 	public ArrayList getCardLabels() {
 		return cardLabels;
 	}
@@ -118,29 +101,4 @@ public class GamePane extends GridPane {
 	public void setLbOtherName(Label lbOtherName) {
 		this.lbOtherName = lbOtherName;
 	}
-
-
-
-	public Label getLbOtherPoints() {
-		return lbOtherPoints;
-	}
-
-
-
-	public void setLbOtherPoints(Label lbOtherPoints) {
-		this.lbOtherPoints = lbOtherPoints;
-	}
-
-
-
-	public Label getLbOtherPointsPlayer() {
-		return lbOtherPointsPlayer;
-	}
-
-
-
-	public void setLbOtherPointsPlayer(Label lbOtherPointsPlayer) {
-		this.lbOtherPointsPlayer = lbOtherPointsPlayer;
-	}
-	
 }

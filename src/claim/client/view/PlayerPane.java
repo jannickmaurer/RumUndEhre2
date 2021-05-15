@@ -16,15 +16,15 @@ import javafx.scene.layout.VBox;
 
 public class PlayerPane extends VBox {
 	private Label lbName = new Label("Name");
-	private Label lbPoints = new Label("Punkte");
+	//private Label lbPoints = new Label("Punkte");
 	private HBox hboxCards = new HBox();
 	private HBox hboxDecks = new HBox();
-	private HBox hboxPoints = new HBox();
+	//private HBox hboxPoints = new HBox();
 	private CardLabel clScoreDeck = new CardLabel();
 	private CardLabel clFollowerDeck = new CardLabel();
 	
-	private GridPane pointsGrid = new GridPane();
-	private Label lbPointsPlayer = new Label("0");
+	//private GridPane pointsGrid = new GridPane();
+	//private Label lbPointsPlayer = new Label("0");
 	
 	private Button btLogout = new Button();
 
@@ -46,8 +46,8 @@ public class PlayerPane extends VBox {
 		
 		hboxCards.setAlignment(Pos.CENTER);
 				
-		pointsGrid.add(lbPoints, 0, 0);
-		pointsGrid.add(lbPointsPlayer, 2, 0);
+		//pointsGrid.add(lbPoints, 0, 0);
+		//pointsGrid.add(lbPointsPlayer, 2, 0);
 		
 		VBox vboxScoreDeck = new VBox();
 		Label lbScoreDeck = new Label("Score Deck");
@@ -65,11 +65,11 @@ public class PlayerPane extends VBox {
 		hboxDecks.setAlignment(Pos.CENTER);
 		hboxDecks.setSpacing(10);
 		
-		hboxPoints.getChildren().addAll(lbPoints, lbPointsPlayer);
-		hboxPoints.setAlignment(Pos.CENTER);
-		hboxPoints.setSpacing(10);
+		//hboxPoints.getChildren().addAll(lbPoints, lbPointsPlayer);
+		//hboxPoints.setAlignment(Pos.CENTER);
+		//hboxPoints.setSpacing(10);
 		
-		this.getChildren().addAll(lbName, hboxPoints, hboxCards, hboxDecks, btLogout);
+		this.getChildren().addAll(lbName, hboxCards, hboxDecks, btLogout);
 
 		this.setId("player");
 		this.setAlignment(Pos.CENTER);
@@ -116,22 +116,6 @@ public class PlayerPane extends VBox {
 
 	public void setLbName(Label lbName) {
 		this.lbName = lbName;
-	}
-
-	public Label getLbPoints() {
-		return lbPoints;
-	}
-
-	public void setLbPoints(Label lbPoints) {
-		this.lbPoints = lbPoints;
-	}
-
-	public Label getLbPointsPlayer() {
-		return lbPointsPlayer;
-	}
-
-	public void setLbPointsPlayer(Label lbPointsPlayer) {
-		this.lbPointsPlayer = lbPointsPlayer;
 	}
 
 	public ArrayList<CardLabel> getCardLabels() {
