@@ -58,6 +58,7 @@ public class ResultBroadcastFinishRound extends Message {
 			controller.setOnTurn(false);
 		}
 		controller.setCardPlayed(false);
+		controller.increasePlayedRounds();
 	}
 	
 	@Override

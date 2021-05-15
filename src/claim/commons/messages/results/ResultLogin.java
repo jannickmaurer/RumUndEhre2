@@ -26,7 +26,7 @@ public class ResultLogin extends Message {
 			this.token = content[2];
 			this.username = content[3];
 		}
-		if(content.length > 3) {
+		if(content.length > 4) {
 			this.opponent = content[4];
 		}
 	}
@@ -41,5 +41,4 @@ public class ResultLogin extends Message {
 	public void processIfFalse(Controller controller) {
 		controller.somethingFailed();
 	}
-
 }
