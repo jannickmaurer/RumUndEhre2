@@ -11,7 +11,7 @@ public class Board {
 	
 	public ArrayList<Card> handCards;
 	private ArrayList<Card> followerCards;
-	private ArrayList<Card> pointCards;//Was sind PointCArds?????  Untote?
+	private ArrayList<Card> pointCards;
 	private ArrayList<Card> undeadCards;
 	
 	public Board() {
@@ -33,8 +33,6 @@ public class Board {
 		}
 	}
 	
-	
-
 	/*
 	 * David Schürch
 	 * Entfernt die gespielte Karte aud der ArrayList Handcards
@@ -91,7 +89,7 @@ public class Board {
 	}
 	
 	//Dave: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
-	public String suitToString(Card card) {
+	private String suitToString(Card card) {
 		String cardString = card.toString();
 	    String[] tmp = cardString.split("\\_");
     	return tmp[0];
@@ -101,7 +99,7 @@ public class Board {
 	 * David Schürch
 	 * Sortiert bei Aufruf die Handkarten des Spielers 
 	 */
-	public void sortHandCards() {
+	private void sortHandCards() {
 		ArrayList<Card> goblinCards = new ArrayList<>();
 		ArrayList<Card> dwarfCards = new ArrayList<>();
 		ArrayList<Card> undeadCards = new ArrayList<>();
