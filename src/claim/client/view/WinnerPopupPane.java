@@ -10,7 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 public class WinnerPopupPane extends GridPane {	
-	private Label lblWinner = new Label("Das Spiel ist zu Ende");
+	private Label lblWinner = new Label();
 	private Button btLogout = new Button();
 	
 	//Konstruktor

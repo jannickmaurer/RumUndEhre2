@@ -93,6 +93,11 @@ public class Controller {
 			view.gameOverPopUp.hide();
 		});
 		
+		view.getBtLogoutWinner().setOnAction(e -> {
+			logout();
+			view.winnerPopUp.hide();
+		});
+		
 		view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setOnAction(e -> {
 			this.getNextTableCard();
 		});
@@ -317,6 +322,19 @@ public class Controller {
 			public void run() {
 				view.getRoot().setCenter(view.loginLayout);
 				view.getStage().setTitle("Login");
+				//CardLabel cl4 = new CardLabel();
+				//cl4.setDeck();
+				//view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().remove(1);
+				//view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().add(1, cl4);
+				
+				//view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().remove(1);
+				//view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().add(1, cl4);
+				//view.getGameLayout().getMiddleGameLayout().getNewFollowerCard().getChildren().remove(1);
+				//view.getGameLayout().getMiddleGameLayout().getNewFollowerCard().getChildren().add(1, cl4);
+				//view.getGameLayout().getPlayerLayout().getHboxCards().getChildren().clear();
+				//view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setDisable(true);
+				//view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().remove(2);
+				//view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().add(2, cl4);
 			}
 		});
 		logger.info("Logout Successful");
@@ -385,9 +403,10 @@ public class Controller {
 			public void run() {
 				CardLabel clToRemove = new CardLabel();
 				for(CardLabel cl : view.getGameLayout().getPlayerLayout().getCardLabels()) {
-					if(cl.getCardNameAsString().equals(playedCard)) {
-						clToRemove = cl;
-					}
+						if(cl.getCardNameAsString().equals(playedCard)) {
+							clToRemove = cl;
+						}
+					
 				}
 				view.getGameLayout().getPlayerLayout().getCardLabels().remove(clToRemove);
 				view.getGameLayout().getPlayerLayout().getHboxCards().getChildren().remove(clToRemove);
@@ -396,6 +415,28 @@ public class Controller {
 			}
 		});
 	}
+	
+	//public void updatePlayerPane(String playedCard) {
+	//	Platform.runLater(new Runnable() {
+	//		public void run() {
+	//			CardLabel clToRemove = new CardLabel();
+	//			int found = 0;
+	//			for(CardLabel cl : view.getGameLayout().getPlayerLayout().getCardLabels()) {
+	//				while(found < 1) {
+	//					if(cl.getCardNameAsString().equals(playedCard)) {
+	//						clToRemove = cl;
+	//						found = 1;
+	//						System.out.println("Karte gefunden!");
+	//					}
+	//				}
+	//			}
+	//			view.getGameLayout().getPlayerLayout().getCardLabels().remove(clToRemove);
+	//			view.getGameLayout().getPlayerLayout().getHboxCards().getChildren().remove(clToRemove);
+	//			
+	//			updateGameDisplay(playedCard);
+	//		}
+	//	});
+	//}
 	
 	//SD - Gespielte Karten in der Mitte anzeigen
 	public void updateGameDisplay(String playedCard) {

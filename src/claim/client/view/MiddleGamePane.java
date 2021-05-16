@@ -22,9 +22,14 @@ public class MiddleGamePane extends HBox {
 	private VBox playedCards = new VBox();
 	private VBox tableCardsDeck = new VBox();
 	private VBox newFollowerCard = new VBox();
-
-	private Button btNextTableCard = new Button("Next");
-	private Button btEvaluateWinner = new Button("Evaluate Winner");
+	
+	private Label lbCardsDeck = new Label();
+	private Label lbNewFollowerDeck = new Label();
+	
+	private Button btNextTableCard = new Button();
+	private Button btEvaluateWinner = new Button();
+	private Label lbOpponentCard = new Label();
+	private Label lbMyCard = new Label();
 
 	private CardLabel clMyCard = new CardLabel();
 	private CardLabel clOpponentCard = new CardLabel();
@@ -33,14 +38,7 @@ public class MiddleGamePane extends HBox {
 
 	//Konstruktor
 	public MiddleGamePane() {		
-		Label lbCardsDeck = new Label("Table Card");
-		
-		Label lbNewFollowerDeck = new Label("New Follower Card");
-		clNewFollowerDeck.setDeck();
-		
-		Label lbOpponentCard = new Label("Opponent card");
-		Label lbMyCard = new Label("My Card");
-
+				
 		clMyCard.setDeck();
 		clOpponentCard.setDeck();
 		
@@ -60,11 +58,12 @@ public class MiddleGamePane extends HBox {
 		tableCardsDeck.setAlignment(Pos.CENTER);
 		tableCardsDeck.setId("nextTableCard");
 
+		clNewFollowerDeck.setDeck();
+		
 		newFollowerCard.getChildren().add(lbNewFollowerDeck);
 		newFollowerCard.getChildren().add(clNewFollowerDeck);
 		newFollowerCard.getChildren().add(btEvaluateWinner);
 		btEvaluateWinner.setVisible(false);
-		
 		newFollowerCard.setAlignment(Pos.CENTER);
 		newFollowerCard.setId("newFollowerCard");
 
@@ -77,6 +76,38 @@ public class MiddleGamePane extends HBox {
 
 	public Button getBtNextTableCard() {
 		return btNextTableCard;
+	}
+
+	public Label getLbCardsDeck() {
+		return lbCardsDeck;
+	}
+
+	public void setLbCardsDeck(Label lbCardsDeck) {
+		this.lbCardsDeck = lbCardsDeck;
+	}
+
+	public Label getLbNewFollowerDeck() {
+		return lbNewFollowerDeck;
+	}
+
+	public void setLbNewFollowerDeck(Label lbNewFollowerDeck) {
+		this.lbNewFollowerDeck = lbNewFollowerDeck;
+	}
+
+	public Label getLbOpponentCard() {
+		return lbOpponentCard;
+	}
+
+	public void setLbOpponentCard(Label lbOpponentCard) {
+		this.lbOpponentCard = lbOpponentCard;
+	}
+
+	public Label getLbMyCard() {
+		return lbMyCard;
+	}
+
+	public void setLbMyCard(Label lbMyCard) {
+		this.lbMyCard = lbMyCard;
 	}
 
 	public void setBtNextTableCard(Button btNextTableCard) {

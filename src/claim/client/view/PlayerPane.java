@@ -15,8 +15,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class PlayerPane extends VBox {
-	private Label lbName = new Label("Name");
+	private Label lbName = new Label();
 	//private Label lbPoints = new Label("Punkte");
+	private Label lbScoreDeck = new Label();
+	private Label lbFollowerDeck = new Label();
 	private HBox hboxCards = new HBox();
 	private HBox hboxDecks = new HBox();
 	//private HBox hboxPoints = new HBox();
@@ -50,20 +52,20 @@ public class PlayerPane extends VBox {
 		//pointsGrid.add(lbPointsPlayer, 2, 0);
 		
 		VBox vboxScoreDeck = new VBox();
-		Label lbScoreDeck = new Label("Score Deck");
+		
 		clScoreDeck.setDeck();
 		vboxScoreDeck.setAlignment(Pos.CENTER);
 		vboxScoreDeck.getChildren().addAll(clScoreDeck, lbScoreDeck);
 		
 		VBox vboxFollowerDeck = new VBox();
-		Label lbFollowerDeck = new Label("Follower Deck");
+		
 		clFollowerDeck.setDeck();
 		vboxFollowerDeck.setAlignment(Pos.CENTER);
 		vboxFollowerDeck.getChildren().addAll(clFollowerDeck, lbFollowerDeck);
 		
 		hboxDecks.getChildren().addAll(vboxScoreDeck, vboxFollowerDeck);
 		hboxDecks.setAlignment(Pos.CENTER);
-		hboxDecks.setSpacing(10);
+		hboxDecks.setSpacing(30);
 		
 		//hboxPoints.getChildren().addAll(lbPoints, lbPointsPlayer);
 		//hboxPoints.setAlignment(Pos.CENTER);
@@ -97,6 +99,30 @@ public class PlayerPane extends VBox {
 	public Button getBtLogout() {
 		return btLogout;
 	}
+
+	public Label getLbScoreDeck() {
+		return lbScoreDeck;
+	}
+
+
+
+	public void setLbScoreDeck(Label lbScoreDeck) {
+		this.lbScoreDeck = lbScoreDeck;
+	}
+
+
+
+	public Label getLbFollowerDeck() {
+		return lbFollowerDeck;
+	}
+
+
+
+	public void setLbFollowerDeck(Label lbFollowerDeck) {
+		this.lbFollowerDeck = lbFollowerDeck;
+	}
+
+
 
 	public void setBtLogout(Button btLogout) {
 		this.btLogout = btLogout;

@@ -67,7 +67,16 @@ public class View {
 	private Button btBack = registrationLayout.getBtBack();
 	
 	//Elemente aus Game Layout ansprechen
+	private Label lbScoreDeckP1 = gameLayout.getLbScoreDeckP1();
+	private Label lbFollowerDeckP1 = gameLayout.getLbFollowerDeckP1();
+	private Label lbOpponentCard = gameLayout.getLbOpponentCard();
+	private Label lbMyCard = gameLayout.getLbMyCard();
+	private Label lbNewFollowerDeck = gameLayout.getLbNewFollowerDeck();
+	private Label lbCardsDeck = gameLayout.getLbCardsDeck();
+	private Label lbScoreDeckP2 = gameLayout.getLbScoreDeckP2();
+	private Label lbFollowerDeckP2 = gameLayout.getLbFollowerDeckP2();
 	private Button btLogout = gameLayout.getBtLogout();
+	private Button btEvaluateWinner = gameLayout.getBtEvaluateWinner();
 	
 	//Elemente aus Error Layout ansprechen
 	private Label lblError = errorPopupLayout.getLblError();
@@ -145,6 +154,16 @@ public class View {
 		registrationLayout.getTfNewUsername().setPromptText(t.getString("label.username"));
 		registrationLayout.getPfNewPassword().setPromptText(t.getString("label.password"));
 		errorPopupLayout.getLblError().setText(t.getString("label.error"));
+		gameOverPopupLayout.getLblOver().setText(t.getString("label.over"));
+		winnerPopupLayout.getLblWinner().setText(t.getString("label.winner"));
+		gameLayout.getLbScoreDeckP1().setText(t.getString("label.scoredeck"));
+		gameLayout.getLbFollowerDeckP1().setText(t.getString("label.followerdeck"));
+		gameLayout.getLbOpponentCard().setText(t.getString("label.opponentcard"));
+		gameLayout.getLbMyCard().setText(t.getString("label.mycard"));
+		gameLayout.getLbNewFollowerDeck().setText(t.getString("label.newfollowerdeck"));
+		gameLayout.getLbCardsDeck().setText(t.getString("label.cardsdeck"));
+		gameLayout.getLbScoreDeckP2().setText(t.getString("label.scoredeck"));
+		gameLayout.getLbFollowerDeckP2().setText(t.getString("label.followerdeck"));
 		
 		// Other controls
 		connectLayout.getBtConnect().setText(t.getString("button.run"));
@@ -154,6 +173,8 @@ public class View {
 		registrationLayout.getBtCreateAccount().setText(t.getString("button.registration"));
 		registrationLayout.getBtBack().setText(t.getString("button.back"));
 		gameLayout.getBtLogout().setText(t.getString("button.logout"));
+		gameLayout.getBtEvaluateWinner().setText(t.getString("button.evaluatewinner"));
+		gameLayout.getBtNextTableCard().setText(t.getString("button.next"));
 		errorPopupLayout.getBtBackError().setText(t.getString("button.back"));
 		gameOverPopupLayout.getBtLogout().setText(t.getString("button.logout"));
 		winnerPopupLayout.getBtLogout().setText(t.getString("button.logout"));
