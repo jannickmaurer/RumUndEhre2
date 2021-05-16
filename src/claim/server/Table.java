@@ -52,8 +52,6 @@ public class Table {
 
 	private DeckOfCards deck;
 	public ArrayList<Card> tableCards = new ArrayList<>();
-//	public ArrayList<Card> followerCardsP1 = new ArrayList<>();
-//	public ArrayList<Card> followerCardsP2 = new ArrayList<>();
 	public ArrayList<Card> tmpUndeads = new ArrayList<>();
 	private int fractionPointsP1;
 	private int fractionPointsP2;
@@ -130,11 +128,8 @@ public class Table {
 				   followerCardP1 = tmp;
 				   players.get(0).getFollowerCards().add(followerCardP1); 
 				   winner = 1; break;
-
 		}	
-
-//		for(Account a : players) {
-//		String temp = getNextTableCard().toString();
+		
 		for(int i = 0; players.size() > i; i++) {
 		   if(undeadString.equalsIgnoreCase("None")) {
 			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(winner).getUsername(), tmp.toString()};
@@ -144,23 +139,19 @@ public class Table {
 			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
 		   }
 		}
-
 		
 		this.playedCards.set(0);
 		
 		for(Account a: players) {
 			a.clearPlayedCard();
 		}
-		
-
 	}	
 	
 	//Dave: Falls eine der beiden Karten ein Untoter ist oder beide, muss diese dem Spieler
 	//auf den Punktestapel zugesandt werden der  hat.
 	public String evaluateWinnerCard(Card cardP1, Card cardP2) {
 		String win = "P1";
-		//gibt den Sieger aus. Rückgabewert noch unbekannt, evtl. boolean, zu definieren. Eingabe auch
-		//evtl. zuerst aus String noch Karte machen
+
 		if(suitToString(cardP1).equals("goblin") && suitToString(cardP2).equals("knight") ||
 				suitToString(cardP1).equals("knight") && suitToString(cardP2).equals("goblin")) {
 			if(suitToString(cardP1).equals("knight")) return "P1";				
@@ -225,7 +216,7 @@ public class Table {
 		ArrayList<Card> doubleP1 = new ArrayList<>();
 		ArrayList<Card> doubleP2 = new ArrayList<>();
 		
-		for (Card card : players.get(0).getFollowerCards()) {//Changed from followerCardsP1
+		for (Card card : players.get(0).getFollowerCards()) {
 			switch (suitToString(card)) {
 			case "goblin": goblinP1.add(card); break;
 			case "dwarf" : dwarfP1.add(card);  break;
@@ -234,7 +225,7 @@ public class Table {
 			}
 		}
 		
-		for (Card card : players.get(1).getFollowerCards()) {//Changed from followerCardsP2
+		for (Card card : players.get(1).getFollowerCards()) {
 			switch (suitToString(card)) {
 			case "goblin": goblinP2.add(card); break;
 			case "dwarf" : dwarfP2.add(card);  break;
@@ -281,19 +272,7 @@ public class Table {
 	 * David: Gibt die letzte Karte der Tischkarten zurück und löscht diese
 	 */
 	public Card getNextTableCard() {
-		
-		//Siegerauswertung direkt. Neue Message muss noch erstellt werden
-		
-//        if(tableCards.isEmpty()) {
-//        	String win = winner();
-//        	System.out.println("Table | getNextTableCard() | der Siger des gesamten Spiels ist: "+win);
-//    		for(Account a : players) {
-//    			String[] content = {"ResultSendGameWinner", "true", win};
-//    			a.getClient().send(new ResultSendGameWinner(content));
-//    		}
-//        }
-
-        Card card = (tableCards.size() > 0) ? tableCards.remove(tableCards.size()-1) : null;
+	    Card card = (tableCards.size() > 0) ? tableCards.remove(tableCards.size()-1) : null;
         actualTableCard = card;
         System.out.println("Get next Table Card: " + card.toString());
         System.out.println("Size Table Cards: " + tableCards.size());
@@ -331,8 +310,6 @@ public class Table {
 		for(Account a : players) {
 			a.getClient().send(new ResultBroadcastEvaluateWinner(content));
 		}
-		
-		
 	}
 	
 	//Jannick: Stoppt das Schwitzen
@@ -346,14 +323,7 @@ public class Table {
 			if(a.getUsername().equalsIgnoreCase(players.get(i).getUsername())) {
 				players.remove(i);
 			}
-	}
-		
-		
-//		for(Account ac : players) {
-//			if(ac.getUsername().equals(a.getUsername())) {
-//				players.remove(ac);
-//			}
-//		}
+		}
 	}
 	
 	public SimpleIntegerProperty getPlayedCards() {
@@ -366,6 +336,4 @@ public class Table {
 	public void increasePlayedCards() {
 		this.playedCards.set(this.playedCards.get() + 1);
 	}
-	
-	
 }
