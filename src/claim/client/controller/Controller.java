@@ -310,8 +310,10 @@ public class Controller {
 				view.getStage().setTitle("Login");
 				clearMyCard();
 				clearOpponentCard();
+				clearTableCard();
 				clearFollowerCard();
 				disableTableCardButton();
+				resetHandCards();
 			}
 		});
 		logger.info("Logout Successful");
@@ -470,6 +472,17 @@ public class Controller {
 		});
 	}
 	
+	public void clearTableCard() {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				CardLabel cl4 = new CardLabel();
+				cl4.setDeck();
+				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().remove(1);
+				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().add(1, cl4);
+			}
+		});
+	}
+	
 	public void showNewFollowerCard(String tableCard) {
 		Platform.runLater(new Runnable() {
 			public void run() {
@@ -488,6 +501,20 @@ public class Controller {
 				cl6.setDeck();
 				view.getGameLayout().getMiddleGameLayout().getNewFollowerCard().getChildren().remove(1);
 				view.getGameLayout().getMiddleGameLayout().getNewFollowerCard().getChildren().add(1, cl6);
+			}
+		});
+	}
+	
+	public void resetHandCards() {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				view.getGameLayout().getPlayerLayout().getHboxCards().getChildren().clear();
+				view.getGameLayout().getPlayerLayout().getCardLabels().clear();
+				CardLabel cl = new CardLabel();
+				view.getGameLayout().getPlayerLayout().getHboxCards().getChildren().add(cl);
+				view.getGameLayout().getPlayerLayout().getHboxCards().setSpacing(10);
+				view.getGameLayout().getPlayerLayout().getCardLabels().add(cl);
+				cl.setDisable(true);
 			}
 		});
 	}
