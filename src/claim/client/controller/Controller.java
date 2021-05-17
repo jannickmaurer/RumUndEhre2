@@ -31,11 +31,6 @@ import claim.client.view.CardLabel;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.Event;
-import javafx.geometry.HPos;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 // Created by Samuel & Jannick
 public class Controller {
@@ -48,8 +43,6 @@ public class Controller {
 	private Boolean onTurn = false;
 	private Boolean cardPlayed = false;
 	private SimpleIntegerProperty playedRounds = new SimpleIntegerProperty();
-
-	
 
 	public Controller(Model model, View view) {
 		this.model = model;
@@ -241,13 +234,6 @@ public class Controller {
 			if (msg.isFalse()) msg.processIfFalse(Controller.this);
 		}
 		
-
-		
-		
-		
-		
-		
-		
 	}
 
 	// Methods for triggering Methods in Model by clicking a Button in View, get Values from User Input
@@ -288,11 +274,11 @@ public class Controller {
 	public void evaluateWinner() {
 		model.evaluateWinner();
 	}
-
 	
 	public void playCard() {
 		model.playCard("knight_1");
 	}
+	
 	public void getNextTableCard() {
 		model.getNextTableCard();
 	}
@@ -322,19 +308,10 @@ public class Controller {
 			public void run() {
 				view.getRoot().setCenter(view.loginLayout);
 				view.getStage().setTitle("Login");
-				//CardLabel cl4 = new CardLabel();
-				//cl4.setDeck();
-				//view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().remove(1);
-				//view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().add(1, cl4);
-				
-				//view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().remove(1);
-				//view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().add(1, cl4);
-				//view.getGameLayout().getMiddleGameLayout().getNewFollowerCard().getChildren().remove(1);
-				//view.getGameLayout().getMiddleGameLayout().getNewFollowerCard().getChildren().add(1, cl4);
-				//view.getGameLayout().getPlayerLayout().getHboxCards().getChildren().clear();
-				//view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setDisable(true);
-				//view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().remove(2);
-				//view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().add(2, cl4);
+				clearMyCard();
+				clearOpponentCard();
+				clearFollowerCard();
+				disableTableCardButton();
 			}
 		});
 		logger.info("Logout Successful");
@@ -360,7 +337,7 @@ public class Controller {
 		Platform.runLater(new Runnable() {
 			public void run() {
 				view.winnerPopUp.show(view.getStage());
-				view.getLblWinner().setText("Der Gewinner ist: " + winner + ". Gut gemacht!");
+				view.getLblWinnerName().setText(winner);
 			}
 		});
 	}
@@ -514,9 +491,7 @@ public class Controller {
 			}
 		});
 	}
-	
-	
-	
+		
 	//SD
 	public void highlightCard(Event event) {
 		CardLabel cl = (CardLabel) event.getSource();
@@ -545,7 +520,6 @@ public class Controller {
 
 	public void enableHandCards() {
 		if (onTurn) {
-			System.out.println("An der Reihe");
 			board.setPlayableHC();
 			for (int i = 0; i < board.getHandCards().size(); i++) {
 				if(board.getHandCards().get(i).getPlayable())

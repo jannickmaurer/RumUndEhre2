@@ -29,7 +29,7 @@ public class ResultBroadcastFinishRound extends Message {
 		this.TableCard = content[3];
 		
 		if(content.length > 4) {
-				undeads.add(new Card(content[4]));
+			undeads.add(new Card(content[4]));
 			
 		}
 		if(content.length > 5) {

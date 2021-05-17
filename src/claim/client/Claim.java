@@ -23,15 +23,6 @@ public class Claim extends Application {
 		launch(args);
 	}
 	
-	@Override
-    public void init() {
-        if (claimProgram == null) {
-            claimProgram = this;
-        } else {
-            Platform.exit();
-        }
-    }
-	
 	//Aufgerufen von JavaFX
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -43,6 +34,15 @@ public class Claim extends Application {
 		serviceLocator = ServiceLocator.getServiceLocator();
 		view.start();
 	}
+
+	@Override
+    public void init() {
+        if (claimProgram == null) {
+            claimProgram = this;
+        } else {
+            Platform.exit();
+        }
+    }
 	
 	protected static Claim getClaimProgram() {
         return claimProgram;

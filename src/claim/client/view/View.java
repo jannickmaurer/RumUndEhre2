@@ -88,6 +88,7 @@ public class View {
 	
 	//Elemente aus Winner Layout ansprechen
 	private Label lblWinner = winnerPopupLayout.getLblWinner();
+	private Label lblWinnerName = winnerPopupLayout.getLblWinnerName();
 	private Button btLogoutWinner = winnerPopupLayout.getBtLogout();
 	
 	public View(Stage primaryStage, Model model) {
@@ -114,8 +115,6 @@ public class View {
 		btLogin.disableProperty().bind(tfUsername.textProperty().isEmpty() .or(pfPassword.textProperty().isEmpty()));
 		btCreateAccount.disableProperty().bind(tfNewUsername.textProperty().isEmpty() .or(pfnewPassword.textProperty().isEmpty()));
 		
-		root.setCenter(connectLayout);
-		
 		//Error Popups bereitstellen
 		errorPopUp.getContent().add(errorPopupLayout);
 		errorPopUp.setAutoHide(false);
@@ -126,10 +125,12 @@ public class View {
 		winnerPopUp.getContent().add(winnerPopupLayout);
 		winnerPopUp.setAutoHide(false);
 		
+		root.setCenter(connectLayout);
+		root.setTop(menuBar);
+		
 		scene = new Scene(root, 1100, 733);
 		scene.getStylesheets().add(getClass().getResource("Client.css").toExternalForm());
 		
-		root.setTop(menuBar);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Connect");
 	}
@@ -143,7 +144,7 @@ public class View {
 	protected void updateTexts() {
 		Translator t = ServiceLocator.getServiceLocator().getTranslator();
 		
-		//Verfügbare Sprachen im Menu
+		//Menu
 		this.menuFileLanguage.setText(t.getString("program.menu.file.language"));
 	
 		// Text
@@ -363,6 +364,86 @@ public class View {
 
 	public void setGameLayout(GamePane gameLayout) {
 		this.gameLayout = gameLayout;
+	}
+
+	public Label getLbScoreDeckP1() {
+		return lbScoreDeckP1;
+	}
+
+	public void setLbScoreDeckP1(Label lbScoreDeckP1) {
+		this.lbScoreDeckP1 = lbScoreDeckP1;
+	}
+
+	public Label getLbFollowerDeckP1() {
+		return lbFollowerDeckP1;
+	}
+
+	public void setLbFollowerDeckP1(Label lbFollowerDeckP1) {
+		this.lbFollowerDeckP1 = lbFollowerDeckP1;
+	}
+
+	public Label getLbOpponentCard() {
+		return lbOpponentCard;
+	}
+
+	public void setLbOpponentCard(Label lbOpponentCard) {
+		this.lbOpponentCard = lbOpponentCard;
+	}
+
+	public Label getLbMyCard() {
+		return lbMyCard;
+	}
+
+	public void setLbMyCard(Label lbMyCard) {
+		this.lbMyCard = lbMyCard;
+	}
+
+	public Label getLbNewFollowerDeck() {
+		return lbNewFollowerDeck;
+	}
+
+	public void setLbNewFollowerDeck(Label lbNewFollowerDeck) {
+		this.lbNewFollowerDeck = lbNewFollowerDeck;
+	}
+
+	public Label getLbCardsDeck() {
+		return lbCardsDeck;
+	}
+
+	public void setLbCardsDeck(Label lbCardsDeck) {
+		this.lbCardsDeck = lbCardsDeck;
+	}
+
+	public Label getLbScoreDeckP2() {
+		return lbScoreDeckP2;
+	}
+
+	public void setLbScoreDeckP2(Label lbScoreDeckP2) {
+		this.lbScoreDeckP2 = lbScoreDeckP2;
+	}
+
+	public Label getLbFollowerDeckP2() {
+		return lbFollowerDeckP2;
+	}
+
+	public void setLbFollowerDeckP2(Label lbFollowerDeckP2) {
+		this.lbFollowerDeckP2 = lbFollowerDeckP2;
+	}
+
+	public Button getBtEvaluateWinner() {
+		return btEvaluateWinner;
+	}
+
+	public void setBtEvaluateWinner(Button btEvaluateWinner) {
+		this.btEvaluateWinner = btEvaluateWinner;
+	}
+
+	public Label getLblWinnerName() {
+		return lblWinnerName;
+	}
+
+	public void setLblWinnerName(Label lblWinnerName) {
+		this.lblWinnerName = lblWinnerName;
 	}
 
 }
