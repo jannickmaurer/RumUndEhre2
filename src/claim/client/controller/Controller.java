@@ -355,7 +355,7 @@ public class Controller {
 	
 	//SD - Karten zu Beginn des Spiels austeilen
 	public void deal(ArrayList<Card> handCards) {
-		board.sortHandCards(); //Handkarten werden noch sortiert
+//		board.sortHandCards(); //Handkarten werden noch sortiert //auskommentiert David
 		Platform.runLater(new Runnable() {
 			public void run() {
 				for (int i = 0; i < handCards.size(); i++) {
@@ -549,7 +549,7 @@ public class Controller {
 
 	public void enableHandCards() {
 		if (onTurn) {
-			board.setPlayableHC();
+//			board.setPlayableHC(); //DS Testweise auskommentiert
 			for (int i = 0; i < board.getHandCards().size(); i++) {
 				if(board.getHandCards().get(i).getPlayable())
 					for(CardLabel cl : view.getGameLayout().getPlayerLayout().getCardLabels()) {

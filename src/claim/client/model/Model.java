@@ -129,6 +129,7 @@ public class Model {
 	}
 	
 	public void playCard(String card) {
+		System.out.println("Model, playCard aufgerufen: mit Standardkarte knight_1");
 		String[] content = new String[] { "PlayCard", this.token.getValue(), card };
 		Message msg = new PlayCard(content);
 		try {

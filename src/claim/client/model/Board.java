@@ -26,6 +26,7 @@ public class Board {
 			this.handCards.add(new Card(s));
 		}
 		sortHandCards();
+		setPlayableHC();//evtl löschen sollte überflüssig sein
 		
 		System.out.println("Handcards Created: ");
 		for (Card card : this.handCards) {
@@ -42,6 +43,7 @@ public class Board {
 			if(suitToString(handCards.get(i)).equals(suitToString(removeCard))) {
 				if(handCards.get(i).compareTo(removeCard) == 0) {
 					handCards.remove(i);
+					setPlayableHC();
 					return;
 				}
 			}
