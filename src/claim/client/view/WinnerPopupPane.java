@@ -10,13 +10,15 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 public class WinnerPopupPane extends GridPane {	
-	private Label lblWinner = new Label("Das Spiel ist zu Ende");
+	private Label lblWinner = new Label();
+	private Label lblWinnerName = new Label();
 	private Button btLogout = new Button();
 	
 	//Konstruktor
 	public WinnerPopupPane() {
 		
 		this.add(lblWinner, 0, 0);
+		this.add(lblWinnerName, 1, 0);
 		this.add(btLogout, 0, 1);
 		
 		this.setId("popupError");
@@ -36,14 +38,20 @@ public class WinnerPopupPane extends GridPane {
 		this.btLogout = btLogout;
 	}
 
-
 	public Label getLblWinner() {
 		return lblWinner;
 	}
 
-
 	public void setLblWinner(Label lblWinner) {
 		this.lblWinner = lblWinner;
+	}
+
+	public Label getLblWinnerName() {
+		return lblWinnerName;
+	}
+
+	public void setLblWinnerName(Label lblWinnerName) {
+		this.lblWinnerName = lblWinnerName;
 	}
 	
 }

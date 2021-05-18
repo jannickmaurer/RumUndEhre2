@@ -53,12 +53,9 @@ public class ResultSendCard extends Message {
 				controller.clearFollowerCard();
 				controller.clearMyCard();
 				controller.clearOpponentCard();
-				
 				break;
 		}
 	
-		
-		
 	}
 	
 	@Override

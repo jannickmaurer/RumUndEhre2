@@ -31,11 +31,6 @@ import claim.client.view.CardLabel;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.Event;
-import javafx.geometry.HPos;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 // Created by Samuel & Jannick
 public class Controller {
@@ -48,8 +43,6 @@ public class Controller {
 	private Boolean onTurn = false;
 	private Boolean cardPlayed = false;
 	private SimpleIntegerProperty playedRounds = new SimpleIntegerProperty();
-
-	
 
 	public Controller(Model model, View view) {
 		this.model = model;
@@ -91,6 +84,11 @@ public class Controller {
 		view.getBtLogoutGameOver().setOnAction(e -> {
 			logout();
 			view.gameOverPopUp.hide();
+		});
+		
+		view.getBtLogoutWinner().setOnAction(e -> {
+			logout();
+			view.winnerPopUp.hide();
 		});
 		
 		view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setOnAction(e -> {
@@ -236,13 +234,6 @@ public class Controller {
 			if (msg.isFalse()) msg.processIfFalse(Controller.this);
 		}
 		
-
-		
-		
-		
-		
-		
-		
 	}
 
 	// Methods for triggering Methods in Model by clicking a Button in View, get Values from User Input
@@ -283,11 +274,11 @@ public class Controller {
 	public void evaluateWinner() {
 		model.evaluateWinner();
 	}
-
 	
 	public void playCard() {
 		model.playCard("knight_1");
 	}
+	
 	public void getNextTableCard() {
 		model.getNextTableCard();
 	}
@@ -317,6 +308,12 @@ public class Controller {
 			public void run() {
 				view.getRoot().setCenter(view.loginLayout);
 				view.getStage().setTitle("Login");
+				clearMyCard();
+				clearOpponentCard();
+				clearTableCard();
+				clearFollowerCard();
+				disableTableCardButton();
+				resetHandCards();
 			}
 		});
 		logger.info("Logout Successful");
@@ -342,7 +339,7 @@ public class Controller {
 		Platform.runLater(new Runnable() {
 			public void run() {
 				view.winnerPopUp.show(view.getStage());
-				view.getLblWinner().setText("Der Gewinner ist: " + winner + ". Gut gemacht!");
+				view.getLblWinnerName().setText(winner);
 			}
 		});
 	}
@@ -376,7 +373,7 @@ public class Controller {
 	private void sendTableCard(Event event) {
 		CardLabel cl = (CardLabel) event.getSource();
 		model.playCard(cl.getCardNameAsString());
-		board.removePlayedCard(new Card(cl.getCardNameAsString())); //NEU GESPIELTE KARTE WIRD GELÖSCHT
+		//board.removePlayedCard(new Card(cl.getCardNameAsString())); //NEU GESPIELTE KARTE WIRD GELÖSCHT
 	}
 	
 	//SD - Karten entfernen
@@ -385,9 +382,10 @@ public class Controller {
 			public void run() {
 				CardLabel clToRemove = new CardLabel();
 				for(CardLabel cl : view.getGameLayout().getPlayerLayout().getCardLabels()) {
-					if(cl.getCardNameAsString().equals(playedCard)) {
-						clToRemove = cl;
-					}
+						if(cl.getCardNameAsString().equals(playedCard)) {
+							clToRemove = cl;
+						}
+					
 				}
 				view.getGameLayout().getPlayerLayout().getCardLabels().remove(clToRemove);
 				view.getGameLayout().getPlayerLayout().getHboxCards().getChildren().remove(clToRemove);
@@ -396,6 +394,28 @@ public class Controller {
 			}
 		});
 	}
+	
+	//public void updatePlayerPane(String playedCard) {
+	//	Platform.runLater(new Runnable() {
+	//		public void run() {
+	//			CardLabel clToRemove = new CardLabel();
+	//			int found = 0;
+	//			for(CardLabel cl : view.getGameLayout().getPlayerLayout().getCardLabels()) {
+	//				while(found < 1) {
+	//					if(cl.getCardNameAsString().equals(playedCard)) {
+	//						clToRemove = cl;
+	//						found = 1;
+	//						System.out.println("Karte gefunden!");
+	//					}
+	//				}
+	//			}
+	//			view.getGameLayout().getPlayerLayout().getCardLabels().remove(clToRemove);
+	//			view.getGameLayout().getPlayerLayout().getHboxCards().getChildren().remove(clToRemove);
+	//			
+	//			updateGameDisplay(playedCard);
+	//		}
+	//	});
+	//}
 	
 	//SD - Gespielte Karten in der Mitte anzeigen
 	public void updateGameDisplay(String playedCard) {
@@ -452,6 +472,17 @@ public class Controller {
 		});
 	}
 	
+	public void clearTableCard() {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				CardLabel cl4 = new CardLabel();
+				cl4.setDeck();
+				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().remove(1);
+				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().add(1, cl4);
+			}
+		});
+	}
+	
 	public void showNewFollowerCard(String tableCard) {
 		Platform.runLater(new Runnable() {
 			public void run() {
@@ -474,8 +505,22 @@ public class Controller {
 		});
 	}
 	
-	
-	
+	public void resetHandCards() {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				view.getGameLayout().getPlayerLayout().getHboxCards().getChildren().clear();
+				view.getGameLayout().getPlayerLayout().getCardLabels().clear();
+				for (int i = 0; i < 13; i++) {
+					CardLabel cl = new CardLabel();
+					view.getGameLayout().getPlayerLayout().getHboxCards().getChildren().add(cl);
+					view.getGameLayout().getPlayerLayout().getHboxCards().setSpacing(10);
+					view.getGameLayout().getPlayerLayout().getCardLabels().add(cl);
+					cl.setDisable(true);
+				}
+			}
+		});
+	}
+		
 	//SD
 	public void highlightCard(Event event) {
 		CardLabel cl = (CardLabel) event.getSource();
@@ -504,7 +549,6 @@ public class Controller {
 
 	public void enableHandCards() {
 		if (onTurn) {
-			System.out.println("An der Reihe");
 			board.setPlayableHC();
 			for (int i = 0; i < board.getHandCards().size(); i++) {
 				if(board.getHandCards().get(i).getPlayable())

@@ -10,7 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 public class GameOverPopupPane extends GridPane {	
-	private Label lblOver = new Label("Das Spiel ist zu Ende");
+	private Label lblOver = new Label();
 	private Button btLogout = new Button();
 	
 	//Konstruktor

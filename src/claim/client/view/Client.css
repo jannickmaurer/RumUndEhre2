@@ -25,7 +25,8 @@
 }
 
 #middleGame {
-	-fx-spacing: 10;
+	-fx-spacing: 30;
+	-fx-padding: 0 0 0 98;
 }
 
 #playedCards {
@@ -52,8 +53,8 @@
 	-fx-background-color: rgba(244, 238, 232, 1);
 	-fx-hgap: 10;
     -fx-vgap: 10;
-	-fx-min-width: 900px;
-	-fx-min-height: 650px;
+	-fx-min-width: 1000px;
+	-fx-min-height: 700px;
 	-fx-valignment: center;
 }
 

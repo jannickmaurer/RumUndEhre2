@@ -83,6 +83,7 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
+	
 	public void login(String username, String password) {
 		String[] content = new String[] { "Login", username, password };
 		Message msg = new Login(content);
@@ -93,6 +94,7 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
+	
 	public void logout() {
 		String[] content = new String[] { "Logout", this.token.getValue() };
 		Message msg = new Logout(content);
@@ -103,6 +105,7 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
+	
 	public void deleteAccount() {
 		String[] content = new String[] { "DeleteAccount", this.token.getValue() };
 		Message msg = new DeleteAccount(content);
@@ -113,6 +116,7 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
+	
 	public void startRoundOne() {
 		String[] content = new String[] { "StartRoundOne", this.token.getValue() };
 		Message msg = new StartRoundOne(content);
@@ -123,6 +127,7 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
+	
 	public void playCard(String card) {
 		String[] content = new String[] { "PlayCard", this.token.getValue(), card };
 		Message msg = new PlayCard(content);
@@ -133,6 +138,7 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
+	
 	public void getNextTableCard() {
 		String[] content = new String[] { "GetNextTableCard", this.token.getValue(),};
 		Message msg = new GetNextTableCard(content);
@@ -177,7 +183,6 @@ public class Model {
 		}
 	}
 	
-	
 	public void setConnected(Boolean connected) {
 		this.connected.set(connected);
 		logger.info("Client is Connected");
@@ -189,10 +194,6 @@ public class Model {
 
 	public SimpleStringProperty getLastReceivedMessage() {
 		return this.lastReceivedMessage;
-	}
-
-	public void initialize() {
-		new Thread(initializer).start();
 	}
 
 	public void setToken(String token) {
@@ -209,56 +210,57 @@ public class Model {
 	}
 	
 	//Analog Chatroom Project at FHNW 2019
-		final Task<Void> initializer = new Task<Void>() {
-			@Override
-			protected Void call() throws Exception {
-				this.updateProgress(1, 6);
+	public void initialize() {
+		new Thread(initializer).start();
+	}
 
-				// Create the service locator to hold our resources
-				serviceLocator = ServiceLocator.getServiceLocator();
-				this.updateProgress(2, 6);
+	final Task<Void> initializer = new Task<Void>() {
+		@Override
+		protected Void call() throws Exception {
+			this.updateProgress(1, 6);
 
-				// Initialize the resources in the service locator
-				serviceLocator.setClientLogger(configureLogging());
-				this.updateProgress(3, 6);
+			// Create the service locator to hold our resources
+			serviceLocator = ServiceLocator.getServiceLocator();
+			this.updateProgress(2, 6);
 
-				serviceLocator.setConfiguration(new Configuration());
-				this.updateProgress(4, 6);
+			// Initialize the resources in the service locator
+			serviceLocator.setClientLogger(configureLogging());
+			this.updateProgress(3, 6);
 
-				String language = serviceLocator.getConfiguration().getOption("Language");
-				serviceLocator.setTranslator(new Translator(language));
-				this.updateProgress(5, 6);
+			serviceLocator.setConfiguration(new Configuration());
+			this.updateProgress(4, 6);
 
-				// ... more resources would go here...
-				this.updateProgress(6, 6);
+			String language = serviceLocator.getConfiguration().getOption("Language");
+			serviceLocator.setTranslator(new Translator(language));
+			this.updateProgress(5, 5);
 
-				return null;
+			return null;
+		}
+		
+		private Logger configureLogging() {
+			Logger rootLogger = Logger.getLogger("");
+			rootLogger.setLevel(Level.FINEST);
+
+			// By default there is one handler: the console
+			Handler[] defaultHandlers = Logger.getLogger("").getHandlers();
+			defaultHandlers[0].setLevel(Level.INFO);
+
+			// Add our logger
+			Logger ourLogger = Logger.getLogger(serviceLocator.getAPP_NAME());
+			ourLogger.setLevel(Level.FINEST);
+
+			// Add a file handler, putting the rotating files in the tmp directory
+			try {
+				Handler logHandler = new FileHandler("%t/" + serviceLocator.getAPP_NAME() + "_%u" + "_%g" + ".log", 1000000,
+						9);
+				logHandler.setLevel(Level.FINEST);
+				ourLogger.addHandler(logHandler);
+			} catch (Exception e) { // If we are unable to create log files
+				throw new RuntimeException("Unable to initialize log files: " + e.toString());
 			}
-			
-			private Logger configureLogging() {
-				Logger rootLogger = Logger.getLogger("");
-				rootLogger.setLevel(Level.FINEST);
 
-				// By default there is one handler: the console
-				Handler[] defaultHandlers = Logger.getLogger("").getHandlers();
-				defaultHandlers[0].setLevel(Level.INFO);
-
-				// Add our logger
-				Logger ourLogger = Logger.getLogger(serviceLocator.getAPP_NAME());
-				ourLogger.setLevel(Level.FINEST);
-
-				// Add a file handler, putting the rotating files in the tmp directory
-				try {
-					Handler logHandler = new FileHandler("%t/" + serviceLocator.getAPP_NAME() + "_%u" + "_%g" + ".log", 1000000,
-							9);
-					logHandler.setLevel(Level.FINEST);
-					ourLogger.addHandler(logHandler);
-				} catch (Exception e) { // If we are unable to create log files
-					throw new RuntimeException("Unable to initialize log files: " + e.toString());
-				}
-
-				return ourLogger;
-			}
-		};
+			return ourLogger;
+		}
+	};
 
 }
