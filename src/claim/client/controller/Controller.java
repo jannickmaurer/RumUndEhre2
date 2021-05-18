@@ -373,7 +373,7 @@ public class Controller {
 	private void sendTableCard(Event event) {
 		CardLabel cl = (CardLabel) event.getSource();
 		model.playCard(cl.getCardNameAsString());
-		board.removePlayedCard(new Card(cl.getCardNameAsString())); //NEU GESPIELTE KARTE WIRD GELÖSCHT
+		//board.removePlayedCard(new Card(cl.getCardNameAsString())); //NEU GESPIELTE KARTE WIRD GELÖSCHT
 	}
 	
 	//SD - Karten entfernen
@@ -510,11 +510,13 @@ public class Controller {
 			public void run() {
 				view.getGameLayout().getPlayerLayout().getHboxCards().getChildren().clear();
 				view.getGameLayout().getPlayerLayout().getCardLabels().clear();
-				CardLabel cl = new CardLabel();
-				view.getGameLayout().getPlayerLayout().getHboxCards().getChildren().add(cl);
-				view.getGameLayout().getPlayerLayout().getHboxCards().setSpacing(10);
-				view.getGameLayout().getPlayerLayout().getCardLabels().add(cl);
-				cl.setDisable(true);
+				for (int i = 0; i < 13; i++) {
+					CardLabel cl = new CardLabel();
+					view.getGameLayout().getPlayerLayout().getHboxCards().getChildren().add(cl);
+					view.getGameLayout().getPlayerLayout().getHboxCards().setSpacing(10);
+					view.getGameLayout().getPlayerLayout().getCardLabels().add(cl);
+					cl.setDisable(true);
+				}
 			}
 		});
 	}

@@ -30,6 +30,10 @@ public class ResultPlayCard extends Message {
 		controller.disableHandCards();
 		controller.setOnTurn(false);
 		controller.setCardPlayed(true);
+		System.out.println("Handcards Created: ");
+		for (Card card : controller.getBoard().getHandCards()) {
+			System.out.println(card.toString());
+		}
 	}
 	public void processIfFalse(Controller controller) {
 		controller.somethingFailed();
