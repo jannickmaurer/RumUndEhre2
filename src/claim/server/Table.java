@@ -15,6 +15,22 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class Table {
 	private ArrayList<Account> players = new ArrayList<>();
 	private SimpleIntegerProperty playedCards = new SimpleIntegerProperty();
+	private Account firstPlayer = null;
+
+	private DeckOfCards deck;
+	public ArrayList<Card> tableCards = new ArrayList<>();
+//	public ArrayList<Card> followerCardsP1 = new ArrayList<>();
+//	public ArrayList<Card> followerCardsP2 = new ArrayList<>();
+	public ArrayList<Card> tmpUndeads = new ArrayList<>();
+	private int fractionPointsP1;
+	private int fractionPointsP2;
+	public Card actualTableCard;
+
+	public String roundWinner;
+	public Card followerCardP1;
+	public Card followerCardP2;
+	private String undeadString;
+
 
 	public Table() {
 //		super();
@@ -49,20 +65,6 @@ public class Table {
 	 * - Soll für die offene Tischkarte eine eigene Card auf dem Table eröffnet werden bevor diese 
 	 *   versendet wir? Könnte ich bruachen, ansonsten muss ich sie bekommen
 	 */
-
-	private DeckOfCards deck;
-	public ArrayList<Card> tableCards = new ArrayList<>();
-//	public ArrayList<Card> followerCardsP1 = new ArrayList<>();
-//	public ArrayList<Card> followerCardsP2 = new ArrayList<>();
-	public ArrayList<Card> tmpUndeads = new ArrayList<>();
-	private int fractionPointsP1;
-	private int fractionPointsP2;
-	public Card actualTableCard;
-
-	public String roundWinner;
-	public Card followerCardP1;
-	public Card followerCardP2;
-	private String undeadString;
 
 
 	
@@ -112,6 +114,7 @@ public class Table {
 		followerCardP1 = null; //eigentlich unnötig
 		followerCardP2 = null; //eigentlich unnötig
 		int winner = 0;
+
 		
 		
 		System.out.println("Karte übergeben: " + players.get(0).getPlayedCard());
@@ -147,6 +150,7 @@ public class Table {
 
 		
 		this.playedCards.set(0);
+		this.firstPlayer = null;
 		
 		for(Account a: players) {
 			a.clearPlayedCard();
@@ -365,6 +369,12 @@ public class Table {
 	
 	public void increasePlayedCards() {
 		this.playedCards.set(this.playedCards.get() + 1);
+	}
+	public Account getFirstPlayer() {
+		return firstPlayer;
+	}
+	public void setFirstPlayer(Account firstPlayer) {
+		this.firstPlayer = firstPlayer;
 	}
 	
 	
