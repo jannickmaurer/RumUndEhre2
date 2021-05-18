@@ -12,6 +12,7 @@ import claim.commons.messages.results.ResultBroadcastFinishRound;
 import claim.commons.messages.results.ResultSendCard;
 import javafx.beans.property.SimpleIntegerProperty;
 
+
 public class Table {
 	private ArrayList<Account> players = new ArrayList<>();
 	private SimpleIntegerProperty playedCards = new SimpleIntegerProperty();
@@ -62,7 +63,6 @@ public class Table {
 	public Card followerCardP2;
 	private String undeadString;
 
-
 	
 	//Entweder das so belassen oder in unsere Kontrollerklasse einfügen, respektive generieren
 	/*
@@ -105,7 +105,7 @@ public class Table {
 	 *   muss ich noch eine zugriffs methode schreiben. 
 	 */
 	
-	public void finishRound() {//, Card actualTableCard entfernt//evtl.auslesen aus Array
+	public void finishRound() {
 		roundWinner = ""; //eigentlich unnötig
 		followerCardP1 = null; //eigentlich unnötig
 		followerCardP2 = null; //eigentlich unnötig
@@ -115,7 +115,10 @@ public class Table {
 		System.out.println("Karte übergeben: " + players.get(0).getPlayedCard());
 		System.out.println("Karte übergeben: " + players.get(1).getPlayedCard());
 		roundWinner = evaluateWinnerCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
+		System.out.println("Klasse Table | Methode FinishRound | Rundengewinner nach Auswertung ist: "+roundWinner);
+		
 		addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), roundWinner);
+		System.out.println("FinishRound: Spielsieger: "+roundWinner+"   Karte P1: "+players.get(0).getPlayedCard()+"   Karte P2: "+players.get(1).getPlayedCard());
 
 		Card tmp = getNextTableCard();
 		switch (roundWinner) {
@@ -139,7 +142,6 @@ public class Table {
 			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
 		   }
 		}
-		
 		this.playedCards.set(0);
 		
 		for(Account a: players) {
@@ -289,7 +291,7 @@ public class Table {
 	}
 	
 	//Dave: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
-	private String suitToString(Card card) {
+	public String suitToString(Card card) {
 		String cardString = card.toString();
 	    String[] tmp = cardString.split("\\_");
     	return tmp[0];
