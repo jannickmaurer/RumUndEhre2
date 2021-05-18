@@ -112,10 +112,10 @@ public class Table {
 		int winner = 0;
 		
 		
-		System.out.println("Karte übergeben: " + players.get(0).getPlayedCard());
-		System.out.println("Karte übergeben: " + players.get(1).getPlayedCard());
+		System.out.println("Karte übergeben P1: " + players.get(0).getPlayedCard());
+		System.out.println("Karte übergeben P2: " + players.get(1).getPlayedCard());
 		roundWinner = evaluateWinnerCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
-		System.out.println("Klasse Table | Methode FinishRound | Rundengewinner nach Auswertung ist: "+roundWinner);
+		System.out.println("Klasse Table | Methode FinishRound | Rundengewinner nach Auswertung ist(P1 oder P2): "+roundWinner);
 		
 		addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), roundWinner);
 		System.out.println("FinishRound: Spielsieger: "+roundWinner+"   Karte P1: "+players.get(0).getPlayedCard()+"   Karte P2: "+players.get(1).getPlayedCard());
