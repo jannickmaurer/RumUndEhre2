@@ -111,6 +111,7 @@ public class Table {
 		followerCardP2 = null; //eigentlich unnötig
 		int winner = 0;
 		
+	
 		
 		System.out.println("Karte übergeben P1: " + players.get(0).getPlayedCard());
 		System.out.println("Karte übergeben P2: " + players.get(1).getPlayedCard());
