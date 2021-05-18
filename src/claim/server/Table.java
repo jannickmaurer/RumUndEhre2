@@ -16,6 +16,22 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class Table {
 	private ArrayList<Account> players = new ArrayList<>();
 	private SimpleIntegerProperty playedCards = new SimpleIntegerProperty();
+	private Account firstPlayer = null;
+
+	private DeckOfCards deck;
+	public ArrayList<Card> tableCards = new ArrayList<>();
+//	public ArrayList<Card> followerCardsP1 = new ArrayList<>();
+//	public ArrayList<Card> followerCardsP2 = new ArrayList<>();
+	public ArrayList<Card> tmpUndeads = new ArrayList<>();
+	private int fractionPointsP1;
+	private int fractionPointsP2;
+	public Card actualTableCard;
+
+	public String roundWinner;
+	public Card followerCardP1;
+	public Card followerCardP2;
+	private String undeadString;
+
 
 	public Table() {
 //		super();
@@ -51,17 +67,19 @@ public class Table {
 	 *   versendet wir? Könnte ich bruachen, ansonsten muss ich sie bekommen
 	 */
 
-	private DeckOfCards deck;
-	public ArrayList<Card> tableCards = new ArrayList<>();
-	public ArrayList<Card> tmpUndeads = new ArrayList<>();
-	private int fractionPointsP1;
-	private int fractionPointsP2;
-	public Card actualTableCard;
+//
+//	private DeckOfCards deck;
+//	public ArrayList<Card> tableCards = new ArrayList<>();
+//	public ArrayList<Card> tmpUndeads = new ArrayList<>();
+//	private int fractionPointsP1;
+//	private int fractionPointsP2;
+//	public Card actualTableCard;
+//
+//	public String roundWinner;
+//	public Card followerCardP1;
+//	public Card followerCardP2;
+//	private String undeadString;
 
-	public String roundWinner;
-	public Card followerCardP1;
-	public Card followerCardP2;
-	private String undeadString;
 
 	
 	//Entweder das so belassen oder in unsere Kontrollerklasse einfügen, respektive generieren
@@ -110,16 +128,23 @@ public class Table {
 		followerCardP1 = null; //eigentlich unnötig
 		followerCardP2 = null; //eigentlich unnötig
 		int winner = 0;
+
+		if(players.get(0).getUsername().equals(firstPlayer)) {
+			roundWinner = evaluateWinnerCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
+			addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), roundWinner);
+		}else {
+			roundWinner = evaluateWinnerCard(players.get(1).getPlayedCard(), players.get(0).getPlayedCard());
+			addUndead(players.get(1).getPlayedCard(), players.get(0).getPlayedCard(), roundWinner);
+		}
+	System.out.println("Roundwinner Server: "+roundWinner);
 		
-	
-		
-		System.out.println("Karte übergeben P1: " + players.get(0).getPlayedCard());
-		System.out.println("Karte übergeben P2: " + players.get(1).getPlayedCard());
-		roundWinner = evaluateWinnerCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
-		System.out.println("Klasse Table | Methode FinishRound | Rundengewinner nach Auswertung ist(P1 oder P2): "+roundWinner);
-		
-		addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), roundWinner);
-		System.out.println("FinishRound: Spielsieger: "+roundWinner+"   Karte P1: "+players.get(0).getPlayedCard()+"   Karte P2: "+players.get(1).getPlayedCard());
+//		System.out.println("Karte übergeben P1: " + players.get(0).getPlayedCard());
+//		System.out.println("Karte übergeben P2: " + players.get(1).getPlayedCard());
+//		roundWinner = evaluateWinnerCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
+//		System.out.println("Klasse Table | Methode FinishRound | Rundengewinner nach Auswertung ist(P1 oder P2): "+roundWinner);
+//		
+//		addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), roundWinner);
+//		System.out.println("FinishRound: Spielsieger: "+roundWinner+"   Karte P1: "+players.get(0).getPlayedCard()+"   Karte P2: "+players.get(1).getPlayedCard());
 
 		Card tmp = getNextTableCard();
 		switch (roundWinner) {
@@ -144,6 +169,7 @@ public class Table {
 		   }
 		}
 		this.playedCards.set(0);
+		this.firstPlayer = null;
 		
 		for(Account a: players) {
 			a.clearPlayedCard();
@@ -338,5 +364,12 @@ public class Table {
 	
 	public void increasePlayedCards() {
 		this.playedCards.set(this.playedCards.get() + 1);
+	}
+
+	public Account getFirstPlayer() {
+		return firstPlayer;
+	}
+	public void setFirstPlayer(Account firstPlayer) {
+		this.firstPlayer = firstPlayer;
 	}
 }

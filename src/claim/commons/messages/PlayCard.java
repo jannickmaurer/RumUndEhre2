@@ -35,6 +35,9 @@ public class PlayCard extends Message {
 		Boolean result = false;
 		if(this.token.equals(client.getToken())) {
 			client.getAccount().setPlayedCard(new Card(card));
+			if(client.getPlayroom().getTable().getPlayedCards().get() < 1) {
+				client.getPlayroom().getTable().setFirstPlayer(client.getAccount());
+			}
 //			client.getPlayroom().test();
 			
 			for(Client c : Client.getClients()) {
@@ -43,11 +46,12 @@ public class PlayCard extends Message {
 					c.send(new ResultSendCard(content));
 				}
 			}
-			
+			client.getPlayroom().getTable().increasePlayedCards();
 			result = true;
-		} 
-		String[] temp = new String[] {"ResultPlayCard", Boolean.toString(result), this.card};
-		client.send(new ResultPlayCard(temp));
-		client.getPlayroom().getTable().increasePlayedCards();
+			String[] temp = new String[] {"ResultPlayCard", Boolean.toString(result), this.card};
+			client.send(new ResultPlayCard(temp));
+		} else {
+		client.send(new ResultPlayCard(result));
+		}
 	}
 }
