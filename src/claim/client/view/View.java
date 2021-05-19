@@ -36,6 +36,7 @@ public class View {
 	public LoginPane loginLayout = new LoginPane();
 	public RegistrationPane registrationLayout = new RegistrationPane();
 	public GamePane gameLayout = new GamePane();
+	public ChatPane chatLayout = new ChatPane();
 	
 	public ErrorPopupPane errorPopupLayout = new ErrorPopupPane();
 	public Popup errorPopUp = new Popup();
@@ -78,6 +79,9 @@ public class View {
 	private Button btLogout = gameLayout.getBtLogout();
 	private Button btEvaluateWinner = gameLayout.getBtEvaluateWinner();
 	
+	//Elemente aus Chat Layout ansprechen
+	private Button btSend = chatLayout.getBtnSend();
+	
 	//Elemente aus Error Layout ansprechen
 	private Label lblError = errorPopupLayout.getLblError();
 	private Button btnBackError = errorPopupLayout.getBtBackError();
@@ -111,9 +115,10 @@ public class View {
 		MenuBar menuBar = new MenuBar();
 		menuBar.getMenus().addAll(menuFileLanguage);
 		
-		//Buttons Login und CreateAccount erst verfügbar wenn beide Textfelder Eingaben haben
+		//Buttons Send, Login und CreateAccount erst verfügbar wenn beide Textfelder Eingaben haben
 		btLogin.disableProperty().bind(tfUsername.textProperty().isEmpty() .or(pfPassword.textProperty().isEmpty()));
 		btCreateAccount.disableProperty().bind(tfNewUsername.textProperty().isEmpty() .or(pfnewPassword.textProperty().isEmpty()));
+		chatLayout.getBtnSend().disableProperty().bind(chatLayout.getTfMessage().textProperty().isEmpty());
 		
 		//Error Popups bereitstellen
 		errorPopUp.getContent().add(errorPopupLayout);
@@ -124,6 +129,10 @@ public class View {
 		
 		winnerPopUp.getContent().add(winnerPopupLayout);
 		winnerPopUp.setAutoHide(false);
+		
+		chatLayout.setPrefWidth(300);
+		chatLayout.getBtnSend().setPrefWidth(300);
+		chatLayout.getTfMessage().setPrefWidth(300);
 		
 		root.setCenter(connectLayout);
 		root.setTop(menuBar);
@@ -176,6 +185,7 @@ public class View {
 		gameLayout.getBtLogout().setText(t.getString("button.logout"));
 		gameLayout.getBtEvaluateWinner().setText(t.getString("button.evaluatewinner"));
 		gameLayout.getBtNextTableCard().setText(t.getString("button.next"));
+		chatLayout.getBtnSend().setText(t.getString("button.send"));
 		errorPopupLayout.getBtBackError().setText(t.getString("button.back"));
 		gameOverPopupLayout.getBtLogout().setText(t.getString("button.logout"));
 		winnerPopupLayout.getBtLogout().setText(t.getString("button.logout"));
