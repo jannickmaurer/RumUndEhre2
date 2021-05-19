@@ -129,7 +129,7 @@ public class Table {
 		followerCardP2 = null; //eigentlich unnötig
 		int winner = 0;
 
-		if(players.get(0).getUsername().equals(firstPlayer)) {
+		if(players.get(0).getUsername().equals(firstPlayer.getUsername())) {
 			roundWinner = evaluateWinnerCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
 			addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), roundWinner);
 		}else {
@@ -147,17 +147,31 @@ public class Table {
 //		System.out.println("FinishRound: Spielsieger: "+roundWinner+"   Karte P1: "+players.get(0).getPlayedCard()+"   Karte P2: "+players.get(1).getPlayedCard());
 
 		Card tmp = getNextTableCard();
-		switch (roundWinner) {
-		case "P1": followerCardP1 = actualTableCard;					
-				   players.get(0).getFollowerCards().add(followerCardP1);
-				   followerCardP2 = tmp;
-				   players.get(1).getFollowerCards().add(followerCardP2); break; 
-		case "P2": followerCardP2 = actualTableCard;
-				   players.get(1).getFollowerCards().add(followerCardP2);
-				   followerCardP1 = tmp;
-				   players.get(0).getFollowerCards().add(followerCardP1); 
-				   winner = 1; break;
-		}	
+		
+		if(players.get(0).getUsername().equals(firstPlayer.getUsername()) && roundWinner.equals("P1")) {
+			followerCardP1 = actualTableCard;					
+			players.get(0).getFollowerCards().add(followerCardP1);
+			followerCardP2 = tmp;
+			players.get(1).getFollowerCards().add(followerCardP2);  
+		}else {
+			followerCardP2 = actualTableCard;
+			players.get(1).getFollowerCards().add(followerCardP2);
+			followerCardP1 = tmp;
+			players.get(0).getFollowerCards().add(followerCardP1); 
+			winner = 1; 
+		}
+		
+//		switch (roundWinner) {
+//		case "P1": followerCardP1 = actualTableCard;					
+//				   players.get(0).getFollowerCards().add(followerCardP1);
+//				   followerCardP2 = tmp;
+//				   players.get(1).getFollowerCards().add(followerCardP2); break; 
+//		case "P2": followerCardP2 = actualTableCard;
+//				   players.get(1).getFollowerCards().add(followerCardP2);
+//				   followerCardP1 = tmp;
+//				   players.get(0).getFollowerCards().add(followerCardP1); 
+//				   winner = 1; break;
+//		}	
 		
 		for(int i = 0; players.size() > i; i++) {
 		   if(undeadString.equalsIgnoreCase("None")) {
