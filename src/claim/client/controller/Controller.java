@@ -549,7 +549,7 @@ public class Controller {
 
 	public void enableHandCards() {
 		if (onTurn) {
-//			board.setPlayableHC(); //DS Testweise auskommentiert
+			board.setPlayableHC(); //DS Testweise auskommentiert
 			for (int i = 0; i < board.getHandCards().size(); i++) {
 				if(board.getHandCards().get(i).getPlayable())
 					for(CardLabel cl : view.getGameLayout().getPlayerLayout().getCardLabels()) {

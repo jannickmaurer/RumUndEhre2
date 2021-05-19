@@ -26,7 +26,7 @@ public class Board {
 			this.handCards.add(new Card(s));
 		}
 		sortHandCards();
-		setPlayableHC();//evtl löschen sollte überflüssig sein
+	//	setPlayableHC();//evtl löschen sollte überflüssig sein
 		
 		System.out.println("Handcards Created: ");
 		for (Card card : this.handCards) {
