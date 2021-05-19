@@ -25,8 +25,8 @@ public class ChatPane extends VBox  {
 		scrollPane.setFitToWidth(true);
 		scrollPane.setContent(txtMessages);
 		txtMessages.setWrapText(true);
-		txtMessages.setDisable(true);
-		txtMessages.setStyle("-fx-opacity: 1; -fx-text-fill: rgba(192, 96, 20, 1);");
+		txtMessages.setEditable(false);
+		txtMessages.setMouseTransparent(true);
 		tfMessage.setId("TextFieldMessage");
 		btnSend.setDisable(true);
 		
