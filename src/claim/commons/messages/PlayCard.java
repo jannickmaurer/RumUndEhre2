@@ -46,10 +46,17 @@ public class PlayCard extends Message {
 					c.send(new ResultSendCard(content));
 				}
 			}
-			client.getPlayroom().getTable().increasePlayedCards();
 			result = true;
 			String[] temp = new String[] {"ResultPlayCard", Boolean.toString(result), this.card};
 			client.send(new ResultPlayCard(temp));
+//			
+//			try {
+//				Thread.sleep(1000);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+			client.getPlayroom().getTable().increasePlayedCards();
+			
 		} else {
 		client.send(new ResultPlayCard(result));
 		}

@@ -46,12 +46,12 @@ public class Table {
 		playedCards.set(0);
 		playedCards.addListener((o, OldValue, NewValue) -> {
 			if(NewValue.intValue() > 1) {
-//				try {
-//					Thread.sleep(2000);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				finishRound();
 				
 			}

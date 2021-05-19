@@ -32,9 +32,9 @@ public class Account implements Serializable {
 	private transient Client client;
 	private transient Card playedCard;
 	
-	private transient ArrayList<Card> handCards = new ArrayList<>();
-	private transient ArrayList<Card> followerCards = new ArrayList<>();
-	private transient ArrayList<Card> undeadCards = new ArrayList<>();
+	private transient ArrayList<Card> handCards;
+	private transient ArrayList<Card> followerCards;
+	private transient ArrayList<Card> undeadCards;
 	
 	
 	
@@ -42,6 +42,10 @@ public class Account implements Serializable {
 	public Account(String username, String password) {
 		this.username = username;
 		this.password = password;
+		 handCards = new ArrayList<>();
+			followerCards = new ArrayList<>();
+			undeadCards = new ArrayList<>();
+			
 		logger.info("New Account created: " + this.toString());
 	}
 	
@@ -119,13 +123,23 @@ public class Account implements Serializable {
 			int num = in.readInt();
 			for (int i = 0; i < num; i++) {
 				Account account = (Account) in.readObject();
-				accounts.add(account);
-				logger.info("Loaded account " + account.getUsername());
+				Account ac = new Account(account.getUsername(), account.getPassword());
+				accounts.add(ac);
+				logger.info("Loaded account " + ac.getUsername());
 			}
 		} catch (Exception e) {
 			logger.severe("Unable to read accounts: " + e.getMessage());
 		}
 	}
+	
+	// Taken from https://stackoverflow.com/questions/9140728/how-do-i-resolve-nullpointerexception-when-i-am-using-serializable-with-my-class
+	private void readObject(ObjectInputStream in)
+		    throws IOException, ClassNotFoundException {
+		    in.defaultReadObject();
+		    handCards = new ArrayList<>();
+			followerCards = new ArrayList<>();
+			undeadCards = new ArrayList<>();
+		}
 	
 	public void clearAccount() {
 		this.token = null;
