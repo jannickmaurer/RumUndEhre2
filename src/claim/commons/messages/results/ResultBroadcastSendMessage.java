@@ -27,7 +27,7 @@ public class ResultBroadcastSendMessage extends Message {
 	@Override
 	public void process(Controller controller) {
 		// Text in TextArea updaten mit: username + ": " + message
-		
+		controller.updateChatText(this.username + ": " + this.message);
 	}
 	
 	@Override

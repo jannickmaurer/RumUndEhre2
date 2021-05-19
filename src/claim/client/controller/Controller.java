@@ -103,6 +103,10 @@ public class Controller {
 			view.errorPopUp.hide();
 		});
 		
+		view.chatLayout.getBtnSend().setOnAction(e -> {
+			sendMessage();
+		});
+		
 		//SD
 		for (int i = 0; i < view.getGameLayout().getPlayerLayout().getCardLabels().size(); i++) {
 			view.getGameLayout().getPlayerLayout().getCardLabels().get(i).setOnMouseReleased(this::sendTableCard);
@@ -284,8 +288,8 @@ public class Controller {
 	}
 	
 	public void sendMessage() {
-		String message = "Hallo"; // aus GUI nehmen
-		model.sendMessage(message);
+		model.sendMessage(view.chatLayout.getTfMessage().getText());
+		view.chatLayout.getTfMessage().setText("");
 	}
 
 	
@@ -295,6 +299,7 @@ public class Controller {
 		Platform.runLater(new Runnable() {
 			public void run() {
 				view.getRoot().setCenter(view.gameLayout);
+				view.getRoot().setRight(view.chatLayout);
 				view.getGameLayout().getLbName().setText(username);
 				view.getStage().setTitle("Game");
 				view.getTfUsername().setText("");
@@ -307,6 +312,7 @@ public class Controller {
 		Platform.runLater(new Runnable() {
 			public void run() {
 				view.getRoot().setCenter(view.loginLayout);
+				view.getRoot().setRight(null);
 				view.getStage().setTitle("Login");
 				clearMyCard();
 				clearOpponentCard();
@@ -577,7 +583,15 @@ public class Controller {
 				}
 		}
 	}
-
+	
+	public void updateChatText(String text) {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				view.chatLayout.getTxtMessages().appendText(text + "\n");
+			}
+		});
+	}
+	
 	// Getter & Setter
 	public Model getModel() {
 		return model;
@@ -628,5 +642,5 @@ public class Controller {
 	public void increasePlayedRounds() {
 		this.playedRounds.set(this.playedRounds.get() + 1);
 	}
-	
+
 }

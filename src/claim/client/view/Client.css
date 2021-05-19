@@ -49,6 +49,13 @@
 	-fx-spacing: 10;
 }
 
+#TextFieldMessage {
+	-fx-background-radius: 0px;
+	-fx-alignment: center-left;
+	-fx-focus-color: rgba(62, 132, 187, 1);
+	-fx-min-width: 300px;
+}
+
 #popupError {
 	-fx-background-color: rgba(244, 238, 232, 1);
 	-fx-hgap: 10;
