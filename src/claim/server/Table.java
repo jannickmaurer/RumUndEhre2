@@ -128,15 +128,39 @@ public class Table {
 		followerCardP1 = null; //eigentlich unnötig
 		followerCardP2 = null; //eigentlich unnötig
 		int winner = 0;
+		Card tmp = getNextTableCard();
+
 
 		if(players.get(0).getUsername().equals(firstPlayer.getUsername())) {
 			roundWinner = evaluateWinnerCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
 			addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), roundWinner);
+			switch (roundWinner) {
+			case "P1": followerCardP1 = actualTableCard;					
+					   players.get(0).getFollowerCards().add(followerCardP1);
+					   followerCardP2 = tmp;
+					   players.get(1).getFollowerCards().add(followerCardP2); break; 
+			case "P2": followerCardP2 = actualTableCard;
+					   players.get(1).getFollowerCards().add(followerCardP2);
+					   followerCardP1 = tmp;
+					   players.get(0).getFollowerCards().add(followerCardP1); 
+					   winner = 1; break;
+			}	
 		}else {
 			roundWinner = evaluateWinnerCard(players.get(1).getPlayedCard(), players.get(0).getPlayedCard());
 			addUndead(players.get(1).getPlayedCard(), players.get(0).getPlayedCard(), roundWinner);
+			switch (roundWinner) {
+			case "P1": followerCardP1 = actualTableCard;					
+					   players.get(1).getFollowerCards().add(followerCardP1);
+					   followerCardP2 = tmp;
+					   players.get(0).getFollowerCards().add(followerCardP2); break; 
+			case "P2": followerCardP2 = actualTableCard;
+					   players.get(0).getFollowerCards().add(followerCardP2);
+					   followerCardP1 = tmp;
+					   players.get(1).getFollowerCards().add(followerCardP1); 
+					   winner = 1; break;
+			}
 		}
-	System.out.println("Roundwinner Server: "+roundWinner);
+//		System.out.println("Roundwinner Server: "+roundWinner);
 		
 //		System.out.println("Karte übergeben P1: " + players.get(0).getPlayedCard());
 //		System.out.println("Karte übergeben P2: " + players.get(1).getPlayedCard());
@@ -146,20 +170,9 @@ public class Table {
 //		addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), roundWinner);
 //		System.out.println("FinishRound: Spielsieger: "+roundWinner+"   Karte P1: "+players.get(0).getPlayedCard()+"   Karte P2: "+players.get(1).getPlayedCard());
 
-		Card tmp = getNextTableCard();
+//		Card tmp = getNextTableCard();
 		
-		if(players.get(0).getUsername().equals(firstPlayer.getUsername()) && roundWinner.equals("P1")) {
-			followerCardP1 = actualTableCard;					
-			players.get(0).getFollowerCards().add(followerCardP1);
-			followerCardP2 = tmp;
-			players.get(1).getFollowerCards().add(followerCardP2);  
-		}else {
-			followerCardP2 = actualTableCard;
-			players.get(1).getFollowerCards().add(followerCardP2);
-			followerCardP1 = tmp;
-			players.get(0).getFollowerCards().add(followerCardP1); 
-			winner = 1; 
-		}
+
 		
 //		switch (roundWinner) {
 //		case "P1": followerCardP1 = actualTableCard;					
