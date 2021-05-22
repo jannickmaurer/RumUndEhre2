@@ -136,7 +136,7 @@ public class Table {
 			roundWinner = evaluateWinnerCard(players.get(1).getPlayedCard(), players.get(0).getPlayedCard());
 			addUndead(players.get(1).getPlayedCard(), players.get(0).getPlayedCard(), roundWinner);
 		}
-	System.out.println("Roundwinner Server: "+roundWinner);
+		System.out.println("Roundwinner Server: "+roundWinner);
 		
 //		System.out.println("Karte übergeben P1: " + players.get(0).getPlayedCard());
 //		System.out.println("Karte übergeben P2: " + players.get(1).getPlayedCard());
