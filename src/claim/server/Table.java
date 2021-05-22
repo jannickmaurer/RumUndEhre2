@@ -14,10 +14,10 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 
 public class Table {
-	private ArrayList<Account> players = new ArrayList<>();
+	public ArrayList<Account> players = new ArrayList<>(); 						//private		
 	private SimpleIntegerProperty playedCards = new SimpleIntegerProperty();
-	private Account firstPlayer = null;
-
+	public Account firstPlayer = null;											//private
+		
 	private DeckOfCards deck;
 	public ArrayList<Card> tableCards = new ArrayList<>();
 //	public ArrayList<Card> followerCardsP1 = new ArrayList<>();
@@ -122,42 +122,70 @@ public class Table {
 	 * - Wer oder wie greifen wir aud die tmpUndeads zu, respektive macht jannick das direkt oder
 	 *   muss ich noch eine zugriffs methode schreiben. 
 	 */
+
+	
 	
 	public void finishRound() {
 		roundWinner = ""; //eigentlich unnötig
 		followerCardP1 = null; //eigentlich unnötig
 		followerCardP2 = null; //eigentlich unnötig
 		int winner = 0;
+		Card playedTableCard = actualTableCard;
 		Card tmp = getNextTableCard();
 
 
 		if(players.get(0).getUsername().equals(firstPlayer.getUsername())) {
+			System.out.println("IF");
+
 			roundWinner = evaluateWinnerCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
 			addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), roundWinner);
+			
+			System.out.println(roundWinner);
+			
 			switch (roundWinner) {
-			case "P1": followerCardP1 = actualTableCard;					
+			case "P1": followerCardP1 = playedTableCard;	
+			
+//			System.out.println(playedTableCard.toString());
+//			System.out.println(actualTableCard.toString());
+//			System.out.println("Case P1");
+
 					   players.get(0).getFollowerCards().add(followerCardP1);
 					   followerCardP2 = tmp;
 					   players.get(1).getFollowerCards().add(followerCardP2); break; 
-			case "P2": followerCardP2 = actualTableCard;
+			case "P2": followerCardP2 = playedTableCard;
+//			System.out.println(playedTableCard.toString());
+//			System.out.println(actualTableCard.toString());
+//			System.out.println("Case P2");
+
 					   players.get(1).getFollowerCards().add(followerCardP2);
 					   followerCardP1 = tmp;
 					   players.get(0).getFollowerCards().add(followerCardP1); 
 					   winner = 1; break;
 			}	
 		}else {
+			System.out.println("ELSE");
 			roundWinner = evaluateWinnerCard(players.get(1).getPlayedCard(), players.get(0).getPlayedCard());
 			addUndead(players.get(1).getPlayedCard(), players.get(0).getPlayedCard(), roundWinner);
+			
+			System.out.println(roundWinner);
+			
 			switch (roundWinner) {
-			case "P1": followerCardP1 = actualTableCard;					
+			case "P1": followerCardP1 = playedTableCard;		
+//			System.out.println(playedTableCard.toString());
+//			System.out.println(actualTableCard.toString());
+
 					   players.get(1).getFollowerCards().add(followerCardP1);
-					   followerCardP2 = tmp;
-					   players.get(0).getFollowerCards().add(followerCardP2); break; 
-			case "P2": followerCardP2 = actualTableCard;
+					   followerCardP2 = tmp;		   
+					   players.get(0).getFollowerCards().add(followerCardP2); 
+					   winner = 1;break; 
+			case "P2": followerCardP2 = playedTableCard;
+//			System.out.println(playedTableCard.toString());
+//			System.out.println(actualTableCard.toString());
+//			System.out.println("Case P2");
+
 					   players.get(0).getFollowerCards().add(followerCardP2);
 					   followerCardP1 = tmp;
-					   players.get(1).getFollowerCards().add(followerCardP1); 
-					   winner = 1; break;
+					   players.get(1).getFollowerCards().add(followerCardP1); break;
 			}
 		}
 //		System.out.println("Roundwinner Server: "+roundWinner);
