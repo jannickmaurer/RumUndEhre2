@@ -317,7 +317,7 @@ public class Table {
 			switch (suitToString(card)) {
 			case "goblin": goblinP1.add(card); break;
 			case "dwarf" : dwarfP1.add(card);  break;
-			case "knigth": knightP1.add(card); break;
+			case "knight": knightP1.add(card); break;
 			case "double": doubleP1.add(card); break;
 			}
 		}
@@ -326,7 +326,7 @@ public class Table {
 			switch (suitToString(card)) {
 			case "goblin": goblinP2.add(card); break;
 			case "dwarf" : dwarfP2.add(card);  break;
-			case "knigth": knightP2.add(card); break;
+			case "knight": knightP2.add(card); break;
 			case "double": doubleP2.add(card); break;
 			}
 		}
@@ -342,15 +342,34 @@ public class Table {
 	 */
 	private String winnerFraction(ArrayList<Card> cardsP1, ArrayList<Card> cardsP2) {
 		String win = "NONE";
-		if(cardsP1.size() > cardsP2.size()) return "P1";
-		if(cardsP1.size() < cardsP2.size()) return "P2";
-		if(cardsP1.size() == 0 && cardsP2.size() == 0) return "NONE";
-		else
+		//TEST
+		for(Card c1 :cardsP1) {
+			System.out.println("WinnerFraction K1 :"+c1.toString());}
+		System.out.println("");
+		for(Card c2 :cardsP2) {
+			System.out.println("WinnerFraction K2 :"+c2.toString());}
+//		System.out.println("Karte P1 size: "+cardsP1.size());
+		//END TEST
+		
+		if(cardsP1.size() > cardsP2.size()) {
+			System.out.println("IF STATMENT P1");
+			return "P1";
+		}
+		if(cardsP1.size() < cardsP2.size()) {
+			System.out.println("IF STATMENT P2");
+			return "P2";
+		}
+		if(cardsP1.size() == 0 && cardsP2.size() == 0) {
+			System.out.println("IF STATMENT NONE");
+			return "NONE";
+		}
+		else 
 			switch (getHighestCard(cardsP1).compareTo(getHighestCard(cardsP2))) {
 			case  1: win = "P1";	break;
 			case  0: win = "NONE";	break; 
 			case -1: win = "P2";	break;
 			}
+		System.out.println("ELSE höhere karte sieger :"+win);
 		return win;	
 	}
 	
