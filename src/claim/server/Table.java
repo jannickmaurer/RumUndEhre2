@@ -132,13 +132,16 @@ public class Table {
 		int winner = 0;
 		Card playedTableCard = actualTableCard;
 		Card tmp = getNextTableCard();
+//		String roundWinnerUsername;
 
 
 		if(players.get(0).getUsername().equals(firstPlayer.getUsername())) {
 			System.out.println("IF");
 
 			roundWinner = evaluateWinnerCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
-			addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), roundWinner);
+//			if(roundWinner.equals("P1")) roundWinnerUsername = players.get(0).getUsername();
+			
+//			addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), roundWinner);
 			
 			System.out.println(roundWinner);
 			
@@ -165,7 +168,7 @@ public class Table {
 		}else {
 			System.out.println("ELSE");
 			roundWinner = evaluateWinnerCard(players.get(1).getPlayedCard(), players.get(0).getPlayedCard());
-			addUndead(players.get(1).getPlayedCard(), players.get(0).getPlayedCard(), roundWinner);
+//			addUndead(players.get(1).getPlayedCard(), players.get(0).getPlayedCard(), roundWinner);
 			
 			System.out.println(roundWinner);
 			
@@ -188,6 +191,9 @@ public class Table {
 					   players.get(1).getFollowerCards().add(followerCardP1); break;
 			}
 		}
+		
+		addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), winner);
+
 //		System.out.println("Roundwinner Server: "+roundWinner);
 		
 //		System.out.println("Karte übergeben P1: " + players.get(0).getPlayedCard());
@@ -255,16 +261,16 @@ public class Table {
 	/*
 	 * David: Add "Undead" cards to the winners ArrayList
 	 */
-	private void addUndead(Card cardP1, Card cardP2, String roundWinner) {
+	private void addUndead(Card cardP1, Card cardP2, int winner) {
 		tmpUndeads.clear();
 		if(suitToString(cardP1).equals("undead") || suitToString(cardP2).equals("undead")) {
-			switch (roundWinner) {
-			case "P1":	if(suitToString(cardP1).equals("undead")) players.get(0).addUndeadCard(cardP1); tmpUndeads.add(cardP1);
-						if(suitToString(cardP2).equals("undead")) players.get(0).addUndeadCard(cardP2); tmpUndeads.add(cardP2);
-						break;
-			case "P2":  if(suitToString(cardP1).equals("undead")) players.get(1).addUndeadCard(cardP1); tmpUndeads.add(cardP1);
-						if(suitToString(cardP2).equals("undead")) players.get(1).addUndeadCard(cardP2); tmpUndeads.add(cardP2);
-						break;
+			switch (winner) {
+			case 0:	if(suitToString(cardP1).equals("undead")) players.get(0).addUndeadCard(cardP1); tmpUndeads.add(cardP1);
+					if(suitToString(cardP2).equals("undead")) players.get(0).addUndeadCard(cardP2); tmpUndeads.add(cardP2);
+					break;
+			case 1: if(suitToString(cardP1).equals("undead")) players.get(1).addUndeadCard(cardP1); tmpUndeads.add(cardP1);
+					if(suitToString(cardP2).equals("undead")) players.get(1).addUndeadCard(cardP2); tmpUndeads.add(cardP2);
+					break;
 			}
 		}
 		undeadString = "None";
