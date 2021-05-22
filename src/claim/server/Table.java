@@ -31,6 +31,7 @@ public class Table {
 	public Card followerCardP1;
 	public Card followerCardP2;
 	private String undeadString;
+	private boolean secondRoundStarted = false;
 
 
 	public Table() {
@@ -439,4 +440,11 @@ public class Table {
 	public void setFirstPlayer(Account firstPlayer) {
 		this.firstPlayer = firstPlayer;
 	}
+	public boolean isSecondRoundStarted() {
+		return secondRoundStarted;
+	}
+	public void setSecondRoundStarted(boolean secondRoundStarted) {
+		this.secondRoundStarted = secondRoundStarted;
+	}
+	
 }

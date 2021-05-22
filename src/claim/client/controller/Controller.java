@@ -26,6 +26,7 @@ import claim.commons.messages.results.ResultPlayCard;
 import claim.commons.messages.results.ResultPlayerLoggedOut;
 import claim.commons.messages.results.ResultSendCard;
 import claim.commons.messages.results.ResultSendMessage;
+import claim.commons.messages.results.ResultStartSecondRound;
 import claim.client.view.PlayerPane;
 import claim.client.view.CardLabel;
 import javafx.application.Platform;
@@ -43,6 +44,7 @@ public class Controller {
 	private Boolean onTurn = false;
 	private Boolean cardPlayed = false;
 	private SimpleIntegerProperty playedRounds = new SimpleIntegerProperty();
+	private Boolean secondRoundStarted = false;
 
 	public Controller(Model model, View view) {
 		this.model = model;
@@ -224,6 +226,10 @@ public class Controller {
 			if (!msg.isFalse()) msg.process(Controller.this);
 			if (msg.isFalse()) msg.processIfFalse(Controller.this);
 		}
+		if (content[0].equals("ResultStartSecondRound")) { msg = new ResultStartSecondRound(content);
+		if (!msg.isFalse()) msg.process(Controller.this);
+		if (msg.isFalse()) msg.processIfFalse(Controller.this);
+	}
 		
 	}
 
@@ -277,6 +283,10 @@ public class Controller {
 	public void sendMessage() {
 		model.sendMessage(view.chatLayout.getTfMessage().getText());
 		view.chatLayout.getTfMessage().setText("");
+	}
+	
+	public void startSecondRound() {
+		model.startSecondRound();
 	}
 
 	
@@ -643,5 +653,14 @@ public class Controller {
 	public void increasePlayedRounds() {
 		this.playedRounds.set(this.playedRounds.get() + 1);
 	}
+
+	public Boolean getSecondRoundStarted() {
+		return secondRoundStarted;
+	}
+
+	public void setSecondRoundStarted(Boolean secondRoundStarted) {
+		this.secondRoundStarted = secondRoundStarted;
+	}
+	
 
 }
