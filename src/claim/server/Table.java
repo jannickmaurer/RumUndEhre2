@@ -265,19 +265,21 @@ public class Table {
 		tmpUndeads.clear();
 		if(suitToString(cardP1).equals("undead") || suitToString(cardP2).equals("undead")) {
 			switch (winner) {
-			case 0:	if(suitToString(cardP1).equals("undead")) players.get(0).addUndeadCard(cardP1); tmpUndeads.add(cardP1);
-					if(suitToString(cardP2).equals("undead")) players.get(0).addUndeadCard(cardP2); tmpUndeads.add(cardP2);
-					break;
-			case 1: if(suitToString(cardP1).equals("undead")) players.get(1).addUndeadCard(cardP1); tmpUndeads.add(cardP1);
-					if(suitToString(cardP2).equals("undead")) players.get(1).addUndeadCard(cardP2); tmpUndeads.add(cardP2);
-					break;
+			case 0:	if(suitToString(cardP1).equals("undead")) {players.get(0).addUndeadCard(cardP1); tmpUndeads.add(cardP1);}
+					if(suitToString(cardP2).equals("undead")) {players.get(0).addUndeadCard(cardP2); tmpUndeads.add(cardP2);}
+					System.out.println(winner);break;
+			case 1: if(suitToString(cardP1).equals("undead")) { players.get(1).addUndeadCard(cardP1); tmpUndeads.add(cardP1);}
+					if(suitToString(cardP2).equals("undead")) {players.get(1).addUndeadCard(cardP2); tmpUndeads.add(cardP2);}
+					System.out.println(winner);break;
 			}
 		}
 		undeadString = "None";
+		System.out.println("tmpUndeads Size "+tmpUndeads.size());
+		for(Card c : tmpUndeads)System.out.println(c.toString());
 		switch(tmpUndeads.size()) {
-		case 0: undeadString = "None"; break;
-		case 1: undeadString = tmpUndeads.get(0).toString(); break;
-		case 2: undeadString = tmpUndeads.get(0).toString()+"|"+tmpUndeads.get(1); break;
+		case 0: undeadString = "None"; System.out.println("undeadString "+undeadString); break;
+		case 1: undeadString = tmpUndeads.get(0).toString(); System.out.println("undeadString "+undeadString); break;
+		case 2: undeadString = tmpUndeads.get(0).toString()+"|"+tmpUndeads.get(1).toString(); System.out.println("undeadString "+undeadString); break;
 		}
 	}
 	
