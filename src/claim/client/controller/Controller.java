@@ -107,20 +107,7 @@ public class Controller {
 			sendMessage();
 		});
 		
-		//SD
-		for (int i = 0; i < view.getGameLayout().getPlayerLayout().getCardLabels().size(); i++) {
-			view.getGameLayout().getPlayerLayout().getCardLabels().get(i).setOnMouseReleased(this::sendTableCard);
-		}
 		
-		//SD
-		for (int i = 0; i < view.getGameLayout().getPlayerLayout().getCardLabels().size(); i++) {
-			view.getGameLayout().getPlayerLayout().getCardLabels().get(i).setOnMouseEntered(this::highlightCard);
-		}
-		
-		//SD
-		for (int i = 0; i < view.getGameLayout().getPlayerLayout().getCardLabels().size(); i++) {
-			view.getGameLayout().getPlayerLayout().getCardLabels().get(i).setOnMouseExited(this::delightCard);
-		}
 		
 		// When Model receives a new Message, the Value of the SimpleString Property "LastReceivedMessage" Changes
 		// This Method looks at this change and creates the respective Message Object
@@ -373,6 +360,20 @@ public class Controller {
 				}
 			}
 		});
+		//SD
+		for (int i = 0; i < view.getGameLayout().getPlayerLayout().getCardLabels().size(); i++) {
+			view.getGameLayout().getPlayerLayout().getCardLabels().get(i).setOnMouseReleased(this::sendTableCard);
+		}
+		
+		//SD
+		for (int i = 0; i < view.getGameLayout().getPlayerLayout().getCardLabels().size(); i++) {
+			view.getGameLayout().getPlayerLayout().getCardLabels().get(i).setOnMouseEntered(this::highlightCard);
+		}
+		
+		//SD
+		for (int i = 0; i < view.getGameLayout().getPlayerLayout().getCardLabels().size(); i++) {
+			view.getGameLayout().getPlayerLayout().getCardLabels().get(i).setOnMouseExited(this::delightCard);
+		}
 	}
 	
 	//SD
