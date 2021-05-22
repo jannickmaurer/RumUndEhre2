@@ -33,10 +33,10 @@ public abstract class Message {
 	}
 	
 	//Receive new Messages, can be runned after creating a new Message object
-	public static Message receive(Socket socket) {
+	public static Message receive (Socket socket) throws Exception {
 		BufferedReader in;
 		Message msg = null;
-		try {
+//		try {
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			// Takes the String which comes from the sender
 			String msgText = in.readLine(); // Will wait here for complete line
@@ -77,9 +77,10 @@ public abstract class Message {
 			
 			
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			
+//		}
 		return msg;
 	}
 	
