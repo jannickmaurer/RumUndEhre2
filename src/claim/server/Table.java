@@ -503,12 +503,19 @@ public class Table {
 
 	System.out.println("Sieger Account: "+players.get(win).getUsername());
 
+	
+	
+	
 			//Angepasste Finish Round Message
 			for(int i = 0; players.size() > i; i++) {
 			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), 
 					   Boolean.toString(secondRoundStarted),playedCardString};
 			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
 			}
+			
+			
+			
+			
 				
 		}else { 	
 			if(players.get(0).getUsername().equals(firstPlayer.getUsername())) {
