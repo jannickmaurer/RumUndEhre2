@@ -35,6 +35,7 @@ public class GamePane extends GridPane {
 	private Label lbCardsDeck = middleGameLayout.getLbCardsDeck();
 	private Button btNextTableCard = middleGameLayout.getBtNextTableCard();
 	private Button btEvaluateWinner = middleGameLayout.getBtEvaluateWinner();
+	private Button btStartRoundTwo = middleGameLayout.getBtStartRoundTwo();
 	
 	//Elemente aus Other Player Layout ansprechen
 	private Label lbOtherName = otherPlayerLayout.getLbName();
@@ -227,5 +228,13 @@ public class GamePane extends GridPane {
 
 	public void setLbOtherName(Label lbOtherName) {
 		this.lbOtherName = lbOtherName;
+	}
+
+	public Button getBtStartRoundTwo() {
+		return btStartRoundTwo;
+	}
+
+	public void setBtStartRoundTwo(Button btStartRoundTwo) {
+		this.btStartRoundTwo = btStartRoundTwo;
 	}
 }
