@@ -27,6 +27,7 @@ public class MiddleGamePane extends HBox {
 	private Label lbNewFollowerDeck = new Label();
 	
 	private Button btNextTableCard = new Button();
+	private Button btNextDuel = new Button();
 	private Button btEvaluateWinner = new Button();
 	private Button btStartRoundTwo = new Button();
 	private Label lbOpponentCard = new Label();
@@ -193,6 +194,14 @@ public class MiddleGamePane extends HBox {
 
 	public void setBtStartRoundTwo(Button btStartRoundTwo) {
 		this.btStartRoundTwo = btStartRoundTwo;
+	}
+
+	public Button getBtNextDuel() {
+		return btNextDuel;
+	}
+
+	public void setBtNextDuel(Button btNextDuel) {
+		this.btNextDuel = btNextDuel;
 	}
 	
 }
