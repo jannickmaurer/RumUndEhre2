@@ -134,66 +134,18 @@ public class Table {
 		String dwarfs;
 		Card playedTableCard = actualTableCard;
 		Card tmp = getNextTableCard();
-//		String roundWinnerUsername;
-
 
 		if(players.get(0).getUsername().equals(firstPlayer.getUsername())) {
 			System.out.println("IF");
-
 			roundWinner = evaluateWinnerCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
-//			if(roundWinner.equals("P1")) roundWinnerUsername = players.get(0).getUsername();
-			
-//			addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), roundWinner);
-			
 			System.out.println(roundWinner);
 			
-//			if(secondRoundStarted) {
-//				if(players.get(0).getPlayedCard().equals("dwarf") || players.get(1).getPlayedCard().equals("dwarf")) {
-//					ArrayList<Card> c = new ArrayList<>();
-//					if(players.get(0).getPlayedCard().equals("dwarf")) c.add(players.get(0).getPlayedCard());
-//					if(players.get(1).getPlayedCard().equals("dwarf")) c.add(players.get(1).getPlayedCard());
-//					switch(c.size()) {
-//					case 1: dwarfs = c.get(0).toString(); break;
-//					case 2: dwarfs = c.get(0).toString()+"|"+c.get(1).toString(); break;
-//					}
-//					roundWinner = roundWinner.concat(Integer.toString(c.size()));
-//					System.out.println("Switch Statement String Concat :"+roundWinner);
-//					switch (roundWinner) {
-//					case "P11": players.get(0).addFollowerCard();
-//					case "P12": 
-//					case "P21":
-//					case "P22":
-//					}
-//					
-//					
-//				}else {
-//					//add all Cards to Winner
-//					switch(roundWinner) {
-//					case "P1": players.get(0).getFollowerCards().add(players.get(0).getPlayedCard());
-//							   players.get(0).getFollowerCards().add(players.get(1).getPlayedCard());
-//					case "P2": players.get(1).getFollowerCards().add(players.get(0).getPlayedCard());
-//							   players.get(1).getFollowerCards().add(players.get(1).getPlayedCard());
-//					}
-//				}
-//				
-//				/*
-//				 * add String verschicke
-//				 */
-//	
-//				
-//			}else
 				switch (roundWinner) {
 				case "P1": followerCardP1 = playedTableCard;	
-//			System.out.println(playedTableCard.toString());
-//			System.out.println(actualTableCard.toString());
-//			System.out.println("Case P1");
 							players.get(0).getFollowerCards().add(followerCardP1);
 							followerCardP2 = tmp;
 							players.get(1).getFollowerCards().add(followerCardP2); break; 
 				case "P2": followerCardP2 = playedTableCard;
-//			System.out.println(playedTableCard.toString());
-//			System.out.println(actualTableCard.toString());
-//			System.out.println("Case P2");
 							players.get(1).getFollowerCards().add(followerCardP2);
 							followerCardP1 = tmp;
 							players.get(0).getFollowerCards().add(followerCardP1); 
@@ -202,61 +154,22 @@ public class Table {
 		}else {
 			System.out.println("ELSE");
 			roundWinner = evaluateWinnerCard(players.get(1).getPlayedCard(), players.get(0).getPlayedCard());
-//			addUndead(players.get(1).getPlayedCard(), players.get(0).getPlayedCard(), roundWinner);
-			
 			System.out.println(roundWinner);
 
 			switch (roundWinner) {
 			case "P1": followerCardP1 = playedTableCard;		
-//			System.out.println(playedTableCard.toString());
-//			System.out.println(actualTableCard.toString());
-
 					   players.get(1).getFollowerCards().add(followerCardP1);
 					   followerCardP2 = tmp;		   
 					   players.get(0).getFollowerCards().add(followerCardP2); 
 					   winner = 1;break; 
 			case "P2": followerCardP2 = playedTableCard;
-//			System.out.println(playedTableCard.toString());
-//			System.out.println(actualTableCard.toString());
-//			System.out.println("Case P2");
-
 					   players.get(0).getFollowerCards().add(followerCardP2);
 					   followerCardP1 = tmp;
 					   players.get(1).getFollowerCards().add(followerCardP1); break;
 			}
 		}
-
 		System.out.println("Roundwinner Server: "+roundWinner);
-
-		
 		addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), winner);
-
-//		System.out.println("Roundwinner Server: "+roundWinner);
-
-		
-//		System.out.println("Karte übergeben P1: " + players.get(0).getPlayedCard());
-//		System.out.println("Karte übergeben P2: " + players.get(1).getPlayedCard());
-//		roundWinner = evaluateWinnerCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
-//		System.out.println("Klasse Table | Methode FinishRound | Rundengewinner nach Auswertung ist(P1 oder P2): "+roundWinner);
-//		
-//		addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), roundWinner);
-//		System.out.println("FinishRound: Spielsieger: "+roundWinner+"   Karte P1: "+players.get(0).getPlayedCard()+"   Karte P2: "+players.get(1).getPlayedCard());
-
-//		Card tmp = getNextTableCard();
-		
-
-		
-//		switch (roundWinner) {
-//		case "P1": followerCardP1 = actualTableCard;					
-//				   players.get(0).getFollowerCards().add(followerCardP1);
-//				   followerCardP2 = tmp;
-//				   players.get(1).getFollowerCards().add(followerCardP2); break; 
-//		case "P2": followerCardP2 = actualTableCard;
-//				   players.get(1).getFollowerCards().add(followerCardP2);
-//				   followerCardP1 = tmp;
-//				   players.get(0).getFollowerCards().add(followerCardP1); 
-//				   winner = 1; break;
-//		}	
 		
 		for(int i = 0; players.size() > i; i++) {
 		   if(undeadString.equalsIgnoreCase("None")) {
