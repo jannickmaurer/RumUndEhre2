@@ -33,10 +33,10 @@ public abstract class Message {
 	}
 	
 	//Receive new Messages, can be runned after creating a new Message object
-	public static Message receive(Socket socket) {
+	public static Message receive (Socket socket) throws Exception {
 		BufferedReader in;
 		Message msg = null;
-		try {
+//		try {
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			// Takes the String which comes from the sender
 			String msgText = in.readLine(); // Will wait here for complete line
@@ -65,6 +65,7 @@ public abstract class Message {
 //			if (content[0].equals("DeletePlayroom")) msg = new DeletePlayroom(content);
 //			if (content[0].equals("JoinPlayroom")) msg = new JoinPlayroom(content);
 			if (content[0].equals("SendMessage")) msg = new SendMessage(content);
+			if (content[0].equals("StartSecondRound")) msg = new StartSecondRound(content);
 //			if (content[0].equals("Text")) msg = new Text(content);
 //			if (content[0].equals("LeavePlayroom")) msg = new LeavePlayroom(content);
 //			if (content[0].equals("StartGame")) msg = new StartGame(content);
@@ -77,9 +78,10 @@ public abstract class Message {
 			
 			
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			
+//		}
 		return msg;
 	}
 	

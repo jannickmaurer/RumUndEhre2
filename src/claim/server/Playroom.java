@@ -77,7 +77,7 @@ public class Playroom implements Serializable {
 //		}
 //	}
 	
-	public String[] combineArrayAndArrayList(String[] array, ArrayList<String> list) {
+	public static String[] combineArrayAndArrayList(String[] array, ArrayList<String> list) {
 		String[] content = new String[array.length + list.size()];
 		for (int i = 0; i < array.length; i++)
 			content[i] = array[i];

@@ -27,6 +27,7 @@ public class Logout extends Message {
 			client.setToken(null); 
 			client.setAccount(null); 
 			client.setLoggedIn(false);
+			client.getClients().remove(client);
 			if(!client.getPlayroom().getPlayers().isEmpty()) {
 				for(Account a : client.getPlayroom().getPlayers()) {
 					a.getClient().send(new ResultPlayerLoggedOut(true));

@@ -43,7 +43,7 @@ public class Client {
 						}
 					}
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info("Client deisconnected");
 					clientReachable = false;
 				}
 			}

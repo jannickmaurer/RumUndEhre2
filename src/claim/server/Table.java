@@ -14,10 +14,10 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 
 public class Table {
-	private ArrayList<Account> players = new ArrayList<>();
+	public ArrayList<Account> players = new ArrayList<>(); 						//private		
 	private SimpleIntegerProperty playedCards = new SimpleIntegerProperty();
-	private Account firstPlayer = null;
-
+	public Account firstPlayer = null;											//private
+		
 	private DeckOfCards deck;
 	public ArrayList<Card> tableCards = new ArrayList<>();
 //	public ArrayList<Card> followerCardsP1 = new ArrayList<>();
@@ -31,6 +31,7 @@ public class Table {
 	public Card followerCardP1;
 	public Card followerCardP2;
 	private String undeadString;
+	private boolean secondRoundStarted = false;
 
 
 	public Table() {
@@ -122,45 +123,83 @@ public class Table {
 	 * - Wer oder wie greifen wir aud die tmpUndeads zu, respektive macht jannick das direkt oder
 	 *   muss ich noch eine zugriffs methode schreiben. 
 	 */
+
+	
 	
 	public void finishRound() {
 		roundWinner = ""; //eigentlich unnötig
 		followerCardP1 = null; //eigentlich unnötig
 		followerCardP2 = null; //eigentlich unnötig
 		int winner = 0;
+		Card playedTableCard = actualTableCard;
 		Card tmp = getNextTableCard();
+//		String roundWinnerUsername;
 
 
 		if(players.get(0).getUsername().equals(firstPlayer.getUsername())) {
+			System.out.println("IF");
+
 			roundWinner = evaluateWinnerCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
-			addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), roundWinner);
+//			if(roundWinner.equals("P1")) roundWinnerUsername = players.get(0).getUsername();
+			
+//			addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), roundWinner);
+			
+			System.out.println(roundWinner);
+			
 			switch (roundWinner) {
-			case "P1": followerCardP1 = actualTableCard;					
+			case "P1": followerCardP1 = playedTableCard;	
+			
+//			System.out.println(playedTableCard.toString());
+//			System.out.println(actualTableCard.toString());
+//			System.out.println("Case P1");
+
 					   players.get(0).getFollowerCards().add(followerCardP1);
 					   followerCardP2 = tmp;
 					   players.get(1).getFollowerCards().add(followerCardP2); break; 
-			case "P2": followerCardP2 = actualTableCard;
+			case "P2": followerCardP2 = playedTableCard;
+//			System.out.println(playedTableCard.toString());
+//			System.out.println(actualTableCard.toString());
+//			System.out.println("Case P2");
+
 					   players.get(1).getFollowerCards().add(followerCardP2);
 					   followerCardP1 = tmp;
 					   players.get(0).getFollowerCards().add(followerCardP1); 
 					   winner = 1; break;
 			}	
 		}else {
+			System.out.println("ELSE");
 			roundWinner = evaluateWinnerCard(players.get(1).getPlayedCard(), players.get(0).getPlayedCard());
-			addUndead(players.get(1).getPlayedCard(), players.get(0).getPlayedCard(), roundWinner);
+//			addUndead(players.get(1).getPlayedCard(), players.get(0).getPlayedCard(), roundWinner);
+			
+			System.out.println(roundWinner);
+			
 			switch (roundWinner) {
-			case "P1": followerCardP1 = actualTableCard;					
+			case "P1": followerCardP1 = playedTableCard;		
+//			System.out.println(playedTableCard.toString());
+//			System.out.println(actualTableCard.toString());
+
 					   players.get(1).getFollowerCards().add(followerCardP1);
-					   followerCardP2 = tmp;
-					   players.get(0).getFollowerCards().add(followerCardP2); break; 
-			case "P2": followerCardP2 = actualTableCard;
+					   followerCardP2 = tmp;		   
+					   players.get(0).getFollowerCards().add(followerCardP2); 
+					   winner = 1;break; 
+			case "P2": followerCardP2 = playedTableCard;
+//			System.out.println(playedTableCard.toString());
+//			System.out.println(actualTableCard.toString());
+//			System.out.println("Case P2");
+
 					   players.get(0).getFollowerCards().add(followerCardP2);
 					   followerCardP1 = tmp;
-					   players.get(1).getFollowerCards().add(followerCardP1); 
-					   winner = 1; break;
+					   players.get(1).getFollowerCards().add(followerCardP1); break;
 			}
 		}
+
+		System.out.println("Roundwinner Server: "+roundWinner);
+
+		
+		addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), winner);
+
 //		System.out.println("Roundwinner Server: "+roundWinner);
+
 		
 //		System.out.println("Karte übergeben P1: " + players.get(0).getPlayedCard());
 //		System.out.println("Karte übergeben P2: " + players.get(1).getPlayedCard());
@@ -227,23 +266,25 @@ public class Table {
 	/*
 	 * David: Add "Undead" cards to the winners ArrayList
 	 */
-	private void addUndead(Card cardP1, Card cardP2, String roundWinner) {
+	private void addUndead(Card cardP1, Card cardP2, int winner) {
 		tmpUndeads.clear();
 		if(suitToString(cardP1).equals("undead") || suitToString(cardP2).equals("undead")) {
-			switch (roundWinner) {
-			case "P1":	if(suitToString(cardP1).equals("undead")) players.get(0).addUndeadCard(cardP1); tmpUndeads.add(cardP1);
-						if(suitToString(cardP2).equals("undead")) players.get(0).addUndeadCard(cardP2); tmpUndeads.add(cardP2);
-						break;
-			case "P2":  if(suitToString(cardP1).equals("undead")) players.get(1).addUndeadCard(cardP1); tmpUndeads.add(cardP1);
-						if(suitToString(cardP2).equals("undead")) players.get(1).addUndeadCard(cardP2); tmpUndeads.add(cardP2);
-						break;
+			switch (winner) {
+			case 0:	if(suitToString(cardP1).equals("undead")) {players.get(0).addUndeadCard(cardP1); tmpUndeads.add(cardP1);}
+					if(suitToString(cardP2).equals("undead")) {players.get(0).addUndeadCard(cardP2); tmpUndeads.add(cardP2);}
+					System.out.println(winner);break;
+			case 1: if(suitToString(cardP1).equals("undead")) { players.get(1).addUndeadCard(cardP1); tmpUndeads.add(cardP1);}
+					if(suitToString(cardP2).equals("undead")) {players.get(1).addUndeadCard(cardP2); tmpUndeads.add(cardP2);}
+					System.out.println(winner);break;
 			}
 		}
 		undeadString = "None";
+		System.out.println("tmpUndeads Size "+tmpUndeads.size());
+		for(Card c : tmpUndeads)System.out.println(c.toString());
 		switch(tmpUndeads.size()) {
-		case 0: undeadString = "None"; break;
-		case 1: undeadString = tmpUndeads.get(0).toString(); break;
-		case 2: undeadString = tmpUndeads.get(0).toString()+"|"+tmpUndeads.get(1); break;
+		case 0: undeadString = "None"; System.out.println("undeadString "+undeadString); break;
+		case 1: undeadString = tmpUndeads.get(0).toString(); System.out.println("undeadString "+undeadString); break;
+		case 2: undeadString = tmpUndeads.get(0).toString()+"|"+tmpUndeads.get(1).toString(); System.out.println("undeadString "+undeadString); break;
 		}
 	}
 	
@@ -276,7 +317,7 @@ public class Table {
 			switch (suitToString(card)) {
 			case "goblin": goblinP1.add(card); break;
 			case "dwarf" : dwarfP1.add(card);  break;
-			case "knigth": knightP1.add(card); break;
+			case "knight": knightP1.add(card); break;
 			case "double": doubleP1.add(card); break;
 			}
 		}
@@ -285,7 +326,7 @@ public class Table {
 			switch (suitToString(card)) {
 			case "goblin": goblinP2.add(card); break;
 			case "dwarf" : dwarfP2.add(card);  break;
-			case "knigth": knightP2.add(card); break;
+			case "knight": knightP2.add(card); break;
 			case "double": doubleP2.add(card); break;
 			}
 		}
@@ -301,15 +342,34 @@ public class Table {
 	 */
 	private String winnerFraction(ArrayList<Card> cardsP1, ArrayList<Card> cardsP2) {
 		String win = "NONE";
-		if(cardsP1.size() > cardsP2.size()) return "P1";
-		if(cardsP1.size() < cardsP2.size()) return "P2";
-		if(cardsP1.size() == 0 && cardsP2.size() == 0) return "NONE";
-		else
+		//TEST
+		for(Card c1 :cardsP1) {
+			System.out.println("WinnerFraction K1 :"+c1.toString());}
+		System.out.println("");
+		for(Card c2 :cardsP2) {
+			System.out.println("WinnerFraction K2 :"+c2.toString());}
+//		System.out.println("Karte P1 size: "+cardsP1.size());
+		//END TEST
+		
+		if(cardsP1.size() > cardsP2.size()) {
+			System.out.println("IF STATMENT P1");
+			return "P1";
+		}
+		if(cardsP1.size() < cardsP2.size()) {
+			System.out.println("IF STATMENT P2");
+			return "P2";
+		}
+		if(cardsP1.size() == 0 && cardsP2.size() == 0) {
+			System.out.println("IF STATMENT NONE");
+			return "NONE";
+		}
+		else 
 			switch (getHighestCard(cardsP1).compareTo(getHighestCard(cardsP2))) {
 			case  1: win = "P1";	break;
 			case  0: win = "NONE";	break; 
 			case -1: win = "P2";	break;
 			}
+		System.out.println("ELSE höhere karte sieger :"+win);
 		return win;	
 	}
 	
@@ -399,4 +459,11 @@ public class Table {
 	public void setFirstPlayer(Account firstPlayer) {
 		this.firstPlayer = firstPlayer;
 	}
+	public boolean isSecondRoundStarted() {
+		return secondRoundStarted;
+	}
+	public void setSecondRoundStarted(boolean secondRoundStarted) {
+		this.secondRoundStarted = secondRoundStarted;
+	}
+	
 }

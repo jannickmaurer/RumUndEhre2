@@ -21,6 +21,7 @@ import claim.commons.messages.Ping;
 import claim.commons.messages.PlayCard;
 import claim.commons.messages.SendMessage;
 import claim.commons.messages.StartRoundOne;
+import claim.commons.messages.StartSecondRound;
 import claim.commons.Configuration;
 import claim.commons.Translator;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -165,6 +166,17 @@ public class Model {
 	public void disconnect() {
 		String[] content = new String[] { "Disconnect", this.token.getValue(),};
 		Message msg = new Disconnect(content);
+		try {
+			msg.send(socket);
+			logger.info("Client tries to send message: " + msg.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void startSecondRound() {
+		String[] content = new String[] { "StartSecondRound", this.token.getValue(),};
+		Message msg = new StartSecondRound(content);
 		try {
 			msg.send(socket);
 			logger.info("Client tries to send message: " + msg.toString());
