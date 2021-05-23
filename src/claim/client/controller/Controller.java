@@ -101,6 +101,10 @@ public class Controller {
 			this.evaluateWinner();
 		});
 		
+		view.getGameLayout().getMiddleGameLayout().getBtStartRoundTwo().setOnAction(e -> {
+			this.startSecondRound();
+		});
+		
 		view.getBtnBackError().setOnAction(e -> {
 			view.errorPopUp.hide();
 		});
@@ -132,7 +136,7 @@ public class Controller {
 				
 				if(onTurn) {
 					// Button anzeigen
-					view.getGameLayout().getMiddleGameLayout().getBtEvaluateWinner().setVisible(true);
+					view.getGameLayout().getMiddleGameLayout().getBtStartRoundTwo().setVisible(true);
 				}
 				this.playedRounds.set(0);
 				

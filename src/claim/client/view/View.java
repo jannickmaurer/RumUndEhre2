@@ -78,6 +78,7 @@ public class View {
 	private Label lbFollowerDeckP2 = gameLayout.getLbFollowerDeckP2();
 	private Button btLogout = gameLayout.getBtLogout();
 	private Button btEvaluateWinner = gameLayout.getBtEvaluateWinner();
+	private Button btStartRoundTwo = gameLayout.getBtStartRoundTwo();
 	
 	//Elemente aus Chat Layout ansprechen
 	private Button btSend = chatLayout.getBtnSend();
@@ -141,6 +142,7 @@ public class View {
 		scene.getStylesheets().add(getClass().getResource("Client.css").toExternalForm());
 		
 		primaryStage.setScene(scene);
+		primaryStage.setMaximized(true);
 		primaryStage.setTitle("Connect");
 	}
 
@@ -184,6 +186,7 @@ public class View {
 		registrationLayout.getBtBack().setText(t.getString("button.back"));
 		gameLayout.getBtLogout().setText(t.getString("button.logout"));
 		gameLayout.getBtEvaluateWinner().setText(t.getString("button.evaluatewinner"));
+		gameLayout.getBtStartRoundTwo().setText(t.getString("button.roundtwo"));
 		gameLayout.getBtNextTableCard().setText(t.getString("button.next"));
 		chatLayout.getBtnSend().setText(t.getString("button.send"));
 		errorPopupLayout.getBtBackError().setText(t.getString("button.back"));
@@ -454,6 +457,14 @@ public class View {
 
 	public void setLblWinnerName(Label lblWinnerName) {
 		this.lblWinnerName = lblWinnerName;
+	}
+
+	public Button getBtStartRoundTwo() {
+		return btStartRoundTwo;
+	}
+
+	public void setBtStartRoundTwo(Button btStartRoundTwo) {
+		this.btStartRoundTwo = btStartRoundTwo;
 	}
 
 }
