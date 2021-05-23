@@ -127,65 +127,66 @@ public class Table {
 	
 	
 	public void finishRound() {
-		roundWinner = ""; //eigentlich unnötig
-		followerCardP1 = null; //eigentlich unnötig
-		followerCardP2 = null; //eigentlich unnötig
-		int winner = 0;
-		String dwarfs;
-		Card playedTableCard = actualTableCard;
-		Card tmp = getNextTableCard();
-
-		if(players.get(0).getUsername().equals(firstPlayer.getUsername())) {
-			System.out.println("IF");
-			roundWinner = evaluateWinnerCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
-			System.out.println(roundWinner);
-			
-				switch (roundWinner) {
-				case "P1": followerCardP1 = playedTableCard;	
-							players.get(0).getFollowerCards().add(followerCardP1);
-							followerCardP2 = tmp;
-							players.get(1).getFollowerCards().add(followerCardP2); break; 
-				case "P2": followerCardP2 = playedTableCard;
-							players.get(1).getFollowerCards().add(followerCardP2);
-							followerCardP1 = tmp;
-							players.get(0).getFollowerCards().add(followerCardP1); 
-							winner = 1; break;
-				}	
-		}else {
-			System.out.println("ELSE");
-			roundWinner = evaluateWinnerCard(players.get(1).getPlayedCard(), players.get(0).getPlayedCard());
-			System.out.println(roundWinner);
-
-			switch (roundWinner) {
-			case "P1": followerCardP1 = playedTableCard;		
-					   players.get(1).getFollowerCards().add(followerCardP1);
-					   followerCardP2 = tmp;		   
-					   players.get(0).getFollowerCards().add(followerCardP2); 
-					   winner = 1;break; 
-			case "P2": followerCardP2 = playedTableCard;
-					   players.get(0).getFollowerCards().add(followerCardP2);
-					   followerCardP1 = tmp;
-					   players.get(1).getFollowerCards().add(followerCardP1); break;
-			}
-		}
-		System.out.println("Roundwinner Server: "+roundWinner);
-		addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), winner);
-		
-		for(int i = 0; players.size() > i; i++) {
-		   if(undeadString.equalsIgnoreCase("None")) {
-			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(winner).getUsername(), tmp.toString()};
-			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
-		   } else {
-			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(winner).getUsername(), tmp.toString(), undeadString};
-			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
-		   }
-		}
-		this.playedCards.set(0);
-		this.firstPlayer = null;
-		
-		for(Account a: players) {
-			a.clearPlayedCard();
-		}
+		newFinishRound();
+//		roundWinner = ""; //eigentlich unnötig
+//		followerCardP1 = null; //eigentlich unnötig
+//		followerCardP2 = null; //eigentlich unnötig
+//		int winner = 0;
+//		String dwarfs;
+//		Card playedTableCard = actualTableCard;
+//		Card tmp = getNextTableCard();
+//
+//		if(players.get(0).getUsername().equals(firstPlayer.getUsername())) {
+//			System.out.println("IF");
+//			roundWinner = evaluateWinnerCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
+//			System.out.println(roundWinner);
+//			
+//				switch (roundWinner) {
+//				case "P1": followerCardP1 = playedTableCard;	
+//							players.get(0).getFollowerCards().add(followerCardP1);
+//							followerCardP2 = tmp;
+//							players.get(1).getFollowerCards().add(followerCardP2); break; 
+//				case "P2": followerCardP2 = playedTableCard;
+//							players.get(1).getFollowerCards().add(followerCardP2);
+//							followerCardP1 = tmp;
+//							players.get(0).getFollowerCards().add(followerCardP1); 
+//							winner = 1; break;
+//				}	
+//		}else {
+//			System.out.println("ELSE");
+//			roundWinner = evaluateWinnerCard(players.get(1).getPlayedCard(), players.get(0).getPlayedCard());
+//			System.out.println(roundWinner);
+//
+//			switch (roundWinner) {
+//			case "P1": followerCardP1 = playedTableCard;		
+//					   players.get(1).getFollowerCards().add(followerCardP1);
+//					   followerCardP2 = tmp;		   
+//					   players.get(0).getFollowerCards().add(followerCardP2); 
+//					   winner = 1;break; 
+//			case "P2": followerCardP2 = playedTableCard;
+//					   players.get(0).getFollowerCards().add(followerCardP2);
+//					   followerCardP1 = tmp;
+//					   players.get(1).getFollowerCards().add(followerCardP1); break;
+//			}
+//		}
+//		System.out.println("Roundwinner Server: "+roundWinner);
+//		addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), winner);
+//		
+//		for(int i = 0; players.size() > i; i++) {
+//		   if(undeadString.equalsIgnoreCase("None")) {
+//			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(winner).getUsername(), tmp.toString()};
+//			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+//		   } else {
+//			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(winner).getUsername(), tmp.toString(), undeadString};
+//			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+//		   }
+//		}
+//		this.playedCards.set(0);
+//		this.firstPlayer = null;
+//		
+//		for(Account a: players) {
+//			a.clearPlayedCard();
+//		}
 	}	
 	
 	//Dave: Falls eine der beiden Karten ein Untoter ist oder beide, muss diese dem Spieler
