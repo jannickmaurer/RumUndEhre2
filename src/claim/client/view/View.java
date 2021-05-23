@@ -141,6 +141,7 @@ public class View {
 		scene.getStylesheets().add(getClass().getResource("Client.css").toExternalForm());
 		
 		primaryStage.setScene(scene);
+		primaryStage.setMaximized(true);
 		primaryStage.setTitle("Connect");
 	}
 

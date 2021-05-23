@@ -21,12 +21,12 @@ public class CardLabel extends Label {
 	public void setDeck() {
 		Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("claim/image/Backside.jpg"));
 		ImageView imv = new ImageView(image);
-		imv.setFitWidth(80);
+		imv.setFitWidth(70);
 		imv.maxWidth(80);
-		imv.minWidth(55);
-		imv.setFitHeight(115);
+		imv.minWidth(70);
+		imv.setFitHeight(100);
 		imv.maxHeight(115);
-		imv.minHeight(80);
+		imv.minHeight(100);
 		imv.setPreserveRatio(true);
 		this.setGraphic(imv);
 	}
@@ -35,10 +35,12 @@ public class CardLabel extends Label {
 	public void setCard(String card) {
 		Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("claim/image/" + card + ".jpg"));
 		ImageView imv = new ImageView(image);
-		imv.setFitWidth(87);
-		imv.maxWidth(87);
-		imv.setFitHeight(125);
-		imv.maxHeight(125);
+		imv.setFitWidth(70);
+		imv.maxWidth(80);
+		imv.minWidth(70);
+		imv.setFitHeight(100);
+		imv.maxHeight(115);
+		imv.minHeight(100);
 		imv.setPreserveRatio(true);
 		this.setGraphic(imv);
 	}
@@ -48,10 +50,12 @@ public class CardLabel extends Label {
 		String fileName = cardToFileName(card);
 		Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("claim/image/" + fileName));
 		ImageView imv = new ImageView(image);
-		imv.setFitWidth(87);
-		imv.maxWidth(87);
-		imv.setFitHeight(125);
-		imv.maxHeight(125);
+		imv.setFitWidth(70);
+		imv.maxWidth(80);
+		imv.minWidth(70);
+		imv.setFitHeight(100);
+		imv.maxHeight(115);
+		imv.minHeight(100);
 		imv.setPreserveRatio(true);
 		this.setGraphic(imv);
 	}
