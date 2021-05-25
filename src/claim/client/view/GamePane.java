@@ -206,4 +206,12 @@ public class GamePane extends GridPane {
 	public void setBtNextDuel(Button btNextDuel) {
 		this.btNextDuel = btNextDuel;
 	}
+
+	public OtherPlayerPane getOtherPlayerLayout() {
+		return otherPlayerLayout;
+	}
+
+	public void setOtherPlayerLayout(OtherPlayerPane otherPlayerLayout) {
+		this.otherPlayerLayout = otherPlayerLayout;
+	}
 }

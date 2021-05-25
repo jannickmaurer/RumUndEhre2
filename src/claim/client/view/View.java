@@ -313,6 +313,14 @@ public class View {
 		return btRegistration;
 	}
 
+	public Scene getScene() {
+		return scene;
+	}
+
+	public void setScene(Scene scene) {
+		this.scene = scene;
+	}
+
 	public void setBtRegistration(Button btRegistration) {
 		this.btRegistration = btRegistration;
 	}
@@ -475,6 +483,14 @@ public class View {
 
 	public void setBtNextDuel(Button btNextDuel) {
 		this.btNextDuel = btNextDuel;
+	}
+
+	public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+
+	public void setPrimaryStage(Stage primaryStage) {
+		this.primaryStage = primaryStage;
 	}
 
 }
