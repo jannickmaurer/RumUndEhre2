@@ -12,7 +12,6 @@ import claim.commons.messages.Message;
 // String: ResultFinishRound|Boolean|Username Winner|TableCard|Undead1|Undead2
 //String: ResultFinishRound|Boolean|Username Winner|Card1|Card2|Card3
 
-
 public class ResultBroadcastFinishRound extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getClientLogger();
@@ -20,18 +19,9 @@ public class ResultBroadcastFinishRound extends Message {
 	private String card1;
 	private String card2;
 	private String card3;
-	
-	
 	private String winner; 
-//	private String TableCard;
-//	private ArrayList<Card> undeads = new ArrayList<>();
-	//nach senden sieger darf spieler, gegner alles inaktivieren
-	
-	//**********INPUT DAVID
-//	private boolean secondRoundStarted;
 	private Card followerCard1;
 	private Card followerCard2;
-	//**********INPUT DAVID
 	
 	public ResultBroadcastFinishRound(boolean result) {
 		super(new String[] {"ResultBroadcastFinishRound", Boolean.toString(result)});
@@ -57,44 +47,28 @@ public class ResultBroadcastFinishRound extends Message {
 			followerCard2 = new Card(card2);
 		}
 		
-		
-		
 		if(controller.getUsername().equalsIgnoreCase(this.winner)) {
-			// Runde gewonnen
-			System.out.println("Ich habe gewonnen");
+	System.out.println("Ich habe gewonnen");
 			
 			if(controller.getSecondRoundStarted()) {
 				// button enablen und karten speichern
-				// TBD: Add card1 and card2
 				cardCheck(controller);
-				
 				
 			} else {
 				if(card2 != null) controller.getBoard().addUndead(new Card(card2));
 				if(card3 != null) controller.getBoard().addUndead(new Card(card3));
 				controller.enableTableCardButton();
-//				
-//				if(!undeads.isEmpty()) {
-//					for(Card c : undeads) {
-//						controller.getBoard().addUndead(c);
-//					}
-//				}
 			}
-			
 			controller.setOnTurn(true);
 		} else {
 			// Table Karte, die der Verlierer erhält, anzeigen
-			System.out.println("Ich habe verloren");
+	System.out.println("Ich habe verloren");
 			
 			if(controller.getSecondRoundStarted()) {
-				
-				//Zwerge scheiss
 				cardCheck(controller);
-
 			} else {
 				controller.showNewFollowerCard(card1);
 			}
-			
 			controller.setOnTurn(false);
 		}
 		controller.setCardPlayed(false);
