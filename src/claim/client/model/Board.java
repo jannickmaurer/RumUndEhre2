@@ -11,13 +11,13 @@ public class Board {
 	
 	public ArrayList<Card> handCards;
 	private ArrayList<Card> followerCards;
-	private ArrayList<Card> pointCards;
+//	private ArrayList<Card> pointCards;
 	private ArrayList<Card> undeadCards;
 	
 	public Board() {
 		handCards = new ArrayList<>();
 		followerCards = new ArrayList<>();
-		pointCards = new ArrayList<>();
+//		pointCards = new ArrayList<>();
 		undeadCards = new ArrayList<>();
 	}
 	
@@ -150,13 +150,13 @@ public class Board {
 		this.followerCards = followerCards;
 	}
 
-	public ArrayList<Card> getPointCards() {
-		return pointCards;
-	}
-
-	public void setPointCards(ArrayList<Card> pointCards) {
-		this.pointCards = pointCards;
-	}
+//	public ArrayList<Card> getPointCards() {
+//		return pointCards;
+//	}
+//
+//	public void setPointCards(ArrayList<Card> pointCards) {
+//		this.pointCards = pointCards;
+//	}
 	public void addUndead(Card undead) {
 		this.undeadCards.add(undead);
 	}
