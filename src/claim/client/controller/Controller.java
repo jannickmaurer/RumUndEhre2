@@ -43,6 +43,7 @@ public class Controller {
 	private Board board;
 	private Boolean onTurn = false;
 	private Boolean cardPlayed = false;
+	private Boolean readyForSecondRound = false;
 	private SimpleIntegerProperty playedRounds = new SimpleIntegerProperty();
 	private Boolean secondRoundStarted = false;
 
@@ -105,6 +106,11 @@ public class Controller {
 			this.startSecondRound();
 		});
 		
+		view.getGameLayout().getMiddleGameLayout().getBtNextDuel().setOnAction(e -> {
+			this.enableHandCards();
+			this.disableNextDuelButton();
+		});
+		
 		view.getBtnBackError().setOnAction(e -> {
 			view.errorPopUp.hide();
 		});
@@ -133,8 +139,11 @@ public class Controller {
 		
 		this.playedRounds.addListener((o, oldValue, newValue) -> {
 			if (newValue.intValue() == 13) {
-				
+				readyForSecondRound = true;
 				if(onTurn) {
+					if(secondRoundStarted) {
+						view.getGameLayout().getMiddleGameLayout().getBtEvaluateWinner().setVisible(true);
+					}
 					// Button anzeigen
 					view.getGameLayout().getMiddleGameLayout().getBtStartRoundTwo().setVisible(true);
 				}
@@ -156,6 +165,14 @@ public class Controller {
 			System.exit(0);
 //			model.closeSocket();
 		});
+	}
+
+	public Boolean getReadyForSecondRound() {
+		return readyForSecondRound;
+	}
+
+	public void setReadyForSecondRound(Boolean readyForSecondRound) {
+		this.readyForSecondRound = readyForSecondRound;
 	}
 
 	// Does the same thing as the Message Class on Server's Side
@@ -297,7 +314,6 @@ public class Controller {
 		clearMyCard();
 		clearOpponentCard();
 		clearMiddle();
-		disableTableCardButton();
 		resetHandCards();
 		view.getBtStartRoundTwo().setVisible(false);
 	}
@@ -586,6 +602,10 @@ public class Controller {
 
 	public void disableTableCardButton() {
 		view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setDisable(true);	
+	}
+	
+	public void disableNextDuelButton() {
+		view.getGameLayout().getMiddleGameLayout().getBtNextDuel().setDisable(true);	
 	}
 
 	public void enableHandCards() {

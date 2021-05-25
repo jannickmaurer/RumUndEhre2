@@ -32,11 +32,17 @@ public class ResultDealCards extends Message {
 	
 	@Override
 	public void process(Controller controller) {
+		if(controller.getReadyForSecondRound()) {
+			controller.prepareSecondRound();
+		}
 		controller.getBoard().addHandCards(handCards);
 		controller.deal(controller.getBoard().getHandCards());
 		controller.enableTableCardButton(firstUser);
 		if(firstUser.equals(controller.getUsername())) {
 			controller.setOnTurn(true);
+			if(controller.getReadyForSecondRound()) {
+				controller.getView().getGameLayout().getBtNextDuel().setDisable(false);
+			}
 		}
 		// Player got its handcards and game can be started
 	}

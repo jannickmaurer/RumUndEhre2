@@ -59,6 +59,8 @@ public class MiddleGamePane extends HBox {
 		btStartRoundTwo.setVisible(false);
 		newFollowerCard.setAlignment(Pos.CENTER);
 		newFollowerCard.setId("newFollowerCard");
+		
+		btNextDuel.setDisable(true);
 
 		this.getChildren().addAll(playedCards, tableCardsDeck, newFollowerCard);
 		this.setId("middleGame");
