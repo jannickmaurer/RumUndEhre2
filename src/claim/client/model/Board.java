@@ -132,7 +132,7 @@ public class Board {
 		handCards.clear();
 		
 		if(goblinCards.isEmpty() == false) for (Card card : goblinCards) handCards.add(card);
-		if(dwarfCards.isEmpty() == false)  for (Card card : dwarfCards)  handCards.add(card);
+		if(dwarfCards.isEmpty()  == false) for (Card card : dwarfCards)  handCards.add(card);
 		if(undeadCards.isEmpty() == false) for (Card card : undeadCards) handCards.add(card);
 		if(doubleCards.isEmpty() == false) for (Card card : doubleCards) handCards.add(card);
 		if(knightCards.isEmpty() == false) for (Card card : knightCards) handCards.add(card);
@@ -144,7 +144,6 @@ public class Board {
 
 	public void setHandCards(ArrayList<Card> handCards) {
 		this.handCards = handCards;
-//		this.handCards = sortHandCards(handCards); //HandKarten werden nach dem ausgeben noch sortiert
 	}
 
 	public ArrayList<Card> getFollowerCards() {
