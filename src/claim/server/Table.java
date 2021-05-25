@@ -541,6 +541,15 @@ public class Table {
 					String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), tCard.toString(), undeadString};
 					players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
 				}
+//				if(undeadString.equalsIgnoreCase("None")) {
+//					String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(),
+//							Boolean.toString(secondRoundStarted), tCard.toString()};
+//					players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+//				} else {
+//					String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), 
+//							Boolean.toString(secondRoundStarted), tCard.toString(), undeadString};
+//					players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+//				}
 			}
 		}
 		this.playedCards.set(0);
