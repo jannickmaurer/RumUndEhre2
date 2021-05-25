@@ -79,6 +79,7 @@ public class View {
 	private Button btLogout = gameLayout.getBtLogout();
 	private Button btEvaluateWinner = gameLayout.getBtEvaluateWinner();
 	private Button btStartRoundTwo = gameLayout.getBtStartRoundTwo();
+	private Button btNextDuel = gameLayout.getBtNextDuel();
 	
 	//Elemente aus Chat Layout ansprechen
 	private Button btSend = chatLayout.getBtnSend();
@@ -188,6 +189,7 @@ public class View {
 		gameLayout.getBtEvaluateWinner().setText(t.getString("button.evaluatewinner"));
 		gameLayout.getBtStartRoundTwo().setText(t.getString("button.roundtwo"));
 		gameLayout.getBtNextTableCard().setText(t.getString("button.next"));
+		gameLayout.getBtNextDuel().setText(t.getString("button.nextduel"));
 		chatLayout.getBtnSend().setText(t.getString("button.send"));
 		errorPopupLayout.getBtBackError().setText(t.getString("button.back"));
 		gameOverPopupLayout.getBtLogout().setText(t.getString("button.logout"));
@@ -309,6 +311,14 @@ public class View {
 
 	public Button getBtRegistration() {
 		return btRegistration;
+	}
+
+	public Scene getScene() {
+		return scene;
+	}
+
+	public void setScene(Scene scene) {
+		this.scene = scene;
 	}
 
 	public void setBtRegistration(Button btRegistration) {
@@ -465,6 +475,22 @@ public class View {
 
 	public void setBtStartRoundTwo(Button btStartRoundTwo) {
 		this.btStartRoundTwo = btStartRoundTwo;
+	}
+
+	public Button getBtNextDuel() {
+		return btNextDuel;
+	}
+
+	public void setBtNextDuel(Button btNextDuel) {
+		this.btNextDuel = btNextDuel;
+	}
+
+	public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+
+	public void setPrimaryStage(Stage primaryStage) {
+		this.primaryStage = primaryStage;
 	}
 
 }

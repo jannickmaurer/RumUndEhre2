@@ -75,4 +75,29 @@ public class OtherPlayerPane extends VBox {
 	public void setLbFollowerDeck(Label lbFollowerDeck) {
 		this.lbFollowerDeck = lbFollowerDeck;
 	}
+
+	public HBox getHboxDecks() {
+		return hboxDecks;
+	}
+
+	public void setHboxDecks(HBox hboxDecks) {
+		this.hboxDecks = hboxDecks;
+	}
+
+	public CardLabel getClScoreDeck() {
+		return clScoreDeck;
+	}
+
+	public void setClScoreDeck(CardLabel clScoreDeck) {
+		this.clScoreDeck = clScoreDeck;
+	}
+
+	public CardLabel getClFollowerDeck() {
+		return clFollowerDeck;
+	}
+
+	public void setClFollowerDeck(CardLabel clFollowerDeck) {
+		this.clFollowerDeck = clFollowerDeck;
+	}
+	
 }
