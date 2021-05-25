@@ -24,11 +24,11 @@ public class ResultBroadcastFinishRound extends Message {
 	
 	private String winner; 
 //	private String TableCard;
-	private ArrayList<Card> undeads = new ArrayList<>();
+//	private ArrayList<Card> undeads = new ArrayList<>();
 	//nach senden sieger darf spieler, gegner alles inaktivieren
 	
 	//**********INPUT DAVID
-	private boolean secondRoundStarted;
+//	private boolean secondRoundStarted;
 	private Card followerCard1;
 	private Card followerCard2;
 	//**********INPUT DAVID
@@ -46,28 +46,6 @@ public class ResultBroadcastFinishRound extends Message {
 		if(content.length > 5) {
 			this.card3 = content[5];
 		}
-		
-		
-		//**********INPUT DAVID ++ Variablen oben
-//		this.secondRoundStarted =  content[3];
-
-//		
-//		if(Controller.getSecondRoundStarted()) {
-//			this.followerCard1 = content[4];
-//			this.followerCard2 = content[5];
-//			
-//		}else {
-//			this.TableCard = content[4];
-//			if(content.length > 5) {
-//				undeads.add(new Card(content[5]));
-//				
-//			}
-//			if(content.length > 6) {
-//				undeads.add(new Card(content[6]));
-//			}
-//		}
-		//**********INPUT DAVID
-		
 	
 	}
 	
@@ -88,7 +66,7 @@ public class ResultBroadcastFinishRound extends Message {
 			if(controller.getSecondRoundStarted()) {
 				// button enablen und karten speichern
 				// TBD: Add card1 and card2
-				
+				cardCheck(controller);
 				
 				
 			} else {
@@ -111,6 +89,8 @@ public class ResultBroadcastFinishRound extends Message {
 			if(controller.getSecondRoundStarted()) {
 				
 				//Zwerge scheiss
+				cardCheck(controller);
+
 			} else {
 				controller.showNewFollowerCard(card1);
 			}
@@ -124,6 +104,21 @@ public class ResultBroadcastFinishRound extends Message {
 	@Override
 	public void processIfFalse(Controller controller) {
 		controller.somethingFailed();
+	}
+	
+	private void cardCheck(Controller controller) {
+
+		if(followerCard1.getSuit().toString().equals("dwarf") && !controller.getUsername().equals(this.winner)) { 
+			controller.getBoard().addDwarfCards(followerCard1);
+		}else if (controller.getUsername().equals(this.winner)){	
+			controller.getBoard().addCardToGroup(followerCard1);
+		}
+		
+		if(followerCard2.getSuit().toString().equals("dwarf") && !controller.getUsername().equals(this.winner)) { 
+			controller.getBoard().addDwarfCards(followerCard2);
+		}else if (controller.getUsername().equals(this.winner)){	
+			controller.getBoard().addCardToGroup(followerCard2);
+		}
 	}
 
 }
