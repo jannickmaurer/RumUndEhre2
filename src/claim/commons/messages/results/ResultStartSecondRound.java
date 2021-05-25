@@ -23,6 +23,7 @@ public class ResultStartSecondRound extends Message {
 	@Override
 	public void process(Controller controller) {
 		controller.setSecondRoundStarted(true);
+		controller.prepareSecondRound();
 	}
 	
 	@Override
