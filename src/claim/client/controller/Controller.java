@@ -101,6 +101,10 @@ public class Controller {
 			this.evaluateWinner();
 		});
 		
+		view.getGameLayout().getMiddleGameLayout().getBtStartRoundTwo().setOnAction(e -> {
+			this.startSecondRound();
+		});
+		
 		view.getBtnBackError().setOnAction(e -> {
 			view.errorPopUp.hide();
 		});
@@ -132,7 +136,7 @@ public class Controller {
 				
 				if(onTurn) {
 					// Button anzeigen
-					view.getGameLayout().getMiddleGameLayout().getBtEvaluateWinner().setVisible(true);
+					view.getGameLayout().getMiddleGameLayout().getBtStartRoundTwo().setVisible(true);
 				}
 				this.playedRounds.set(0);
 				
@@ -286,6 +290,12 @@ public class Controller {
 	}
 	
 	public void startSecondRound() {
+		clearMyCard();
+		clearOpponentCard();
+		clearMiddle();
+		disableTableCardButton();
+		resetHandCards();
+		view.getBtStartRoundTwo().setVisible(false);
 		model.startSecondRound();
 	}
 
@@ -317,6 +327,7 @@ public class Controller {
 				clearFollowerCard();
 				disableTableCardButton();
 				resetHandCards();
+				view.getBtStartRoundTwo().setVisible(false);
 			}
 		});
 		logger.info("Logout Successful");
@@ -518,6 +529,16 @@ public class Controller {
 				cl6.setDeck();
 				view.getGameLayout().getMiddleGameLayout().getNewFollowerCard().getChildren().remove(1);
 				view.getGameLayout().getMiddleGameLayout().getNewFollowerCard().getChildren().add(1, cl6);
+			}
+		});
+	}
+	
+	public void clearMiddle() {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().clear();
+				view.getGameLayout().getMiddleGameLayout().getNewFollowerCard().getChildren().clear();
+				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().add(view.getBtNextDuel());
 			}
 		});
 	}

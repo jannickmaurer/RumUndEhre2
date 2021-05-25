@@ -2,20 +2,11 @@
 
 package claim.client.view;
 
-import java.util.ArrayList;
-
-import javafx.geometry.HPos;
 import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 public class MiddleGamePane extends HBox {
 	private HBox hboxMiddleCards = new HBox();
@@ -27,7 +18,9 @@ public class MiddleGamePane extends HBox {
 	private Label lbNewFollowerDeck = new Label();
 	
 	private Button btNextTableCard = new Button();
+	private Button btNextDuel = new Button();
 	private Button btEvaluateWinner = new Button();
+	private Button btStartRoundTwo = new Button();
 	private Label lbOpponentCard = new Label();
 	private Label lbMyCard = new Label();
 
@@ -62,8 +55,8 @@ public class MiddleGamePane extends HBox {
 		
 		newFollowerCard.getChildren().add(lbNewFollowerDeck);
 		newFollowerCard.getChildren().add(clNewFollowerDeck);
-		newFollowerCard.getChildren().add(btEvaluateWinner);
-		btEvaluateWinner.setVisible(false);
+		newFollowerCard.getChildren().add(btStartRoundTwo);
+		btStartRoundTwo.setVisible(false);
 		newFollowerCard.setAlignment(Pos.CENTER);
 		newFollowerCard.setId("newFollowerCard");
 
@@ -184,6 +177,22 @@ public class MiddleGamePane extends HBox {
 
 	public void setClTableCardDeck(CardLabel clTableCardDeck) {
 		this.clTableCardDeck = clTableCardDeck;
+	}
+
+	public Button getBtStartRoundTwo() {
+		return btStartRoundTwo;
+	}
+
+	public void setBtStartRoundTwo(Button btStartRoundTwo) {
+		this.btStartRoundTwo = btStartRoundTwo;
+	}
+
+	public Button getBtNextDuel() {
+		return btNextDuel;
+	}
+
+	public void setBtNextDuel(Button btNextDuel) {
+		this.btNextDuel = btNextDuel;
 	}
 	
 }
