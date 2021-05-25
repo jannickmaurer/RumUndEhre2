@@ -508,8 +508,7 @@ public class Table {
 	
 			//Angepasste Finish Round Message
 			for(int i = 0; players.size() > i; i++) {
-			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), 
-					   Boolean.toString(secondRoundStarted),playedCardString};
+			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), playedCardString};
 			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
 			}
 			
@@ -541,15 +540,7 @@ public class Table {
 					String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), tCard.toString(), undeadString};
 					players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
 				}
-//				if(undeadString.equalsIgnoreCase("None")) {
-//					String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(),
-//							Boolean.toString(secondRoundStarted), tCard.toString()};
-//					players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
-//				} else {
-//					String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), 
-//							Boolean.toString(secondRoundStarted), tCard.toString(), undeadString};
-//					players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
-//				}
+
 			}
 		}
 		this.playedCards.set(0);
