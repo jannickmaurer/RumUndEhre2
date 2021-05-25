@@ -290,13 +290,16 @@ public class Controller {
 	}
 	
 	public void startSecondRound() {
+		model.startSecondRound();
+	}
+	
+	public void prepareSecondRound() {
 		clearMyCard();
 		clearOpponentCard();
 		clearMiddle();
 		disableTableCardButton();
 		resetHandCards();
 		view.getBtStartRoundTwo().setVisible(false);
-		model.startSecondRound();
 	}
 
 	
@@ -682,6 +685,5 @@ public class Controller {
 	public void setSecondRoundStarted(Boolean secondRoundStarted) {
 		this.secondRoundStarted = secondRoundStarted;
 	}
-	
 
 }

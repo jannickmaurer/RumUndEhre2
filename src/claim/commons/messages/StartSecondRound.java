@@ -32,6 +32,13 @@ public class StartSecondRound extends Message {
 			result = true;
 			client.send(new ResultStartSecondRound(result));
 			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			String[] temp = new String[] {"ResultDealCards", "true", client.getAccount().getUsername()};
 			for(Account a : client.getPlayroom().getPlayers()) {
 				
