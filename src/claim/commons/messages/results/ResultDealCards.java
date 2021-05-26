@@ -34,6 +34,12 @@ public class ResultDealCards extends Message {
 	public void process(Controller controller) {
 		if(controller.getReadyForSecondRound()) {
 			controller.prepareSecondRound();
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		controller.getBoard().addHandCards(handCards);
 		controller.deal(controller.getBoard().getHandCards());

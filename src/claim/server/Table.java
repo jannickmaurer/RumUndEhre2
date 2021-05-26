@@ -285,7 +285,7 @@ public class Table {
 		String playedCardString = "";
 		Boolean oneDwarf = false;
 		Card playedTableCard = actualTableCard;
-		Card tCard = getNextTableCard();
+		Card tCard = getNextTableCard(); // Generiert einen Fehler in der zweiten Runde! getNextTableCard braucht es in der 2. Runde nicht
 		int win;
 		
 		if(secondRoundStarted) {
