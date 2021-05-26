@@ -141,6 +141,7 @@ public class Controller {
 				if(onTurn) {
 					if(secondRoundStarted) {
 						view.getGameLayout().getMiddleGameLayout().getBtEvaluateWinner().setVisible(true);
+						view.getGameLayout().getMiddleGameLayout().getBtEvaluateWinner().setDisable(false);
 					}
 					// Button anzeigen
 					view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setDisable(true);
@@ -557,6 +558,7 @@ public class Controller {
 				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().clear();
 				view.getGameLayout().getMiddleGameLayout().getNewFollowerCard().getChildren().clear();
 				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().add(view.getBtNextDuel());
+				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().add(view.getBtEvaluateWinner());
 			}
 		});
 	}

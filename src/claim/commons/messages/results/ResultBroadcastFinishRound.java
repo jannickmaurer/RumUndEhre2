@@ -71,6 +71,7 @@ public class ResultBroadcastFinishRound extends Message {
 
 			if (controller.getSecondRoundStarted()) {
 				cardCheck(controller);
+				
 			} else {
 				controller.showNewFollowerCard(card1);
 			}
@@ -98,6 +99,8 @@ public class ResultBroadcastFinishRound extends Message {
 		} else if (controller.getUsername().equals(this.winner)) {
 			controller.getBoard().addCardToGroup(followerCard2);
 		}
+		
+		
 	}
 
 }
