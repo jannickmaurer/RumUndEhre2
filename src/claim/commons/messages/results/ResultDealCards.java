@@ -34,6 +34,7 @@ public class ResultDealCards extends Message {
 	public void process(Controller controller) {
 		if(controller.getReadyForSecondRound()) {
 			controller.prepareSecondRound();
+			controller.setSecondRoundStarted(true);
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {

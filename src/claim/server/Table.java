@@ -32,10 +32,13 @@ public class Table {
 	public Card followerCardP2;
 	private String undeadString;
 	private boolean secondRoundStarted = false;
+
 	
 	//*****START Test 
 	private boolean testi = false;
 	//*****END Test
+
+	private Card tCard;
 
 
 	public Table() {
@@ -289,7 +292,9 @@ public class Table {
 		String playedCardString = "";
 		Boolean oneDwarf = false;
 		Card playedTableCard = actualTableCard;
-		Card tCard = getNextTableCard(); // Generiert einen Fehler in der zweiten Runde! getNextTableCard braucht es in der 2. Runde nicht
+		if(!secondRoundStarted) {
+			tCard = getNextTableCard(); // Generiert einen Fehler in der zweiten Runde! getNextTableCard braucht es in der 2. Runde nicht
+		}
 		int win;
 		
 		if(secondRoundStarted) {

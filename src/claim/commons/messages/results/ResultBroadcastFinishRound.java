@@ -71,6 +71,7 @@ public class ResultBroadcastFinishRound extends Message {
 
 			if (controller.getSecondRoundStarted()) {
 				cardCheck(controller);
+				
 			} else {
 				controller.showNewFollowerCard(card1);
 			}
@@ -89,15 +90,17 @@ public class ResultBroadcastFinishRound extends Message {
 
 		if (followerCard1.getSuit().toString().equals("dwarf") && !controller.getUsername().equals(this.winner)) {
 			controller.getBoard().addDwarfCards(followerCard1);
-		} else if (controller.getUsername().equals(this.winner)) {
+		} else if (!followerCard1.getSuit().toString().equals("dwarf") && controller.getUsername().equals(this.winner)) {
 			controller.getBoard().addCardToGroup(followerCard1);
 		}
 
 		if (followerCard2.getSuit().toString().equals("dwarf") && !controller.getUsername().equals(this.winner)) {
 			controller.getBoard().addDwarfCards(followerCard2);
-		} else if (controller.getUsername().equals(this.winner)) {
+		} else if (!followerCard2.getSuit().toString().equals("dwarf") && controller.getUsername().equals(this.winner)) {
 			controller.getBoard().addCardToGroup(followerCard2);
 		}
+		
+		
 	}
 
 }
