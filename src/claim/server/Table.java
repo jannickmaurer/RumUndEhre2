@@ -32,6 +32,12 @@ public class Table {
 	public Card followerCardP2;
 	private String undeadString;
 	private boolean secondRoundStarted = false;
+
+	
+	//*****START Test 
+	private boolean testi = false;
+	//*****END Test
+
 	private Card tCard;
 
 
@@ -394,16 +400,7 @@ public class Table {
 			addFCards(win, playedTableCard, tCard);	
 			addUndeads(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), win);
 			
-			if(tableCards.size() == 0) {
-				for(Account p : players) {
-					String outPut = "";
-					for(int i = 0; i < p.getFollowerCards().size(); i++) {
-						String n = p.getFollowerCards().get(i).toString();
-						n.concat(" | ");
-						outPut.concat(n);
-					}
-				}
-			}
+
 			
 			if(win ==  1) win =0;
 			if(win == -1) win *= (-1); //anpassung auf bestehende Mehtoden, deshalb sonst message ohne funktion
@@ -427,6 +424,31 @@ public class Table {
 		for(Account a: players) {
 			a.clearPlayedCard();
 		}
+		//*****Test OUTPUT
+		if(!testi) {
+			testi = true;
+			if(tableCards.size() == 0) {
+				for(Account p : players) {
+					String outPut = "";
+					for(int i = 0; i < p.getFollowerCards().size(); i++) {
+						String n = p.getFollowerCards().get(i).toString();
+						n.concat(" | ");
+						outPut.concat(n);
+					}
+				}
+			}
+			if(tableCards.size() == 1) {
+				for(Account p : players) {
+					String outPut = "";
+					for(int i = 0; i < p.getFollowerCards().size(); i++) {
+						String n = p.getFollowerCards().get(i).toString();
+						n.concat(" | ");
+						outPut.concat(n);
+					}
+				}
+			}
+		}
+		//*****END Test OUTPUT
 		
 	}	
 	
