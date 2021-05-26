@@ -348,6 +348,7 @@ public class Controller {
 				disableTableCardButton();
 				resetHandCards();
 				view.getBtStartRoundTwo().setVisible(false);
+				view.getChatLayout().getTxtMessages().clear();
 			}
 		});
 		logger.info("Logout Successful");

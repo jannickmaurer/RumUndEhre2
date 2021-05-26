@@ -493,4 +493,12 @@ public class View {
 		this.primaryStage = primaryStage;
 	}
 
+	public ChatPane getChatLayout() {
+		return chatLayout;
+	}
+
+	public void setChatLayout(ChatPane chatLayout) {
+		this.chatLayout = chatLayout;
+	}
+
 }
