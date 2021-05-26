@@ -142,6 +142,7 @@ public class Controller {
 					if(secondRoundStarted) {
 						view.getGameLayout().getMiddleGameLayout().getBtEvaluateWinner().setVisible(true);
 						view.getGameLayout().getMiddleGameLayout().getBtEvaluateWinner().setDisable(false);
+						view.getGameLayout().getMiddleGameLayout().getBtNextDuel().setDisable(true);
 					}
 					// Button anzeigen
 					view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setDisable(true);
