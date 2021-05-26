@@ -23,6 +23,7 @@ public class WinnerPopupPane extends GridPane {
 		
 		this.setId("popupError");
 		lblWinner.setId("textOver");
+		lblWinnerName.setId("textOver");
 		this.setAlignment(Pos.CENTER);
 		this.setHalignment(btLogout, HPos.CENTER);
 		
