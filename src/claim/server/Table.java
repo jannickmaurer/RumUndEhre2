@@ -391,6 +391,7 @@ public class Table {
 			addFCards(win, playedTableCard, tCard);	
 			addUndeads(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), win);
 			
+			//*****Test OUTPUT
 			if(tableCards.size() == 0) {
 				for(Account p : players) {
 					String outPut = "";
@@ -401,6 +402,7 @@ public class Table {
 					}
 				}
 			}
+			//*****END Test OUTPUT
 			
 			if(win ==  1) win =0;
 			if(win == -1) win *= (-1); //anpassung auf bestehende Mehtoden, deshalb sonst message ohne funktion
