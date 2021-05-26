@@ -145,6 +145,7 @@ public class Controller {
 						view.getGameLayout().getMiddleGameLayout().getBtEvaluateWinner().setVisible(true);
 					}
 					// Button anzeigen
+					view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setDisable(true);
 					view.getGameLayout().getMiddleGameLayout().getBtStartRoundTwo().setVisible(true);
 				}
 				this.playedRounds.set(0);
