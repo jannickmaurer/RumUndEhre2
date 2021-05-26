@@ -119,8 +119,6 @@ public class Controller {
 			sendMessage();
 		});
 		
-		
-		
 		// When Model receives a new Message, the Value of the SimpleString Property "LastReceivedMessage" Changes
 		// This Method looks at this change and creates the respective Message Object
 		model.getLastReceivedMessage().addListener((o, oldValue, newValue) -> {
@@ -597,6 +595,10 @@ public class Controller {
 		}
 	}
 	
+	public void enableNextDuelButton() {
+		view.getGameLayout().getMiddleGameLayout().getBtNextDuel().setDisable(false);	
+	}
+	
 	public void enableTableCardButton() {
 		view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setDisable(false);	
 	}
@@ -706,5 +708,7 @@ public class Controller {
 	public void setSecondRoundStarted(Boolean secondRoundStarted) {
 		this.secondRoundStarted = secondRoundStarted;
 	}
+
+
 
 }
