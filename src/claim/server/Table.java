@@ -68,22 +68,7 @@ public class Table {
 	 *   versendet wir? Könnte ich bruachen, ansonsten muss ich sie bekommen
 	 */
 
-//
-//	private DeckOfCards deck;
-//	public ArrayList<Card> tableCards = new ArrayList<>();
-//	public ArrayList<Card> tmpUndeads = new ArrayList<>();
-//	private int fractionPointsP1;
-//	private int fractionPointsP2;
-//	public Card actualTableCard;
-//
-//	public String roundWinner;
-//	public Card followerCardP1;
-//	public Card followerCardP2;
-//	private String undeadString;
-
-
 	
-	//Entweder das so belassen oder in unsere Kontrollerklasse einfügen, respektive generieren
 	/*
 	 * TODO: TXT
 	 */
@@ -113,127 +98,7 @@ public class Table {
 			}
 		}
 	}
-	
-	/*
-	 * TODO: Karte bekommen mit Jannick anschauen, ob die allenfalls als string kommt und gewandelt
-	 * werden muss.
-	 * ---------------------
-	 * Rückgabe mit Jannick anschauen:
-	 * - Mit was für einem Datentyp gebe ich den Sieger zurück?? 
-	 * - Wer oder wie greifen wir aud die tmpUndeads zu, respektive macht jannick das direkt oder
-	 *   muss ich noch eine zugriffs methode schreiben. 
-	 */
 
-	
-	
-	public void finishRound() {
-		newFinishRound();
-//		roundWinner = ""; //eigentlich unnötig
-//		followerCardP1 = null; //eigentlich unnötig
-//		followerCardP2 = null; //eigentlich unnötig
-//		int winner = 0;
-//		String dwarfs;
-//		Card playedTableCard = actualTableCard;
-//		Card tmp = getNextTableCard();
-//
-//		if(players.get(0).getUsername().equals(firstPlayer.getUsername())) {
-//			System.out.println("IF");
-//			roundWinner = evaluateWinnerCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
-//			System.out.println(roundWinner);
-//			
-//				switch (roundWinner) {
-//				case "P1": followerCardP1 = playedTableCard;	
-//							players.get(0).getFollowerCards().add(followerCardP1);
-//							followerCardP2 = tmp;
-//							players.get(1).getFollowerCards().add(followerCardP2); break; 
-//				case "P2": followerCardP2 = playedTableCard;
-//							players.get(1).getFollowerCards().add(followerCardP2);
-//							followerCardP1 = tmp;
-//							players.get(0).getFollowerCards().add(followerCardP1); 
-//							winner = 1; break;
-//				}	
-//		}else {
-//			System.out.println("ELSE");
-//			roundWinner = evaluateWinnerCard(players.get(1).getPlayedCard(), players.get(0).getPlayedCard());
-//			System.out.println(roundWinner);
-//
-//			switch (roundWinner) {
-//			case "P1": followerCardP1 = playedTableCard;		
-//					   players.get(1).getFollowerCards().add(followerCardP1);
-//					   followerCardP2 = tmp;		   
-//					   players.get(0).getFollowerCards().add(followerCardP2); 
-//					   winner = 1;break; 
-//			case "P2": followerCardP2 = playedTableCard;
-//					   players.get(0).getFollowerCards().add(followerCardP2);
-//					   followerCardP1 = tmp;
-//					   players.get(1).getFollowerCards().add(followerCardP1); break;
-//			}
-//		}
-//		System.out.println("Roundwinner Server: "+roundWinner);
-//		addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), winner);
-//		
-//		for(int i = 0; players.size() > i; i++) {
-//		   if(undeadString.equalsIgnoreCase("None")) {
-//			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(winner).getUsername(), tmp.toString()};
-//			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
-//		   } else {
-//			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(winner).getUsername(), tmp.toString(), undeadString};
-//			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
-//		   }
-//		}
-//		this.playedCards.set(0);
-//		this.firstPlayer = null;
-//		
-//		for(Account a: players) {
-//			a.clearPlayedCard();
-//		}
-	}	
-	
-	//Dave: Falls eine der beiden Karten ein Untoter ist oder beide, muss diese dem Spieler
-	//auf den Punktestapel zugesandt werden der  hat.
-	public String evaluateWinnerCard(Card cardP1, Card cardP2) {
-		String win = "P1";
-
-		if(suitToString(cardP1).equals("goblin") && suitToString(cardP2).equals("knight") ||
-				suitToString(cardP1).equals("knight") && suitToString(cardP2).equals("goblin")) {
-			if(suitToString(cardP1).equals("knight")) return "P1";				
-			else return "P2";
-		}
-		if(suitToString(cardP1).equals(suitToString(cardP2)) || 
-			(!suitToString(cardP1).equals("double") && suitToString(cardP2).equals("double"))) {
-			switch (cardP1.compareTo(cardP2)) {
-			case  1: break;
-			case  0: break;
-			case -1: win = "P2"; break;
-			}
-		}
-		return win;
-	}
-	
-	/*
-	 * David: Add "Undead" cards to the winners ArrayList
-	 */
-	private void addUndead(Card cardP1, Card cardP2, int winner) {
-		tmpUndeads.clear();
-		if(suitToString(cardP1).equals("undead") || suitToString(cardP2).equals("undead")) {
-			switch (winner) {
-			case 0:	if(suitToString(cardP1).equals("undead")) {players.get(0).addUndeadCard(cardP1); tmpUndeads.add(cardP1);}
-					if(suitToString(cardP2).equals("undead")) {players.get(0).addUndeadCard(cardP2); tmpUndeads.add(cardP2);}
-					System.out.println(winner);break;
-			case 1: if(suitToString(cardP1).equals("undead")) { players.get(1).addUndeadCard(cardP1); tmpUndeads.add(cardP1);}
-					if(suitToString(cardP2).equals("undead")) {players.get(1).addUndeadCard(cardP2); tmpUndeads.add(cardP2);}
-					System.out.println(winner);break;
-			}
-		}
-		undeadString = "None";
-		System.out.println("tmpUndeads Size "+tmpUndeads.size());
-		for(Card c : tmpUndeads)System.out.println(c.toString());
-		switch(tmpUndeads.size()) {
-		case 0: undeadString = "None"; System.out.println("undeadString "+undeadString); break;
-		case 1: undeadString = tmpUndeads.get(0).toString(); System.out.println("undeadString "+undeadString); break;
-		case 2: undeadString = tmpUndeads.get(0).toString()+"|"+tmpUndeads.get(1).toString(); System.out.println("undeadString "+undeadString); break;
-		}
-	}
 	
 	/*
 	 * David: Falls es einen Sieger gibt, wird der als String zurück gegeben
@@ -289,14 +154,13 @@ public class Table {
 	 */
 	private String winnerFraction(ArrayList<Card> cardsP1, ArrayList<Card> cardsP2) {
 		String win = "NONE";
-		//TEST
+		
 		for(Card c1 :cardsP1) {
 			System.out.println("WinnerFraction K1 :"+c1.toString());}
 		System.out.println("");
 		for(Card c2 :cardsP2) {
 			System.out.println("WinnerFraction K2 :"+c2.toString());}
-//		System.out.println("Karte P1 size: "+cardsP1.size());
-		//END TEST
+
 		
 		if(cardsP1.size() > cardsP2.size()) {
 			System.out.println("IF STATMENT P1");
@@ -646,4 +510,114 @@ System.out.println("addFCards mit 1 Argument (win) nach Ausführung: "+win);
 		case 2: undeadString = tmpUndeads.get(0).toString()+"|"+tmpUndeads.get(1).toString(); System.out.println("undeadString "+undeadString); break;
 		}
 	}
+	
+	
+	public void finishRound() {
+		newFinishRound();
+//		roundWinner = ""; //eigentlich unnötig
+//		followerCardP1 = null; //eigentlich unnötig
+//		followerCardP2 = null; //eigentlich unnötig
+//		int winner = 0;
+//		String dwarfs;
+//		Card playedTableCard = actualTableCard;
+//		Card tmp = getNextTableCard();
+//
+//		if(players.get(0).getUsername().equals(firstPlayer.getUsername())) {
+//			System.out.println("IF");
+//			roundWinner = evaluateWinnerCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
+//			System.out.println(roundWinner);
+//			
+//				switch (roundWinner) {
+//				case "P1": followerCardP1 = playedTableCard;	
+//							players.get(0).getFollowerCards().add(followerCardP1);
+//							followerCardP2 = tmp;
+//							players.get(1).getFollowerCards().add(followerCardP2); break; 
+//				case "P2": followerCardP2 = playedTableCard;
+//							players.get(1).getFollowerCards().add(followerCardP2);
+//							followerCardP1 = tmp;
+//							players.get(0).getFollowerCards().add(followerCardP1); 
+//							winner = 1; break;
+//				}	
+//		}else {
+//			System.out.println("ELSE");
+//			roundWinner = evaluateWinnerCard(players.get(1).getPlayedCard(), players.get(0).getPlayedCard());
+//			System.out.println(roundWinner);
+//
+//			switch (roundWinner) {
+//			case "P1": followerCardP1 = playedTableCard;		
+//					   players.get(1).getFollowerCards().add(followerCardP1);
+//					   followerCardP2 = tmp;		   
+//					   players.get(0).getFollowerCards().add(followerCardP2); 
+//					   winner = 1;break; 
+//			case "P2": followerCardP2 = playedTableCard;
+//					   players.get(0).getFollowerCards().add(followerCardP2);
+//					   followerCardP1 = tmp;
+//					   players.get(1).getFollowerCards().add(followerCardP1); break;
+//			}
+//		}
+//		System.out.println("Roundwinner Server: "+roundWinner);
+//		addUndead(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), winner);
+//		
+//		for(int i = 0; players.size() > i; i++) {
+//		   if(undeadString.equalsIgnoreCase("None")) {
+//			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(winner).getUsername(), tmp.toString()};
+//			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+//		   } else {
+//			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(winner).getUsername(), tmp.toString(), undeadString};
+//			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+//		   }
+//		}
+//		this.playedCards.set(0);
+//		this.firstPlayer = null;
+//		
+//		for(Account a: players) {
+//			a.clearPlayedCard();
+//		}
+	}	
+	
+//	//Dave: Falls eine der beiden Karten ein Untoter ist oder beide, muss diese dem Spieler
+//	//auf den Punktestapel zugesandt werden der  hat.
+//	public String evaluateWinnerCard(Card cardP1, Card cardP2) {
+//		String win = "P1";
+//
+//		if(suitToString(cardP1).equals("goblin") && suitToString(cardP2).equals("knight") ||
+//				suitToString(cardP1).equals("knight") && suitToString(cardP2).equals("goblin")) {
+//			if(suitToString(cardP1).equals("knight")) return "P1";				
+//			else return "P2";
+//		}
+//		if(suitToString(cardP1).equals(suitToString(cardP2)) || 
+//			(!suitToString(cardP1).equals("double") && suitToString(cardP2).equals("double"))) {
+//			switch (cardP1.compareTo(cardP2)) {
+//			case  1: break;
+//			case  0: break;
+//			case -1: win = "P2"; break;
+//			}
+//		}
+//		return win;
+//	}
+//	
+//	/*
+//	 * David: Add "Undead" cards to the winners ArrayList
+//	 */
+//	private void addUndead(Card cardP1, Card cardP2, int winner) {
+//		tmpUndeads.clear();
+//		if(suitToString(cardP1).equals("undead") || suitToString(cardP2).equals("undead")) {
+//			switch (winner) {
+//			case 0:	if(suitToString(cardP1).equals("undead")) {players.get(0).addUndeadCard(cardP1); tmpUndeads.add(cardP1);}
+//					if(suitToString(cardP2).equals("undead")) {players.get(0).addUndeadCard(cardP2); tmpUndeads.add(cardP2);}
+//					System.out.println(winner);break;
+//			case 1: if(suitToString(cardP1).equals("undead")) { players.get(1).addUndeadCard(cardP1); tmpUndeads.add(cardP1);}
+//					if(suitToString(cardP2).equals("undead")) {players.get(1).addUndeadCard(cardP2); tmpUndeads.add(cardP2);}
+//					System.out.println(winner);break;
+//			}
+//		}
+//		undeadString = "None";
+//		System.out.println("tmpUndeads Size "+tmpUndeads.size());
+//		for(Card c : tmpUndeads)System.out.println(c.toString());
+//		switch(tmpUndeads.size()) {
+//		case 0: undeadString = "None"; System.out.println("undeadString "+undeadString); break;
+//		case 1: undeadString = tmpUndeads.get(0).toString(); System.out.println("undeadString "+undeadString); break;
+//		case 2: undeadString = tmpUndeads.get(0).toString()+"|"+tmpUndeads.get(1).toString(); System.out.println("undeadString "+undeadString); break;
+//		}
+//	}
 }

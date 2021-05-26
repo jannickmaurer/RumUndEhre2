@@ -31,7 +31,6 @@ public class Card implements Comparable<Card>{
     }
     
     public boolean Playable (){ 
-//    	boolean playable = true;
     	return playable = true;
     }
 
