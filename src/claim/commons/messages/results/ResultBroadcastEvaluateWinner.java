@@ -28,6 +28,12 @@ public class ResultBroadcastEvaluateWinner extends Message {
 	public void process(Controller controller) {
 		System.out.println("Winner is: " + this.winner);
 		controller.winner(winner);
+		System.out.println(this.winner+"  Anzahl Doppelgänger: "+controller.getBoard().getNumOfDoubles());
+		System.out.println(this.winner+"  Anzahl Zwerge: "+controller.getBoard().getNumOfDwarfs());
+		System.out.println(this.winner+"  Anzahl Kobolde: "+controller.getBoard().getNumOfGoblins());
+		System.out.println(this.winner+"  Anzahl Ritter: "+controller.getBoard().getNumOfKnights());
+		System.out.println(this.winner+"  Anzahl Undead: "+controller.getBoard().getNumOfUndeads());
+		
 	}
 	
 	@Override
