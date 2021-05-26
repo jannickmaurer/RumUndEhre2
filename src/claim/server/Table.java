@@ -393,7 +393,18 @@ public class Table {
 			}
 			addFCards(win, playedTableCard, tCard);	
 			addUndeads(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), win);
-		
+			
+			if(tableCards.size() == 0) {
+				for(Account p : players) {
+					String outPut = "";
+					for(int i = 0; i < p.getFollowerCards().size(); i++) {
+						String n = p.getFollowerCards().get(i).toString();
+						n.concat(" | ");
+						outPut.concat(n);
+					}
+				}
+			}
+			
 			if(win ==  1) win =0;
 			if(win == -1) win *= (-1); //anpassung auf bestehende Mehtoden, deshalb sonst message ohne funktion
 
