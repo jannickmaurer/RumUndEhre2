@@ -61,9 +61,7 @@ public class Table {
 					e.printStackTrace();
 				}
 				finishRound();
-				
 			}
-		
 		});
 //		super();
 	}
@@ -473,14 +471,21 @@ public class Table {
 	
 	private void addFCards(int win, Card tableC, Card nextTC) {	
 		switch (win) {
-		case  1: followerCardP1 = tableC;	
-					players.get(0).getFollowerCards().add(followerCardP1);
-					followerCardP2 = nextTC;
-					players.get(1).getFollowerCards().add(followerCardP2); break; 
-		case -1: followerCardP2 = tableC;
-					players.get(1).getFollowerCards().add(followerCardP2);
-					followerCardP1 = nextTC;
-					players.get(0).getFollowerCards().add(followerCardP1); break;
+		case  1:  	players.get(0).getFollowerCards().add(tableC);
+					players.get(1).getFollowerCards().add(nextTC); break;
+			
+//					followerCardP1 = tableC;	
+//					players.get(0).getFollowerCards().add(followerCardP1);
+//					followerCardP2 = nextTC;
+//					players.get(1).getFollowerCards().add(followerCardP2); break; 
+		case -1: 	players.get(1).getFollowerCards().add(tableC);
+					players.get(0).getFollowerCards().add(nextTC); break;
+			
+			
+//					followerCardP2 = tableC;
+//					players.get(1).getFollowerCards().add(followerCardP2);
+//					followerCardP1 = nextTC;
+//					players.get(0).getFollowerCards().add(followerCardP1); break;
 		}
 	}
 	
