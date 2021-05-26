@@ -99,8 +99,6 @@ public class ResultBroadcastFinishRound extends Message {
 		} else if (!followerCard2.getSuit().toString().equals("dwarf") && controller.getUsername().equals(this.winner)) {
 			controller.getBoard().addCardToGroup(followerCard2);
 		}
-		
-		
 	}
 
 }
