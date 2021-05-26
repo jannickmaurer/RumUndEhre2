@@ -443,6 +443,8 @@ public class Table {
 						n.concat(" | ");
 						outPut.concat(n);
 					}
+					System.out.println(outPut);
+
 				}
 			}
 		}
