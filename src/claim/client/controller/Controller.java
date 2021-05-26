@@ -119,8 +119,6 @@ public class Controller {
 			sendMessage();
 		});
 		
-		
-		
 		// When Model receives a new Message, the Value of the SimpleString Property "LastReceivedMessage" Changes
 		// This Method looks at this change and creates the respective Message Object
 		model.getLastReceivedMessage().addListener((o, oldValue, newValue) -> {
@@ -143,6 +141,8 @@ public class Controller {
 				if(onTurn) {
 					if(secondRoundStarted) {
 						view.getGameLayout().getMiddleGameLayout().getBtEvaluateWinner().setVisible(true);
+						view.getGameLayout().getMiddleGameLayout().getBtEvaluateWinner().setDisable(false);
+						view.getGameLayout().getMiddleGameLayout().getBtNextDuel().setDisable(true);
 					}
 					// Button anzeigen
 					view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setDisable(true);
@@ -560,6 +560,7 @@ public class Controller {
 				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().clear();
 				view.getGameLayout().getMiddleGameLayout().getNewFollowerCard().getChildren().clear();
 				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().add(view.getBtNextDuel());
+				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().add(view.getBtEvaluateWinner());
 			}
 		});
 	}
@@ -596,6 +597,10 @@ public class Controller {
 		if (firstUser.equals(this.getUsername())) {
 			view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setDisable(false);	
 		}
+	}
+	
+	public void enableNextDuelButton() {
+		view.getGameLayout().getMiddleGameLayout().getBtNextDuel().setDisable(false);	
 	}
 	
 	public void enableTableCardButton() {
@@ -707,5 +712,7 @@ public class Controller {
 	public void setSecondRoundStarted(Boolean secondRoundStarted) {
 		this.secondRoundStarted = secondRoundStarted;
 	}
+
+
 
 }

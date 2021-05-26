@@ -15,57 +15,63 @@ import claim.commons.messages.Message;
 public class ResultBroadcastFinishRound extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getClientLogger();
-	
+
 	private String card1;
 	private String card2;
 	private String card3;
-	private String winner; 
+	private String winner;
 	private Card followerCard1;
 	private Card followerCard2;
-	
+
 	public ResultBroadcastFinishRound(boolean result) {
-		super(new String[] {"ResultBroadcastFinishRound", Boolean.toString(result)});
+		super(new String[] { "ResultBroadcastFinishRound", Boolean.toString(result) });
 	}
+
 	public ResultBroadcastFinishRound(String[] content) {
 		super(content);
 		this.winner = content[2];
 		this.card1 = content[3];
-		if(content.length > 4) {
+		if (content.length > 4) {
 			this.card2 = content[4];
 		}
-		if(content.length > 5) {
+		if (content.length > 5) {
 			this.card3 = content[5];
 		}
-	
+
 	}
-	
+
 	@Override
 	public void process(Controller controller) {
-		
-		if(controller.getSecondRoundStarted()) {
+
+		if (controller.getSecondRoundStarted()) {
 			followerCard1 = new Card(card1);
 			followerCard2 = new Card(card2);
 		}
-		
-		if(controller.getUsername().equalsIgnoreCase(this.winner)) {
-	System.out.println("Ich habe gewonnen");
-			
-			if(controller.getSecondRoundStarted()) {
+
+		if (controller.getUsername().equalsIgnoreCase(this.winner)) {
+			System.out.println("Ich habe gewonnen");
+
+			if (controller.getSecondRoundStarted()) {
 				// button enablen und karten speichern
 				cardCheck(controller);
+				controller.enableNextDuelButton();
 				
+
 			} else {
-				if(card2 != null) controller.getBoard().addUndead(new Card(card2));
-				if(card3 != null) controller.getBoard().addUndead(new Card(card3));
+				if (card2 != null)
+					controller.getBoard().addUndead(new Card(card2));
+				if (card3 != null)
+					controller.getBoard().addUndead(new Card(card3));
 				controller.enableTableCardButton();
 			}
 			controller.setOnTurn(true);
 		} else {
 			// Table Karte, die der Verlierer erhält, anzeigen
-	System.out.println("Ich habe verloren");
-			
-			if(controller.getSecondRoundStarted()) {
+			System.out.println("Ich habe verloren");
+
+			if (controller.getSecondRoundStarted()) {
 				cardCheck(controller);
+				
 			} else {
 				controller.showNewFollowerCard(card1);
 			}
@@ -74,25 +80,27 @@ public class ResultBroadcastFinishRound extends Message {
 		controller.setCardPlayed(false);
 		controller.increasePlayedRounds();
 	}
-	
+
 	@Override
 	public void processIfFalse(Controller controller) {
 		controller.somethingFailed();
 	}
-	
+
 	private void cardCheck(Controller controller) {
 
-		if(followerCard1.getSuit().toString().equals("dwarf") && !controller.getUsername().equals(this.winner)) { 
+		if (followerCard1.getSuit().toString().equals("dwarf") && !controller.getUsername().equals(this.winner)) {
 			controller.getBoard().addDwarfCards(followerCard1);
-		}else if (controller.getUsername().equals(this.winner)){	
+		} else if (!followerCard1.getSuit().toString().equals("dwarf") && controller.getUsername().equals(this.winner)) {
 			controller.getBoard().addCardToGroup(followerCard1);
 		}
-		
-		if(followerCard2.getSuit().toString().equals("dwarf") && !controller.getUsername().equals(this.winner)) { 
+
+		if (followerCard2.getSuit().toString().equals("dwarf") && !controller.getUsername().equals(this.winner)) {
 			controller.getBoard().addDwarfCards(followerCard2);
-		}else if (controller.getUsername().equals(this.winner)){	
+		} else if (!followerCard2.getSuit().toString().equals("dwarf") && controller.getUsername().equals(this.winner)) {
 			controller.getBoard().addCardToGroup(followerCard2);
 		}
+		
+		
 	}
 
 }

@@ -32,6 +32,7 @@ public class Table {
 	public Card followerCardP2;
 	private String undeadString;
 	private boolean secondRoundStarted = false;
+	private Card tCard;
 
 
 	public Table() {
@@ -285,7 +286,9 @@ public class Table {
 		String playedCardString = "";
 		Boolean oneDwarf = false;
 		Card playedTableCard = actualTableCard;
-		Card tCard = getNextTableCard();
+		if(!secondRoundStarted) {
+			tCard = getNextTableCard(); // Generiert einen Fehler in der zweiten Runde! getNextTableCard braucht es in der 2. Runde nicht
+		}
 		int win;
 		
 		if(secondRoundStarted) {
@@ -390,7 +393,18 @@ public class Table {
 			}
 			addFCards(win, playedTableCard, tCard);	
 			addUndeads(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), win);
-		
+			
+			if(tableCards.size() == 0) {
+				for(Account p : players) {
+					String outPut = "";
+					for(int i = 0; i < p.getFollowerCards().size(); i++) {
+						String n = p.getFollowerCards().get(i).toString();
+						n.concat(" | ");
+						outPut.concat(n);
+					}
+				}
+			}
+			
 			if(win ==  1) win =0;
 			if(win == -1) win *= (-1); //anpassung auf bestehende Mehtoden, deshalb sonst message ohne funktion
 
