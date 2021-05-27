@@ -33,10 +33,7 @@ public class Table {
 	private String undeadString;
 	private boolean secondRoundStarted = false;
 
-	
-	//*****START Test 
-	private boolean testi = false;
-	//*****END Test
+
 
 	private Card tCard;
 
@@ -206,8 +203,8 @@ public class Table {
 	public Card getNextTableCard() {
 	    Card card = (tableCards.size() > 0) ? tableCards.remove(tableCards.size()-1) : null;
         actualTableCard = card;
-        System.out.println("Get next Table Card: " + card.toString());
-        System.out.println("Size Table Cards: " + tableCards.size());
+  System.out.println("Get next Table Card: " + card.toString());
+  System.out.println("Size Table Cards: " + tableCards.size());
 		return card;
 	}
 	
@@ -290,10 +287,11 @@ public class Table {
 		String playedCardString = "";
 		Boolean oneDwarf = false;
 		Card playedTableCard = actualTableCard;
+		int win;
+		
 		if(!secondRoundStarted) {
 			tCard = getNextTableCard(); // Generiert einen Fehler in der zweiten Runde! getNextTableCard braucht es in der 2. Runde nicht
 		}
-		int win;
 		
 		if(secondRoundStarted) {
 			if(players.get(0).getPlayedCard().getSuit().toString().equals("dwarf") || 
@@ -389,10 +387,10 @@ public class Table {
 				
 		}else { 	
 			if(players.get(0).getUsername().equals(firstPlayer.getUsername())) {
-	
+	System.out.println("1 Runde IF");
 				win = evaluateWinCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
 			}else {
-	System.out.println("ELSE");
+	System.out.println("1 Runde ELSE");
 				win = (evaluateWinCard(players.get(1).getPlayedCard(), players.get(0).getPlayedCard())) * -1;
 			}
 			addFCards(win, playedTableCard, tCard);	
@@ -405,16 +403,16 @@ public class Table {
 
 
 	System.out.println("Sieger Account: "+players.get(win).getUsername());
-			for(int i = 0; players.size() > i; i++) {
-				if(undeadString.equalsIgnoreCase("None")) {
-					String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), tCard.toString()};
-					players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
-				} else {
-					String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), tCard.toString(), undeadString};
-					players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
-				}
-
-			}
+//			for(int i = 0; players.size() > i; i++) {
+//				if(undeadString.equalsIgnoreCase("None")) {
+//					String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), tCard.toString()};
+//					players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+//				} else {
+//					String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), tCard.toString(), undeadString};
+//					players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+//				}
+//
+//			}
 		}
 		this.playedCards.set(0);
 		this.firstPlayer = null;
@@ -423,33 +421,16 @@ public class Table {
 			a.clearPlayedCard();
 		}
 		//*****Test OUTPUT
-		if(!testi) {
-			testi = true;
 			if(tableCards.size() == 0) {
 				for(Account p : players) {
-					String outPut = "";
-					for(int i = 0; i < p.getFollowerCards().size(); i++) {
-						String n = p.getFollowerCards().get(i).toString();
-						n.concat(" | ");
-						outPut.concat(n);
-					}
-				}
-			}
-			if(tableCards.size() == 1) {
-				for(Account p : players) {
-					String outPut = "";
-					for(int i = 0; i < p.getFollowerCards().size(); i++) {
-						String n = p.getFollowerCards().get(i).toString();
-						n.concat(" | ");
-						outPut.concat(n);
+					String outPut = "Spieler: "+p.getUsername().toString();
+					for(int i = 0; i < p.getFollowerCards().size()-1; i++) {
+						outPut = (outPut+" | "+p.getFollowerCards().get(i).toString());
 					}
 					System.out.println(outPut);
-
 				}
 			}
-		}
-		//*****END Test OUTPUT
-		
+		//*********END TEST CLASS
 	}	
 	
 	public int evaluateWinCard(Card cardP1, Card cardP2) {
