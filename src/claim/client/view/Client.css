@@ -54,7 +54,12 @@
 	-fx-alignment: center-left;
 	-fx-focus-color: rgba(62, 132, 187, 1);
 	-fx-min-width: 300px;
+	-fx-padding: 0 0 0 10;
 }
+
+#ChatText {
+	-fx-font-weight: bold;
+} 
 
 #popupError {
 	-fx-background-color: rgba(244, 238, 232, 1);
