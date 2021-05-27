@@ -170,6 +170,15 @@ public class Account implements Serializable {
 	}
 	public void addFollowerCard(Card followerCard) {
 		this.followerCards.add(followerCard);
+	//********START TEST
+		if(this.getFollowerCards().size() == 13) {
+			String out = "AccountNAME: "+this.username+": ";
+			for(Card c : followerCards) {
+				out = out+" | "+c.toString();
+			}
+			System.out.println(out);
+		}
+	//*******END TEST
 	}
 	public void addUndeadCard(Card undeadCard) {
 		this.undeadCards.add(undeadCard);
