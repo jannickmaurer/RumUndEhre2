@@ -10,10 +10,9 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public class DeckOfCards {
 	private final ArrayList<Card> cards = new ArrayList<>();
-//	public ArrayList<Card> cards = new ArrayList<>();
     private final SimpleIntegerProperty cardsRemaining = new SimpleIntegerProperty();
 
-
+    
 	public DeckOfCards() {
 		shuffle();
 	} 
@@ -51,7 +50,6 @@ public class DeckOfCards {
 		}
 		Collections.shuffle(cards);
         cardsRemaining.setValue(cards.size());
-
 	}
 	
     public Card dealCard() {
@@ -59,7 +57,4 @@ public class DeckOfCards {
         cardsRemaining.setValue(cards.size());
         return card;
     }
-    
-    
-    
 }
