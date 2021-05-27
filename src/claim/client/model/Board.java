@@ -112,35 +112,35 @@ public class Board {
 	 * Sortiert bei Aufruf die Handkarten des Spielers 
 	 */
 	private void sortHandCards() {
-		ArrayList<Card> goblinCards = new ArrayList<>();
-		ArrayList<Card> dwarfCards = new ArrayList<>();
-		ArrayList<Card> undeadCards = new ArrayList<>();
-		ArrayList<Card> doubleCards = new ArrayList<>();
-		ArrayList<Card> knightCards = new ArrayList<>();
+		ArrayList<Card> goblins = new ArrayList<>();
+		ArrayList<Card> dwarfs = new ArrayList<>();
+		ArrayList<Card> undeads = new ArrayList<>();
+		ArrayList<Card> doubles = new ArrayList<>();
+		ArrayList<Card> knights = new ArrayList<>();
 		
 		for(Card card : handCards) {
 			switch (suitToString(card)) {
-			case "goblin": goblinCards.add(card); break;
-			case "dwarf" : dwarfCards.add(card);  break;
-			case "undead": undeadCards.add(card); break;
-			case "double": doubleCards.add(card); break;
-			case "knight": knightCards.add(card); break;		
+			case "goblin": goblins.add(card); break;
+			case "dwarf" : dwarfs.add(card);  break;
+			case "undead": undeads.add(card); break;
+			case "double": doubles.add(card); break;
+			case "knight": knights.add(card); break;		
 			}
 		}
 		
-		Collections.sort(goblinCards);
-		Collections.sort(dwarfCards);
-		Collections.sort(undeadCards);
-		Collections.sort(doubleCards);
-		Collections.sort(knightCards);
+		Collections.sort(goblins);
+		Collections.sort(dwarfs);
+		Collections.sort(undeads);
+		Collections.sort(doubles);
+		Collections.sort(knights);
 		
 		handCards.clear();
 		
-		if(goblinCards.isEmpty() == false) for (Card card : goblinCards) handCards.add(card);
-		if(dwarfCards.isEmpty()  == false) for (Card card : dwarfCards)  handCards.add(card);
-		if(undeadCards.isEmpty() == false) for (Card card : undeadCards) handCards.add(card);
-		if(doubleCards.isEmpty() == false) for (Card card : doubleCards) handCards.add(card);
-		if(knightCards.isEmpty() == false) for (Card card : knightCards) handCards.add(card);
+		if(goblins.isEmpty() == false) for (Card card : goblins) handCards.add(card);
+		if(dwarfs.isEmpty()  == false) for (Card card : dwarfs)  handCards.add(card);
+		if(undeads.isEmpty() == false) for (Card card : undeads) handCards.add(card);
+		if(doubles.isEmpty() == false) for (Card card : doubles) handCards.add(card);
+		if(knights.isEmpty() == false) for (Card card : knights) handCards.add(card);
 	}
 
 	public ArrayList<Card> getHandCards() {
@@ -194,18 +194,18 @@ public class Board {
 	}
 	
 	public int getNumOfDwarfs() {
-		return goblinCards.size();
+		return dwarfCards.size();
 	}
 	
 	public int getNumOfUndeads() {
-		return goblinCards.size();
+		return undeadCards.size();
 	}
 	
 	public int getNumOfDoubles() {
-		return goblinCards.size();
+		return doubleCards.size();
 	}
 	
 	public int getNumOfKnights() {
-		return goblinCards.size();
+		return knightCards.size();
 	}
 }
