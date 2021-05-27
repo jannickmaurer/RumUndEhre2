@@ -341,14 +341,45 @@ public class Controller {
 				view.getRoot().setCenter(view.loginLayout);
 				view.getRoot().setRight(null);
 				view.getStage().setTitle("Login");
-				clearMyCard();
-				clearOpponentCard();
-				clearTableCard();
-				clearFollowerCard();
-				disableTableCardButton();
+				
+				if(secondRoundStarted) {
+					clearMyCard();
+					clearOpponentCard();
+					disableNextDuelButton();
+					view.getGameLayout().getBtEvaluateWinner().setVisible(false);
+					view.getGameLayout().getBtEvaluateWinner().setDisable(true);
+					view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().clear();
+					view.getGameLayout().getMiddleGameLayout().getNewFollowerCard().getChildren().clear();
+					CardLabel cl8 = new CardLabel();
+					cl8.setDeck();
+					view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().add(view.getGameLayout().getMiddleGameLayout().getLbCardsDeck());
+					view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().add(cl8);
+					view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().add(view.getGameLayout().getMiddleGameLayout().getBtNextTableCard());
+					view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setVisible(true);
+					CardLabel cl9 = new CardLabel();
+					cl9.setDeck();
+					view.getGameLayout().getMiddleGameLayout().getNewFollowerCard().getChildren().add(view.getGameLayout().getMiddleGameLayout().getLbNewFollowerDeck());
+					view.getGameLayout().getMiddleGameLayout().getNewFollowerCard().getChildren().add(cl9);
+					view.getGameLayout().getMiddleGameLayout().getNewFollowerCard().getChildren().add(view.getGameLayout().getMiddleGameLayout().getBtStartRoundTwo());
+					view.getGameLayout().getMiddleGameLayout().getBtStartRoundTwo().setVisible(false);
+					playedRounds.set(0);
+					setSecondRoundStarted(false);
+					setReadyForSecondRound(false);
+				} else {
+					clearMyCard();
+					clearOpponentCard();
+					clearTableCard();
+					clearFollowerCard();
+					disableTableCardButton();
+					view.getBtStartRoundTwo().setVisible(false);
+					playedRounds.set(0);
+					setSecondRoundStarted(false);
+					setReadyForSecondRound(false);
+				}
 				resetHandCards();
-				view.getBtStartRoundTwo().setVisible(false);
 				view.getChatLayout().getTxtMessages().clear();
+				view.getGameLayout().getPlayerLayout().getLbName().setText("");
+				view.getGameLayout().getOtherPlayerLayout().getLbName().setText("");
 			}
 		});
 		logger.info("Logout Successful");
@@ -561,6 +592,14 @@ public class Controller {
 				view.getGameLayout().getMiddleGameLayout().getNewFollowerCard().getChildren().clear();
 				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().add(view.getBtNextDuel());
 				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().add(view.getBtEvaluateWinner());
+			}
+		});
+	}
+	
+	public void clearRoundTwo() {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				view.getGameLayout().getMiddleGameLayout().getTableCardsDeck().getChildren().clear();
 			}
 		});
 	}

@@ -376,16 +376,16 @@ System.out.println("ELSE höhere karte sieger :"+win);
 
 
 	System.out.println("Sieger Account: "+players.get(win).getUsername());
-//			for(int i = 0; players.size() > i; i++) {
-//				if(undeadString.equalsIgnoreCase("None")) {
-//					String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), tCard.toString()};
-//					players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
-//				} else {
-//					String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), tCard.toString(), undeadString};
-//					players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
-//				}
-//
-//			}
+			for(int i = 0; players.size() > i; i++) {
+				if(undeadString.equalsIgnoreCase("None")) {
+					String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), tCard.toString()};
+					players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+				} else {
+					String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), tCard.toString(), undeadString};
+					players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+				}
+
+			}
 		}
 		this.playedCards.set(0);
 		this.firstPlayer = null;
