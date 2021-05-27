@@ -173,7 +173,9 @@ public class Table {
 	for(Card g2 : players.get(1).getUndeadCards()) {
 		p2 = p2 +" | "+g2.toString();
 	}
-		
+System.out.println(p1);	
+System.out.println(p2);		
+	
 	//*******START TEST 	
 		addFractionPoint(winnerFraction(goblinP1, goblinP2));
 		addFractionPoint(winnerFraction(dwarfP1, dwarfP2));
