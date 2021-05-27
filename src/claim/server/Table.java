@@ -28,8 +28,8 @@ public class Table {
 	public Card actualTableCard;
 
 	public String roundWinner;
-	public Card followerCardP1;
-	public Card followerCardP2;
+//	public Card followerCardP1;
+//	public Card followerCardP2;
 	private String undeadString;
 	private boolean secondRoundStarted = false;
 
@@ -222,8 +222,8 @@ public class Table {
 	
 	public void finishRound() {
 		roundWinner = ""; //eigentlich unnötig
-		followerCardP1 = null; //eigentlich unnötig
-		followerCardP2 = null; //eigentlich unnötig
+//		followerCardP1 = null; //eigentlich unnötig
+//		followerCardP2 = null; //eigentlich unnötig
 		String playedCardString = "";
 		Boolean oneDwarf = false;
 		Card playedTableCard = actualTableCard;
