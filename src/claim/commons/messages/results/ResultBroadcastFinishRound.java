@@ -55,8 +55,8 @@ public class ResultBroadcastFinishRound extends Message {
 				// button enablen und karten speichern
 				cardCheck(controller);
 				controller.enableNextDuelButton();
-				
-
+				controller.clearMyCard();
+				controller.clearOpponentCard();
 			} else {
 				if (card2 != null)
 					controller.getBoard().addUndead(new Card(card2));
@@ -71,7 +71,8 @@ public class ResultBroadcastFinishRound extends Message {
 
 			if (controller.getSecondRoundStarted()) {
 				cardCheck(controller);
-				
+				controller.clearMyCard();
+				controller.clearOpponentCard();
 			} else {
 				controller.showNewFollowerCard(card1);
 			}
