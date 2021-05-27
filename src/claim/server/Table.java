@@ -62,13 +62,6 @@ public class Table {
 		});
 //		super();
 	}
-	/*
-	 * TODO: ACHTUNG tableCards und tableCards, einer muss weg --> tableCards behalten
-	 * - Wie versendet Jannick die Tischkarten?? sollte immer über getTableCards laufen, damit
-	 *   die gespielte Karte gelöscht wird
-	 * - Soll für die offene Tischkarte eine eigene Card auf dem Table eröffnet werden bevor diese 
-	 *   versendet wir? Könnte ich bruachen, ansonsten muss ich sie bekommen
-	 */
 
 	
 	/*
@@ -144,6 +137,44 @@ public class Table {
 			case "double": doubleP2.add(card); break;
 			}
 		}
+	//*******START TEST 
+	System.out.println("Table; gameWinner(): Ausgabe der Karten der Accounts zum Testen");
+	String p1 = players.get(0).getUsername().toString();
+	String p2 = players.get(1).getUsername().toString();
+
+	for(Card g1 : goblinP1) {
+		p1 = p1 +" | "+g1.toString();
+	}
+	for(Card g1 : dwarfP1) {
+		p1 = p1 +" | "+g1.toString();
+	}
+	for(Card g1 : knightP1) {
+		p1 = p1 +" | "+g1.toString();
+	}
+	for(Card g1 : doubleP1) {
+		p1 = p1 +" | "+g1.toString();
+	}
+	for(Card g1 : players.get(0).getUndeadCards()) {
+		p1 = p1 +" | "+g1.toString();
+	}
+	
+	for(Card g2 : goblinP2) {
+		p2 = p2 +" | "+g2.toString();
+	}
+	for(Card g2 : dwarfP2) {
+		p2 = p2 +" | "+g2.toString();
+	}
+	for(Card g2 : knightP2) {
+		p2 = p2 +" | "+g2.toString();
+	}
+	for(Card g2 : doubleP2) {
+		p2 = p2 +" | "+g2.toString();
+	}
+	for(Card g2 : players.get(1).getUndeadCards()) {
+		p2 = p2 +" | "+g2.toString();
+	}
+		
+	//*******START TEST 	
 		addFractionPoint(winnerFraction(goblinP1, goblinP2));
 		addFractionPoint(winnerFraction(dwarfP1, dwarfP2));
 		addFractionPoint(winnerFraction(knightP1, knightP2));
@@ -158,22 +189,22 @@ public class Table {
 		String win = "NONE";
 		
 		for(Card c1 :cardsP1) {
-			System.out.println("WinnerFraction K1 :"+c1.toString());}
-		System.out.println("");
+System.out.println("WinnerFraction K1 :"+c1.toString());}
+System.out.println("");
 		for(Card c2 :cardsP2) {
-			System.out.println("WinnerFraction K2 :"+c2.toString());}
+System.out.println("WinnerFraction K2 :"+c2.toString());}
 
 		
 		if(cardsP1.size() > cardsP2.size()) {
-			System.out.println("IF STATMENT P1");
+System.out.println("IF STATMENT P1");
 			return "P1";
 		}
 		if(cardsP1.size() < cardsP2.size()) {
-			System.out.println("IF STATMENT P2");
+System.out.println("IF STATMENT P2");
 			return "P2";
 		}
 		if(cardsP1.size() == 0 && cardsP2.size() == 0) {
-			System.out.println("IF STATMENT NONE");
+System.out.println("IF STATMENT NONE");
 			return "NONE";
 		}
 		else 
@@ -182,7 +213,7 @@ public class Table {
 			case  0: win = "NONE";	break; 
 			case -1: win = "P2";	break;
 			}
-		System.out.println("ELSE höhere karte sieger :"+win);
+System.out.println("ELSE höhere karte sieger :"+win);
 		return win;	
 	}
 	
