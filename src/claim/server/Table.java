@@ -217,67 +217,7 @@ public class Table {
 		return card;
 	}
 	
-	//Dave: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
-	public String suitToString(Card card) {
-		String cardString = card.toString();
-	    String[] tmp = cardString.split("\\_");
-    	return tmp[0];
-	}
-	
-	//Jannick: calls the getNextTableCard() method and sends it to both clients
-	public void sendTableCard() {
-		String temp = getNextTableCard().toString();
-		for(Account a : players) {
-			String[] content = {"ResultSendCard", "true", "TableCard", temp};
-			a.getClient().send(new ResultSendCard(content));
-		}
-	}
-	
-	//Jannick: calls the winner() method and sends a new message with the winner to both clients
-	public void evaluateWinner() {
-		String[] content = {"ResultBroadcastEvaluateWinner", "true", winner()};
-		for(Account a : players) {
-			a.getClient().send(new ResultBroadcastEvaluateWinner(content));
-		}
-	}
-	
-	//Jannick: Stoppt das Schwitzen
-	public void stopGame(Account a) {
-		removeAccount(a);
-		this.playedCards.set(0);
-	}
-	
-	public void removeAccount(Account a) {
-		for(int i = 0; i < players.size(); i++) {
-			if(a.getUsername().equalsIgnoreCase(players.get(i).getUsername())) {
-				players.remove(i);
-			}
-		}
-	}
-	
-	public SimpleIntegerProperty getPlayedCards() {
-		return playedCards;
-	}
-	public void setPlayedCards(SimpleIntegerProperty playedCards) {
-		this.playedCards = playedCards;
-	}
-	
-	public void increasePlayedCards() {
-		this.playedCards.set(this.playedCards.get() + 1);
-	}
 
-	public Account getFirstPlayer() {
-		return firstPlayer;
-	}
-	public void setFirstPlayer(Account firstPlayer) {
-		this.firstPlayer = firstPlayer;
-	}
-	public boolean isSecondRoundStarted() {
-		return secondRoundStarted;
-	}
-	public void setSecondRoundStarted(boolean secondRoundStarted) {
-		this.secondRoundStarted = secondRoundStarted;
-	}
 	
 	
 	public void finishRound() {
@@ -430,7 +370,7 @@ public class Table {
 					System.out.println(outPut);
 				}
 			}
-		//*********END TEST CLASS
+		//*********END TEST OUTPUT
 	}	
 	
 	public int evaluateWinCard(Card cardP1, Card cardP2) {
@@ -526,12 +466,73 @@ System.out.println("addFCards mit 1 Argument (win) nach Ausführung: "+win);
 			}
 		}
 		undeadString = "None";
-//		System.out.println("tmpUndeads Size "+tmpUndeads.size());
-		for(Card c : tmpUndeads)  //System.out.println(c.toString());
+		for(Card c : tmpUndeads)  
 		switch(tmpUndeads.size()) {
 		case 0: undeadString = "None"; System.out.println("undeadString "+undeadString); break;
 		case 1: undeadString = tmpUndeads.get(0).toString(); System.out.println("undeadString "+undeadString); break;
 		case 2: undeadString = tmpUndeads.get(0).toString()+"|"+tmpUndeads.get(1).toString(); System.out.println("undeadString "+undeadString); break;
 		}
+	}
+	
+	//Dave: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
+	public String suitToString(Card card) {
+		String cardString = card.toString();
+	    String[] tmp = cardString.split("\\_");
+    	return tmp[0];
+	}
+	
+	//Jannick: calls the getNextTableCard() method and sends it to both clients
+	public void sendTableCard() {
+		String temp = getNextTableCard().toString();
+		for(Account a : players) {
+			String[] content = {"ResultSendCard", "true", "TableCard", temp};
+			a.getClient().send(new ResultSendCard(content));
+		}
+	}
+	
+	//Jannick: calls the winner() method and sends a new message with the winner to both clients
+	public void evaluateWinner() {
+		String[] content = {"ResultBroadcastEvaluateWinner", "true", winner()};
+		for(Account a : players) {
+			a.getClient().send(new ResultBroadcastEvaluateWinner(content));
+		}
+	}
+	
+	//Jannick: Stoppt das Schwitzen
+	public void stopGame(Account a) {
+		removeAccount(a);
+		this.playedCards.set(0);
+	}
+	
+	public void removeAccount(Account a) {
+		for(int i = 0; i < players.size(); i++) {
+			if(a.getUsername().equalsIgnoreCase(players.get(i).getUsername())) {
+				players.remove(i);
+			}
+		}
+	}
+	
+	public SimpleIntegerProperty getPlayedCards() {
+		return playedCards;
+	}
+	public void setPlayedCards(SimpleIntegerProperty playedCards) {
+		this.playedCards = playedCards;
+	}
+	
+	public void increasePlayedCards() {
+		this.playedCards.set(this.playedCards.get() + 1);
+	}
+
+	public Account getFirstPlayer() {
+		return firstPlayer;
+	}
+	public void setFirstPlayer(Account firstPlayer) {
+		this.firstPlayer = firstPlayer;
+	}
+	public boolean isSecondRoundStarted() {
+		return secondRoundStarted;
+	}
+	public void setSecondRoundStarted(boolean secondRoundStarted) {
+		this.secondRoundStarted = secondRoundStarted;
 	}
 }
