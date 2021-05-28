@@ -59,7 +59,13 @@
 
 #ChatText {
 	-fx-font-weight: bold;
-} 
+}
+
+#GameEvaluation {
+	-fx-padding: 5;
+	-fx-hgap: 5;
+    -fx-vgap: 5;
+}
 
 #popupError {
 	-fx-background-color: rgba(244, 238, 232, 1);
