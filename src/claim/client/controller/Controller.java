@@ -693,6 +693,23 @@ public class Controller {
 		});
 	}
 	
+	public void updateGameEvaluation() {
+		Platform.runLater(new Runnable() {
+			public void run() {
+				String goblins = String.valueOf(board.getNumOfGoblins());
+				view.chatLayout.getWonGoblins().setText(goblins);
+				String dwarfs = String.valueOf(board.getNumOfDwarfs());
+				view.chatLayout.getWonDwarfs().setText(dwarfs);
+				String undeads = String.valueOf(board.getNumOfUndeads());
+				view.chatLayout.getWonUndeads().setText(undeads);
+				String knights = String.valueOf(board.getNumOfKnights());
+				view.chatLayout.getWonKnights().setText(knights);
+				String doubles = String.valueOf(board.getNumOfDoubles());
+				view.chatLayout.getWonDoubles().setText(doubles);
+			}
+		});
+	}
+	
 	// Getter & Setter
 	public Model getModel() {
 		return model;
@@ -751,7 +768,4 @@ public class Controller {
 	public void setSecondRoundStarted(Boolean secondRoundStarted) {
 		this.secondRoundStarted = secondRoundStarted;
 	}
-
-
-
 }

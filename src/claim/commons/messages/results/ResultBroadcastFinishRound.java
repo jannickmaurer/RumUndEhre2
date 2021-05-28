@@ -65,6 +65,7 @@ public class ResultBroadcastFinishRound extends Message {
 				controller.enableTableCardButton();
 			}
 			controller.setOnTurn(true);
+			controller.updateGameEvaluation();
 		} else {
 			// Table Karte, die der Verlierer erhält, anzeigen
 			System.out.println("Ich habe verloren");
@@ -77,6 +78,7 @@ public class ResultBroadcastFinishRound extends Message {
 				controller.showNewFollowerCard(card1);
 			}
 			controller.setOnTurn(false);
+			controller.updateGameEvaluation();
 		}
 		controller.setCardPlayed(false);
 		controller.increasePlayedRounds();
