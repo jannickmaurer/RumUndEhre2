@@ -41,12 +41,20 @@ public class PlayCard extends Message {
 //			client.getPlayroom().test();
 			
 			// Überarbeiten, muss auf die Accounts im Playroom prüfen!
-			for(Client c : Client.getClients()) {
-				if(c != client) {
+			for(Account a : client.getPlayroom().getPlayers()) {
+				if(!a.getUsername().equalsIgnoreCase(client.getAccount().getUsername())) {
 					String[] content = new String[] {"ResultSendCard", "true", "HandCard", this.card};
-					c.send(new ResultSendCard(content));
+					a.getClient().send(new ResultSendCard(content));
 				}
 			}
+			
+			
+//			for(Client c : Client.getClients()) {
+//				if(c != client) {
+//					String[] content = new String[] {"ResultSendCard", "true", "HandCard", this.card};
+//					c.send(new ResultSendCard(content));
+//				}
+//			}
 			result = true;
 			String[] temp = new String[] {"ResultPlayCard", Boolean.toString(result), this.card};
 			client.send(new ResultPlayCard(temp));

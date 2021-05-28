@@ -110,7 +110,15 @@ public class Table {
 	 * David: Wertet den Sieger des Spiels aus
 	 */
 	private void gameWinner() {
-		String gameWinner;
+		for(Account p : players) {
+			System.out.println("");
+			System.out.println(p.getUsername()); 
+		
+			for(Card c : p.getFollowerCards()) {
+				System.out.print(c.toString() + " | ");
+			}
+		}
+//		String gameWinner;
 		ArrayList<Card> goblinP1 = new ArrayList<>();
 		ArrayList<Card> goblinP2 = new ArrayList<>();
 		ArrayList<Card> dwarfP1  = new ArrayList<>();
@@ -341,6 +349,23 @@ System.out.println("ELSE höhere karte sieger :"+win);
 		for(Account a: players) {
 			a.clearPlayedCard();
 		}
+//*********entfernen			
+			System.out.println("Status Runde: ");
+			for(Account p: players) {
+				System.out.println("");
+				System.out.print("FollowerCards von " + p.getUsername() + ": ");
+				for(Card c : p.getFollowerCards()) {
+					System.out.print(c.toString() + " ");
+				}
+				System.out.println("");
+				System.out.print("Undead Cards von " + p.getUsername() + ": ");
+				for(Card c : p.getUndeadCards()) {
+					System.out.print(c.toString() + " ");
+				}
+			}
+			
+//*********entfernen ENDE
+			
 	}	
 	
 	//David: Evaluiert welche Karte gewonnen hat und gibt je nach Kartenposition 1 oder -1 zurück

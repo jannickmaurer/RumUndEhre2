@@ -35,6 +35,14 @@ public class ResultDealCards extends Message {
 		if(controller.getReadyForSecondRound()) {
 			controller.prepareSecondRound();
 			controller.setSecondRoundStarted(true);
+			controller.getView().getChatLayout().getLbDoubles().setVisible(true);
+			controller.getView().getChatLayout().getWonDoubles().setVisible(true);
+			controller.getView().getChatLayout().getLbDwarfs().setVisible(true);
+			controller.getView().getChatLayout().getWonDwarfs().setVisible(true);
+			controller.getView().getChatLayout().getLbGoblins().setVisible(true);
+			controller.getView().getChatLayout().getWonGoblins().setVisible(true);
+			controller.getView().getChatLayout().getLbKnights().setVisible(true);
+			controller.getView().getChatLayout().getWonKnights().setVisible(true);
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {

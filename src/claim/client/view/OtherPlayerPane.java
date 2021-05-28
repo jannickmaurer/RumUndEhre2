@@ -11,41 +11,43 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class OtherPlayerPane extends VBox {
+public class OtherPlayerPane extends HBox {
+	private Label lbOpponent = new Label();
 	private Label lbName = new Label();
 	//private Label lbPoints = new Label("Punkte");
-	private Label lbScoreDeck = new Label();
-	private Label lbFollowerDeck = new Label();
-	private HBox hboxDecks = new HBox();
+	//private Label lbScoreDeck = new Label();
+	//private Label lbFollowerDeck = new Label();
+	//private HBox hboxDecks = new HBox();
 	//private HBox hboxPoints = new HBox();
-	private CardLabel clScoreDeck = new CardLabel();
-	private CardLabel clFollowerDeck = new CardLabel();
+	//private CardLabel clScoreDeck = new CardLabel();
+	//private CardLabel clFollowerDeck = new CardLabel();
 	
 	//private Label lbPointsPlayer = new Label("0");
 
 	//Konstruktor
 	public OtherPlayerPane() {		
-		VBox vboxScoreDeck = new VBox();
+		//VBox vboxScoreDeck = new VBox();
 		
-		clScoreDeck.setDeck();
-		vboxScoreDeck.setAlignment(Pos.CENTER);
-		vboxScoreDeck.getChildren().addAll(clScoreDeck, lbScoreDeck);
+		//clScoreDeck.setDeck();
+		//vboxScoreDeck.setAlignment(Pos.CENTER);
+		//vboxScoreDeck.getChildren().addAll(clScoreDeck, lbScoreDeck);
 		
-		VBox vboxFollowerDeck = new VBox();
+		//VBox vboxFollowerDeck = new VBox();
 		
-		clFollowerDeck.setDeck();
-		vboxFollowerDeck.setAlignment(Pos.CENTER);
-		vboxFollowerDeck.getChildren().addAll(clFollowerDeck, lbFollowerDeck);
+		//clFollowerDeck.setDeck();
+		//vboxFollowerDeck.setAlignment(Pos.CENTER);
+		//vboxFollowerDeck.getChildren().addAll(clFollowerDeck, lbFollowerDeck);
 		
-		hboxDecks.getChildren().addAll(vboxScoreDeck, vboxFollowerDeck);
-		hboxDecks.setAlignment(Pos.CENTER);
-		hboxDecks.setSpacing(30);
+		//hboxDecks.getChildren().addAll(vboxScoreDeck, vboxFollowerDeck);
+		//hboxDecks.setAlignment(Pos.CENTER);
+		//hboxDecks.setSpacing(30);
 		
 		//hboxPoints.getChildren().addAll(lbPoints, lbPointsPlayer);
 		//hboxPoints.setAlignment(Pos.CENTER);
 		//hboxPoints.setSpacing(10);
 		
-		this.getChildren().addAll(lbName, hboxDecks);
+		this.getChildren().add(lbOpponent);
+		this.getChildren().add(lbName);
 		
 		this.setId("otherPlayer");
 		this.setAlignment(Pos.CENTER);	
@@ -60,44 +62,11 @@ public class OtherPlayerPane extends VBox {
 		this.lbName = lbName;
 	}
 
-	public Label getLbScoreDeck() {
-		return lbScoreDeck;
+	public Label getLbOpponent() {
+		return lbOpponent;
 	}
 
-	public void setLbScoreDeck(Label lbScoreDeck) {
-		this.lbScoreDeck = lbScoreDeck;
+	public void setLbOpponent(Label lbOpponent) {
+		this.lbOpponent = lbOpponent;
 	}
-
-	public Label getLbFollowerDeck() {
-		return lbFollowerDeck;
-	}
-
-	public void setLbFollowerDeck(Label lbFollowerDeck) {
-		this.lbFollowerDeck = lbFollowerDeck;
-	}
-
-	public HBox getHboxDecks() {
-		return hboxDecks;
-	}
-
-	public void setHboxDecks(HBox hboxDecks) {
-		this.hboxDecks = hboxDecks;
-	}
-
-	public CardLabel getClScoreDeck() {
-		return clScoreDeck;
-	}
-
-	public void setClScoreDeck(CardLabel clScoreDeck) {
-		this.clScoreDeck = clScoreDeck;
-	}
-
-	public CardLabel getClFollowerDeck() {
-		return clFollowerDeck;
-	}
-
-	public void setClFollowerDeck(CardLabel clFollowerDeck) {
-		this.clFollowerDeck = clFollowerDeck;
-	}
-	
 }

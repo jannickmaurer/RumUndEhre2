@@ -21,8 +21,8 @@ public class GamePane extends GridPane {
 	
 	//Elemente aus Player Layout ansprechen
 	private Label lbName = playerLayout.getLbName();
-	private Label lbScoreDeckP1 = playerLayout.getLbScoreDeck();
-	private Label lbFollowerDeckP1 = playerLayout.getLbFollowerDeck();
+	//private Label lbScoreDeckP1 = playerLayout.getLbScoreDeck();
+	//private Label lbFollowerDeckP1 = playerLayout.getLbFollowerDeck();
 	//private Label lbPoints = playerLayout.getLbPoints();
 	//private Label lbPointsPlayer = playerLayout.getLbPointsPlayer();
 	private ArrayList cardLabels = playerLayout.getCardLabels();
@@ -39,9 +39,10 @@ public class GamePane extends GridPane {
 	private Button btNextDuel = middleGameLayout.getBtNextDuel();
 	
 	//Elemente aus Other Player Layout ansprechen
+	private Label lbOpponent = otherPlayerLayout.getLbOpponent();
 	private Label lbOtherName = otherPlayerLayout.getLbName();
-	private Label lbScoreDeckP2 = otherPlayerLayout.getLbScoreDeck();
-	private Label lbFollowerDeckP2 = otherPlayerLayout.getLbFollowerDeck();
+	//private Label lbScoreDeckP2 = otherPlayerLayout.getLbScoreDeck();
+	//private Label lbFollowerDeckP2 = otherPlayerLayout.getLbFollowerDeck();
 	//private Label lbOtherPoints = otherPlayerLayout.getLbPoints();
 	//private Label lbOtherPointsPlayer = otherPlayerLayout.getLbPointsPlayer();
 
@@ -107,22 +108,6 @@ public class GamePane extends GridPane {
 		return lbOtherName;
 	}
 
-	public Label getLbScoreDeckP1() {
-		return lbScoreDeckP1;
-	}
-
-	public void setLbScoreDeckP1(Label lbScoreDeckP1) {
-		this.lbScoreDeckP1 = lbScoreDeckP1;
-	}
-
-	public Label getLbFollowerDeckP1() {
-		return lbFollowerDeckP1;
-	}
-
-	public void setLbFollowerDeckP1(Label lbFollowerDeckP1) {
-		this.lbFollowerDeckP1 = lbFollowerDeckP1;
-	}
-
 	public Label getLbOpponentCard() {
 		return lbOpponentCard;
 	}
@@ -171,22 +156,6 @@ public class GamePane extends GridPane {
 		this.btEvaluateWinner = btEvaluateWinner;
 	}
 
-	public Label getLbScoreDeckP2() {
-		return lbScoreDeckP2;
-	}
-
-	public void setLbScoreDeckP2(Label lbScoreDeckP2) {
-		this.lbScoreDeckP2 = lbScoreDeckP2;
-	}
-
-	public Label getLbFollowerDeckP2() {
-		return lbFollowerDeckP2;
-	}
-
-	public void setLbFollowerDeckP2(Label lbFollowerDeckP2) {
-		this.lbFollowerDeckP2 = lbFollowerDeckP2;
-	}
-
 	public void setLbOtherName(Label lbOtherName) {
 		this.lbOtherName = lbOtherName;
 	}
@@ -213,5 +182,13 @@ public class GamePane extends GridPane {
 
 	public void setOtherPlayerLayout(OtherPlayerPane otherPlayerLayout) {
 		this.otherPlayerLayout = otherPlayerLayout;
+	}
+
+	public Label getLbOpponent() {
+		return lbOpponent;
+	}
+
+	public void setLbOpponent(Label lbOpponent) {
+		this.lbOpponent = lbOpponent;
 	}
 }

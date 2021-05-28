@@ -6,47 +6,47 @@
 }
 
 #connect {
-	-fx-hgap: 10;
-    -fx-vgap: 10;
+	-fx-hgap: 5;
+    -fx-vgap: 5;
 }
 
 #login {
-	-fx-spacing: 10;
+	-fx-spacing: 5;
 }
 
 #registration {
-	-fx-spacing: 10;
+	-fx-spacing: 5;
 }
 
 #game {
-	-fx-hgap: 10;
-    -fx-vgap: 10;
-    -fx-padding: 20;
+	-fx-hgap: 5;
+    -fx-vgap: 5;
+    -fx-padding: 10;
 }
 
 #middleGame {
-	-fx-spacing: 30;
-	-fx-padding: 0 0 0 98;
+	-fx-spacing: 20;
+	-fx-padding: 0 0 0 128;
 }
 
 #playedCards {
-	-fx-spacing: 10;
+	-fx-spacing: 5;
 }
 
 #nextTableCard {
-	-fx-spacing: 10;
+	-fx-spacing: 5;
 }
 
 #newFollowerCard {
-	-fx-spacing: 10;
+	-fx-spacing: 5;
 }
 
 #player {
-	-fx-spacing: 10;
+	-fx-spacing: 15;
 }
 
 #otherPlayer {
-	-fx-spacing: 10;
+	-fx-spacing: 5;
 }
 
 #TextFieldMessage {
@@ -54,19 +54,25 @@
 	-fx-alignment: center-left;
 	-fx-focus-color: rgba(62, 132, 187, 1);
 	-fx-min-width: 300px;
-	-fx-padding: 0 0 0 10;
+	-fx-padding: 0 0 0 5;
 }
 
 #ChatText {
 	-fx-font-weight: bold;
-} 
+}
+
+#GameEvaluation {
+	-fx-padding: 5;
+	-fx-hgap: 5;
+    -fx-vgap: 5;
+}
 
 #popupError {
 	-fx-background-color: rgba(244, 238, 232, 1);
-	-fx-hgap: 10;
-    -fx-vgap: 10;
-	-fx-min-width: 1000px;
-	-fx-min-height: 700px;
+	-fx-hgap: 5;
+    -fx-vgap: 5;
+	-fx-min-width: 800px;
+	-fx-min-height: 500px;
 	-fx-valignment: center;
 }
 
@@ -79,7 +85,7 @@
 }
 
 .label {
-	-fx-font-size: 16px;
+	-fx-font-size: 13px;
 	-fx-font-family: 'sans-serif';
   	-fx-text-fill: rgba(255, 255, 255, 1);
 }
@@ -89,7 +95,7 @@
 	-fx-text-fill: rgba(255, 255, 255, 1);
 	-fx-background-radius: 1px;
 	-fx-min-width: 175px;
-	-fx-min-height: 30px;
+	-fx-min-height: 20px;
 }
 
 .button:hover {
@@ -104,7 +110,7 @@
 	-fx-focus-color: rgba(192, 96, 20, 1);
 	-fx-min-width: 175px;
 	-fx-max-width: 175px;
-	-fx-min-height: 30px;
+	-fx-min-height: 20px;
 }
 
 .menu-bar {
