@@ -12,6 +12,9 @@ import claim.commons.messages.results.ResultBroadcastFinishRound;
 import claim.commons.messages.results.ResultSendCard;
 import javafx.beans.property.SimpleIntegerProperty;
 
+	/*
+	 * David & Jannick: 
+	 */
 
 public class Table {
 	private ArrayList<Account> players = new ArrayList<>(); 							
