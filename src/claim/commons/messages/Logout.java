@@ -28,9 +28,12 @@ public class Logout extends Message {
 			client.setAccount(null); 
 			client.setLoggedIn(false);
 			client.getClients().remove(client);
-			if(!client.getPlayroom().getPlayers().isEmpty()) {
-				for(Account a : client.getPlayroom().getPlayers()) {
-					a.getClient().send(new ResultPlayerLoggedOut(true));
+			
+			if(!client.getPlayroom().getTable().isGameEndedSuccessfully()) {
+				if(!client.getPlayroom().getPlayers().isEmpty()) {
+					for(Account a : client.getPlayroom().getPlayers()) {
+						a.getClient().send(new ResultPlayerLoggedOut(true));
+					}
 				}
 			}
 			result = true;
@@ -38,6 +41,7 @@ public class Logout extends Message {
 			for(Account ac : client.getPlayroom().getPlayers()) {
 				logger.info(ac.toString() + " remaining on Server");
 			}
+			client.setPlayroom(null); // Playroom aus Client entfernt TEST
 		
 		}
 		client.send(new ResultLogout(result));

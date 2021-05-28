@@ -138,6 +138,7 @@ public class Controller {
 		this.playedRounds.addListener((o, oldValue, newValue) -> {
 			if (newValue.intValue() == 13) {
 				readyForSecondRound = true;
+				updateChatText("SYSTEM" + ":\n" + "BLABLA" + "\n"); // Mit CSS Text ersetzen!
 				if(onTurn) {
 					if(secondRoundStarted) {
 						view.getGameLayout().getMiddleGameLayout().getBtEvaluateWinner().setVisible(true);

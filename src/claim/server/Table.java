@@ -32,6 +32,7 @@ public class Table {
 //	public Card followerCardP2;
 	private String undeadString;
 	private boolean secondRoundStarted = false;
+	private boolean gameEndedSuccessfully = false;
 
 
 
@@ -421,20 +422,22 @@ System.out.println("ELSE höhere karte sieger :"+win);
 //				}
 //			}
 		//*********END TEST OUTPUT
-			
-			System.out.println("Status Runde: ");
+			System.out.println("**************************");
+			System.out.print("Status nach FinishRound: ");
 			for(Account p: players) {
 				System.out.println("");
 				System.out.print("FollowerCards von " + p.getUsername() + ": ");
 				for(Card c : p.getFollowerCards()) {
-					System.out.print(c.toString() + " ");
+					System.out.print(c.toString() + " | ");
 				}
 				System.out.println("");
 				System.out.print("Undead Cards von " + p.getUsername() + ": ");
 				for(Card c : p.getUndeadCards()) {
-					System.out.print(c.toString() + " ");
+					System.out.print(c.toString() + " | ");
 				}
 			}
+			System.out.println("");
+			System.out.println("**************************");
 			
 	}	
 	
@@ -561,6 +564,7 @@ System.out.println("addFCards mit 1 Argument (win) nach Ausführung: "+win);
 		for(Account a : players) {
 			a.getClient().send(new ResultBroadcastEvaluateWinner(content));
 		}
+		this.gameEndedSuccessfully = true;
 	}
 	
 	//Jannick: Stoppt das Schwitzen
@@ -599,5 +603,12 @@ System.out.println("addFCards mit 1 Argument (win) nach Ausführung: "+win);
 	}
 	public void setSecondRoundStarted(boolean secondRoundStarted) {
 		this.secondRoundStarted = secondRoundStarted;
+	}
+
+	public boolean isGameEndedSuccessfully() {
+		return gameEndedSuccessfully;
+	}
+	public void setGameEndedSuccessfully(boolean gameEndedSuccessfully) {
+		this.gameEndedSuccessfully = gameEndedSuccessfully;
 	}
 }

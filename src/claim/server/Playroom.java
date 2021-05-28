@@ -38,9 +38,11 @@ public class Playroom implements Serializable {
 				ArrayList<String> cards = new ArrayList<>();
 				for(Card c : a.getHandCards()) {
 					cards.add(c.toString());
+//					a.getHandCards().remove(c); // Remove from HandCards -> TEST!
 				}
 				String[] content = combineArrayAndArrayList(temp, cards);
 				a.getClient().send(new ResultDealCards(content));
+				a.getHandCards().clear();
 			}
 //			try {
 //				Thread.sleep(1500);
