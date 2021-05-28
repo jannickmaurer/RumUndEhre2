@@ -1,8 +1,7 @@
 package claim.commons;
 
 /*
- * David
- * Source Code vom Pokerprojekt mit individuellen Anpassungen für Claim
+ * David: Der Source Code ist vom Pokerprojekt mit individuellen Anpassungen für Claim
  * Der Code generiert einen Suit und einen Rank einer Karte. Der Rank kann auch verglichen werden.
  */
 
