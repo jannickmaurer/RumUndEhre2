@@ -11,7 +11,6 @@ public class Board {
 	
 	public ArrayList<Card> handCards;
 	private ArrayList<Card> followerCards;
-//	private ArrayList<Card> pointCards;
 	private ArrayList<Card> undeadCards;
 	private ArrayList<Card> dwarfCards;
 	private ArrayList<Card> goblinCards;
@@ -22,7 +21,6 @@ public class Board {
 	public Board() {
 		handCards = new ArrayList<>();
 		followerCards = new ArrayList<>();
-//		pointCards = new ArrayList<>();
 		undeadCards = new ArrayList<>();
 		dwarfCards = new ArrayList<>();
 		goblinCards = new ArrayList<>();
@@ -159,13 +157,6 @@ public class Board {
 		this.followerCards = followerCards;
 	}
 
-//	public ArrayList<Card> getPointCards() {
-//		return pointCards;
-//	}
-//
-//	public void setPointCards(ArrayList<Card> pointCards) {
-//		this.pointCards = pointCards;
-//	}
 	public void addUndead(Card undead) {
 		this.undeadCards.add(undead);
 	}
@@ -186,7 +177,7 @@ public class Board {
 		case "double": doubleCards.add(follower); break;
 		case "knight": knightCards.add(follower); break;
 		}
-		System.out.println("Card added: " + follower.toString());
+		System.out.println("Card added ToGroup (Board Zeile 180): " + follower.toString());
 	}
 	
 	public void clearCards() {
