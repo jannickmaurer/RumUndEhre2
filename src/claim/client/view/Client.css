@@ -71,8 +71,6 @@
 	-fx-background-color: rgba(244, 238, 232, 1);
 	-fx-hgap: 5;
     -fx-vgap: 5;
-	-fx-min-width: 800px;
-	-fx-min-height: 500px;
 	-fx-valignment: center;
 }
 

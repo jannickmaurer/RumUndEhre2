@@ -21,9 +21,7 @@ public class GameOverPopupPane extends GridPane {
 		
 		this.setId("popupError");
 		lblOver.setId("textOver");
-		this.setAlignment(Pos.CENTER);
-		this.setHalignment(btLogout, HPos.CENTER);
-		
+		this.setAlignment(Pos.CENTER);		
 	}
 
 	
