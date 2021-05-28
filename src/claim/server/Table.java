@@ -271,8 +271,14 @@ System.out.println("ELSE höhere karte sieger :"+win);
 					players.get(1).getPlayedCard().getSuit().toString().equals("dwarf")) {
 				
 	System.out.println("IF 2 ROUND: ");
-				
+	//*******TEST LINE
+	for(Account p : players) System.out.println("Accountname des Spielers: "+p.getUsername().toString());	
+	//*******END TEST LINE
+
+	
 				ArrayList<Card> dwarfs = new ArrayList<>();
+				
+				
 				if(players.get(0).getPlayedCard().getSuit().toString().equals("dwarf")) {
 					dwarfs.add(players.get(0).getPlayedCard());
 					oneDwarf = true;
@@ -280,11 +286,12 @@ System.out.println("ELSE höhere karte sieger :"+win);
 				}
 				if(players.get(1).getPlayedCard().getSuit().toString().equals("dwarf")) {
 					dwarfs.add(players.get(1).getPlayedCard());
+//					oneDwarf = true;
 	System.out.println("IF 2 Round + dwarfIF 2");
 				}
 
 				
-				switch(dwarfs.size()) {
+				switch(dwarfs.size()) {					
 				case 1: if(oneDwarf) {
 							if(players.get(0).getPlayedCard().getSuit().toString().equals("dwarf")) {
 								playedCardString = players.get(1).getPlayedCard().toString()+"|"+dwarfs.get(0).toString();
