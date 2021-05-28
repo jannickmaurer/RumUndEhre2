@@ -14,20 +14,17 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 
 public class Table {
-	private ArrayList<Account> players = new ArrayList<>(); 						//private		
+	private ArrayList<Account> players = new ArrayList<>(); 							
 	private SimpleIntegerProperty playedCards = new SimpleIntegerProperty();
-	private Account firstPlayer = null;											//private
+	private Account firstPlayer = null;											
 	private DeckOfCards deck;
-	public ArrayList<Card> tableCards = new ArrayList<>();
-	public ArrayList<Card> tmpUndeads = new ArrayList<>();
+	private ArrayList<Card> tableCards = new ArrayList<>();
+	private ArrayList<Card> tmpUndeads = new ArrayList<>();
 	private int fractionPointsP1;
 	private int fractionPointsP2;
-	public Card actualTableCard;
+	private Card actualTableCard;
 	private String undeadString;
 	private boolean secondRoundStarted = false;
-
-
-
 	private Card tCard;
 
 
@@ -208,9 +205,7 @@ System.out.println(p2);
 		}
 	}
 	
-	/*
-	 * David: Gibt die letzte Karte der Tischkarten zurück und löscht diese
-	 */
+	// David: Gibt die letzte Karte der Tischkarten zurück und löscht diese
 	public Card getNextTableCard() {
 	    Card card = (tableCards.size() > 0) ? tableCards.remove(tableCards.size()-1) : null;
         actualTableCard = card;
@@ -522,6 +517,7 @@ System.out.println(p2);
 		}
 	}
 	
+	// Getter & Setter
 	public SimpleIntegerProperty getPlayedCards() {
 		return playedCards;
 	}
