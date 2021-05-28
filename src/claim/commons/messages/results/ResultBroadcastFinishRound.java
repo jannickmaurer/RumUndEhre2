@@ -59,9 +59,12 @@ public class ResultBroadcastFinishRound extends Message {
 				controller.clearOpponentCard();
 			} else {
 				if (card2 != null)
-					controller.getBoard().addUndead(new Card(card2));
+//					controller.getBoard().addUndead(new Card(card2));
+					controller.getBoard().addCardToGroup(new Card(card2));
 				if (card3 != null)
-					controller.getBoard().addUndead(new Card(card3));
+//					controller.getBoard().addUndead(new Card(card3));
+					controller.getBoard().addCardToGroup(new Card(card2));
+
 				controller.enableTableCardButton();
 			}
 			controller.setOnTurn(true);
