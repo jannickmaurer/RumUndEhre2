@@ -7,8 +7,12 @@ import claim.commons.Card;
 
 // Implemented by Jannick
 // All logic realted to game, cards, etc. on client side
+
+/*
+ * David: Alle Karten auf dem Client werden hier verwaltet. 
+ * Die Logik, welche Karten gespielt werden dürfen findt auf dem Board statt.
+ */
 public class Board {
-	
 	public ArrayList<Card> handCards;
 	private ArrayList<Card> followerCards;
 	private ArrayList<Card> undeadCards;
@@ -34,17 +38,15 @@ public class Board {
 		}
 		sortHandCards();
 	//	setPlayableHC();//evtl löschen sollte überflüssig sein
-		
+//*******DELETE		
 		System.out.println("Handcards Created: ");
 		for (Card card : this.handCards) {
 			System.out.println(card.toString());
 		}
+//*******DELETE		
 	}
 	
-	/*
-	 * David Schürch
-	 * Entfernt die gespielte Karte aud der ArrayList Handcards
-	 */
+	// David: Entfernt die gespielte Karte aud der ArrayList handCards
 	public void removePlayedCard(Card removeCard) {
 		for (int i = 0; i < handCards.size(); i++) {
 			if(suitToString(handCards.get(i)).equals(suitToString(removeCard))) {
@@ -57,12 +59,14 @@ public class Board {
 		}
 	}
 	
+	// David: Alle Playables werden auf true gesetzt
 	public void setPlayableHC(){
 		for(Card card : handCards) {
 			card.setPlayable(true);
 		}
 	}
 
+	// David: Alle Playables der spielbaren Karten vom zweiten Spieler werden auf true gesetzt
 	public void setPlayableHC(Card opponentCard) {
 		boolean hasPlayableCards = false;
 		for(Card card : handCards) {
@@ -97,17 +101,14 @@ public class Board {
 		}
 	}
 	
-	//Dave: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
+	// David: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
 	private String suitToString(Card card) {
 		String cardString = card.toString();
 	    String[] tmp = cardString.split("\\_");
     	return tmp[0];
 	}
 	
-	/*
-	 * David Schürch
-	 * Sortiert bei Aufruf die Handkarten des Spielers 
-	 */
+	// David: Sortiert die Handkarten des Spielers nach Fraktion und aufsteigend
 	private void sortHandCards() {
 		ArrayList<Card> goblins = new ArrayList<>();
 		ArrayList<Card> dwarfs = new ArrayList<>();
@@ -155,10 +156,6 @@ public class Board {
 	public void setFollowerCards(ArrayList<Card> followerCards) {
 		this.followerCards = followerCards;
 	}
-
-//	public void addUndead(Card undead) {
-//		this.undeadCards.add(undead);
-//	}
 	
 	public ArrayList<Card> getDwarfCards() {
 		return dwarfCards;
