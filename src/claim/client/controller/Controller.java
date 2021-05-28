@@ -783,7 +783,7 @@ public class Controller {
 		}
 	}
 
-	//SD
+	// SD
 	public void updateChatText(String text) {
 		Platform.runLater(new Runnable() {
 			public void run() {
@@ -792,7 +792,7 @@ public class Controller {
 		});
 	}
 
-	//SD & JM
+	// SD & JM
 	// Update number of pointcards per fraction
 	public void updateGameEvaluation() {
 		Platform.runLater(new Runnable() {
@@ -813,7 +813,7 @@ public class Controller {
 					for (Card c : board.getDwarfCards()) {
 						temp = temp + c.getRank().toString() + " | ";
 					}
-					dwarfs = goblins + temp;
+					dwarfs = dwarfs + temp;
 				}
 				view.chatLayout.getWonDwarfs().setText(dwarfs);
 				
@@ -833,7 +833,7 @@ public class Controller {
 					for (Card c : board.getKnightCards()) {
 						temp = temp + c.getRank().toString() + " | ";
 					}
-					knights = goblins + temp;
+					knights = knights + temp;
 				}
 				view.chatLayout.getWonKnights().setText(knights);
 				
@@ -843,7 +843,7 @@ public class Controller {
 					for (Card c : board.getDoubleCards()) {
 						temp = temp + c.getRank().toString() + " | ";
 					}
-					doubles = goblins + temp;
+					doubles = doubles + temp;
 				}
 				view.chatLayout.getWonDoubles().setText(doubles);
 			}
