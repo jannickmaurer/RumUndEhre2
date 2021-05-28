@@ -49,7 +49,7 @@ public class ResultBroadcastFinishRound extends Message {
 		}
 
 		if (controller.getUsername().equalsIgnoreCase(this.winner)) {
-			System.out.println("Ich habe gewonnen");
+System.out.println("Ich habe gewonnen");
 
 			if (controller.getSecondRoundStarted()) {
 				// button enablen und karten speichern
@@ -70,7 +70,7 @@ public class ResultBroadcastFinishRound extends Message {
 			controller.setOnTurn(true);
 		} else {
 			// Table Karte, die der Verlierer erhält, anzeigen
-			System.out.println("Ich habe verloren");
+System.out.println("Ich habe verloren");
 
 			if (controller.getSecondRoundStarted()) {
 				cardCheck(controller);
