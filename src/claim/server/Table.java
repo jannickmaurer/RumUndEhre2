@@ -110,7 +110,7 @@ public class Table {
 	 * David: Wertet den Sieger des Spiels aus
 	 */
 	private void gameWinner() {
-		String gameWinner;
+//		String gameWinner;
 		ArrayList<Card> goblinP1 = new ArrayList<>();
 		ArrayList<Card> goblinP2 = new ArrayList<>();
 		ArrayList<Card> dwarfP1  = new ArrayList<>();
