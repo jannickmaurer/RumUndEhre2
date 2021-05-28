@@ -698,10 +698,24 @@ public class Controller {
 		Platform.runLater(new Runnable() {
 			public void run() {
 				String goblins = String.valueOf(board.getNumOfGoblins());
+				if(board.getNumOfGoblins() > 0) {
+					String temp = ": ";
+					for(Card c : board.getGoblinCards()) {
+						temp = temp + c.getRank().toString() + " | ";
+					}
+					goblins = goblins + temp;
+				}
 				view.chatLayout.getWonGoblins().setText(goblins);
 				String dwarfs = String.valueOf(board.getNumOfDwarfs());
 				view.chatLayout.getWonDwarfs().setText(dwarfs);
 				String undeads = String.valueOf(board.getNumOfUndeads());
+				if(board.getNumOfUndeads() > 0) {
+					String temp = ": ";
+					for(Card c : board.getUndeadCards()) {
+						temp = temp + c.getRank().toString() + " | ";
+					}
+					undeads = undeads + temp;
+				}
 				view.chatLayout.getWonUndeads().setText(undeads);
 				String knights = String.valueOf(board.getNumOfKnights());
 				view.chatLayout.getWonKnights().setText(knights);

@@ -208,4 +208,41 @@ public class Board {
 	public int getNumOfKnights() {
 		return knightCards.size();
 	}
+
+	public ArrayList<Card> getUndeadCards() {
+		return undeadCards;
+	}
+
+	public void setUndeadCards(ArrayList<Card> undeadCards) {
+		this.undeadCards = undeadCards;
+	}
+
+	public ArrayList<Card> getGoblinCards() {
+		return goblinCards;
+	}
+
+	public void setGoblinCards(ArrayList<Card> goblinCards) {
+		this.goblinCards = goblinCards;
+	}
+
+	public ArrayList<Card> getKnightCards() {
+		return knightCards;
+	}
+
+	public void setKnightCards(ArrayList<Card> knightCards) {
+		this.knightCards = knightCards;
+	}
+
+	public ArrayList<Card> getDoubleCards() {
+		return doubleCards;
+	}
+
+	public void setDoubleCards(ArrayList<Card> doubleCards) {
+		this.doubleCards = doubleCards;
+	}
+
+	public void setDwarfCards(ArrayList<Card> dwarfCards) {
+		this.dwarfCards = dwarfCards;
+	}
+	
 }
