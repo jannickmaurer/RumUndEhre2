@@ -48,7 +48,7 @@ public class ResultBroadcastFinishRound extends Message {
 		}
 
 		if (controller.getUsername().equalsIgnoreCase(this.winner)) {
-			System.out.println("Ich habe gewonnen");
+System.out.println("Ich habe gewonnen");
 
 			if (controller.getSecondRoundStarted()) {
 				// button enablen und karten speichern
@@ -58,16 +58,19 @@ public class ResultBroadcastFinishRound extends Message {
 				controller.clearOpponentCard();
 			} else {
 				if (card2 != null)
-					controller.getBoard().addUndead(new Card(card2));
+//					controller.getBoard().addUndead(new Card(card2));
+					controller.getBoard().addCardToGroup(new Card(card2));
 				if (card3 != null)
-					controller.getBoard().addUndead(new Card(card3));
+//					controller.getBoard().addUndead(new Card(card3));
+					controller.getBoard().addCardToGroup(new Card(card2));
+
 				controller.enableTableCardButton();
 			}
 			controller.setOnTurn(true);
 			controller.updateGameEvaluation();
 		} else {
 			// Table Karte, die der Verlierer erhält, anzeigen
-			System.out.println("Ich habe verloren");
+System.out.println("Ich habe verloren");
 
 			if (controller.getSecondRoundStarted()) {
 				cardCheck(controller);

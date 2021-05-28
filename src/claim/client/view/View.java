@@ -68,14 +68,15 @@ public class View {
 	private Button btBack = registrationLayout.getBtBack();
 	
 	//Elemente aus Game Layout ansprechen
-	private Label lbScoreDeckP1 = gameLayout.getLbScoreDeckP1();
-	private Label lbFollowerDeckP1 = gameLayout.getLbFollowerDeckP1();
+	//private Label lbScoreDeckP1 = gameLayout.getLbScoreDeckP1();
+	//private Label lbFollowerDeckP1 = gameLayout.getLbFollowerDeckP1();
+	private Label lbOpponent = gameLayout.getLbOpponent();
 	private Label lbOpponentCard = gameLayout.getLbOpponentCard();
 	private Label lbMyCard = gameLayout.getLbMyCard();
 	private Label lbNewFollowerDeck = gameLayout.getLbNewFollowerDeck();
 	private Label lbCardsDeck = gameLayout.getLbCardsDeck();
-	private Label lbScoreDeckP2 = gameLayout.getLbScoreDeckP2();
-	private Label lbFollowerDeckP2 = gameLayout.getLbFollowerDeckP2();
+	//private Label lbScoreDeckP2 = gameLayout.getLbScoreDeckP2();
+	//private Label lbFollowerDeckP2 = gameLayout.getLbFollowerDeckP2();
 	private Button btLogout = gameLayout.getBtLogout();
 	private Button btEvaluateWinner = gameLayout.getBtEvaluateWinner();
 	private Button btStartRoundTwo = gameLayout.getBtStartRoundTwo();
@@ -180,14 +181,15 @@ public class View {
 		errorPopupLayout.getLblError().setText(t.getString("label.error"));
 		gameOverPopupLayout.getLblOver().setText(t.getString("label.over"));
 		winnerPopupLayout.getLblWinner().setText(t.getString("label.winner"));
-		gameLayout.getLbScoreDeckP1().setText(t.getString("label.scoredeck"));
-		gameLayout.getLbFollowerDeckP1().setText(t.getString("label.followerdeck"));
+		//gameLayout.getLbScoreDeckP1().setText(t.getString("label.scoredeck"));
+		//gameLayout.getLbFollowerDeckP1().setText(t.getString("label.followerdeck"));
+		gameLayout.getLbOpponent().setText(t.getString("label.opponent"));
 		gameLayout.getLbOpponentCard().setText(t.getString("label.opponentcard"));
 		gameLayout.getLbMyCard().setText(t.getString("label.mycard"));
 		gameLayout.getLbNewFollowerDeck().setText(t.getString("label.newfollowerdeck"));
 		gameLayout.getLbCardsDeck().setText(t.getString("label.cardsdeck"));
-		gameLayout.getLbScoreDeckP2().setText(t.getString("label.scoredeck"));
-		gameLayout.getLbFollowerDeckP2().setText(t.getString("label.followerdeck"));
+		//gameLayout.getLbScoreDeckP2().setText(t.getString("label.scoredeck"));
+		//gameLayout.getLbFollowerDeckP2().setText(t.getString("label.followerdeck"));
 		chatLayout.getLbEvaluation().setText(t.getString("label.gameevaluation"));
 		chatLayout.getLbGoblins().setText(t.getString("label.goblins"));
 		chatLayout.getLbDwarfs().setText(t.getString("label.dwarfs"));
@@ -406,22 +408,6 @@ public class View {
 		this.gameLayout = gameLayout;
 	}
 
-	public Label getLbScoreDeckP1() {
-		return lbScoreDeckP1;
-	}
-
-	public void setLbScoreDeckP1(Label lbScoreDeckP1) {
-		this.lbScoreDeckP1 = lbScoreDeckP1;
-	}
-
-	public Label getLbFollowerDeckP1() {
-		return lbFollowerDeckP1;
-	}
-
-	public void setLbFollowerDeckP1(Label lbFollowerDeckP1) {
-		this.lbFollowerDeckP1 = lbFollowerDeckP1;
-	}
-
 	public Label getLbOpponentCard() {
 		return lbOpponentCard;
 	}
@@ -452,22 +438,6 @@ public class View {
 
 	public void setLbCardsDeck(Label lbCardsDeck) {
 		this.lbCardsDeck = lbCardsDeck;
-	}
-
-	public Label getLbScoreDeckP2() {
-		return lbScoreDeckP2;
-	}
-
-	public void setLbScoreDeckP2(Label lbScoreDeckP2) {
-		this.lbScoreDeckP2 = lbScoreDeckP2;
-	}
-
-	public Label getLbFollowerDeckP2() {
-		return lbFollowerDeckP2;
-	}
-
-	public void setLbFollowerDeckP2(Label lbFollowerDeckP2) {
-		this.lbFollowerDeckP2 = lbFollowerDeckP2;
 	}
 
 	public Button getBtEvaluateWinner() {

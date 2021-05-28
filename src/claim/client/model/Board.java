@@ -143,6 +143,25 @@ public class Board {
 	}
 
 
+//	public void setHandCards(ArrayList<Card> handCards) {
+//		this.handCards = handCards;
+//	}
+//
+//	public ArrayList<Card> getFollowerCards() {
+//		return followerCards;
+//	}
+//
+//	public void setFollowerCards(ArrayList<Card> followerCards) {
+//		this.followerCards = followerCards;
+//	}
+//
+////	public void addUndead(Card undead) {
+////		this.undeadCards.add(undead);
+////	}
+//	
+//	public ArrayList<Card> getDwarfCards() {
+//		return dwarfCards;
+//	}
 
 	public void addDwarfCards(Card dwarf) {
 		this.dwarfCards.add(dwarf);

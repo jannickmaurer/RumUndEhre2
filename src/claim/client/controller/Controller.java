@@ -441,6 +441,15 @@ public class Controller {
 					setReadyForSecondRound(false);
 				}
 				resetHandCards();
+				view.getChatLayout().getWonUndeads().setText("0");
+				view.getChatLayout().getLbDoubles().setVisible(false);
+				view.getChatLayout().getWonDoubles().setVisible(false);
+				view.getChatLayout().getLbDwarfs().setVisible(false);
+				view.getChatLayout().getWonDwarfs().setVisible(false);
+				view.getChatLayout().getLbGoblins().setVisible(false);
+				view.getChatLayout().getWonGoblins().setVisible(false);
+				view.getChatLayout().getLbKnights().setVisible(false);
+				view.getChatLayout().getWonKnights().setVisible(false);
 				view.getChatLayout().getTxtMessages().clear();
 				view.getGameLayout().getPlayerLayout().getLbName().setText("");
 				view.getGameLayout().getOtherPlayerLayout().getLbName().setText("");

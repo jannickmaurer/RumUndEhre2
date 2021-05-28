@@ -17,13 +17,13 @@ import javafx.scene.layout.VBox;
 public class PlayerPane extends VBox {
 	private Label lbName = new Label();
 	//private Label lbPoints = new Label("Punkte");
-	private Label lbScoreDeck = new Label();
-	private Label lbFollowerDeck = new Label();
+	//private Label lbScoreDeck = new Label();
+	//private Label lbFollowerDeck = new Label();
 	private HBox hboxCards = new HBox();
-	private HBox hboxDecks = new HBox();
+	//private HBox hboxDecks = new HBox();
 	//private HBox hboxPoints = new HBox();
-	private CardLabel clScoreDeck = new CardLabel();
-	private CardLabel clFollowerDeck = new CardLabel();
+	//private CardLabel clScoreDeck = new CardLabel();
+	//private CardLabel clFollowerDeck = new CardLabel();
 	
 	//private GridPane pointsGrid = new GridPane();
 	//private Label lbPointsPlayer = new Label("0");
@@ -51,27 +51,27 @@ public class PlayerPane extends VBox {
 		//pointsGrid.add(lbPoints, 0, 0);
 		//pointsGrid.add(lbPointsPlayer, 2, 0);
 		
-		VBox vboxScoreDeck = new VBox();
+		//VBox vboxScoreDeck = new VBox();
 		
-		clScoreDeck.setDeck();
-		vboxScoreDeck.setAlignment(Pos.CENTER);
-		vboxScoreDeck.getChildren().addAll(clScoreDeck, lbScoreDeck);
+		//clScoreDeck.setDeck();
+		//vboxScoreDeck.setAlignment(Pos.CENTER);
+		//vboxScoreDeck.getChildren().addAll(clScoreDeck, lbScoreDeck);
 		
-		VBox vboxFollowerDeck = new VBox();
+		//VBox vboxFollowerDeck = new VBox();
 		
-		clFollowerDeck.setDeck();
-		vboxFollowerDeck.setAlignment(Pos.CENTER);
-		vboxFollowerDeck.getChildren().addAll(clFollowerDeck, lbFollowerDeck);
+		//clFollowerDeck.setDeck();
+		//vboxFollowerDeck.setAlignment(Pos.CENTER);
+		//vboxFollowerDeck.getChildren().addAll(clFollowerDeck, lbFollowerDeck);
 		
-		hboxDecks.getChildren().addAll(vboxScoreDeck, vboxFollowerDeck);
-		hboxDecks.setAlignment(Pos.CENTER);
-		hboxDecks.setSpacing(30);
+		//hboxDecks.getChildren().addAll(vboxScoreDeck, vboxFollowerDeck);
+		//hboxDecks.setAlignment(Pos.CENTER);
+		//hboxDecks.setSpacing(30);
 		
 		//hboxPoints.getChildren().addAll(lbPoints, lbPointsPlayer);
 		//hboxPoints.setAlignment(Pos.CENTER);
 		//hboxPoints.setSpacing(10);
 		
-		this.getChildren().addAll(lbName, hboxCards, hboxDecks, btLogout);
+		this.getChildren().addAll(lbName, hboxCards, btLogout);
 
 		this.setId("player");
 		this.setAlignment(Pos.CENTER);
@@ -99,31 +99,7 @@ public class PlayerPane extends VBox {
 	public Button getBtLogout() {
 		return btLogout;
 	}
-
-	public Label getLbScoreDeck() {
-		return lbScoreDeck;
-	}
-
-
-
-	public void setLbScoreDeck(Label lbScoreDeck) {
-		this.lbScoreDeck = lbScoreDeck;
-	}
-
-
-
-	public Label getLbFollowerDeck() {
-		return lbFollowerDeck;
-	}
-
-
-
-	public void setLbFollowerDeck(Label lbFollowerDeck) {
-		this.lbFollowerDeck = lbFollowerDeck;
-	}
-
-
-
+	
 	public void setBtLogout(Button btLogout) {
 		this.btLogout = btLogout;
 	}
