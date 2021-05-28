@@ -93,7 +93,6 @@ System.out.println("Ich habe verloren");
 	}
 
 	private void cardCheck(Controller controller) {
-
 		if (followerCard1.getSuit().toString().equals("dwarf") && !controller.getUsername().equals(this.winner)) {
 			controller.getBoard().addDwarfCards(followerCard1);
 		} else if (!followerCard1.getSuit().toString().equals("dwarf") && controller.getUsername().equals(this.winner)) {
