@@ -18,12 +18,10 @@ public class ErrorPopupPane extends GridPane {
 		
 		this.add(lblError, 0, 0);
 		this.add(btBackError, 0, 1);
-		
 		this.setId("popupError");
 		lblError.setId("textError");
 		this.setAlignment(Pos.CENTER);
 		this.setHalignment(btBackError, HPos.CENTER);
-		
 	}
 	
 	//Getter & Setter
