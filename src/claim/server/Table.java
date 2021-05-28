@@ -250,7 +250,10 @@ System.out.println("ELSE höhere karte sieger :"+win);
 	
 
 	
-	
+	/*
+	 * David: Die Methode ermittelt den Gewinner am Ende jeder Runde aus den zwei Spielern. Sie löst die Übermittelung an die 
+	 * Clients mit der Rückmeldung aus.
+	 */
 	public void finishRound() {
 		String playedCardString = "";
 		Card playedTableCard = actualTableCard;
@@ -302,11 +305,11 @@ System.out.println("ELSE höhere karte sieger :"+win);
 			if(win ==  1) win =0;
 			if(win == -1) win *= (-1); 
 
-//	System.out.println("Sieger Account: "+players.get(win).getUsername());	
-//			for(int i = 0; players.size() > i; i++) {
-//			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), playedCardString};
-//			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
-//			}
+	System.out.println("Sieger Account: "+players.get(win).getUsername());	
+			for(int i = 0; players.size() > i; i++) {
+			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), playedCardString};
+			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+			}
 				
 		}else { 	
 			if(players.get(0).getUsername().equals(firstPlayer.getUsername())) {
@@ -340,6 +343,7 @@ System.out.println("ELSE höhere karte sieger :"+win);
 		}
 	}	
 	
+	//David: Evaluiert welche Karte gewonnen hat und gibt je nach Kartenposition 1 oder -1 zurück
 	public int evaluateWinCard(Card cardP1, Card cardP2) {
 		int win = 1;
 		
