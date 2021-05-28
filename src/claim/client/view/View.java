@@ -24,8 +24,8 @@ import javafx.stage.StageStyle;
 
 public class View {
 	ServiceLocator sl = ServiceLocator.getServiceLocator();
-	
-	//Warum protected, private, public? (SD)
+
+	// Warum protected, private, public? (SD)
 	protected Stage primaryStage;
 	protected Stage errorStage;
 	protected Stage gameOverStage;
@@ -35,59 +35,59 @@ public class View {
 	private Scene scene;
 
 	Menu menuFileLanguage = new Menu();
-	
-	//Layouts für unterschiedliche Spielsituationen
+
+	// Layouts für unterschiedliche Spielsituationen
 	public ConnectPane connectLayout = new ConnectPane();
 	public LoginPane loginLayout = new LoginPane();
 	public RegistrationPane registrationLayout = new RegistrationPane();
 	public GamePane gameLayout = new GamePane();
 	public ChatPane chatLayout = new ChatPane();
-	
+
 	public ErrorPopupPane errorPopupLayout = new ErrorPopupPane();
 	public Popup errorPopUp = new Popup();
-	
+
 	public GameOverPopupPane gameOverPopupLayout = new GameOverPopupPane();
 	public Popup gameOverPopUp = new Popup();
-	
+
 	public WinnerPopupPane winnerPopupLayout = new WinnerPopupPane();
 	public Popup winnerPopUp = new Popup();
-	
-	//Elemente aus Connect Layout ansprechen
+
+	// Elemente aus Connect Layout ansprechen
 	private Label lbPort = connectLayout.getLbPort();
 	private Label lbIP = connectLayout.getLbIP();
 	private TextField tfPort = connectLayout.getTfPort();
 	private TextField tfIP = connectLayout.getTfIP();
 	private Button btConnect = connectLayout.getBtConnect();
 	private Button btStart = connectLayout.getBtStart();
-	
-	//Elemente aus Login Layout ansprechen
+
+	// Elemente aus Login Layout ansprechen
 	private TextField tfUsername = loginLayout.getTfUsername();
 	private PasswordField pfPassword = loginLayout.getPfPassword();
 	private Button btLogin = loginLayout.getBtLogin();
 	private Button btRegistration = loginLayout.getBtRegistration();
-	
-	//Elemente aus Registration Layout ansprechen
+
+	// Elemente aus Registration Layout ansprechen
 	private TextField tfNewUsername = registrationLayout.getTfNewUsername();
 	private PasswordField pfnewPassword = registrationLayout.getPfNewPassword();
 	private Button btCreateAccount = registrationLayout.getBtCreateAccount();
 	private Button btBack = registrationLayout.getBtBack();
-	
-	//Elemente aus Game Layout ansprechen
-	//private Label lbScoreDeckP1 = gameLayout.getLbScoreDeckP1();
-	//private Label lbFollowerDeckP1 = gameLayout.getLbFollowerDeckP1();
+
+	// Elemente aus Game Layout ansprechen
+	// private Label lbScoreDeckP1 = gameLayout.getLbScoreDeckP1();
+	// private Label lbFollowerDeckP1 = gameLayout.getLbFollowerDeckP1();
 	private Label lbOpponent = gameLayout.getLbOpponent();
 	private Label lbOpponentCard = gameLayout.getLbOpponentCard();
 	private Label lbMyCard = gameLayout.getLbMyCard();
 	private Label lbNewFollowerDeck = gameLayout.getLbNewFollowerDeck();
 	private Label lbCardsDeck = gameLayout.getLbCardsDeck();
-	//private Label lbScoreDeckP2 = gameLayout.getLbScoreDeckP2();
-	//private Label lbFollowerDeckP2 = gameLayout.getLbFollowerDeckP2();
+	// private Label lbScoreDeckP2 = gameLayout.getLbScoreDeckP2();
+	// private Label lbFollowerDeckP2 = gameLayout.getLbFollowerDeckP2();
 	private Button btLogout = gameLayout.getBtLogout();
 	private Button btEvaluateWinner = gameLayout.getBtEvaluateWinner();
 	private Button btStartRoundTwo = gameLayout.getBtStartRoundTwo();
 	private Button btNextDuel = gameLayout.getBtNextDuel();
-	
-	//Elemente aus Chat Layout ansprechen
+
+	// Elemente aus Chat Layout ansprechen
 	private Button btSend = chatLayout.getBtnSend();
 	private Label lbEvaluation = chatLayout.getLbEvaluation();
 	private Label lbGoblins = chatLayout.getLbGoblins();
@@ -100,65 +100,67 @@ public class View {
 	private Label wonDoubles = chatLayout.getWonDoubles();
 	private Label lbKnights = chatLayout.getLbKnights();
 	private Label wonKnights = chatLayout.getWonKnights();
-	
-	//Elemente aus Error Layout ansprechen
+
+	// Elemente aus Error Layout ansprechen
 	private Label lblError = errorPopupLayout.getLblError();
 	private Button btnBackError = errorPopupLayout.getBtBackError();
-	
-	//Elemente aus GameOver Layout ansprechen
+
+	// Elemente aus GameOver Layout ansprechen
 	private Label lblOver = gameOverPopupLayout.getLblOver();
 	private Button btLogoutGameOver = gameOverPopupLayout.getBtLogout();
-	
-	//Elemente aus Winner Layout ansprechen
+
+	// Elemente aus Winner Layout ansprechen
 	private Label lblWinner = winnerPopupLayout.getLblWinner();
 	private Label lblWinnerName = winnerPopupLayout.getLblWinnerName();
 	private Button btLogoutWinner = winnerPopupLayout.getBtLogout();
-	
+
 	public View(Stage primaryStage, Model model) {
 		this.primaryStage = primaryStage;
 		this.model = model;
-		
+
 		root = new BorderPane();
 		root.setId("root");
-		
+
 		for (Locale locale : sl.getLocales()) {
-            MenuItem language = new MenuItem(locale.getLanguage());
-            menuFileLanguage.getItems().add(language);
-            language.setOnAction( event -> {
-    				sl.getConfiguration().setLocalOption("Language", locale.getLanguage());
-                 sl.setTranslator(new Translator(locale.getLanguage()));
-                 updateTexts();
-             });
-        }
-		
+			MenuItem language = new MenuItem(locale.getLanguage());
+			menuFileLanguage.getItems().add(language);
+			language.setOnAction(event -> {
+				sl.getConfiguration().setLocalOption("Language", locale.getLanguage());
+				sl.setTranslator(new Translator(locale.getLanguage()));
+				updateTexts();
+			});
+		}
+
 		MenuBar menuBar = new MenuBar();
 		menuBar.getMenus().addAll(menuFileLanguage);
-		
-		//Buttons Send, Login und CreateAccount erst verfügbar wenn beide Textfelder Eingaben haben
-		btLogin.disableProperty().bind(tfUsername.textProperty().isEmpty() .or(pfPassword.textProperty().isEmpty()));
-		btCreateAccount.disableProperty().bind(tfNewUsername.textProperty().isEmpty() .or(pfnewPassword.textProperty().isEmpty()));
+
+		// Buttons Send, Login und CreateAccount erst verfügbar wenn beide Textfelder
+		// Eingaben haben
+		btLogin.disableProperty().bind(tfUsername.textProperty().isEmpty().or(pfPassword.textProperty().isEmpty()));
+		btCreateAccount.disableProperty()
+				.bind(tfNewUsername.textProperty().isEmpty().or(pfnewPassword.textProperty().isEmpty()));
 		chatLayout.getBtnSend().disableProperty().bind(chatLayout.getTfMessage().textProperty().isEmpty());
-		
-		//Error Popups bereitstellen
+
+		// Error Popups bereitstellen
 		errorPopUp.getContent().add(errorPopupLayout);
 		errorPopUp.setAutoHide(false);
-		
+
 		gameOverPopUp.getContent().add(gameOverPopupLayout);
 		gameOverPopUp.setAutoHide(false);
-		
+
 		winnerPopUp.getContent().add(winnerPopupLayout);
 		winnerPopUp.setAutoHide(false);
-		
+
 		chatLayout.setPrefWidth(300);
 		chatLayout.getBtnSend().setPrefWidth(300);
 		chatLayout.getTfMessage().setPrefWidth(300);
-		
+
 		root.setCenter(connectLayout);
 		root.setTop(menuBar);
-		
+
 		scene = new Scene(root, 1100, 733);
 		scene.getStylesheets().add(getClass().getResource("Client.css").toExternalForm());
-		
+
 		primaryStage.setScene(scene);
 		primaryStage.setMaximized(true);
 		primaryStage.setTitle("Connect");
@@ -168,14 +170,14 @@ public class View {
 		primaryStage.show();
 		updateTexts();
 	}
-	
-	//Texte anpassen an die ausgewählte Sprache
+
+	// Texte anpassen an die ausgewählte Sprache
 	protected void updateTexts() {
 		Translator t = ServiceLocator.getServiceLocator().getTranslator();
-		
-		//Menu
+
+		// Menu
 		this.menuFileLanguage.setText(t.getString("program.menu.file.language"));
-	
+
 		// Text
 		connectLayout.getLbIP().setText(t.getString("label.IPAdress"));
 		connectLayout.getLbPort().setText(t.getString("label.port"));
@@ -186,22 +188,22 @@ public class View {
 		errorPopupLayout.getLblError().setText(t.getString("label.error"));
 		gameOverPopupLayout.getLblOver().setText(t.getString("label.over"));
 		winnerPopupLayout.getLblWinner().setText(t.getString("label.winner"));
-		//gameLayout.getLbScoreDeckP1().setText(t.getString("label.scoredeck"));
-		//gameLayout.getLbFollowerDeckP1().setText(t.getString("label.followerdeck"));
+		// gameLayout.getLbScoreDeckP1().setText(t.getString("label.scoredeck"));
+		// gameLayout.getLbFollowerDeckP1().setText(t.getString("label.followerdeck"));
 		gameLayout.getLbOpponent().setText(t.getString("label.opponent"));
 		gameLayout.getLbOpponentCard().setText(t.getString("label.opponentcard"));
 		gameLayout.getLbMyCard().setText(t.getString("label.mycard"));
 		gameLayout.getLbNewFollowerDeck().setText(t.getString("label.newfollowerdeck"));
 		gameLayout.getLbCardsDeck().setText(t.getString("label.cardsdeck"));
-		//gameLayout.getLbScoreDeckP2().setText(t.getString("label.scoredeck"));
-		//gameLayout.getLbFollowerDeckP2().setText(t.getString("label.followerdeck"));
+		// gameLayout.getLbScoreDeckP2().setText(t.getString("label.scoredeck"));
+		// gameLayout.getLbFollowerDeckP2().setText(t.getString("label.followerdeck"));
 		chatLayout.getLbEvaluation().setText(t.getString("label.gameevaluation"));
 		chatLayout.getLbGoblins().setText(t.getString("label.goblins"));
 		chatLayout.getLbDwarfs().setText(t.getString("label.dwarfs"));
 		chatLayout.getLbUndeads().setText(t.getString("label.undeads"));
 		chatLayout.getLbDoubles().setText(t.getString("label.doubles"));
 		chatLayout.getLbKnights().setText(t.getString("label.knights"));
-		
+
 		// Other controls
 		connectLayout.getBtConnect().setText(t.getString("button.run"));
 		connectLayout.getBtStart().setText(t.getString("button.start"));
@@ -219,13 +221,13 @@ public class View {
 		gameOverPopupLayout.getBtLogout().setText(t.getString("button.logout"));
 		winnerPopupLayout.getBtLogout().setText(t.getString("button.logout"));
 	}
-	
+
 	public void showErrorPopUp() {
 		BorderPane newroot = new BorderPane();
 		newroot.setCenter(errorPopupLayout);
 		Scene newScene = new Scene(newroot, 700, 333);
 		newScene.getStylesheets().add(getClass().getResource("Client.css").toExternalForm());
-		
+
 		errorStage = new Stage();
 		errorStage.initModality(Modality.WINDOW_MODAL);
 		errorStage.initStyle(StageStyle.UNDECORATED);
@@ -233,13 +235,13 @@ public class View {
 		errorStage.setScene(newScene);
 		errorStage.show();
 	}
-	
+
 	public void showGameOverPopUp() {
 		BorderPane newroot = new BorderPane();
 		newroot.setCenter(gameOverPopupLayout);
 		Scene newScene = new Scene(newroot, 700, 333);
 		newScene.getStylesheets().add(getClass().getResource("Client.css").toExternalForm());
-		
+
 		gameOverStage = new Stage();
 		gameOverStage.initModality(Modality.WINDOW_MODAL);
 		gameOverStage.initStyle(StageStyle.UNDECORATED);
@@ -247,13 +249,13 @@ public class View {
 		gameOverStage.setScene(newScene);
 		gameOverStage.show();
 	}
-	
+
 	public void showWinnerPopUp() {
 		BorderPane newroot = new BorderPane();
 		newroot.setCenter(winnerPopupLayout);
 		Scene newScene = new Scene(newroot, 700, 333);
 		newScene.getStylesheets().add(getClass().getResource("Client.css").toExternalForm());
-		
+
 		winnerStage = new Stage();
 		winnerStage.initModality(Modality.WINDOW_MODAL);
 		winnerStage.initStyle(StageStyle.UNDECORATED);
@@ -262,11 +264,11 @@ public class View {
 		winnerStage.show();
 	}
 
-	//Getter & Setter
+	// Getter & Setter
 	public Stage getStage() {
-	    return primaryStage;
+		return primaryStage;
 	}
-	
+
 	public Stage getErrorStage() {
 		return errorStage;
 	}
@@ -326,7 +328,7 @@ public class View {
 	public BorderPane getRoot() {
 		return root;
 	}
-	
+
 	public Label getLbPort() {
 		return lbPort;
 	}
@@ -370,11 +372,11 @@ public class View {
 	public Button getBtConnect() {
 		return this.btConnect;
 	}
-	
+
 	public void setBtConnect(Button btConnect) {
 		this.btConnect = btConnect;
 	}
-	
+
 	public TextField getTfUsername() {
 		return tfUsername;
 	}
@@ -646,7 +648,7 @@ public class View {
 	public void setWonKnights(Label wonKnights) {
 		this.wonKnights = wonKnights;
 	}
-	
+
 	public ErrorPopupPane getErrorPopupLayout() {
 		return errorPopupLayout;
 	}

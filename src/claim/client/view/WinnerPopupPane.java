@@ -9,26 +9,25 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
-public class WinnerPopupPane extends GridPane {	
+public class WinnerPopupPane extends GridPane {
 	private Label lblWinner = new Label();
 	private Label lblWinnerName = new Label();
 	private Button btLogout = new Button();
-	
-	//Konstruktor
+
+	// Konstruktor
 	public WinnerPopupPane() {
-		
+
 		this.add(lblWinner, 0, 0);
 		this.add(lblWinnerName, 1, 0);
 		this.add(btLogout, 0, 1);
-		
+
 		this.setId("popupError");
 		lblWinner.setId("textOver");
 		lblWinnerName.setId("textOver");
-		this.setAlignment(Pos.CENTER);		
+		this.setAlignment(Pos.CENTER);
 	}
 
-	
-	//Getter & Setter
+	// Getter & Setter
 	public Button getBtLogout() {
 		return btLogout;
 	}
@@ -52,5 +51,5 @@ public class WinnerPopupPane extends GridPane {
 	public void setLblWinnerName(Label lblWinnerName) {
 		this.lblWinnerName = lblWinnerName;
 	}
-	
+
 }

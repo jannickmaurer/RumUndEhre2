@@ -10,25 +10,23 @@ import claim.commons.messages.Message;
 //Class implemented by Jannick: Message Server -> Client
 //ResultEvaluateWinner|result|
 
-
 public class ResultEvaluateWinner extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getClientLogger();
 
 	// Takes the result and creates new Object
 	public ResultEvaluateWinner(boolean result) {
-		super(new String[] {"ResultEvaluateWinner", Boolean.toString(result)});
+		super(new String[] { "ResultEvaluateWinner", Boolean.toString(result) });
 	}
-	
+
 	public ResultEvaluateWinner(String[] content) {
 		super(content);
 	}
-	
+
 	@Override
 	public void process(Controller controller) {
-		// Gewinner anzeigen -> Danach, neues Spiel starten oder nur logout?
 	}
-	
+
 	@Override
 	public void processIfFalse(Controller controller) {
 		controller.somethingFailed();

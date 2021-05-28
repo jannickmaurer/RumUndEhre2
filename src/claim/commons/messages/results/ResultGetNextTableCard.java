@@ -14,18 +14,19 @@ public class ResultGetNextTableCard extends Message {
 	private static Logger logger = sl.getClientLogger();
 
 	public ResultGetNextTableCard(boolean result) {
-		super(new String[] {"ResultGetNextTableCard", Boolean.toString(result)});
+		super(new String[] { "ResultGetNextTableCard", Boolean.toString(result) });
 	}
-	
+
 	public ResultGetNextTableCard(String[] content) {
 		super(content);
 	}
-	
+
 	// Method to perform actions on Client Controller
 	@Override
 	public void process(Controller controller) {
 //		controller.setOnTurn(true);
 	}
+
 	public void processIfFalse(Controller controller) {
 		controller.somethingFailed();
 	}

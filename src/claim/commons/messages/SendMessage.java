@@ -24,7 +24,6 @@ public class SendMessage extends Message {
 		this.message = content[2];		
 	}
 	
-
 	public void process(Client client) {
 		Boolean result = false;
 		if(this.token.equals(client.getToken())) {
@@ -35,6 +34,5 @@ public class SendMessage extends Message {
 			result = true;
 		}
 		client.send(new ResultSendMessage(result));
-
 	}
 }

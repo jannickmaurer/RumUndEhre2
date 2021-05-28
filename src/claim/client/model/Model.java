@@ -35,7 +35,7 @@ public class Model {
 	private static Logger logger = serviceLocator.getClientLogger();
 	private Socket socket = null;
 	private Thread t;
-	
+
 	// JM: Properties to work with in Controller or View:
 	private SimpleStringProperty lastReceivedMessage = new SimpleStringProperty();
 	private SimpleBooleanProperty connected = new SimpleBooleanProperty(false);
@@ -72,7 +72,7 @@ public class Model {
 		t = new Thread(r);
 		t.start();
 	}
-	
+
 	// JM: Methods to create Messages
 	public void createAccount(String username, String password) {
 		String[] content = new String[] { "CreateAccount", username, password };
@@ -84,7 +84,7 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void login(String username, String password) {
 		String[] content = new String[] { "Login", username, password };
 		Message msg = new Login(content);
@@ -95,7 +95,7 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void logout() {
 		String[] content = new String[] { "Logout", this.token.getValue() };
 		Message msg = new Logout(content);
@@ -106,7 +106,7 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void deleteAccount() {
 		String[] content = new String[] { "DeleteAccount", this.token.getValue() };
 		Message msg = new DeleteAccount(content);
@@ -117,7 +117,7 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void startRoundOne() {
 		String[] content = new String[] { "StartRoundOne", this.token.getValue() };
 		Message msg = new StartRoundOne(content);
@@ -128,7 +128,7 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void playCard(String card) {
 		System.out.println("Model, playCard aufgerufen: mit Standardkarte knight_1");
 		String[] content = new String[] { "PlayCard", this.token.getValue(), card };
@@ -140,9 +140,9 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void getNextTableCard() {
-		String[] content = new String[] { "GetNextTableCard", this.token.getValue(),};
+		String[] content = new String[] { "GetNextTableCard", this.token.getValue(), };
 		Message msg = new GetNextTableCard(content);
 		try {
 			msg.send(socket);
@@ -151,9 +151,9 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void evaluateWinner() {
-		String[] content = new String[] { "EvaluateWinner", this.token.getValue(),};
+		String[] content = new String[] { "EvaluateWinner", this.token.getValue(), };
 		Message msg = new EvaluateWinner(content);
 		try {
 			msg.send(socket);
@@ -162,9 +162,9 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void disconnect() {
-		String[] content = new String[] { "Disconnect", this.token.getValue(),};
+		String[] content = new String[] { "Disconnect", this.token.getValue(), };
 		Message msg = new Disconnect(content);
 		try {
 			msg.send(socket);
@@ -173,9 +173,9 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void startSecondRound() {
-		String[] content = new String[] { "StartSecondRound", this.token.getValue(),};
+		String[] content = new String[] { "StartSecondRound", this.token.getValue(), };
 		Message msg = new StartSecondRound(content);
 		try {
 			msg.send(socket);
@@ -184,9 +184,9 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void sendMessage(String message) {
-		String[] content = new String[] { "SendMessage", this.token.getValue(), message};
+		String[] content = new String[] { "SendMessage", this.token.getValue(), message };
 		Message msg = new SendMessage(content);
 		try {
 			msg.send(socket);
@@ -196,7 +196,7 @@ public class Model {
 		}
 	}
 
-	//JM
+	// JM
 	public void closeSocket() {
 		if (socket != null)
 			try {
@@ -204,8 +204,8 @@ public class Model {
 			} catch (IOException e) {
 			}
 	}
-	
-	//SD: Analog Chatroom Project at FHNW 2019
+
+	// SD: Analog Chatroom Project at FHNW 2019
 	public void initialize() {
 		new Thread(initializer).start();
 	}
@@ -233,7 +233,7 @@ public class Model {
 
 			return null;
 		}
-		
+
 		// SD
 		private Logger configureLogging() {
 			Logger rootLogger = Logger.getLogger("");
@@ -249,8 +249,8 @@ public class Model {
 
 			// Add a file handler, putting the rotating files in the tmp directory
 			try {
-				Handler logHandler = new FileHandler("%t/" + serviceLocator.getAPP_NAME() + "_%u" + "_%g" + ".log", 1000000,
-						9);
+				Handler logHandler = new FileHandler("%t/" + serviceLocator.getAPP_NAME() + "_%u" + "_%g" + ".log",
+						1000000, 9);
 				logHandler.setLevel(Level.FINEST);
 				ourLogger.addHandler(logHandler);
 			} catch (Exception e) { // If we are unable to create log files
@@ -260,14 +260,13 @@ public class Model {
 			return ourLogger;
 		}
 	};
-	
-	
-	//Getter und Setter
+
+	// Getter und Setter
 	public void setConnected(Boolean connected) {
 		this.connected.set(connected);
 		logger.info("Client is Connected");
 	}
-	
+
 	public Boolean isConnected() {
 		return this.connected.get();
 	}
@@ -278,7 +277,7 @@ public class Model {
 
 	public void setToken(String token) {
 		this.token.set(token);
-		logger.info("Client set token to: " + this.token.getValue());		
+		logger.info("Client set token to: " + this.token.getValue());
 	}
 
 }

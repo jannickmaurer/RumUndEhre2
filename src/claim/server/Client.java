@@ -9,13 +9,11 @@ import claim.commons.messages.Message;
 import claim.server.Client;
 import claim.server.Account;
 
-
-
 //Class implemented by Jannick - some concepts inspired by class material
 public class Client {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getServerLogger();
-	
+
 	private static final ArrayList<Client> clients = new ArrayList<>();
 	private Account account = null;
 	private String token = null;
@@ -23,19 +21,19 @@ public class Client {
 	private boolean clientReachable = true;
 	private Playroom playroom;
 	private Boolean loggedIn;
-	
+
 	public Client(Socket socket) {
 		this.socket = socket;
-		
-		//Thread listening to incoming messages from clients
+
+		// Thread listening to incoming messages from clients
 		Runnable r = new Runnable() {
 
 			@Override
 			public void run() {
 				try {
-					while(clientReachable) {
+					while (clientReachable) {
 						Message msg = Message.receive(socket);
-						if(msg != null) {
+						if (msg != null) {
 							logger.info("Server received message: " + msg.toString());
 							msg.process(Client.this);
 						} else {
@@ -51,20 +49,20 @@ public class Client {
 		Thread t = new Thread(r);
 		t.start();
 	}
-	
-	//send a new message to this client
-		public void send(Message msg) {
-			try {
-				msg.send(socket);	
-				logger.info("Server sent message: " + msg.toString());
-			} catch (Exception e) { //TBD: Why not IOException?
-				e.printStackTrace();
-				this.token = null;
-				this.clientReachable = false;
-			}
+
+	// send a new message to this client
+	public void send(Message msg) {
+		try {
+			msg.send(socket);
+			logger.info("Server sent message: " + msg.toString());
+		} catch (Exception e) { // TBD: Why not IOException?
+			e.printStackTrace();
+			this.token = null;
+			this.clientReachable = false;
 		}
-	
-	//Method to add a new client to the arrayList
+	}
+
+	// Method to add a new client to the arrayList
 	public static void add(Client client) {
 		synchronized (clients) {
 			clients.add(client);
@@ -74,10 +72,11 @@ public class Client {
 	public Account getAccount() {
 		return account;
 	}
+
 	public void setAccount(Account account) {
 		this.account = account;
 	}
-	
+
 	public String getToken() {
 		return token;
 	}
@@ -89,7 +88,7 @@ public class Client {
 	public static ArrayList<Client> getClients() {
 		return clients;
 	}
-	
+
 	public static Client getClient(String username) {
 		synchronized (clients) {
 			for (Client c : clients) {
@@ -122,6 +121,5 @@ public class Client {
 	public void setLoggedIn(Boolean loggedIn) {
 		this.loggedIn = loggedIn;
 	}
-	
 
 }

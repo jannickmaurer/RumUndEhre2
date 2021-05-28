@@ -17,18 +17,20 @@ public class ResultBroadcastSendMessage extends Message {
 	private String message;
 
 	public ResultBroadcastSendMessage(boolean result) {
-		super(new String[] {"ResultBroadcastSendMessage", Boolean.toString(result)});
+		super(new String[] { "ResultBroadcastSendMessage", Boolean.toString(result) });
 	}
+
 	public ResultBroadcastSendMessage(String[] content) {
 		super(content);
 		this.username = content[2];
 		this.message = content[3];
 	}
+
 	@Override
 	public void process(Controller controller) {
 		controller.updateChatText(this.username + ":\n" + this.message + "\n");
 	}
-	
+
 	@Override
 	public void processIfFalse(Controller controller) {
 		controller.somethingFailed();

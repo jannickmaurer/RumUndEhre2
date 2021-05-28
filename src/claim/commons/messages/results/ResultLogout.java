@@ -14,13 +14,13 @@ public class ResultLogout extends Message {
 	private static Logger logger = sl.getServerLogger();
 
 	public ResultLogout(boolean result) {
-		super(new String[] {"ResultLogout", Boolean.toString(result)});
+		super(new String[] { "ResultLogout", Boolean.toString(result) });
 	}
-	
+
 	public ResultLogout(String[] content) {
 		super(content);
 	}
-	
+
 	@Override
 	public void process(Controller controller) {
 		controller.setUsername(null);

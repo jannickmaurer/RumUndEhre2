@@ -17,8 +17,8 @@ public class ConnectPane extends GridPane {
 	private TextField tfIP = new TextField("127.0.0.1");
 	private Button btConnect = new Button();
 	private Button btStart = new Button();
-	
-	//Konstruktor
+
+	// Konstruktor
 	public ConnectPane() {
 		btStart.setDisable(true);
 		this.add(lbPort, 0, 1);
@@ -27,14 +27,14 @@ public class ConnectPane extends GridPane {
 		this.add(tfIP, 1, 2);
 		this.add(btConnect, 0, 3);
 		this.add(btStart, 1, 3);
-		
+
 		this.setId("connect");
 		this.setAlignment(Pos.CENTER);
 		this.setHalignment(lbIP, HPos.RIGHT);
 		this.setHalignment(lbPort, HPos.RIGHT);
 	}
-	
-	//Getter & Setter
+
+	// Getter & Setter
 	public Label getLbPort() {
 		return lbPort;
 	}
@@ -82,6 +82,5 @@ public class ConnectPane extends GridPane {
 	public void setBtStart(Button btStart) {
 		this.btStart = btStart;
 	}
-	
-	
+
 }

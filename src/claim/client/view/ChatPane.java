@@ -14,7 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-public class ChatPane extends VBox  {
+public class ChatPane extends VBox {
 	private TextArea txtMessages = new TextArea();
 	private TextField tfMessage = new TextField();
 	private Button btnSend = new Button();
@@ -31,8 +31,8 @@ public class ChatPane extends VBox  {
 	private Label wonDoubles = new Label("0");
 	private Label lbKnights = new Label();
 	private Label wonKnights = new Label("0");
-	
-	//Konstruktor
+
+	// Konstruktor
 	public ChatPane() {
 		scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 		scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
@@ -45,7 +45,7 @@ public class ChatPane extends VBox  {
 		txtMessages.setId("ChatText");
 		tfMessage.setId("TextFieldMessage");
 		btnSend.setDisable(true);
-		
+
 		gameEvaluation.add(lbEvaluation, 0, 0, 2, 1);
 		gameEvaluation.add(lbUndeads, 0, 1);
 		gameEvaluation.add(wonUndeads, 1, 1);
@@ -66,7 +66,7 @@ public class ChatPane extends VBox  {
 		lbKnights.setVisible(false);
 		wonKnights.setVisible(false);
 		gameEvaluation.setId("GameEvaluation");
-		
+
 		this.getChildren().addAll(scrollPane, tfMessage, btnSend, gameEvaluation);
 		VBox.setVgrow(scrollPane, Priority.ALWAYS);
 		this.prefWidth(10);
@@ -74,7 +74,7 @@ public class ChatPane extends VBox  {
 		this.setAlignment(Pos.CENTER);
 	}
 
-	//Getter & Setter
+	// Getter & Setter
 	public TextArea getTxtMessages() {
 		return txtMessages;
 	}

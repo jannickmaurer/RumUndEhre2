@@ -176,7 +176,8 @@ public class Controller {
 	}
 
 	// JM
-	// Does the same thing as the Message Class on Server's Side -> Creates new Message object
+	// Does the same thing as the Message Class on Server's Side -> Creates new
+	// Message object
 	// It is done here, because we want to trigger actions on the client's GUI
 	private void createMessage(String[] content) {
 		Message msg;
@@ -310,7 +311,8 @@ public class Controller {
 	}
 
 	// JM
-	// Methods for triggering Methods to send messages in Model by clicking a Button in View
+	// Methods for triggering Methods to send messages in Model by clicking a Button
+	// in View
 	// Get Values from User Input where needed
 	private void connect() {
 		try {
@@ -392,7 +394,7 @@ public class Controller {
 		});
 		logger.info("Login Successful");
 	}
-	
+
 	// SD
 	public void logoutSuccess() {
 		Platform.runLater(new Runnable() {
@@ -457,7 +459,7 @@ public class Controller {
 		logger.info("Logout Successful");
 	}
 
-	//SD
+	// SD
 	public void somethingFailed() {
 		Platform.runLater(new Runnable() {
 			public void run() {
@@ -466,7 +468,7 @@ public class Controller {
 		});
 	}
 
-	//SD
+	// SD
 	public void gameOver() {
 		Platform.runLater(new Runnable() {
 			public void run() {
@@ -475,7 +477,7 @@ public class Controller {
 		});
 	}
 
-	//SD
+	// SD
 	public void winner(String winner) {
 		Platform.runLater(new Runnable() {
 			public void run() {
@@ -485,7 +487,7 @@ public class Controller {
 		});
 	}
 
-	//SD
+	// SD
 	public void updateOpponent(String username2) {
 		Platform.runLater(new Runnable() {
 			public void run() {
@@ -553,39 +555,15 @@ public class Controller {
 		});
 	}
 
-	// public void updatePlayerPane(String playedCard) {
-	// Platform.runLater(new Runnable() {
-	// public void run() {
-	// CardLabel clToRemove = new CardLabel();
-	// int found = 0;
-	// for(CardLabel cl : view.getGameLayout().getPlayerLayout().getCardLabels()) {
-	// while(found < 1) {
-	// if(cl.getCardNameAsString().equals(playedCard)) {
-	// clToRemove = cl;
-	// found = 1;
-	// System.out.println("Karte gefunden!");
-	// }
-	// }
-	// }
-	// view.getGameLayout().getPlayerLayout().getCardLabels().remove(clToRemove);
-	// view.getGameLayout().getPlayerLayout().getHboxCards().getChildren().remove(clToRemove);
-	//
-	// updateGameDisplay(playedCard);
-	// }
-	// });
-	// }
-
 	// SD - Gespielte Karten in der Mitte anzeigen
 	public void updateGameDisplay(String playedCard) {
-		// view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().clear();
-
 		CardLabel cl1 = new CardLabel();
 		cl1.setCard(playedCard);
 		view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().remove(2);
 		view.getGameLayout().getMiddleGameLayout().getPlayedCards().getChildren().add(2, cl1);
 	}
 
-	//SD
+	// SD
 	public void otherPlayerCard(String card) {
 		board.setPlayableHC(new Card(card)); // NEU Handkarten werden spielbar gesetzt
 		Platform.runLater(new Runnable() {
@@ -598,7 +576,7 @@ public class Controller {
 		});
 	}
 
-	//SD
+	// SD
 	public void tableCard(String card) {
 		Platform.runLater(new Runnable() {
 			public void run() {
@@ -610,7 +588,7 @@ public class Controller {
 		});
 	}
 
-	//SD
+	// SD
 	public void clearMyCard() {
 		Platform.runLater(new Runnable() {
 			public void run() {
@@ -622,7 +600,7 @@ public class Controller {
 		});
 	}
 
-	//SD
+	// SD
 	public void clearOpponentCard() {
 		Platform.runLater(new Runnable() {
 			public void run() {
@@ -634,7 +612,7 @@ public class Controller {
 		});
 	}
 
-	//SD
+	// SD
 	public void clearTableCard() {
 		Platform.runLater(new Runnable() {
 			public void run() {
@@ -646,7 +624,7 @@ public class Controller {
 		});
 	}
 
-	//SD
+	// SD
 	public void showNewFollowerCard(String tableCard) {
 		Platform.runLater(new Runnable() {
 			public void run() {
@@ -658,7 +636,7 @@ public class Controller {
 		});
 	}
 
-	//SD
+	// SD
 	public void clearFollowerCard() {
 		Platform.runLater(new Runnable() {
 			public void run() {
@@ -670,7 +648,7 @@ public class Controller {
 		});
 	}
 
-	//SD
+	// SD
 	public void clearMiddle() {
 		Platform.runLater(new Runnable() {
 			public void run() {
@@ -683,7 +661,7 @@ public class Controller {
 		});
 	}
 
-	//SD
+	// SD
 	public void clearRoundTwo() {
 		Platform.runLater(new Runnable() {
 			public void run() {
@@ -692,7 +670,7 @@ public class Controller {
 		});
 	}
 
-	//SD
+	// SD
 	public void resetHandCards() {
 		Platform.runLater(new Runnable() {
 			public void run() {
@@ -721,34 +699,34 @@ public class Controller {
 		cl.setStyle("-fx-effect: dropshadow(three-pass-box, black, 0, 0, 0, 0);");
 	}
 
-	//SD
+	// SD
 	public void enableTableCardButton(String firstUser) {
 		if (firstUser.equals(this.getUsername())) {
 			view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setDisable(false);
 		}
 	}
 
-	//SD
+	// SD
 	public void enableNextDuelButton() {
 		view.getGameLayout().getMiddleGameLayout().getBtNextDuel().setDisable(false);
 	}
 
-	//SD
+	// SD
 	public void enableTableCardButton() {
 		view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setDisable(false);
 	}
 
-	//SD
+	// SD
 	public void disableTableCardButton() {
 		view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setDisable(true);
 	}
 
-	//SD
+	// SD
 	public void disableNextDuelButton() {
 		view.getGameLayout().getMiddleGameLayout().getBtNextDuel().setDisable(true);
 	}
 
-	//SD
+	// SD
 	public void enableHandCards() {
 		if (onTurn) {
 			board.setPlayableHC();
@@ -763,14 +741,14 @@ public class Controller {
 		}
 	}
 
-	//SD
+	// SD
 	public void disableHandCards() {
 		for (CardLabel cl : view.getGameLayout().getPlayerLayout().getCardLabels()) {
 			cl.setDisable(true);
 		}
 	}
 
-	//SD
+	// SD
 	public void enablePlayableHC() {
 		for (int i = 0; i < board.getHandCards().size(); i++) {
 			if (board.getHandCards().get(i).getPlayable())
@@ -805,7 +783,7 @@ public class Controller {
 					goblins = goblins + temp;
 				}
 				view.chatLayout.getWonGoblins().setText(goblins);
-				
+
 				String dwarfs = String.valueOf(board.getNumOfDwarfs());
 				if (board.getNumOfDwarfs() > 0) {
 					String temp = ": ";
@@ -815,7 +793,7 @@ public class Controller {
 					dwarfs = dwarfs + temp;
 				}
 				view.chatLayout.getWonDwarfs().setText(dwarfs);
-				
+
 				String undeads = String.valueOf(board.getNumOfUndeads());
 				if (board.getNumOfUndeads() > 0) {
 					String temp = ": ";
@@ -825,7 +803,7 @@ public class Controller {
 					undeads = undeads + temp;
 				}
 				view.chatLayout.getWonUndeads().setText(undeads);
-				
+
 				String knights = String.valueOf(board.getNumOfKnights());
 				if (board.getNumOfKnights() > 0) {
 					String temp = ": ";
@@ -835,7 +813,7 @@ public class Controller {
 					knights = knights + temp;
 				}
 				view.chatLayout.getWonKnights().setText(knights);
-				
+
 				String doubles = String.valueOf(board.getNumOfDoubles());
 				if (board.getNumOfDoubles() > 0) {
 					String temp = ": ";
@@ -853,7 +831,7 @@ public class Controller {
 	public Model getModel() {
 		return model;
 	}
-	
+
 	public View getView() {
 		return view;
 	}
@@ -909,6 +887,7 @@ public class Controller {
 	public void setSecondRoundStarted(Boolean secondRoundStarted) {
 		this.secondRoundStarted = secondRoundStarted;
 	}
+
 	public Boolean getReadyForSecondRound() {
 		return readyForSecondRound;
 	}

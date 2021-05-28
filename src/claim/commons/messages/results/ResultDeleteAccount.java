@@ -14,12 +14,13 @@ public class ResultDeleteAccount extends Message {
 	private static Logger logger = sl.getClientLogger();
 
 	public ResultDeleteAccount(boolean result) {
-		super(new String[] {"ResultDeleteAccount", Boolean.toString(result)});
+		super(new String[] { "ResultDeleteAccount", Boolean.toString(result) });
 	}
-	
+
 	public ResultDeleteAccount(String[] content) {
 		super(content);
 	}
+
 	@Override
 	public void process(Controller controller) {
 		controller.setUsername(null);

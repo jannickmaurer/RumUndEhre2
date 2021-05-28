@@ -16,14 +16,14 @@ public class ResultPlayCard extends Message {
 	String card;
 
 	public ResultPlayCard(boolean result) {
-		super(new String[] {"ResultPlayCard", Boolean.toString(result)});
+		super(new String[] { "ResultPlayCard", Boolean.toString(result) });
 	}
-	
+
 	public ResultPlayCard(String[] content) {
 		super(content);
 		this.card = content[2];
 	}
-	
+
 	@Override
 	public void process(Controller controller) {
 		controller.getBoard().removePlayedCard(new Card(card));
@@ -32,6 +32,7 @@ public class ResultPlayCard extends Message {
 		controller.setOnTurn(false);
 		controller.setCardPlayed(true);
 	}
+
 	public void processIfFalse(Controller controller) {
 		controller.somethingFailed();
 	}

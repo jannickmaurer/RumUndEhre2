@@ -12,23 +12,18 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class GamePane extends GridPane {
-	
-	
-	//Layouts für unterschiedliche Areas
+
+	// Layouts für unterschiedliche Areas
 	public PlayerPane playerLayout = new PlayerPane();
 	public OtherPlayerPane otherPlayerLayout = new OtherPlayerPane();
 	public MiddleGamePane middleGameLayout = new MiddleGamePane();
-	
-	//Elemente aus Player Layout ansprechen
+
+	// Elemente aus Player Layout ansprechen
 	private Label lbName = playerLayout.getLbName();
-	//private Label lbScoreDeckP1 = playerLayout.getLbScoreDeck();
-	//private Label lbFollowerDeckP1 = playerLayout.getLbFollowerDeck();
-	//private Label lbPoints = playerLayout.getLbPoints();
-	//private Label lbPointsPlayer = playerLayout.getLbPointsPlayer();
 	private ArrayList cardLabels = playerLayout.getCardLabels();
 	private Button btLogout = playerLayout.getBtLogout();
-	
-	//Elemente aus Middle Game Layout ansprechen
+
+	// Elemente aus Middle Game Layout ansprechen
 	private Label lbOpponentCard = middleGameLayout.getLbOpponentCard();
 	private Label lbMyCard = middleGameLayout.getLbMyCard();
 	private Label lbNewFollowerDeck = middleGameLayout.getLbNewFollowerDeck();
@@ -37,33 +32,26 @@ public class GamePane extends GridPane {
 	private Button btEvaluateWinner = middleGameLayout.getBtEvaluateWinner();
 	private Button btStartRoundTwo = middleGameLayout.getBtStartRoundTwo();
 	private Button btNextDuel = middleGameLayout.getBtNextDuel();
-	
-	//Elemente aus Other Player Layout ansprechen
+
+	// Elemente aus Other Player Layout ansprechen
 	private Label lbOpponent = otherPlayerLayout.getLbOpponent();
 	private Label lbOtherName = otherPlayerLayout.getLbName();
-	//private Label lbScoreDeckP2 = otherPlayerLayout.getLbScoreDeck();
-	//private Label lbFollowerDeckP2 = otherPlayerLayout.getLbFollowerDeck();
-	//private Label lbOtherPoints = otherPlayerLayout.getLbPoints();
-	//private Label lbOtherPointsPlayer = otherPlayerLayout.getLbPointsPlayer();
 
-	
 	private VBox vbPlayer = new VBox();
-	
-	//Konstruktor
+
+	// Konstruktor
 	public GamePane() {
-		
+
 		this.add(otherPlayerLayout, 0, 0);
 		this.add(middleGameLayout, 0, 1);
 		this.add(playerLayout, 0, 2);
-		
+
 		GridPane.setVgrow(middleGameLayout, Priority.ALWAYS);
 		this.setId("game");
 		this.setAlignment(Pos.CENTER);
 	}
-	
-	
 
-	//Getter & Setter	
+	// Getter & Setter
 	public Button getBtLogout() {
 		return btLogout;
 	}
@@ -103,7 +91,7 @@ public class GamePane extends GridPane {
 	public void setMiddleGameLayout(MiddleGamePane middleGameLayout) {
 		this.middleGameLayout = middleGameLayout;
 	}
-	
+
 	public Label getLbOtherName() {
 		return lbOtherName;
 	}

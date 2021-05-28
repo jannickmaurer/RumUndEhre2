@@ -12,19 +12,21 @@ import claim.commons.messages.Message;
 public class ResultSendMessage extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getClientLogger();
-	
+
 	public ResultSendMessage(boolean result) {
-		super(new String[] {"ResultSendMessage", Boolean.toString(result)});
+		super(new String[] { "ResultSendMessage", Boolean.toString(result) });
 	}
+
 	public ResultSendMessage(String[] content) {
 		super(content);
-		
+
 	}
+
 	@Override
 	public void process(Controller controller) {
-		
+
 	}
-	
+
 	@Override
 	public void processIfFalse(Controller controller) {
 		controller.somethingFailed();

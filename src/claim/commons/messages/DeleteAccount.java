@@ -12,23 +12,23 @@ import claim.server.Client;
 public class DeleteAccount extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getClientLogger();
-	
+
 	private String token;
 
 	public DeleteAccount(String[] content) {
 		super(content);
-		this.token = content[1];	
+		this.token = content[1];
 	}
-	
+
 	public void process(Client client) {
 		boolean result = false;
-		if(this.token.equals(client.getToken())) {
+		if (this.token.equals(client.getToken())) {
 			Account.remove(client.getAccount());
 			client.setAccount(null);
 			client.setToken(null);
 			result = true;
 		}
 		client.send(new ResultDeleteAccount(result));
-		
+
 	}
 }

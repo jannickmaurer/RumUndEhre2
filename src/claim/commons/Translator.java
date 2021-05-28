@@ -26,12 +26,12 @@ public class Translator {
 				}
 			}
 		}
-    
+
 		// Load the resource strings
 		resourceBundle = ResourceBundle.getBundle(sl.getAPP_CLASS().getName(), locale);
 		Locale.setDefault(locale); // Change VM default (for dialogs, etc.)
 		currentLocale = locale;
-    
+
 		logger.info("Loaded resources for " + locale.getLanguage());
 	}
 

@@ -14,16 +14,16 @@ public class LoginPane extends VBox {
 	private PasswordField pfPassword = new PasswordField();
 	private Button btLogin = new Button();
 	private Button btRegistration = new Button();
-	
-	//Konstruktor
+
+	// Konstruktor
 	public LoginPane() {
 		this.getChildren().addAll(tfUsername, pfPassword, btLogin, btRegistration);
-		
+
 		this.setId("login");
 		this.setAlignment(Pos.CENTER);
 	}
-	
-	//Getter & Setter
+
+	// Getter & Setter
 	public TextField getTfUsername() {
 		return tfUsername;
 	}

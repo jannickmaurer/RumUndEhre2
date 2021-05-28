@@ -11,13 +11,13 @@ import claim.commons.Card;
 //Warum extends Label? (SD)
 public class CardLabel extends Label {
 	public String cardNameAsString;
-	
-	//Warum super?
+
+	// Warum super?
 	public CardLabel() {
 		super();
 	}
-	
-	//Aussehen des Decks definieren
+
+	// Aussehen des Decks definieren
 	public void setDeck() {
 		Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("claim/image/Backside.jpg"));
 		ImageView imv = new ImageView(image);
@@ -31,7 +31,7 @@ public class CardLabel extends Label {
 		this.setGraphic(imv);
 	}
 
-	//Karte in der Mitte des Spielfelds
+	// Karte in der Mitte des Spielfelds
 	public void setCard(String card) {
 		Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("claim/image/" + card + ".jpg"));
 		ImageView imv = new ImageView(image);
@@ -44,8 +44,8 @@ public class CardLabel extends Label {
 		imv.setPreserveRatio(true);
 		this.setGraphic(imv);
 	}
-	
-	//Aussehen der Karte definieren
+
+	// Aussehen der Karte definieren
 	public void setCard(Card card) {
 		String fileName = cardToFileName(card);
 		Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("claim/image/" + fileName));
@@ -59,7 +59,7 @@ public class CardLabel extends Label {
 		imv.setPreserveRatio(true);
 		this.setGraphic(imv);
 	}
-	
+
 	private String cardToFileName(Card card) {
 		String rank = card.getRank().toString();
 		String suit = card.getSuit().toString();

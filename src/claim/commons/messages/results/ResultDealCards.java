@@ -44,8 +44,7 @@ public class ResultDealCards extends Message {
 			controller.getView().getChatLayout().getWonGoblins().setVisible(true);
 			controller.getView().getChatLayout().getLbKnights().setVisible(true);
 			controller.getView().getChatLayout().getWonKnights().setVisible(true);
-			
-			// Artificial break in order to give the other Threads time to finish
+			// Artificial break in order to let other Threads finish
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {

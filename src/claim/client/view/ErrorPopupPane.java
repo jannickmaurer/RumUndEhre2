@@ -9,13 +9,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
-public class ErrorPopupPane extends GridPane {	
+public class ErrorPopupPane extends GridPane {
 	private Label lblError = new Label();
 	private Button btBackError = new Button();
-	
-	//Konstruktor
+
+	// Konstruktor
 	public ErrorPopupPane() {
-		
+
 		this.add(lblError, 0, 0);
 		this.add(btBackError, 0, 1);
 		this.setId("popupError");
@@ -23,8 +23,8 @@ public class ErrorPopupPane extends GridPane {
 		this.setAlignment(Pos.CENTER);
 		this.setHalignment(btBackError, HPos.CENTER);
 	}
-	
-	//Getter & Setter
+
+	// Getter & Setter
 	public Label getLblError() {
 		return lblError;
 	}
@@ -40,5 +40,5 @@ public class ErrorPopupPane extends GridPane {
 	public void setBtBackError(Button btBackError) {
 		this.btBackError = btBackError;
 	}
-	
+
 }

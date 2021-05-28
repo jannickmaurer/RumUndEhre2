@@ -8,22 +8,24 @@ import claim.server.Client;
 public class Disconnect extends Message {
 
 	private String token;
-	// Constructor uses Message constructor 
+
+	// Constructor uses Message constructor
 	public Disconnect(String[] content) {
 		super(content);
 		this.token = content[1];
 
 	}
-	
-	// Process methods runs process on Server side -> only sends a new ResultPing Message
+
+	// Process methods runs process on Server side -> only sends a new ResultPing
+	// Message
 	@Override
 	public void process(Client client) {
-		if(token.equals("null")) {
-			
+		if (token.equals("null")) {
+
 		} else {
 			client.setToken(null);
 		}
-		
+
 	}
 
 }

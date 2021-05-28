@@ -20,7 +20,6 @@ public class Board {
 	private ArrayList<Card> goblinCards;
 	private ArrayList<Card> knightCards;
 	private ArrayList<Card> doubleCards;
-	
 
 	public Board() {
 		handCards = new ArrayList<>();
@@ -31,26 +30,19 @@ public class Board {
 		knightCards = new ArrayList<>();
 		doubleCards = new ArrayList<>();
 	}
-	
+
 	public void addHandCards(ArrayList<String> handCards) {
-		for(String s : handCards) {
+		for (String s : handCards) {
 			this.handCards.add(new Card(s));
 		}
 		sortHandCards();
-	//	setPlayableHC();//evtl löschen sollte überflüssig sein
-//*******DELETE		
-		System.out.println("Handcards Created: ");
-		for (Card card : this.handCards) {
-			System.out.println(card.toString());
-		}
-//*******DELETE		
 	}
-	
+
 	// David: Entfernt die gespielte Karte aud der ArrayList handCards
 	public void removePlayedCard(Card removeCard) {
 		for (int i = 0; i < handCards.size(); i++) {
-			if(suitToString(handCards.get(i)).equals(suitToString(removeCard))) {
-				if(handCards.get(i).compareTo(removeCard) == 0) {
+			if (suitToString(handCards.get(i)).equals(suitToString(removeCard))) {
+				if (handCards.get(i).compareTo(removeCard) == 0) {
 					handCards.remove(i);
 					setPlayableHC();
 					return;
@@ -58,59 +50,62 @@ public class Board {
 			}
 		}
 	}
-	
-	//DS
+
+	// DS
 	// David: Alle Playables werden auf true gesetzt
-	public void setPlayableHC(){
-		for(Card card : handCards) {
+	public void setPlayableHC() {
+		for (Card card : handCards) {
 			card.setPlayable(true);
 		}
 	}
 
-	//DS
-	// David: Alle Playables der spielbaren Karten vom zweiten Spieler werden auf true gesetzt
+	// DS
+	// David: Alle Playables der spielbaren Karten vom zweiten Spieler werden auf
+	// true gesetzt
 	public void setPlayableHC(Card opponentCard) {
 		boolean hasPlayableCards = false;
-		for(Card card : handCards) {
+		for (Card card : handCards) {
 			card.setPlayable(false);
 		}
-		if(suitToString(opponentCard).equals("double")) {
-			for(int i = 0; i < handCards.size(); i++) {
-				if(suitToString(handCards.get(i)).equals("double")) {
+		if (suitToString(opponentCard).equals("double")) {
+			for (int i = 0; i < handCards.size(); i++) {
+				if (suitToString(handCards.get(i)).equals("double")) {
 					handCards.get(i).setPlayable(true);
 					hasPlayableCards = true;
 				}
 			}
-		}else {
-			for(int i = 0; i < handCards.size(); i++) {
-				if(suitToString(opponentCard).equals(suitToString(handCards.get(i)))){
+		} else {
+			for (int i = 0; i < handCards.size(); i++) {
+				if (suitToString(opponentCard).equals(suitToString(handCards.get(i)))) {
 					handCards.get(i).setPlayable(true);
 					hasPlayableCards = true;
 				}
 			}
-			if(hasPlayableCards) {
-				for(int i = 0; i < handCards.size(); i++) {
-					if(suitToString(handCards.get(i)).equals("double")){
+			if (hasPlayableCards) {
+				for (int i = 0; i < handCards.size(); i++) {
+					if (suitToString(handCards.get(i)).equals("double")) {
 						handCards.get(i).setPlayable(true);
 					}
 				}
 			}
 		}
-		if(hasPlayableCards == false) {
-			for(Card card : handCards) {
+		if (hasPlayableCards == false) {
+			for (Card card : handCards) {
 				card.setPlayable(true);
 			}
 		}
 	}
-	
-	//DS: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
-	// David: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
+
+	// DS: Wandelt die Karte in einen String und gibt nur den suit der Karte als
+	// String zurück
+	// David: Wandelt die Karte in einen String und gibt nur den suit der Karte als
+	// String zurück
 	private String suitToString(Card card) {
 		String cardString = card.toString();
-	    String[] tmp = cardString.split("\\_");
-    	return tmp[0];
+		String[] tmp = cardString.split("\\_");
+		return tmp[0];
 	}
-	
+
 	// David: Sortiert die Handkarten des Spielers nach Fraktion und aufsteigend
 	private void sortHandCards() {
 		ArrayList<Card> goblins = new ArrayList<>();
@@ -118,64 +113,69 @@ public class Board {
 		ArrayList<Card> undeads = new ArrayList<>();
 		ArrayList<Card> doubles = new ArrayList<>();
 		ArrayList<Card> knights = new ArrayList<>();
-		
-		for(Card card : handCards) {
+
+		for (Card card : handCards) {
 			switch (suitToString(card)) {
-			case "goblin": goblins.add(card); break;
-			case "dwarf" : dwarfs.add(card);  break;
-			case "undead": undeads.add(card); break;
-			case "double": doubles.add(card); break;
-			case "knight": knights.add(card); break;		
+			case "goblin":
+				goblins.add(card);
+				break;
+			case "dwarf":
+				dwarfs.add(card);
+				break;
+			case "undead":
+				undeads.add(card);
+				break;
+			case "double":
+				doubles.add(card);
+				break;
+			case "knight":
+				knights.add(card);
+				break;
 			}
 		}
-		
+
 		Collections.sort(goblins);
 		Collections.sort(dwarfs);
 		Collections.sort(undeads);
 		Collections.sort(doubles);
 		Collections.sort(knights);
-		
+
 		handCards.clear();
-		
-		if(goblins.isEmpty() == false) for (Card card : goblins) handCards.add(card);
-		if(dwarfs.isEmpty()  == false) for (Card card : dwarfs)  handCards.add(card);
-		if(undeads.isEmpty() == false) for (Card card : undeads) handCards.add(card);
-		if(doubles.isEmpty() == false) for (Card card : doubles) handCards.add(card);
-		if(knights.isEmpty() == false) for (Card card : knights) handCards.add(card);
+
+		if (goblins.isEmpty() == false)
+			for (Card card : goblins)
+				handCards.add(card);
+		if (dwarfs.isEmpty() == false)
+			for (Card card : dwarfs)
+				handCards.add(card);
+		if (undeads.isEmpty() == false)
+			for (Card card : undeads)
+				handCards.add(card);
+		if (doubles.isEmpty() == false)
+			for (Card card : doubles)
+				handCards.add(card);
+		if (knights.isEmpty() == false)
+			for (Card card : knights)
+				handCards.add(card);
 	}
 
-
-//	public void setHandCards(ArrayList<Card> handCards) {
-//		this.handCards = handCards;
-//	}
-//
-//	public ArrayList<Card> getFollowerCards() {
-//		return followerCards;
-//	}
-//
-//	public void setFollowerCards(ArrayList<Card> followerCards) {
-//		this.followerCards = followerCards;
-//	}
-//
-////	public void addUndead(Card undead) {
-////		this.undeadCards.add(undead);
-////	}
-//	
-//	public ArrayList<Card> getDwarfCards() {
-//		return dwarfCards;
-//	}
-
-	
 	public void addCardToGroup(Card follower) {
-		switch(follower.getSuit().toString()) {
-		case "goblin": goblinCards.add(follower); break;
-		case "undead": undeadCards.add(follower); break;
-		case "double": doubleCards.add(follower); break;
-		case "knight": knightCards.add(follower); break;
+		switch (follower.getSuit().toString()) {
+		case "goblin":
+			goblinCards.add(follower);
+			break;
+		case "undead":
+			undeadCards.add(follower);
+			break;
+		case "double":
+			doubleCards.add(follower);
+			break;
+		case "knight":
+			knightCards.add(follower);
+			break;
 		}
-		System.out.println("Card added ToGroup (Board Zeile 180): " + follower.toString());
 	}
-	
+
 	public void clearCards() {
 		this.handCards.clear();
 		this.followerCards.clear();
@@ -185,23 +185,23 @@ public class Board {
 		this.knightCards.clear();
 		this.doubleCards.clear();
 	}
-	
+
 	public int getNumOfGoblins() {
 		return goblinCards.size();
 	}
-	
+
 	public int getNumOfDwarfs() {
 		return dwarfCards.size();
 	}
-	
+
 	public int getNumOfUndeads() {
 		return undeadCards.size();
 	}
-	
+
 	public int getNumOfDoubles() {
 		return doubleCards.size();
 	}
-	
+
 	public int getNumOfKnights() {
 		return knightCards.size();
 	}
@@ -241,7 +241,7 @@ public class Board {
 	public void setDwarfCards(ArrayList<Card> dwarfCards) {
 		this.dwarfCards = dwarfCards;
 	}
-	
+
 	public ArrayList<Card> getHandCards() {
 		return handCards;
 	}
@@ -261,15 +261,13 @@ public class Board {
 	public void addUndead(Card undead) {
 		this.undeadCards.add(undead);
 	}
-	
+
 	public ArrayList<Card> getDwarfCards() {
 		return dwarfCards;
 	}
 
-
 	public void addDwarfCards(Card dwarf) {
 		this.dwarfCards.add(dwarf);
-		System.out.println("Card added: " + dwarf.toString());
 	}
-	
+
 }

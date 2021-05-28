@@ -15,45 +15,45 @@ public class RegistrationPane extends VBox {
 	private Button btCreateAccount = new Button();
 	private Button btBack = new Button();
 
-	//Konstruktor
-		public RegistrationPane() {
-			this.getChildren().addAll(tfNewUsername, pfNewPassword, btCreateAccount, btBack);
-			
-			this.setId("registration");
-			this.setAlignment(Pos.CENTER);
-		}
-		
-		//Getter & Setter
-		public TextField getTfNewUsername() {
-			return tfNewUsername;
-		}
+	// Konstruktor
+	public RegistrationPane() {
+		this.getChildren().addAll(tfNewUsername, pfNewPassword, btCreateAccount, btBack);
 
-		public void setTfNewUsername(TextField tfNewUsername) {
-			this.tfNewUsername = tfNewUsername;
-		}
+		this.setId("registration");
+		this.setAlignment(Pos.CENTER);
+	}
 
-		public PasswordField getPfNewPassword() {
-			return pfNewPassword;
-		}
+	// Getter & Setter
+	public TextField getTfNewUsername() {
+		return tfNewUsername;
+	}
 
-		public void setPfNewPassword(PasswordField pfNewPassword) {
-			this.pfNewPassword = pfNewPassword;
-		}
+	public void setTfNewUsername(TextField tfNewUsername) {
+		this.tfNewUsername = tfNewUsername;
+	}
 
-		public Button getBtCreateAccount() {
-			return btCreateAccount;
-		}
+	public PasswordField getPfNewPassword() {
+		return pfNewPassword;
+	}
 
-		public void setBtCreateAccount(Button btCreateAccount) {
-			this.btCreateAccount = btCreateAccount;
-		}
+	public void setPfNewPassword(PasswordField pfNewPassword) {
+		this.pfNewPassword = pfNewPassword;
+	}
 
-		public Button getBtBack() {
-			return btBack;
-		}
+	public Button getBtCreateAccount() {
+		return btCreateAccount;
+	}
 
-		public void setBtBack(Button btBack) {
-			this.btBack = btBack;
-		}
-	
+	public void setBtCreateAccount(Button btCreateAccount) {
+		this.btCreateAccount = btCreateAccount;
+	}
+
+	public Button getBtBack() {
+		return btBack;
+	}
+
+	public void setBtBack(Button btBack) {
+		this.btBack = btBack;
+	}
+
 }

@@ -16,20 +16,22 @@ public class ResultBroadcastJoinPlayroom extends Message {
 	private String username;
 
 	public ResultBroadcastJoinPlayroom(boolean result) {
-		super(new String[] {"ResultJoinPlayroom", Boolean.toString(result)});
+		super(new String[] { "ResultJoinPlayroom", Boolean.toString(result) });
 	}
+
 	public ResultBroadcastJoinPlayroom(String[] content) {
 		super(content);
-		if(content.length > 2) {
+		if (content.length > 2) {
 			this.username = content[2];
 		}
 	}
+
 	@Override
 	public void process(Controller controller) {
 		System.out.println("Second Player joined: " + this.username);
 		controller.updateOpponent(username);
 	}
-	
+
 	@Override
 	public void processIfFalse(Controller controller) {
 		controller.somethingFailed();

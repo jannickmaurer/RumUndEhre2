@@ -9,23 +9,22 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
-public class GameOverPopupPane extends GridPane {	
+public class GameOverPopupPane extends GridPane {
 	private Label lblOver = new Label();
 	private Button btLogout = new Button();
-	
-	//Konstruktor
+
+	// Konstruktor
 	public GameOverPopupPane() {
-		
+
 		this.add(lblOver, 0, 0);
 		this.add(btLogout, 0, 1);
-		
+
 		this.setId("popupError");
 		lblOver.setId("textOver");
-		this.setAlignment(Pos.CENTER);		
+		this.setAlignment(Pos.CENTER);
 	}
 
-	
-	//Getter & Setter
+	// Getter & Setter
 
 	public Label getLblOver() {
 		return lblOver;
@@ -42,5 +41,5 @@ public class GameOverPopupPane extends GridPane {
 	public void setBtLogout(Button btLogout) {
 		this.btLogout = btLogout;
 	}
-	
+
 }

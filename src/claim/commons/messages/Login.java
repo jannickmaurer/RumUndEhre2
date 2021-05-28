@@ -62,9 +62,6 @@ public class Login extends Message {
 			
 			// If one player already there, with me it's two so -> Start game in playroom
 			if(client.getPlayroom().getNumberOfPlayers() > 1) {
-//				for(Client c : Client.getClients()) {
-//					c.send(new ResultBroadcastStartRoundOne(true));
-//				}
 				Playroom.getPlayrooms().get(0).setGameStarted(true);
 			}
 			

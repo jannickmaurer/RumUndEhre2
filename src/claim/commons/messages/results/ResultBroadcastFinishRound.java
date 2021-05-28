@@ -38,7 +38,7 @@ public class ResultBroadcastFinishRound extends Message {
 
 	}
 
-	//DS & JM
+	// DS & JM
 	@Override
 	public void process(Controller controller) {
 
@@ -48,7 +48,6 @@ public class ResultBroadcastFinishRound extends Message {
 		}
 
 		if (controller.getUsername().equalsIgnoreCase(this.winner)) {
-System.out.println("Ich habe gewonnen");
 
 			if (controller.getSecondRoundStarted()) {
 				// button enablen und karten speichern
@@ -70,7 +69,6 @@ System.out.println("Ich habe gewonnen");
 			controller.updateGameEvaluation();
 		} else {
 			// Table Karte, die der Verlierer erhält, anzeigen
-System.out.println("Ich habe verloren");
 
 			if (controller.getSecondRoundStarted()) {
 				cardCheck(controller);
@@ -91,18 +89,20 @@ System.out.println("Ich habe verloren");
 		controller.somethingFailed();
 	}
 
-	//DS
+	// DS
 	// David: Fügt dem Spieler die allfällig gewonnenen Karten hinzu
 	private void cardCheck(Controller controller) {
 		if (followerCard1.getSuit().toString().equals("dwarf") && !controller.getUsername().equals(this.winner)) {
 			controller.getBoard().addDwarfCards(followerCard1);
-		} else if (!followerCard1.getSuit().toString().equals("dwarf") && controller.getUsername().equals(this.winner)) {
+		} else if (!followerCard1.getSuit().toString().equals("dwarf")
+				&& controller.getUsername().equals(this.winner)) {
 			controller.getBoard().addCardToGroup(followerCard1);
 		}
 
 		if (followerCard2.getSuit().toString().equals("dwarf") && !controller.getUsername().equals(this.winner)) {
 			controller.getBoard().addDwarfCards(followerCard2);
-		} else if (!followerCard2.getSuit().toString().equals("dwarf") && controller.getUsername().equals(this.winner)) {
+		} else if (!followerCard2.getSuit().toString().equals("dwarf")
+				&& controller.getUsername().equals(this.winner)) {
 			controller.getBoard().addCardToGroup(followerCard2);
 		}
 	}

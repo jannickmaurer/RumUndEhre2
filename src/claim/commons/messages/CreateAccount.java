@@ -12,22 +12,22 @@ import claim.server.Account;
 public class CreateAccount extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getServerLogger();
-	
+
 	private String username;
 	private String password;
-	private final int MINUNLENGTH = 1; //TBD
-	private final int MINPWLENGTH = 1; //TBD
+	private final int MINUNLENGTH = 1; // TBD
+	private final int MINPWLENGTH = 1; // TBD
 
 	public CreateAccount(String[] content) {
 		super(content);
 		this.username = content[1];
 		this.password = content[2];
 	}
-	
+
 	public void process(Client client) {
 		boolean result = false;
-		if(username != null && Account.getAccount(username) == null && username.length() >= MINUNLENGTH) {
-			if(password != null && password.length() >= MINPWLENGTH) {
+		if (username != null && Account.getAccount(username) == null && username.length() >= MINUNLENGTH) {
+			if (password != null && password.length() >= MINPWLENGTH) {
 				Account newAccount = new Account(username, password);
 				Account.add(newAccount);
 				result = true;

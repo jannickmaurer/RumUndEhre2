@@ -13,10 +13,10 @@ public class MiddleGamePane extends HBox {
 	private VBox playedCards = new VBox();
 	private VBox tableCardsDeck = new VBox();
 	private VBox newFollowerCard = new VBox();
-	
+
 	private Label lbCardsDeck = new Label();
 	private Label lbNewFollowerDeck = new Label();
-	
+
 	private Button btNextTableCard = new Button();
 	private Button btNextDuel = new Button();
 	private Button btEvaluateWinner = new Button();
@@ -29,21 +29,21 @@ public class MiddleGamePane extends HBox {
 	private CardLabel clTableCardDeck = new CardLabel();
 	private CardLabel clNewFollowerDeck = new CardLabel();
 
-	//Konstruktor
-	public MiddleGamePane() {		
-				
+	// Konstruktor
+	public MiddleGamePane() {
+
 		clMyCard.setDeck();
 		clOpponentCard.setDeck();
-		
+
 		playedCards.getChildren().add(lbOpponentCard);
 		playedCards.getChildren().add(clOpponentCard);
 		playedCards.getChildren().add(clMyCard);
 		playedCards.getChildren().add(lbMyCard);
 		playedCards.setAlignment(Pos.CENTER);
 		playedCards.setId("playedCards");
-		
+
 		clTableCardDeck.setDeck();
-		
+
 		tableCardsDeck.getChildren().add(lbCardsDeck);
 		tableCardsDeck.getChildren().add(clTableCardDeck);
 		tableCardsDeck.getChildren().add(btNextTableCard);
@@ -52,14 +52,14 @@ public class MiddleGamePane extends HBox {
 		tableCardsDeck.setId("nextTableCard");
 
 		clNewFollowerDeck.setDeck();
-		
+
 		newFollowerCard.getChildren().add(lbNewFollowerDeck);
 		newFollowerCard.getChildren().add(clNewFollowerDeck);
 		newFollowerCard.getChildren().add(btStartRoundTwo);
 		btStartRoundTwo.setVisible(false);
 		newFollowerCard.setAlignment(Pos.CENTER);
 		newFollowerCard.setId("newFollowerCard");
-		
+
 		btNextDuel.setDisable(true);
 		btEvaluateWinner.setVisible(false);
 
@@ -68,7 +68,7 @@ public class MiddleGamePane extends HBox {
 		this.setAlignment(Pos.CENTER);
 	}
 
-	//Getter & Setter
+	// Getter & Setter
 
 	public Button getBtNextTableCard() {
 		return btNextTableCard;
@@ -109,7 +109,7 @@ public class MiddleGamePane extends HBox {
 	public void setBtNextTableCard(Button btNextTableCard) {
 		this.btNextTableCard = btNextTableCard;
 	}
-	
+
 	public HBox getHboxMiddleCards() {
 		return hboxMiddleCards;
 	}
@@ -197,5 +197,5 @@ public class MiddleGamePane extends HBox {
 	public void setBtNextDuel(Button btNextDuel) {
 		this.btNextDuel = btNextDuel;
 	}
-	
+
 }

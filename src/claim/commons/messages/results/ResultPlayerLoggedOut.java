@@ -14,20 +14,21 @@ public class ResultPlayerLoggedOut extends Message {
 	private static Logger logger = sl.getClientLogger();
 
 	public ResultPlayerLoggedOut(boolean result) {
-		super(new String[] {"ResultPlayerLoggedOut", Boolean.toString(result)});
+		super(new String[] { "ResultPlayerLoggedOut", Boolean.toString(result) });
 	}
-	
+
 	public ResultPlayerLoggedOut(String[] content) {
 		super(content);
 	}
-	
+
 	// Method to perform actions on Client Controller
 	@Override
 	public void process(Controller controller) {
 		controller.gameOver();
 	}
+
 	public void processIfFalse(Controller controller) {
-	
+
 	}
 
 }
