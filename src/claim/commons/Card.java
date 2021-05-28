@@ -1,9 +1,9 @@
 package claim.commons;
 
 /*
- * David Schürch
- * Code Source from Poker Project with individual changes.
- * Code creates a suit and a rank of a card. It can compare the rank of the card.
+ * David
+ * Source Code vom Pokerprojekt mit individuellen Anpassungen für Claim
+ * Der Code generiert einen Suit und einen Rank einer Karte. Der Rank kann auch verglichen werden.
  */
 
 public class Card implements Comparable<Card>{
@@ -34,7 +34,7 @@ public class Card implements Comparable<Card>{
     	return playable = true;
     }
 
-    //  David: Boolean playable in ganzer Klasse hinzugefügt
+    // David: Boolean playable in ganzer Klasse hinzugefügt
     private Suit suit;
     private Rank rank;
     private Boolean playable;
@@ -91,7 +91,6 @@ public class Card implements Comparable<Card>{
 		return suit.toString() + "_" + rank.toString();
 	}
 	
-	@Override
 	public int compareTo(Card o) {
 		if(this.getRank().compareTo(o.getRank()) > 0 ) {
 			return 1;
