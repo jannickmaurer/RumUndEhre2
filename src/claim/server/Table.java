@@ -72,7 +72,6 @@ System.out.println("Player zu Table added: " + a.getUsername());
 		}
 	}
 
-	
 	// David: Wertet den Sieger des Spiels aus am Ende aller Runden aus und gibt den Accountnamen des Siegers zurück.
 	public String winner() {
 		String win = "NoWinner";
@@ -123,7 +122,7 @@ System.out.println("Player zu Table added: " + a.getUsername());
 			case "double": doubleP2.add(card); break;
 			}
 		}
-	//*******START TEST 
+//*******START TEST 
 	System.out.println("Table; gameWinner(): Ausgabe der Karten der Accounts zum Testen");
 	String p1 = players.get(0).getUsername().toString();
 	String p2 = players.get(1).getUsername().toString();
@@ -162,7 +161,7 @@ System.out.println("Player zu Table added: " + a.getUsername());
 System.out.println(p1);	
 System.out.println(p2);		
 	
-	//*******START TEST 	
+//*******START TEST 	
 		addFractionPoint(winnerFraction(goblinP1, goblinP2));
 		addFractionPoint(winnerFraction(dwarfP1, dwarfP2));
 		addFractionPoint(winnerFraction(knightP1, knightP2));
