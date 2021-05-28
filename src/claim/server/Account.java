@@ -15,9 +15,6 @@ import java.util.logging.Logger;
 import claim.commons.Card;
 import claim.commons.ServiceLocator;
 
-
-
-
 // Implemented by Jannick: Represents a Player's Account (User)
 public class Account implements Serializable {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
@@ -27,18 +24,16 @@ public class Account implements Serializable {
 	
 	private final String username;
 	private final String password;
+	
+	// transient in order to not save the variables in accounts file
 	private transient String token;
 	private transient Table table;
 	private transient Client client;
 	private transient Card playedCard;
-	
 	private transient ArrayList<Card> handCards;
 	private transient ArrayList<Card> followerCards;
 	private transient ArrayList<Card> undeadCards;
 	
-	
-	
-
 	public Account(String username, String password) {
 		this.username = username;
 		this.password = password;
@@ -101,6 +96,7 @@ public class Account implements Serializable {
 		}
 	}	
 	
+	// Save accounts to file
 	public static void saveAccounts() {
 		File accountFile = new File(Server.getDirectory() + "accounts.sav");
 		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(accountFile))) {
@@ -122,7 +118,11 @@ public class Account implements Serializable {
 		try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(accountFile))) {
 			int num = in.readInt();
 			for (int i = 0; i < num; i++) {
+				//First: create temporary account object read from the file
 				Account account = (Account) in.readObject();
+				//Second: Create new account object with using username & password
+				//This way, the transient variables get created again, too
+				//Maybe not the smartest way, but works well
 				Account ac = new Account(account.getUsername(), account.getPassword());
 				accounts.add(ac);
 				logger.info("Loaded account " + ac.getUsername());
@@ -132,15 +132,16 @@ public class Account implements Serializable {
 		}
 	}
 	
-	// Taken from https://stackoverflow.com/questions/9140728/how-do-i-resolve-nullpointerexception-when-i-am-using-serializable-with-my-class
-	private void readObject(ObjectInputStream in)
-		    throws IOException, ClassNotFoundException {
-		    in.defaultReadObject();
-		    handCards = new ArrayList<>();
-			followerCards = new ArrayList<>();
-			undeadCards = new ArrayList<>();
-		}
+//	// Taken from https://stackoverflow.com/questions/9140728/how-do-i-resolve-nullpointerexception-when-i-am-using-serializable-with-my-class
+//	private void readObject(ObjectInputStream in)
+//		    throws IOException, ClassNotFoundException {
+//		    in.defaultReadObject();
+//		    handCards = new ArrayList<>();
+//			followerCards = new ArrayList<>();
+//			undeadCards = new ArrayList<>();
+//		}
 	
+	// Clear account after logging out
 	public void clearAccount() {
 		this.token = null;
 		this.table = null;

@@ -24,11 +24,11 @@ public class Server {
 		Account.readAccounts();
 		
 		System.out.println("Welcome to Claims - powered by Run und Ehre 2.0");
-		System.out.println("This time, we won't f*ck up");
 		// Creates a new Scanner object and takes the keyboard input for the port number, only numbers allowed
 		try (Scanner scan = new Scanner(System.in)){
 			while(port < 1024 || port > 65535) {
 				System.out.println("Please enter a port number (1024 - 65535) ");
+				System.out.println("The default port saved on a client is 1111");
 				String input = scan.nextLine();
 				try {
 					port = Integer.parseInt(input);
@@ -45,6 +45,7 @@ public class Server {
 			}
 			logger.info("Server started on port: " + port + " You may now connect a client");
 //			DeckOfCards dc = new DeckOfCards();
+			//Since we only need one playroom, create it when starting the server
 			Playroom pr  = new Playroom();
 			Playroom.add(pr);
 //			Table table = new Table();

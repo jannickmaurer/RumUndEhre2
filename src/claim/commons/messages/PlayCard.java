@@ -4,18 +4,14 @@ import java.util.logging.Logger;
 
 import claim.commons.Card;
 import claim.commons.ServiceLocator;
-import claim.commons.messages.results.ResultBroadcastJoinPlayroom;
-import claim.commons.messages.results.ResultBroadcastStartRoundOne;
-import claim.commons.messages.results.ResultLogin;
 import claim.commons.messages.results.ResultPlayCard;
 import claim.commons.messages.results.ResultSendCard;
 import claim.server.Account;
 import claim.server.Client;
-import claim.server.Playroom;
 
 
-//Implemented by Jannick
-// PlayCard|token|card
+//Class implemented by Jannick: Message Client -> Server
+//PlayCard|Token|Card
 
 public class PlayCard extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();

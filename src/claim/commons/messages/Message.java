@@ -13,6 +13,7 @@ import claim.commons.messages.results.ResultBroadcastFinishRound;
 import claim.server.Client;
 
 // Created by Jannick
+
 public abstract class Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getServerLogger();

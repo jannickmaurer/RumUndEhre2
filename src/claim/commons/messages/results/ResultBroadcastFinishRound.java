@@ -1,6 +1,5 @@
 package claim.commons.messages.results;
 
-import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import claim.client.controller.Controller;
@@ -8,9 +7,8 @@ import claim.commons.Card;
 import claim.commons.ServiceLocator;
 import claim.commons.messages.Message;
 
-// Created by Jannick: Message Server -> Client
-// String: ResultFinishRound|Boolean|Username Winner|TableCard|Undead1|Undead2
-//String: ResultFinishRound|Boolean|Username Winner|Card1|Card2|Card3
+//Class implemented by Jannick & David: Message Server -> Client
+//ResultFinishRound|Result|Username Winner|Card1|Card2|Card3
 
 public class ResultBroadcastFinishRound extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
@@ -40,6 +38,7 @@ public class ResultBroadcastFinishRound extends Message {
 
 	}
 
+	//DS & JM
 	@Override
 	public void process(Controller controller) {
 
@@ -89,6 +88,7 @@ public class ResultBroadcastFinishRound extends Message {
 		controller.somethingFailed();
 	}
 
+	//DS
 	private void cardCheck(Controller controller) {
 
 		if (followerCard1.getSuit().toString().equals("dwarf") && !controller.getUsername().equals(this.winner)) {

@@ -11,6 +11,7 @@ import claim.commons.Card;
 // Class implemented by Jannick: Message Server -> Client
 // ResultSendCard|result|Reason|Card
 // Possible Reasons: HandCard, FollowerCard, PointCard, TableCard
+
 public class ResultSendCard extends Message {
 	
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();

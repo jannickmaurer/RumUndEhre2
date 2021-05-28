@@ -6,14 +6,14 @@ import java.util.logging.Logger;
 import claim.commons.Card;
 import claim.commons.ServiceLocator;
 import claim.commons.messages.results.ResultDealCards;
-import claim.commons.messages.results.ResultLogout;
 import claim.commons.messages.results.ResultStartSecondRound;
 import claim.server.Account;
 import claim.server.Client;
 import claim.server.Playroom;
 
-//implemented by Jannick
-//Client -> Server StartSecondRound|token
+//Class implemented by Jannick: Message Client -> Server
+//StartSecondRound|Token
+
 public class StartSecondRound extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getServerLogger();

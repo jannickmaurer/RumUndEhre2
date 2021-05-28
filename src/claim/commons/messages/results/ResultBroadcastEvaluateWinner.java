@@ -6,8 +6,8 @@ import claim.client.controller.Controller;
 import claim.commons.ServiceLocator;
 import claim.commons.messages.Message;
 
-//implemented by Jannick
-//Server -> Client: ResultBroadcastEvaluateWinner|Result|UsernameWinner
+//Class implemented by Jannick: Message Server -> Client
+//ResultBroadcastEvaluateWinner|Result|Winner
 
 public class ResultBroadcastEvaluateWinner extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();

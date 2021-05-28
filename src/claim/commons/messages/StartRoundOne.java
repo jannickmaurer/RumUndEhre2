@@ -6,8 +6,9 @@ import claim.commons.ServiceLocator;
 import claim.commons.messages.results.ResultLogout;
 import claim.server.Client;
 
-//implemented by Jannick
-//Client -> Server StartRoundOne|result
+//Class implemented by Jannick: Message Client -> Server
+//StartRoundOne|Token
+
 public class StartRoundOne extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getServerLogger();

@@ -6,6 +6,9 @@ import claim.client.controller.Controller;
 import claim.commons.ServiceLocator;
 import claim.commons.messages.Message;
 
+//Class implemented by Jannick: Message Server -> Client
+//ResultDeleteAccount|Result
+
 public class ResultDeleteAccount extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getClientLogger();

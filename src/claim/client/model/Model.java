@@ -29,19 +29,19 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.concurrent.Task;
 import claim.commons.ServiceLocator;
 
+// Implemented by Jannick & Samuel
 public class Model {
 	private static ServiceLocator serviceLocator = ServiceLocator.getServiceLocator();
 	private static Logger logger = serviceLocator.getClientLogger();
 	private Socket socket = null;
 	private Thread t;
 	
-	// Properties to work with in Controller or View:
+	// JM: Properties to work with in Controller or View:
 	private SimpleStringProperty lastReceivedMessage = new SimpleStringProperty();
 	private SimpleBooleanProperty connected = new SimpleBooleanProperty(false);
 	private SimpleStringProperty token = new SimpleStringProperty();
-	
 
-	
+	// JM
 	// Connect to Server and directly send a new Ping Message
 	// Takes IP Address as String and Port as int
 	public void connect(String ipAdress, int port) throws Exception, IOException {
@@ -73,7 +73,7 @@ public class Model {
 		t.start();
 	}
 	
-	// Methods to create Messages
+	// JM: Methods to create Messages
 	public void createAccount(String username, String password) {
 		String[] content = new String[] { "CreateAccount", username, password };
 		Message msg = new CreateAccount(content);
@@ -195,25 +195,8 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
-	
-	public void setConnected(Boolean connected) {
-		this.connected.set(connected);
-		logger.info("Client is Connected");
-	}
-	
-	public Boolean isConnected() {
-		return this.connected.get();
-	}
 
-	public SimpleStringProperty getLastReceivedMessage() {
-		return this.lastReceivedMessage;
-	}
-
-	public void setToken(String token) {
-		this.token.set(token);
-		logger.info("Client set token to: " + this.token.getValue());		
-	}
-	
+	//JM
 	public void closeSocket() {
 		if (socket != null)
 			try {
@@ -222,11 +205,12 @@ public class Model {
 			}
 	}
 	
-	//Analog Chatroom Project at FHNW 2019
+	//SD: Analog Chatroom Project at FHNW 2019
 	public void initialize() {
 		new Thread(initializer).start();
 	}
 
+	// SD
 	final Task<Void> initializer = new Task<Void>() {
 		@Override
 		protected Void call() throws Exception {
@@ -250,6 +234,7 @@ public class Model {
 			return null;
 		}
 		
+		// SD
 		private Logger configureLogging() {
 			Logger rootLogger = Logger.getLogger("");
 			rootLogger.setLevel(Level.FINEST);
@@ -275,5 +260,25 @@ public class Model {
 			return ourLogger;
 		}
 	};
+	
+	
+	//Getter und Setter
+	public void setConnected(Boolean connected) {
+		this.connected.set(connected);
+		logger.info("Client is Connected");
+	}
+	
+	public Boolean isConnected() {
+		return this.connected.get();
+	}
+
+	public SimpleStringProperty getLastReceivedMessage() {
+		return this.lastReceivedMessage;
+	}
+
+	public void setToken(String token) {
+		this.token.set(token);
+		logger.info("Client set token to: " + this.token.getValue());		
+	}
 
 }

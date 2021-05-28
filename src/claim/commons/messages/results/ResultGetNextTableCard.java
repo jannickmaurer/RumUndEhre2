@@ -6,7 +6,9 @@ import claim.commons.messages.Message;
 import claim.client.controller.Controller;
 import claim.commons.ServiceLocator;
 
-// Created by Jannick: Server -> Client Message
+//Class implemented by Jannick: Message Server -> Client
+//ResultGetNextTableCard|result|
+
 public class ResultGetNextTableCard extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getClientLogger();

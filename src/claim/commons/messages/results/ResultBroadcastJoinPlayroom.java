@@ -6,8 +6,8 @@ import claim.client.controller.Controller;
 import claim.commons.ServiceLocator;
 import claim.commons.messages.Message;
 
-//implemented by Jannick
-//Server -> Client: ResultJoinPlayroom|Result|Username
+//Class implemented by Jannick: Message Server -> Client
+//ResultBroadcastJoinPlayroom|Result|Username
 
 public class ResultBroadcastJoinPlayroom extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();

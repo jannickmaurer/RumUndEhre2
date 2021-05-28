@@ -2,22 +2,14 @@ package claim.commons.messages;
 
 import java.util.logging.Logger;
 
-import claim.commons.Card;
 import claim.commons.ServiceLocator;
-import claim.commons.messages.results.ResultBroadcastJoinPlayroom;
 import claim.commons.messages.results.ResultBroadcastSendMessage;
-import claim.commons.messages.results.ResultBroadcastStartRoundOne;
-import claim.commons.messages.results.ResultLogin;
-import claim.commons.messages.results.ResultPlayCard;
-import claim.commons.messages.results.ResultSendCard;
 import claim.commons.messages.results.ResultSendMessage;
 import claim.server.Account;
 import claim.server.Client;
-import claim.server.Playroom;
 
-
-//Implemented by Jannick
-// SendMessage|token|message
+//Class implemented by Jannick: Message Client -> Server
+//SendMessage|Token|Message
 
 public class SendMessage extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();

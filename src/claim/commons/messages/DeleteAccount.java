@@ -7,7 +7,8 @@ import claim.commons.messages.results.ResultDeleteAccount;
 import claim.server.Account;
 import claim.server.Client;
 
-
+//Class implemented by Jannick: Message Client -> Server
+//DeleteAccount|Token|
 public class DeleteAccount extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getClientLogger();

@@ -8,6 +8,9 @@ import claim.commons.messages.results.ResultPlayerLoggedOut;
 import claim.server.Account;
 import claim.server.Client;
 
+//Class implemented by Jannick: Message Client -> Server
+//Logout|Token
+
 public class Logout extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getServerLogger();

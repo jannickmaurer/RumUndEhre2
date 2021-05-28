@@ -52,7 +52,7 @@ public class Client {
 		t.start();
 	}
 	
-	//sned a new message to this client
+	//send a new message to this client
 		public void send(Message msg) {
 			try {
 				msg.send(socket);	

@@ -3,7 +3,9 @@ package claim.commons.messages;
 import claim.commons.messages.results.ResultPing;
 import claim.server.Client;
 
-// Created by Jannick: Client -> Server Message
+//Class implemented by Jannick: Message Client -> Server
+//Ping
+
 public class Ping extends Message {
 	
 	// Constructor uses Message constructor 

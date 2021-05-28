@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import claim.client.Claim;
 
+// Implemented by Jannick & Samuel
 public class ServiceLocator {
 
 private static ServiceLocator serviceLocator;

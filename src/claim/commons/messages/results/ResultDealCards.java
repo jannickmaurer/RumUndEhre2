@@ -9,6 +9,7 @@ import claim.commons.messages.Message;
 
 // Class implemented by Jannick: Message Server -> Client
 // ResultDealCards|result|FirstUser|Card1| ... Card13
+
 public class ResultDealCards extends Message {
 	
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
@@ -43,6 +44,8 @@ public class ResultDealCards extends Message {
 			controller.getView().getChatLayout().getWonGoblins().setVisible(true);
 			controller.getView().getChatLayout().getLbKnights().setVisible(true);
 			controller.getView().getChatLayout().getWonKnights().setVisible(true);
+			
+			// Artificial break in order to give the other Threads time to finish
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {

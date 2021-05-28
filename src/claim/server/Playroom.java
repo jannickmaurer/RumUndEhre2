@@ -15,6 +15,7 @@ import claim.commons.messages.results.ResultDealCards;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+// Implemented by Jannick - represents the generic playroom concept
 public class Playroom implements Serializable {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getServerLogger();
@@ -28,20 +29,21 @@ public class Playroom implements Serializable {
 	public Playroom() {
 		players = new ArrayList<>();
 		numberOfPlayers.set(0);
+		// as soon as two players joined -> gameStarted = true
 		gameStarted.addListener((o, OldValue, NewValue) -> {
 		if(NewValue.booleanValue()) {
 			table = new Table(this.players);
 			table.deal();
-			//TBD: Cards from account ArrayList
+			//Send dealed cards to accounts
 			for(Account a : players) {
 				String[] temp = new String[] {"ResultDealCards", "true", players.get(0).getUsername()};
 				ArrayList<String> cards = new ArrayList<>();
 				for(Card c : a.getHandCards()) {
 					cards.add(c.toString());
-//					a.getHandCards().remove(c); // Remove from HandCards -> TEST!
 				}
 				String[] content = combineArrayAndArrayList(temp, cards);
 				a.getClient().send(new ResultDealCards(content));
+				//Clear HandCards again
 				a.getHandCards().clear();
 			}
 //			try {
@@ -79,6 +81,7 @@ public class Playroom implements Serializable {
 //		}
 //	}
 	
+	//Generic functionality to combine a String ArrayList and a String Array
 	public static String[] combineArrayAndArrayList(String[] array, ArrayList<String> list) {
 		String[] content = new String[array.length + list.size()];
 		for (int i = 0; i < array.length; i++)
@@ -111,6 +114,7 @@ public class Playroom implements Serializable {
 //		}
 	}
 	
+	// Stop game when one client logs out
 	public void stopGame(Account a) {
 		removeAccount(a);
 		this.numberOfPlayers.set(numberOfPlayers.get()-1);

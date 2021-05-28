@@ -12,7 +12,7 @@ import claim.commons.messages.results.ResultBroadcastFinishRound;
 import claim.commons.messages.results.ResultSendCard;
 import javafx.beans.property.SimpleIntegerProperty;
 
-
+// Implemented by David & Jannick -> represents the functionality we need for a Claims game 
 public class Table {
 	public ArrayList<Account> players = new ArrayList<>(); 						//private		
 	private SimpleIntegerProperty playedCards = new SimpleIntegerProperty();
@@ -50,8 +50,10 @@ public class Table {
 		}
 	
 		playedCards.set(0);
+		// As soon as two cards are played, round will be evaluated
 		playedCards.addListener((o, OldValue, NewValue) -> {
 			if(NewValue.intValue() > 1) {
+				//Artificial break in order to give the clients time to process previous messages
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
@@ -66,7 +68,7 @@ public class Table {
 
 	
 	/*
-	 * TODO: TXT
+	 * David: Creates and shares cards
 	 */
 	public void deal() {
 		deck = new DeckOfCards();
@@ -261,7 +263,7 @@ System.out.println("ELSE höhere karte sieger :"+win);
 	
 
 	
-	
+	// DS
 	public void finishRound() {
 		roundWinner = ""; //eigentlich unnötig
 //		followerCardP1 = null; //eigentlich unnötig

@@ -6,8 +6,8 @@ import claim.client.controller.Controller;
 import claim.commons.ServiceLocator;
 import claim.commons.messages.Message;
 
-//implemented by Jannick
-//Server -> Client: ResultBroadcastSendMessage|Result|username|message
+//Class implemented by Jannick: Message Server -> Client
+//ResultBroadcastSendMessage|Result|Username|Message
 
 public class ResultBroadcastSendMessage extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
@@ -26,7 +26,6 @@ public class ResultBroadcastSendMessage extends Message {
 	}
 	@Override
 	public void process(Controller controller) {
-		// Text in TextArea updaten mit: username + ": " + message
 		controller.updateChatText(this.username + ":\n" + this.message + "\n");
 	}
 	

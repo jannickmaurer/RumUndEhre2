@@ -5,7 +5,7 @@ import java.util.Collections;
 
 import claim.commons.Card;
 
-// Implemented by Jannick
+// Implemented by Jannick & David
 // All logic realted to game, cards, etc. on client side
 public class Board {
 	
@@ -57,12 +57,14 @@ public class Board {
 		}
 	}
 	
+	//DS
 	public void setPlayableHC(){
 		for(Card card : handCards) {
 			card.setPlayable(true);
 		}
 	}
 
+	//DS
 	public void setPlayableHC(Card opponentCard) {
 		boolean hasPlayableCards = false;
 		for(Card card : handCards) {
@@ -97,7 +99,7 @@ public class Board {
 		}
 	}
 	
-	//Dave: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
+	//DS: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
 	private String suitToString(Card card) {
 		String cardString = card.toString();
 	    String[] tmp = cardString.split("\\_");
@@ -140,29 +142,7 @@ public class Board {
 		if(knights.isEmpty() == false) for (Card card : knights) handCards.add(card);
 	}
 
-	public ArrayList<Card> getHandCards() {
-		return handCards;
-	}
 
-	public void setHandCards(ArrayList<Card> handCards) {
-		this.handCards = handCards;
-	}
-
-	public ArrayList<Card> getFollowerCards() {
-		return followerCards;
-	}
-
-	public void setFollowerCards(ArrayList<Card> followerCards) {
-		this.followerCards = followerCards;
-	}
-
-	public void addUndead(Card undead) {
-		this.undeadCards.add(undead);
-	}
-	
-	public ArrayList<Card> getDwarfCards() {
-		return dwarfCards;
-	}
 
 	public void addDwarfCards(Card dwarf) {
 		this.dwarfCards.add(dwarf);
@@ -243,6 +223,30 @@ public class Board {
 
 	public void setDwarfCards(ArrayList<Card> dwarfCards) {
 		this.dwarfCards = dwarfCards;
+	}
+	
+	public ArrayList<Card> getHandCards() {
+		return handCards;
+	}
+
+	public void setHandCards(ArrayList<Card> handCards) {
+		this.handCards = handCards;
+	}
+
+	public ArrayList<Card> getFollowerCards() {
+		return followerCards;
+	}
+
+	public void setFollowerCards(ArrayList<Card> followerCards) {
+		this.followerCards = followerCards;
+	}
+
+	public void addUndead(Card undead) {
+		this.undeadCards.add(undead);
+	}
+	
+	public ArrayList<Card> getDwarfCards() {
+		return dwarfCards;
 	}
 	
 }

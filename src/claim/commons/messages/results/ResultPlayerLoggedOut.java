@@ -6,8 +6,9 @@ import claim.commons.messages.Message;
 import claim.client.controller.Controller;
 import claim.commons.ServiceLocator;
 
-// Created by Jannick: Server -> Client Message
-// ResultPlayerLoggedOut|result
+//Class implemented by Jannick: Message Server -> Client
+//ResultPlayerLoggedOut|result|Card
+
 public class ResultPlayerLoggedOut extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getClientLogger();

@@ -8,6 +8,7 @@ import claim.server.Client;
 import claim.server.Account;
 
 // Class implemented by Jannick: Message Client -> Server
+// CreateAccount|Username|Password
 public class CreateAccount extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
 	private static Logger logger = sl.getServerLogger();

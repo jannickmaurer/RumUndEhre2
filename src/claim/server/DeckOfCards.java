@@ -8,11 +8,11 @@ import claim.commons.Card.Rank;
 import claim.commons.Card.Suit;
 import javafx.beans.property.SimpleIntegerProperty;
 
+// Implemented by David
 public class DeckOfCards {
 	private final ArrayList<Card> cards = new ArrayList<>();
     private final SimpleIntegerProperty cardsRemaining = new SimpleIntegerProperty();
 
-    
 	public DeckOfCards() {
 		shuffle();
 	} 

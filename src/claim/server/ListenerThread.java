@@ -24,9 +24,7 @@ public class ListenerThread extends Thread {
 		logger.info(this.getName() + " started");
 	}
 	
-	
-
-	@Override
+		@Override
 	public void run() {
 		while(true) {
 			try {

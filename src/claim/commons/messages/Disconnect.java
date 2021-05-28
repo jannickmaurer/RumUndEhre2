@@ -3,8 +3,8 @@ package claim.commons.messages;
 import claim.commons.messages.results.ResultPing;
 import claim.server.Client;
 
-// Created by Jannick: Client -> Server Message
-// Disconnect|Token (or null)
+// Class implemented by Jannick: Message Client -> Server
+// Disconnect|Token|
 public class Disconnect extends Message {
 
 	private String token;

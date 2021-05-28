@@ -6,8 +6,9 @@ import claim.client.controller.Controller;
 import claim.commons.ServiceLocator;
 import claim.commons.messages.Message;
 
-// Created by Jannick: Message Server -> Client
-// String: ResultLogin|Boolean|Token|Username|UsernameOpponent
+
+//Class implemented by Jannick: Message Server -> Client
+//ResultLogin|Boolean|Token|Username|UsernameOpponent
 
 public class ResultLogin extends Message {
 	private static ServiceLocator sl = ServiceLocator.getServiceLocator();
