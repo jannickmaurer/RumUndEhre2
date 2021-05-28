@@ -313,7 +313,6 @@ System.out.println("ELSE höhere karte sieger :"+win);
 			if(win ==  1) win =0;
 			if(win == -1) win *= (-1); 
 
-	System.out.println("Sieger Account: "+players.get(win).getUsername());	
 			for(int i = 0; players.size() > i; i++) {
 			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), playedCardString};
 			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
@@ -331,7 +330,6 @@ System.out.println("ELSE höhere karte sieger :"+win);
 			if(win ==  1) win =0;
 			if(win == -1) win *= (-1); 
 
-	System.out.println("Sieger Account: "+players.get(win).getUsername());
 			for(int i = 0; players.size() > i; i++) {
 				if(undeadString.equalsIgnoreCase("None")) {
 					String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), tCard.toString()};
@@ -454,7 +452,7 @@ System.out.println("ELSE höhere karte sieger :"+win);
 	private void addFollowerCards(int win) {		
 		if(players.get(0).getPlayedCard().getSuit().toString().equals("undead") ||
 			players.get(1).getPlayedCard().getSuit().toString().equals("undead")) {
-			ArrayList<Card> tmpUndeads = new ArrayList<>();
+			ArrayList<Card> tmpUnD = new ArrayList<>();
 			Boolean one = false;
 			if(players.get(0).getPlayedCard().getSuit().toString().equals("undead")) tmpUndeads.add(players.get(0).getPlayedCard());
 			if(players.get(1).getPlayedCard().getSuit().toString().equals("undead")) {
@@ -465,38 +463,38 @@ System.out.println("ELSE höhere karte sieger :"+win);
 			case 1: if(!one) {
 						if(win == 1) {
 							players.get(0).addFollowerCard(players.get(1).getPlayedCard());
-							players.get(0).addUndeadCard(tmpUndeads.get(0));
+							players.get(0).addUndeadCard(tmpUnD.get(0));
 						} else {
 							players.get(1).addFollowerCard(players.get(1).getPlayedCard());
-							players.get(1).addUndeadCard(tmpUndeads.get(0));
+							players.get(1).addUndeadCard(tmpUnD.get(0));
 						}
 					} else {
 						 if(win == 1) {
 							players.get(0).addFollowerCard(players.get(0).getPlayedCard());
-							players.get(0).addUndeadCard(tmpUndeads.get(0));
+							players.get(0).addUndeadCard(tmpUnD.get(0));
 						 } else {
 							players.get(1).addFollowerCard(players.get(0).getPlayedCard());
-							players.get(1).addUndeadCard(tmpUndeads.get(0));
+							players.get(1).addUndeadCard(tmpUnD.get(0));
 						 }
-					} break;	
+					} 
+					break;	
 			case 2: if(win == 1) {
-						for(Card u : tmpUndeads) {
+						for(Card u : tmpUnD) {
 							players.get(0).addUndeadCard(u);;
 						}
 					} else {
-						for(Card u : tmpUndeads) {
+						for(Card u : tmpUnD) {
 							players.get(1).addUndeadCard(u);
 						}
-					} break;
+					} 
+					break;
 			}
 		} else {
 			switch(win) {
 			case  1: players.get(0).addFollowerCard(players.get(0).getPlayedCard());
-					 players.get(0).addFollowerCard(players.get(1).getPlayedCard()); 
-					 break;
+					 players.get(0).addFollowerCard(players.get(1).getPlayedCard()); break;
 			case -1: players.get(1).addFollowerCard(players.get(0).getPlayedCard());
-					 players.get(1).addFollowerCard(players.get(1).getPlayedCard()); 
-					 break;
+					 players.get(1).addFollowerCard(players.get(1).getPlayedCard()); break;
 			}
 		}
 	}
@@ -507,11 +505,12 @@ System.out.println("ELSE höhere karte sieger :"+win);
 		if(suitToString(cardP1).equals("undead") || suitToString(cardP2).equals("undead")) {
 			switch (win) {
 			case  1: if(suitToString(cardP1).equals("undead")) {players.get(0).addUndeadCard(cardP1); tmpUndeads.add(cardP1);}
-					 if(suitToString(cardP2).equals("undead")) {players.get(0).addUndeadCard(cardP2); tmpUndeads.add(cardP2);}
+					 if(suitToString(cardP2).equals("undead")) {players.get(0).addUndeadCard(cardP2); tmpUndeads.add(cardP2);} break;
 			case -1: if(suitToString(cardP1).equals("undead")) {players.get(1).addUndeadCard(cardP1); tmpUndeads.add(cardP1);}
-					 if(suitToString(cardP2).equals("undead")) {players.get(1).addUndeadCard(cardP2); tmpUndeads.add(cardP2);}
+					 if(suitToString(cardP2).equals("undead")) {players.get(1).addUndeadCard(cardP2); tmpUndeads.add(cardP2);} break;
 			}
 		}
+	
 		undeadString = "None";
 		switch(tmpUndeads.size()) {
 		case 0: break;
