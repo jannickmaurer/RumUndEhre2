@@ -14,22 +14,15 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 
 public class Table {
-	public ArrayList<Account> players = new ArrayList<>(); 						//private		
+	private ArrayList<Account> players = new ArrayList<>(); 						//private		
 	private SimpleIntegerProperty playedCards = new SimpleIntegerProperty();
-	public Account firstPlayer = null;											//private
-		
+	private Account firstPlayer = null;											//private
 	private DeckOfCards deck;
 	public ArrayList<Card> tableCards = new ArrayList<>();
-//	public ArrayList<Card> followerCardsP1 = new ArrayList<>();
-//	public ArrayList<Card> followerCardsP2 = new ArrayList<>();
 	public ArrayList<Card> tmpUndeads = new ArrayList<>();
 	private int fractionPointsP1;
 	private int fractionPointsP2;
 	public Card actualTableCard;
-
-//	public String roundWinner;
-//	public Card followerCardP1;
-//	public Card followerCardP2;
 	private String undeadString;
 	private boolean secondRoundStarted = false;
 
@@ -45,9 +38,8 @@ public class Table {
 		for(Account a : players) {
 			this.players.add(a);
 //		this.players = players;
-			System.out.println("Player zu Table added: " + a.getUsername());
+System.out.println("Player zu Table added: " + a.getUsername());
 		}
-	
 		playedCards.set(0);
 		playedCards.addListener((o, OldValue, NewValue) -> {
 			if(NewValue.intValue() > 1) {
@@ -63,41 +55,28 @@ public class Table {
 //		super();
 	}
 
-	
-	/*
-	 * TODO: TXT
-	 */
+	// David: Gibt bei den ersten zwei Aufrufen 13 Karten zurück und beim dritten Aufruf die restlichen 26 Karten
 	public void deal() {
 		deck = new DeckOfCards();
 		Card card;
-		System.out.println("Methode deal: Wert von getCardsRemaining vor dem ausgeben: "+ deck.getCardsRemaining());
 		for (int i = 0; i < 3; i++) {
 			if (deck.getCardsRemaining() > 26) {
-				System.out.println("Methode deal: Wert von getCardsRemaining nach jedem ausgeben an Spieler: "+ deck.getCardsRemaining());
 				for (int j = 0; j < 13; j++) {
 					card = deck.dealCard();
-					
 					if (i == 0) players.get(0).addHandCard(card);
 					else players.get(1).addHandCard(card);
 				}
 			} else {
-				System.out.println("Methode deal: Wert von getCardsRemaining nur für Tischkarten: "+ deck.getCardsRemaining());
 				for (int j = 0; j < 26; j++) {
-					System.out.println("Table: Methode deal: "+deck.getCardsRemaining());
 					card = deck.dealCard();
 					tableCards.add(card);
 				}
-
-				System.out.println("Methode Deal in Table: "+ tableCards.size());
-
 			}
 		}
 	}
 
 	
-	/*
-	 * David: Falls es einen Sieger gibt, wird der als String zurück gegeben
-	 */
+	// David: Wertet den Sieger des Spiels aus am Ende aller Runden aus und gibt den Accountnamen des Siegers zurück.
 	public String winner() {
 		String win = "NoWinner";
 		gameWinner();
@@ -107,7 +86,8 @@ public class Table {
 	}
 	
 	/*
-	 * David: Wertet den Sieger des Spiels aus
+	 * David: Sortiert die gewonnenen Karten in die verschiedenen Fraktionen. Danach wird die Sieger Evaluierung und
+	 * das Hinzufügen der eventuellen Siegerpunkte aufgerufen
 	 */
 	private void gameWinner() {
 		for(Account p : players) {
@@ -118,7 +98,6 @@ public class Table {
 				System.out.print(c.toString() + " | ");
 			}
 		}
-//		String gameWinner;
 		ArrayList<Card> goblinP1 = new ArrayList<>();
 		ArrayList<Card> goblinP2 = new ArrayList<>();
 		ArrayList<Card> dwarfP1  = new ArrayList<>();
@@ -193,43 +172,32 @@ System.out.println(p2);
 	}
 	
 	/*
-	 * David: Vergleicht die Anzahl Anhänger einer Fraktion und gibt den Spieler der gewonnen hat zurück
+	 * David: Vergleicht die Anzahl Anhänger einer Fraktion und gibt den Spieler der gewonnen hat zurück.
+	 * Im Fall, das beide Spieler gleich viele Karten haben wird ausgewertet wer die höchste hat. Der ist dann auch Sieger 
+	 * dieser Fraktion. Falls z.B: beide keine Karte von der selben Fraktion hat gibt es keinen Sieger.
 	 */
 	private String winnerFraction(ArrayList<Card> cardsP1, ArrayList<Card> cardsP2) {
 		String win = "NONE";
-		
-		for(Card c1 :cardsP1) {
-System.out.println("WinnerFraction K1 :"+c1.toString());}
-System.out.println("");
-		for(Card c2 :cardsP2) {
-System.out.println("WinnerFraction K2 :"+c2.toString());}
-
-		
-		if(cardsP1.size() > cardsP2.size()) {
-System.out.println("IF STATMENT P1");
-			return "P1";
-		}
-		if(cardsP1.size() < cardsP2.size()) {
-System.out.println("IF STATMENT P2");
-			return "P2";
-		}
+		if(cardsP1.size() > cardsP2.size()) return "P1"; //{
+//			return "P1";
+//		}
+		if(cardsP1.size() < cardsP2.size()) return "P2";//{
+//			return "P2";
+//		}
 		if(cardsP1.size() == 0 && cardsP2.size() == 0) {
-System.out.println("IF STATMENT NONE");
 			return "NONE";
-		}
-		else 
+		} else {
 			switch (getHighestCard(cardsP1).compareTo(getHighestCard(cardsP2))) {
 			case  1: win = "P1";	break;
 			case  0: win = "NONE";	break; 
 			case -1: win = "P2";	break;
 			}
-System.out.println("ELSE höhere karte sieger :"+win);
+		}
 		return win;	
 	}
 	
-	/*
-	 * David: Fügt dem Sieger einer Fraktion einen Punkt hinzu
-	 */
+	
+	// David: Fügt dem Sieger einer Fraktion einen Punkt hinzu, falls es kein Unentschieden gibt.
 	private void addFractionPoint(String winner) {
 		switch (winner) {
 		case "P1"  : fractionPointsP1++; break;
@@ -246,17 +214,13 @@ System.out.println("ELSE höhere karte sieger :"+win);
         actualTableCard = card;
 		return card;
 	}
-	
-	/*
-	 * David: Sortiert die Karten und gibt die letzte Karte, welche die Höchste ist zurück
-	 */
+		
+	// David: Sortiert die Karten und gibt die letzte Karte, welche die Höchste ist zurück
 	private Card getHighestCard(ArrayList<Card> cards) {
 		Collections.sort(cards);
         Card card = (cards.size() > 0) ? cards.remove(cards.size()-1) : null;
 		return card;
 	}
-	
-
 	
 	/*
 	 * David: Die Methode ermittelt den Gewinner am Ende jeder Runde aus den zwei Spielern. Sie löst die Übermittelung an die 
@@ -313,7 +277,6 @@ System.out.println("ELSE höhere karte sieger :"+win);
 			if(win ==  1) win =0;
 			if(win == -1) win *= (-1); 
 
-	System.out.println("Sieger Account: "+players.get(win).getUsername());	
 			for(int i = 0; players.size() > i; i++) {
 			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), playedCardString};
 			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
@@ -330,8 +293,7 @@ System.out.println("ELSE höhere karte sieger :"+win);
 			
 			if(win ==  1) win =0;
 			if(win == -1) win *= (-1); 
-
-	System.out.println("Sieger Account: "+players.get(win).getUsername());
+			
 			for(int i = 0; players.size() > i; i++) {
 				if(undeadString.equalsIgnoreCase("None")) {
 					String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), tCard.toString()};
@@ -369,9 +331,8 @@ System.out.println("ELSE höhere karte sieger :"+win);
 	}	
 	
 	//David: Evaluiert welche Karte gewonnen hat und gibt je nach Kartenposition 1 oder -1 zurück
-	public int evaluateWinCard(Card cardP1, Card cardP2) {
-		int win = 1;
-		
+	private int evaluateWinCard(Card cardP1, Card cardP2) {
+		int win = 1;		
 		if(suitToString(cardP1).equals("goblin") && suitToString(cardP2).equals("knight") ||
 				suitToString(cardP1).equals("knight") && suitToString(cardP2).equals("goblin")) {
 			if(suitToString(cardP1).equals("knight")) return 1;				
@@ -454,49 +415,49 @@ System.out.println("ELSE höhere karte sieger :"+win);
 	private void addFollowerCards(int win) {		
 		if(players.get(0).getPlayedCard().getSuit().toString().equals("undead") ||
 			players.get(1).getPlayedCard().getSuit().toString().equals("undead")) {
-			ArrayList<Card> tmpUndeads = new ArrayList<>();
+			ArrayList<Card> tmpUnD = new ArrayList<>();
 			Boolean one = false;
-			if(players.get(0).getPlayedCard().getSuit().toString().equals("undead")) tmpUndeads.add(players.get(0).getPlayedCard());
+			if(players.get(0).getPlayedCard().getSuit().toString().equals("undead")) tmpUnD.add(players.get(0).getPlayedCard());
 			if(players.get(1).getPlayedCard().getSuit().toString().equals("undead")) {
-				tmpUndeads.add(players.get(1).getPlayedCard());
+				tmpUnD.add(players.get(1).getPlayedCard());
 				one = true;
 			}
-			switch(tmpUndeads.size()) {
+			switch(tmpUnD.size()) {
 			case 1: if(!one) {
 						if(win == 1) {
 							players.get(0).addFollowerCard(players.get(1).getPlayedCard());
-							players.get(0).addUndeadCard(tmpUndeads.get(0));
+							players.get(0).addUndeadCard(tmpUnD.get(0));
 						} else {
 							players.get(1).addFollowerCard(players.get(1).getPlayedCard());
-							players.get(1).addUndeadCard(tmpUndeads.get(0));
+							players.get(1).addUndeadCard(tmpUnD.get(0));
 						}
 					} else {
 						 if(win == 1) {
 							players.get(0).addFollowerCard(players.get(0).getPlayedCard());
-							players.get(0).addUndeadCard(tmpUndeads.get(0));
+							players.get(0).addUndeadCard(tmpUnD.get(0));
 						 } else {
 							players.get(1).addFollowerCard(players.get(0).getPlayedCard());
-							players.get(1).addUndeadCard(tmpUndeads.get(0));
+							players.get(1).addUndeadCard(tmpUnD.get(0));
 						 }
-					} break;	
+					} 
+					break;	
 			case 2: if(win == 1) {
-						for(Card u : tmpUndeads) {
+						for(Card u : tmpUnD) {
 							players.get(0).addUndeadCard(u);;
 						}
 					} else {
-						for(Card u : tmpUndeads) {
+						for(Card u : tmpUnD) {
 							players.get(1).addUndeadCard(u);
 						}
-					} break;
+					} 
+					break;
 			}
 		} else {
 			switch(win) {
 			case  1: players.get(0).addFollowerCard(players.get(0).getPlayedCard());
-					 players.get(0).addFollowerCard(players.get(1).getPlayedCard()); 
-					 break;
+					 players.get(0).addFollowerCard(players.get(1).getPlayedCard()); break;
 			case -1: players.get(1).addFollowerCard(players.get(0).getPlayedCard());
-					 players.get(1).addFollowerCard(players.get(1).getPlayedCard()); 
-					 break;
+					 players.get(1).addFollowerCard(players.get(1).getPlayedCard()); break;
 			}
 		}
 	}
@@ -507,11 +468,12 @@ System.out.println("ELSE höhere karte sieger :"+win);
 		if(suitToString(cardP1).equals("undead") || suitToString(cardP2).equals("undead")) {
 			switch (win) {
 			case  1: if(suitToString(cardP1).equals("undead")) {players.get(0).addUndeadCard(cardP1); tmpUndeads.add(cardP1);}
-					 if(suitToString(cardP2).equals("undead")) {players.get(0).addUndeadCard(cardP2); tmpUndeads.add(cardP2);}
+					 if(suitToString(cardP2).equals("undead")) {players.get(0).addUndeadCard(cardP2); tmpUndeads.add(cardP2);} break;
 			case -1: if(suitToString(cardP1).equals("undead")) {players.get(1).addUndeadCard(cardP1); tmpUndeads.add(cardP1);}
-					 if(suitToString(cardP2).equals("undead")) {players.get(1).addUndeadCard(cardP2); tmpUndeads.add(cardP2);}
+					 if(suitToString(cardP2).equals("undead")) {players.get(1).addUndeadCard(cardP2); tmpUndeads.add(cardP2);} break;
 			}
 		}
+	
 		undeadString = "None";
 		switch(tmpUndeads.size()) {
 		case 0: break;
@@ -521,7 +483,7 @@ System.out.println("ELSE höhere karte sieger :"+win);
 	}
 	
 	//David: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
-	public String suitToString(Card card) {
+	private String suitToString(Card card) {
 		String cardString = card.toString();
 	    String[] tmp = cardString.split("\\_");
     	return tmp[0];
