@@ -322,6 +322,7 @@ System.out.println("ELSE höhere karte sieger :"+win);
 				}
 	System.out.println("Nach IF ELSE  + Sieger (1 oder -1): "+win);
 				addFCards(win, dwarfs);
+				addUndeads(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), win);
 				
 				
 			}else {
@@ -340,6 +341,7 @@ System.out.println("ELSE höhere karte sieger :"+win);
 				playedCardString = players.get(0).getPlayedCard().toString()+"|"+players.get(1).getPlayedCard().toString();
 	System.out.println("Nach PlayedCardString + String: "+playedCardString);
 				addFCards(win);
+				addUndeads(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), win);
 	System.out.println("Nach AddFCards : + win "+ win);
 	System.out.println("1"+win);
 //				win = (win * (-1));

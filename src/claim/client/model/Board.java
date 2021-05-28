@@ -26,7 +26,6 @@ public class Board {
 		goblinCards = new ArrayList<>();
 		knightCards = new ArrayList<>();
 		doubleCards = new ArrayList<>();
-		
 	}
 	
 	public void addHandCards(ArrayList<String> handCards) {
