@@ -51,6 +51,12 @@ public class StartSecondRound extends Message {
 				a.getClient().send(new ResultDealCards(content));
 				
 				a.getFollowerCards().clear();
+				System.out.println("");
+				System.out.print("HandCards bei " + a.getUsername() + ": ");
+				for(Card c : a.getHandCards()) {
+					System.out.print(c.toString());
+				}
+				
 				
 			}
 			

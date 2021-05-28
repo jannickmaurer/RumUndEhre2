@@ -110,6 +110,14 @@ public class Table {
 	 * David: Wertet den Sieger des Spiels aus
 	 */
 	private void gameWinner() {
+		for(Account p : players) {
+			System.out.println("");
+			System.out.println(p.getUsername()); 
+		
+			for(Card c : p.getFollowerCards()) {
+				System.out.print(c.toString() + " | ");
+			}
+		}
 //		String gameWinner;
 		ArrayList<Card> goblinP1 = new ArrayList<>();
 		ArrayList<Card> goblinP2 = new ArrayList<>();
@@ -403,16 +411,31 @@ System.out.println("ELSE höhere karte sieger :"+win);
 			a.clearPlayedCard();
 		}
 		//*****Test OUTPUT
-			if(tableCards.size() == 0) {
-				for(Account p : players) {
-					String outPut = "Spieler: "+p.getUsername().toString();
-					for(int i = 0; i < p.getFollowerCards().size()-1; i++) {
-						outPut = (outPut+" | "+p.getFollowerCards().get(i).toString());
-					}
-					System.out.println(outPut);
+//			if(tableCards.size() == 0) {
+//				for(Account p : players) {
+//					String outPut = "Spieler: "+p.getUsername().toString();
+//					for(int i = 0; i < p.getFollowerCards().size()-1; i++) {
+//						outPut = (outPut+" | "+p.getFollowerCards().get(i).toString());
+//					}
+//					System.out.println(outPut);
+//				}
+//			}
+		//*********END TEST OUTPUT
+			
+			System.out.println("Status Runde: ");
+			for(Account p: players) {
+				System.out.println("");
+				System.out.print("FollowerCards von " + p.getUsername() + ": ");
+				for(Card c : p.getFollowerCards()) {
+					System.out.print(c.toString() + " ");
+				}
+				System.out.println("");
+				System.out.print("Undead Cards von " + p.getUsername() + ": ");
+				for(Card c : p.getUndeadCards()) {
+					System.out.print(c.toString() + " ");
 				}
 			}
-		//*********END TEST OUTPUT
+			
 	}	
 	
 	public int evaluateWinCard(Card cardP1, Card cardP2) {
