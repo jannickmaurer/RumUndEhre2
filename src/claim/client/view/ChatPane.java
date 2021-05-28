@@ -47,16 +47,24 @@ public class ChatPane extends VBox  {
 		btnSend.setDisable(true);
 		
 		gameEvaluation.add(lbEvaluation, 0, 0, 2, 1);
-		gameEvaluation.add(lbGoblins, 0, 1);
-		gameEvaluation.add(wonGoblins, 1, 1);
-		gameEvaluation.add(lbDwarfs, 0, 2);
-		gameEvaluation.add(wonDwarfs, 1, 2);
-		gameEvaluation.add(lbUndeads, 0, 3);
-		gameEvaluation.add(wonUndeads, 1, 3);
+		gameEvaluation.add(lbUndeads, 0, 1);
+		gameEvaluation.add(wonUndeads, 1, 1);
+		gameEvaluation.add(lbGoblins, 0, 2);
+		gameEvaluation.add(wonGoblins, 1, 2);
+		lbGoblins.setVisible(false);
+		wonGoblins.setVisible(false);
+		gameEvaluation.add(lbDwarfs, 0, 3);
+		gameEvaluation.add(wonDwarfs, 1, 3);
+		lbDwarfs.setVisible(false);
+		wonDwarfs.setVisible(false);
 		gameEvaluation.add(lbDoubles, 0, 4);
 		gameEvaluation.add(wonDoubles, 1, 4);
+		lbDoubles.setVisible(false);
+		wonDoubles.setVisible(false);
 		gameEvaluation.add(lbKnights, 0, 5);
 		gameEvaluation.add(wonKnights, 1, 5);
+		lbKnights.setVisible(false);
+		wonKnights.setVisible(false);
 		gameEvaluation.setId("GameEvaluation");
 		
 		this.getChildren().addAll(scrollPane, tfMessage, btnSend, gameEvaluation);
