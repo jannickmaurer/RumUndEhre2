@@ -156,9 +156,9 @@ public class Board {
 		this.followerCards = followerCards;
 	}
 
-	public void addUndead(Card undead) {
-		this.undeadCards.add(undead);
-	}
+//	public void addUndead(Card undead) {
+//		this.undeadCards.add(undead);
+//	}
 	
 	public ArrayList<Card> getDwarfCards() {
 		return dwarfCards;
