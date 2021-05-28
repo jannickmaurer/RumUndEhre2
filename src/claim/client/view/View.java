@@ -83,6 +83,17 @@ public class View {
 	
 	//Elemente aus Chat Layout ansprechen
 	private Button btSend = chatLayout.getBtnSend();
+	private Label lbEvaluation = chatLayout.getLbEvaluation();
+	private Label lbGoblins = chatLayout.getLbGoblins();
+	private Label wonGoblins = chatLayout.getWonGoblins();
+	private Label lbDwarfs = chatLayout.getLbDwarfs();
+	private Label wonDwarfs = chatLayout.getWonDwarfs();
+	private Label lbUndeads = chatLayout.getLbUndeads();
+	private Label wonUndeads = chatLayout.getWonUndeads();
+	private Label lbDoubles = chatLayout.getLbDoubles();
+	private Label wonDoubles = chatLayout.getWonDoubles();
+	private Label lbKnights = chatLayout.getLbKnights();
+	private Label wonKnights = chatLayout.getWonKnights();
 	
 	//Elemente aus Error Layout ansprechen
 	private Label lblError = errorPopupLayout.getLblError();
@@ -177,6 +188,12 @@ public class View {
 		gameLayout.getLbCardsDeck().setText(t.getString("label.cardsdeck"));
 		gameLayout.getLbScoreDeckP2().setText(t.getString("label.scoredeck"));
 		gameLayout.getLbFollowerDeckP2().setText(t.getString("label.followerdeck"));
+		chatLayout.getLbEvaluation().setText(t.getString("label.gameevaluation"));
+		chatLayout.getLbGoblins().setText(t.getString("label.goblins"));
+		chatLayout.getLbDwarfs().setText(t.getString("label.dwarfs"));
+		chatLayout.getLbUndeads().setText(t.getString("label.undeads"));
+		chatLayout.getLbDoubles().setText(t.getString("label.doubles"));
+		chatLayout.getLbKnights().setText(t.getString("label.knights"));
 		
 		// Other controls
 		connectLayout.getBtConnect().setText(t.getString("button.run"));
@@ -499,6 +516,94 @@ public class View {
 
 	public void setChatLayout(ChatPane chatLayout) {
 		this.chatLayout = chatLayout;
+	}
+
+	public Label getLbEvaluation() {
+		return lbEvaluation;
+	}
+
+	public void setLbEvaluation(Label lbEvaluation) {
+		this.lbEvaluation = lbEvaluation;
+	}
+
+	public Label getLbGoblins() {
+		return lbGoblins;
+	}
+
+	public void setLbGoblins(Label lbGoblins) {
+		this.lbGoblins = lbGoblins;
+	}
+
+	public Label getWonGoblins() {
+		return wonGoblins;
+	}
+
+	public void setWonGoblins(Label wonGoblins) {
+		this.wonGoblins = wonGoblins;
+	}
+
+	public Label getLbDwarfs() {
+		return lbDwarfs;
+	}
+
+	public void setLbDwarfs(Label lbDwarfs) {
+		this.lbDwarfs = lbDwarfs;
+	}
+
+	public Label getWonDwarfs() {
+		return wonDwarfs;
+	}
+
+	public void setWonDwarfs(Label wonDwarfs) {
+		this.wonDwarfs = wonDwarfs;
+	}
+
+	public Label getLbUndeads() {
+		return lbUndeads;
+	}
+
+	public void setLbUndeads(Label lbUndeads) {
+		this.lbUndeads = lbUndeads;
+	}
+
+	public Label getWonUndeads() {
+		return wonUndeads;
+	}
+
+	public void setWonUndeads(Label wonUndeads) {
+		this.wonUndeads = wonUndeads;
+	}
+
+	public Label getLbDoubles() {
+		return lbDoubles;
+	}
+
+	public void setLbDoubles(Label lbDoubles) {
+		this.lbDoubles = lbDoubles;
+	}
+
+	public Label getWonDoubles() {
+		return wonDoubles;
+	}
+
+	public void setWonDoubles(Label wonDoubles) {
+		this.wonDoubles = wonDoubles;
+	}
+
+	public Label getLbKnights() {
+		return lbKnights;
+	}
+
+	public void setLbKnights(Label lbKnights) {
+		this.lbKnights = lbKnights;
+	}
+
+	public Label getWonKnights() {
+		return wonKnights;
+	}
+
+	public void setWonKnights(Label wonKnights) {
+		this.wonKnights = wonKnights;
 	}
 
 }
