@@ -87,12 +87,12 @@ public class Controller {
 
 		view.getBtLogoutGameOver().setOnAction(e -> {
 			logout();
-			view.gameOverPopUp.hide();
+			view.getGameOverStage().hide();
 		});
 
 		view.getBtLogoutWinner().setOnAction(e -> {
 			logout();
-			view.winnerPopUp.hide();
+			view.getWinnerStage().hide();
 		});
 
 		view.getGameLayout().getMiddleGameLayout().getBtNextTableCard().setOnAction(e -> {
@@ -113,7 +113,7 @@ public class Controller {
 		});
 
 		view.getBtnBackError().setOnAction(e -> {
-			view.errorPopUp.hide();
+			view.getErrorStage().hide();
 		});
 
 		view.chatLayout.getBtnSend().setOnAction(e -> {
@@ -462,7 +462,7 @@ public class Controller {
 	public void somethingFailed() {
 		Platform.runLater(new Runnable() {
 			public void run() {
-				view.errorPopUp.show(view.getStage());
+				view.showErrorPopUp();
 			}
 		});
 	}
@@ -471,7 +471,7 @@ public class Controller {
 	public void gameOver() {
 		Platform.runLater(new Runnable() {
 			public void run() {
-				view.gameOverPopUp.show(view.getStage());
+				view.showGameOverPopUp();
 			}
 		});
 	}
@@ -480,7 +480,7 @@ public class Controller {
 	public void winner(String winner) {
 		Platform.runLater(new Runnable() {
 			public void run() {
-				view.winnerPopUp.show(view.getStage());
+				view.showWinnerPopUp();
 				view.getLblWinnerName().setText(winner);
 			}
 		});

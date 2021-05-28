@@ -17,14 +17,19 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class View {
 	ServiceLocator sl = ServiceLocator.getServiceLocator();
 	
 	//Warum protected, private, public? (SD)
 	protected Stage primaryStage;
+	protected Stage errorStage;
+	protected Stage gameOverStage;
+	protected Stage winnerStage;
 	private Model model;
 	public BorderPane root;
 	private Scene scene;
@@ -215,9 +220,75 @@ public class View {
 		winnerPopupLayout.getBtLogout().setText(t.getString("button.logout"));
 	}
 	
+	public void showErrorPopUp() {
+		BorderPane newroot = new BorderPane();
+		newroot.setCenter(errorPopupLayout);
+		Scene newScene = new Scene(newroot, 700, 333);
+		newScene.getStylesheets().add(getClass().getResource("Client.css").toExternalForm());
+		
+		errorStage = new Stage();
+		errorStage.initModality(Modality.WINDOW_MODAL);
+		errorStage.initStyle(StageStyle.UNDECORATED);
+		errorStage.initOwner(primaryStage);
+		errorStage.setScene(newScene);
+		errorStage.show();
+	}
+	
+	public void showGameOverPopUp() {
+		BorderPane newroot = new BorderPane();
+		newroot.setCenter(gameOverPopupLayout);
+		Scene newScene = new Scene(newroot, 700, 333);
+		newScene.getStylesheets().add(getClass().getResource("Client.css").toExternalForm());
+		
+		gameOverStage = new Stage();
+		gameOverStage.initModality(Modality.WINDOW_MODAL);
+		gameOverStage.initStyle(StageStyle.UNDECORATED);
+		gameOverStage.initOwner(primaryStage);
+		gameOverStage.setScene(newScene);
+		gameOverStage.show();
+	}
+	
+	public void showWinnerPopUp() {
+		BorderPane newroot = new BorderPane();
+		newroot.setCenter(winnerPopupLayout);
+		Scene newScene = new Scene(newroot, 700, 333);
+		newScene.getStylesheets().add(getClass().getResource("Client.css").toExternalForm());
+		
+		winnerStage = new Stage();
+		winnerStage.initModality(Modality.WINDOW_MODAL);
+		winnerStage.initStyle(StageStyle.UNDECORATED);
+		winnerStage.initOwner(primaryStage);
+		winnerStage.setScene(newScene);
+		winnerStage.show();
+	}
+
 	//Getter & Setter
 	public Stage getStage() {
 	    return primaryStage;
+	}
+	
+	public Stage getErrorStage() {
+		return errorStage;
+	}
+
+	public void setErrorStage(Stage errorStage) {
+		this.errorStage = errorStage;
+	}
+
+	public Stage getGameOverStage() {
+		return gameOverStage;
+	}
+
+	public void setGameOverStage(Stage gameOverStage) {
+		this.gameOverStage = gameOverStage;
+	}
+
+	public Stage getWinnerStage() {
+		return winnerStage;
+	}
+
+	public void setWinnerStage(Stage winnerStage) {
+		this.winnerStage = winnerStage;
 	}
 
 	public Label getLblWinner() {
@@ -574,6 +645,14 @@ public class View {
 
 	public void setWonKnights(Label wonKnights) {
 		this.wonKnights = wonKnights;
+	}
+	
+	public ErrorPopupPane getErrorPopupLayout() {
+		return errorPopupLayout;
+	}
+
+	public void setErrorPopupLayout(ErrorPopupPane errorPopupLayout) {
+		this.errorPopupLayout = errorPopupLayout;
 	}
 
 }
