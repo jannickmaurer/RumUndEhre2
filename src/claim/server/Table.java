@@ -38,9 +38,8 @@ public class Table {
 		for(Account a : players) {
 			this.players.add(a);
 //		this.players = players;
-			System.out.println("Player zu Table added: " + a.getUsername());
+System.out.println("Player zu Table added: " + a.getUsername());
 		}
-	
 		playedCards.set(0);
 		playedCards.addListener((o, OldValue, NewValue) -> {
 			if(NewValue.intValue() > 1) {
@@ -56,41 +55,28 @@ public class Table {
 //		super();
 	}
 
-	
-	/*
-	 * TODO: TXT
-	 */
+	// David: Gibt bei den ersten zwei Aufrufen 13 Karten zurück und beim dritten Aufruf die restlichen 26 Karten
 	public void deal() {
 		deck = new DeckOfCards();
 		Card card;
-		System.out.println("Methode deal: Wert von getCardsRemaining vor dem ausgeben: "+ deck.getCardsRemaining());
 		for (int i = 0; i < 3; i++) {
 			if (deck.getCardsRemaining() > 26) {
-				System.out.println("Methode deal: Wert von getCardsRemaining nach jedem ausgeben an Spieler: "+ deck.getCardsRemaining());
 				for (int j = 0; j < 13; j++) {
 					card = deck.dealCard();
-					
 					if (i == 0) players.get(0).addHandCard(card);
 					else players.get(1).addHandCard(card);
 				}
 			} else {
-				System.out.println("Methode deal: Wert von getCardsRemaining nur für Tischkarten: "+ deck.getCardsRemaining());
 				for (int j = 0; j < 26; j++) {
-					System.out.println("Table: Methode deal: "+deck.getCardsRemaining());
 					card = deck.dealCard();
 					tableCards.add(card);
 				}
-
-				System.out.println("Methode Deal in Table: "+ tableCards.size());
-
 			}
 		}
 	}
 
 	
-	/*
-	 * David: Falls es einen Sieger gibt, wird der als String zurück gegeben
-	 */
+	// David: Wertet den Sieger des Spiels aus am Ende aller Runden aus und gibt den Accountnamen des Siegers zurück.
 	public String winner() {
 		String win = "NoWinner";
 		gameWinner();
@@ -100,7 +86,8 @@ public class Table {
 	}
 	
 	/*
-	 * David: Wertet den Sieger des Spiels aus
+	 * David: Sortiert die gewonnenen Karten in die verschiedenen Fraktionen. Danach wird die Sieger Evaluierung und
+	 * das Hinzufügen der eventuellen Siegerpunkte aufgerufen
 	 */
 	private void gameWinner() {
 		for(Account p : players) {
@@ -111,7 +98,6 @@ public class Table {
 				System.out.print(c.toString() + " | ");
 			}
 		}
-//		String gameWinner;
 		ArrayList<Card> goblinP1 = new ArrayList<>();
 		ArrayList<Card> goblinP2 = new ArrayList<>();
 		ArrayList<Card> dwarfP1  = new ArrayList<>();
@@ -186,7 +172,9 @@ System.out.println(p2);
 	}
 	
 	/*
-	 * David: Vergleicht die Anzahl Anhänger einer Fraktion und gibt den Spieler der gewonnen hat zurück
+	 * David: Vergleicht die Anzahl Anhänger einer Fraktion und gibt den Spieler der gewonnen hat zurück.
+	 * Im Fall, das beide Spieler gleich viele Karten haben wird ausgewertet wer die höchste hat. Der ist dann auch Sieger 
+	 * dieser Fraktion. Falls z.B: beide keine Karte von der selben Fraktion hat gibt es keinen Sieger.
 	 */
 	private String winnerFraction(ArrayList<Card> cardsP1, ArrayList<Card> cardsP2) {
 		String win = "NONE";
@@ -208,9 +196,8 @@ System.out.println(p2);
 		return win;	
 	}
 	
-	/*
-	 * David: Fügt dem Sieger einer Fraktion einen Punkt hinzu
-	 */
+	
+	// David: Fügt dem Sieger einer Fraktion einen Punkt hinzu, falls es kein Unentschieden gibt.
 	private void addFractionPoint(String winner) {
 		switch (winner) {
 		case "P1"  : fractionPointsP1++; break;
@@ -227,17 +214,13 @@ System.out.println(p2);
         actualTableCard = card;
 		return card;
 	}
-	
-	/*
-	 * David: Sortiert die Karten und gibt die letzte Karte, welche die Höchste ist zurück
-	 */
+		
+	// David: Sortiert die Karten und gibt die letzte Karte, welche die Höchste ist zurück
 	private Card getHighestCard(ArrayList<Card> cards) {
 		Collections.sort(cards);
         Card card = (cards.size() > 0) ? cards.remove(cards.size()-1) : null;
 		return card;
 	}
-	
-
 	
 	/*
 	 * David: Die Methode ermittelt den Gewinner am Ende jeder Runde aus den zwei Spielern. Sie löst die Übermittelung an die 
@@ -348,9 +331,8 @@ System.out.println(p2);
 	}	
 	
 	//David: Evaluiert welche Karte gewonnen hat und gibt je nach Kartenposition 1 oder -1 zurück
-	public int evaluateWinCard(Card cardP1, Card cardP2) {
-		int win = 1;
-		
+	private int evaluateWinCard(Card cardP1, Card cardP2) {
+		int win = 1;		
 		if(suitToString(cardP1).equals("goblin") && suitToString(cardP2).equals("knight") ||
 				suitToString(cardP1).equals("knight") && suitToString(cardP2).equals("goblin")) {
 			if(suitToString(cardP1).equals("knight")) return 1;				
@@ -501,7 +483,7 @@ System.out.println(p2);
 	}
 	
 	//David: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
-	public String suitToString(Card card) {
+	private String suitToString(Card card) {
 		String cardString = card.toString();
 	    String[] tmp = cardString.split("\\_");
     	return tmp[0];
