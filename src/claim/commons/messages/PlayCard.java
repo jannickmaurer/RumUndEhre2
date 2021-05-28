@@ -36,7 +36,6 @@ public class PlayCard extends Message {
 			}
 //			client.getPlayroom().test();
 			
-			// Überarbeiten, muss auf die Accounts im Playroom prüfen!
 			for(Account a : client.getPlayroom().getPlayers()) {
 				if(!a.getUsername().equalsIgnoreCase(client.getAccount().getUsername())) {
 					String[] content = new String[] {"ResultSendCard", "true", "HandCard", this.card};

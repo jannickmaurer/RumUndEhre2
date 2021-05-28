@@ -62,7 +62,7 @@ System.out.println("Ich habe gewonnen");
 					controller.getBoard().addCardToGroup(new Card(card2));
 				if (card3 != null)
 //					controller.getBoard().addUndead(new Card(card3));
-					controller.getBoard().addCardToGroup(new Card(card2));
+					controller.getBoard().addCardToGroup(new Card(card3));
 
 				controller.enableTableCardButton();
 			}
