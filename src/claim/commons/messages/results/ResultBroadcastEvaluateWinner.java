@@ -30,11 +30,11 @@ public class ResultBroadcastEvaluateWinner extends Message {
 		controller.winner(winner);
 		
 		//********TEST OUTPUTS
-		System.out.println(this.winner+"  Anzahl Doppelgänger: "+controller.getBoard().getNumOfDoubles());
-		System.out.println(this.winner+"  Anzahl Zwerge: "+controller.getBoard().getNumOfDwarfs());
-		System.out.println(this.winner+"  Anzahl Kobolde: "+controller.getBoard().getNumOfGoblins());
-		System.out.println(this.winner+"  Anzahl Ritter: "+controller.getBoard().getNumOfKnights());
-		System.out.println(this.winner+"  Anzahl Undead: "+controller.getBoard().getNumOfUndeads());
+		System.out.println(controller.getUsername().toString()+"  Anzahl Doppelgänger: "+controller.getBoard().getNumOfDoubles());
+		System.out.println(controller.getUsername().toString()+"  Anzahl Zwerge: "+controller.getBoard().getNumOfDwarfs());
+		System.out.println(controller.getUsername().toString()+"  Anzahl Kobolde: "+controller.getBoard().getNumOfGoblins());
+		System.out.println(controller.getUsername().toString()+"  Anzahl Ritter: "+controller.getBoard().getNumOfKnights());
+		System.out.println(controller.getUsername().toString()+"  Anzahl Undead: "+controller.getBoard().getNumOfUndeads());
 		//********END TEST OUTPUTS
 
 	}
