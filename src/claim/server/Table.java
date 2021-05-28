@@ -27,10 +27,7 @@ public class Table {
 	private boolean secondRoundStarted = false;
 	private boolean gameEndedSuccessfully = false;
 
-
-
 	private Card tCard;
-
 
 	public Table() {
 //		super();
