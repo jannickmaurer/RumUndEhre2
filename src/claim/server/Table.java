@@ -281,30 +281,13 @@ System.out.println("ELSE höhere karte sieger :"+win);
 							playedCardString = players.get(0).getPlayedCard().toString()+"|"+dwarfs.get(0).toString();
 						} break;
 				case 2: playedCardString = dwarfs.get(0).toString()+"|"+dwarfs.get(1).toString(); break;
-				}
-//				switch(dwarfs.size()) {					
-//				case 1: if(oneDwarf) {
-//							if(players.get(0).getPlayedCard().getSuit().toString().equals("dwarf")) {
-//								playedCardString = players.get(1).getPlayedCard().toString()+"|"+dwarfs.get(0).toString();
-//							}else {
-//								playedCardString = players.get(0).getPlayedCard().toString()+"|"+dwarfs.get(0).toString();
-//							}
-//						}else {
-//							if(players.get(0).getPlayedCard().getSuit().toString().equals("dwarf")) {
-//								playedCardString = players.get(1).getPlayedCard().toString()+"|"+dwarfs.get(0).toString();
-//							}else {
-//								playedCardString = players.get(0).getPlayedCard().toString()+"|"+dwarfs.get(0).toString();
-//							}	System.out.println("SWITCH CASE2");
-//						}
-//						break;
-//				case 2: playedCardString = dwarfs.get(0).toString()+"|"+dwarfs.get(1).toString(); break;
-//				}				
+				}			
 				if(players.get(0).getUsername().equals(firstPlayer.getUsername())) {
 					win = evaluateWinCard(players.get(0).getPlayedCard(), players.get(1).getPlayedCard());
 				}else {
 					win = (evaluateWinCard(players.get(1).getPlayedCard(), players.get(0).getPlayedCard())) * -1;
 				}
-				addFCards(win, dwarfs);				
+				addFollowerCards(win, dwarfs);				
 				
 			}else {
 				if(players.get(0).getUsername().equals(firstPlayer.getUsername())) {
@@ -313,17 +296,17 @@ System.out.println("ELSE höhere karte sieger :"+win);
 					win = (evaluateWinCard(players.get(1).getPlayedCard(), players.get(0).getPlayedCard())) * -1;
 				}				
 				playedCardString = players.get(0).getPlayedCard().toString()+"|"+players.get(1).getPlayedCard().toString();
-				addFCards(win);
+				addFollowerCards(win);
 			}
 			
 			if(win ==  1) win =0;
 			if(win == -1) win *= (-1); 
 
-	System.out.println("Sieger Account: "+players.get(win).getUsername());	
-			for(int i = 0; players.size() > i; i++) {
-			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), playedCardString};
-			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
-			}
+//	System.out.println("Sieger Account: "+players.get(win).getUsername());	
+//			for(int i = 0; players.size() > i; i++) {
+//			   String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), playedCardString};
+//			   players.get(i).getClient().send(new ResultBroadcastFinishRound(content));
+//			}
 				
 		}else { 	
 			if(players.get(0).getUsername().equals(firstPlayer.getUsername())) {
@@ -331,7 +314,7 @@ System.out.println("ELSE höhere karte sieger :"+win);
 			}else {
 				win = (evaluateWinCard(players.get(1).getPlayedCard(), players.get(0).getPlayedCard())) * -1;
 			}
-			addFCards(win, playedTableCard, tCard);	
+			addFollowerCards(win, playedTableCard, tCard);	
 			addUndeads(players.get(0).getPlayedCard(), players.get(1).getPlayedCard(), win);
 			
 			if(win ==  1) win =0;
@@ -376,7 +359,8 @@ System.out.println("ELSE höhere karte sieger :"+win);
 		return win;
 	}
 	
-	private void addFCards(int win, Card tableC, Card nextTC) {	
+	//David: Fügt in Runde 1 jedem Spieler die gewonnene Karte hinzu
+	private void addFollowerCards(int win, Card tableC, Card nextTC) {	
 		switch (win) {
 		case  1:  	players.get(0).getFollowerCards().add(tableC);
 					players.get(1).getFollowerCards().add(nextTC); break;
@@ -385,7 +369,11 @@ System.out.println("ELSE höhere karte sieger :"+win);
 		}
 	}
 	
-	private void addFCards(int win, ArrayList<Card> dwarfs) {
+	/*
+	 * David: Fügt in Runde 2 jedem Spieler die gewonnenen Karten hinzu, falls ein Zwerg gespielt wurde.
+	 * Falls noch eine Untotenkarte dabei ist, wird die separat zu den Untotenkarten hinzugefügt.
+	 */
+	private void addFollowerCards(int win, ArrayList<Card> dwarfs) {
 		if(dwarfs.size() == 2) {
 			switch (win) {
 			case  1: for(Card dwarf : dwarfs) {
@@ -395,33 +383,96 @@ System.out.println("ELSE höhere karte sieger :"+win);
 			}
 		}else {
 			switch (win) {
-			case  1: if(players.get(0).getPlayedCard().getSuit().toString().equals("undead")) {
-						players.get(0).getUndeadCards().add(players.get(0).getPlayedCard());
-					 }else {
-						 players.get(0).getFollowerCards().add(players.get(0).getPlayedCard());
-					 }
+			case  1: if(players.get(0).getPlayedCard().getSuit().toString().equals("undead") || 
+						players.get(1).getPlayedCard().getSuit().toString().equals("undead")) {
+						if(players.get(0).getPlayedCard().getSuit().toString().equals("undead")) {
+							players.get(0).getUndeadCards().add(players.get(0).getPlayedCard());
+						} else {
+							players.get(0).getUndeadCards().add(players.get(1).getPlayedCard());
+						}
+				 	 } else {
+				 		 if(!players.get(0).getPlayedCard().getSuit().toString().equals("dwarf")) {
+				 			 players.get(0).getFollowerCards().add(players.get(0).getPlayedCard());
+				 		 } else {
+				 			 players.get(0).getFollowerCards().add(players.get(1).getPlayedCard());
+				 		 }
+				 	 }
 					 players.get(1).getFollowerCards().add(dwarfs.get(0)); break;
-			case -1: if(players.get(1).getPlayedCard().getSuit().toString().equals("undead")) {
-						players.get(1).getUndeadCards().add(players.get(1).getPlayedCard());
-					 }else {
-						 players.get(1).getFollowerCards().add(players.get(1).getPlayedCard());
+
+			case -1: if(players.get(0).getPlayedCard().getSuit().toString().equals("undead") || 
+						players.get(1).getPlayedCard().getSuit().toString().equals("undead")) {
+						if(players.get(0).getPlayedCard().getSuit().toString().equals("undead")) {
+							players.get(1).getUndeadCards().add(players.get(0).getPlayedCard());
+						} else {
+							players.get(1).getUndeadCards().add(players.get(1).getPlayedCard());
+						}
+					 } else {
+						 if(!players.get(0).getPlayedCard().getSuit().toString().equals("dwarf")) {
+							 players.get(1).getFollowerCards().add(players.get(0).getPlayedCard());
+						 } else {
+							 players.get(1).getFollowerCards().add(players.get(1).getPlayedCard());
+						 }
 					 }
 					 players.get(0).getFollowerCards().add(dwarfs.get(0)); break;
 			}
 		}
 	}
 	
-	private void addFCards(int win) {
-		switch(win) {
-		case  1: players.get(0).addFollowerCard(players.get(0).getPlayedCard());
-			     players.get(0).addFollowerCard(players.get(1).getPlayedCard()); 
- 				 break;
-		case -1: players.get(1).addFollowerCard(players.get(0).getPlayedCard());
-				 players.get(1).addFollowerCard(players.get(1).getPlayedCard()); 
-				 break;
+	/*
+	 * David: Fügt in Runde 2 dem Sieger beide gewonnenen Karten hinzu, sofern kein Zwerg gespielt wurde. 
+	 * Die Untoten werden separat zu den Untoten hinzugefügt und nicht zu den normalen Followerkarten.
+	 */
+	private void addFollowerCards(int win) {		
+		if(players.get(0).getPlayedCard().getSuit().toString().equals("undead") ||
+			players.get(1).getPlayedCard().getSuit().toString().equals("undead")) {
+			ArrayList<Card> tmpUndeads = new ArrayList<>();
+			Boolean one = false;
+			if(players.get(0).getPlayedCard().getSuit().toString().equals("undead")) tmpUndeads.add(players.get(0).getPlayedCard());
+			if(players.get(1).getPlayedCard().getSuit().toString().equals("undead")) {
+				tmpUndeads.add(players.get(1).getPlayedCard());
+				one = true;
+			}
+			switch(tmpUndeads.size()) {
+			case 1: if(!one) {
+						if(win == 1) {
+							players.get(0).addFollowerCard(players.get(1).getPlayedCard());
+							players.get(0).addUndeadCard(tmpUndeads.get(0));
+						} else {
+							players.get(1).addFollowerCard(players.get(1).getPlayedCard());
+							players.get(1).addUndeadCard(tmpUndeads.get(0));
+						}
+					} else {
+						 if(win == 1) {
+							players.get(0).addFollowerCard(players.get(0).getPlayedCard());
+							players.get(0).addUndeadCard(tmpUndeads.get(0));
+						 } else {
+							players.get(1).addFollowerCard(players.get(0).getPlayedCard());
+							players.get(1).addUndeadCard(tmpUndeads.get(0));
+						 }
+					} break;	
+			case 2: if(win == 1) {
+						for(Card u : tmpUndeads) {
+							players.get(0).addUndeadCard(u);;
+						}
+					} else {
+						for(Card u : tmpUndeads) {
+							players.get(1).addUndeadCard(u);
+						}
+					} break;
+			}
+		} else {
+			switch(win) {
+			case  1: players.get(0).addFollowerCard(players.get(0).getPlayedCard());
+					 players.get(0).addFollowerCard(players.get(1).getPlayedCard()); 
+					 break;
+			case -1: players.get(1).addFollowerCard(players.get(0).getPlayedCard());
+					 players.get(1).addFollowerCard(players.get(1).getPlayedCard()); 
+					 break;
+			}
 		}
 	}
 	
+	//David: Die Untoten werden im Fall das sie vorhanden sind den Untotenkarten hinzugefügt
 	private void addUndeads(Card cardP1, Card cardP2, int win) {
 		tmpUndeads.clear();
 		if(suitToString(cardP1).equals("undead") || suitToString(cardP2).equals("undead")) {
@@ -440,7 +491,7 @@ System.out.println("ELSE höhere karte sieger :"+win);
 		}
 	}
 	
-	//Dave: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
+	//David: Wandelt die Karte in einen String und gibt nur den suit der Karte als String zurück
 	public String suitToString(Card card) {
 		String cardString = card.toString();
 	    String[] tmp = cardString.split("\\_");
