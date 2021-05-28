@@ -179,6 +179,16 @@ public class Board {
 		System.out.println("Card added ToGroup (Board Zeile 180): " + follower.toString());
 	}
 	
+	public void clearCards() {
+		this.handCards.clear();
+		this.followerCards.clear();
+		this.undeadCards.clear();
+		this.dwarfCards.clear();
+		this.goblinCards.clear();
+		this.knightCards.clear();
+		this.doubleCards.clear();
+	}
+	
 	public int getNumOfGoblins() {
 		return goblinCards.size();
 	}

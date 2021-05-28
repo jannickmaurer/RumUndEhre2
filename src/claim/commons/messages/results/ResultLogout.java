@@ -21,6 +21,7 @@ public class ResultLogout extends Message {
 	@Override
 	public void process(Controller controller) {
 		controller.setUsername(null);
+		controller.getBoard().clearCards();
 		controller.logoutSuccess();
 	}
 
