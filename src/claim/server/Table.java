@@ -90,6 +90,7 @@ System.out.println("Player zu Table added: " + a.getUsername());
 	 * das Hinzufügen der eventuellen Siegerpunkte aufgerufen
 	 */
 	private void gameWinner() {
+///**********DELETE THIS START
 		for(Account p : players) {
 			System.out.println("");
 			System.out.println(p.getUsername()); 
@@ -98,6 +99,7 @@ System.out.println("Player zu Table added: " + a.getUsername());
 				System.out.print(c.toString() + " | ");
 			}
 		}
+///**********DELETE THIS END
 		ArrayList<Card> goblinP1 = new ArrayList<>();
 		ArrayList<Card> goblinP2 = new ArrayList<>();
 		ArrayList<Card> dwarfP1  = new ArrayList<>();
@@ -415,38 +417,38 @@ System.out.println(p2);
 	private void addFollowerCards(int win) {		
 		if(players.get(0).getPlayedCard().getSuit().toString().equals("undead") ||
 			players.get(1).getPlayedCard().getSuit().toString().equals("undead")) {
-			ArrayList<Card> tmpUnD = new ArrayList<>();
+			tmpUndeads.clear();
 			Boolean one = false;
-			if(players.get(0).getPlayedCard().getSuit().toString().equals("undead")) tmpUnD.add(players.get(0).getPlayedCard());
+			if(players.get(0).getPlayedCard().getSuit().toString().equals("undead")) tmpUndeads.add(players.get(0).getPlayedCard());
 			if(players.get(1).getPlayedCard().getSuit().toString().equals("undead")) {
-				tmpUnD.add(players.get(1).getPlayedCard());
+				tmpUndeads.add(players.get(1).getPlayedCard());
 				one = true;
 			}
-			switch(tmpUnD.size()) {
+			switch(tmpUndeads.size()) {
 			case 1: if(!one) {
 						if(win == 1) {
 							players.get(0).addFollowerCard(players.get(1).getPlayedCard());
-							players.get(0).addUndeadCard(tmpUnD.get(0));
+							players.get(0).addUndeadCard(tmpUndeads.get(0));
 						} else {
 							players.get(1).addFollowerCard(players.get(1).getPlayedCard());
-							players.get(1).addUndeadCard(tmpUnD.get(0));
+							players.get(1).addUndeadCard(tmpUndeads.get(0));
 						}
 					} else {
 						 if(win == 1) {
 							players.get(0).addFollowerCard(players.get(0).getPlayedCard());
-							players.get(0).addUndeadCard(tmpUnD.get(0));
+							players.get(0).addUndeadCard(tmpUndeads.get(0));
 						 } else {
 							players.get(1).addFollowerCard(players.get(0).getPlayedCard());
-							players.get(1).addUndeadCard(tmpUnD.get(0));
+							players.get(1).addUndeadCard(tmpUndeads.get(0));
 						 }
 					} 
 					break;	
 			case 2: if(win == 1) {
-						for(Card u : tmpUnD) {
+						for(Card u : tmpUndeads) {
 							players.get(0).addUndeadCard(u);;
 						}
 					} else {
-						for(Card u : tmpUnD) {
+						for(Card u : tmpUndeads) {
 							players.get(1).addUndeadCard(u);
 						}
 					} 
