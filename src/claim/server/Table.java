@@ -13,16 +13,20 @@ import claim.commons.messages.results.ResultSendCard;
 import javafx.beans.property.SimpleIntegerProperty;
 
 // Implemented by David & Jannick -> represents the functionality we need for a Claims game 
+	/*
+	 * David & Jannick: 
+	 */
+
 public class Table {
-	private ArrayList<Account> players = new ArrayList<>(); 						//private		
+	private ArrayList<Account> players = new ArrayList<>(); 							
 	private SimpleIntegerProperty playedCards = new SimpleIntegerProperty();
-	private Account firstPlayer = null;											//private
+	private Account firstPlayer = null;											
 	private DeckOfCards deck;
-	public ArrayList<Card> tableCards = new ArrayList<>();
-	public ArrayList<Card> tmpUndeads = new ArrayList<>();
+	private ArrayList<Card> tableCards = new ArrayList<>();
+	private ArrayList<Card> tmpUndeads = new ArrayList<>();
 	private int fractionPointsP1;
 	private int fractionPointsP2;
-	public Card actualTableCard;
+	private Card actualTableCard;
 	private String undeadString;
 	private boolean secondRoundStarted = false;
 	private boolean gameEndedSuccessfully = false;
@@ -78,7 +82,6 @@ System.out.println("Player zu Table added: " + a.getUsername());
 		}
 	}
 
-	
 	// David: Wertet den Sieger des Spiels aus am Ende aller Runden aus und gibt den Accountnamen des Siegers zurück.
 	public String winner() {
 		String win = "NoWinner";
@@ -93,6 +96,7 @@ System.out.println("Player zu Table added: " + a.getUsername());
 	 * das Hinzufügen der eventuellen Siegerpunkte aufgerufen
 	 */
 	private void gameWinner() {
+///**********DELETE THIS START
 		for(Account p : players) {
 			System.out.println("");
 			System.out.println(p.getUsername()); 
@@ -101,6 +105,7 @@ System.out.println("Player zu Table added: " + a.getUsername());
 				System.out.print(c.toString() + " | ");
 			}
 		}
+///**********DELETE THIS END
 		ArrayList<Card> goblinP1 = new ArrayList<>();
 		ArrayList<Card> goblinP2 = new ArrayList<>();
 		ArrayList<Card> dwarfP1  = new ArrayList<>();
@@ -127,7 +132,7 @@ System.out.println("Player zu Table added: " + a.getUsername());
 			case "double": doubleP2.add(card); break;
 			}
 		}
-	//*******START TEST 
+//*******START TEST 
 	System.out.println("Table; gameWinner(): Ausgabe der Karten der Accounts zum Testen");
 	String p1 = players.get(0).getUsername().toString();
 	String p2 = players.get(1).getUsername().toString();
@@ -166,7 +171,7 @@ System.out.println("Player zu Table added: " + a.getUsername());
 System.out.println(p1);	
 System.out.println(p2);		
 	
-	//*******START TEST 	
+//*******START TEST 	
 		addFractionPoint(winnerFraction(goblinP1, goblinP2));
 		addFractionPoint(winnerFraction(dwarfP1, dwarfP2));
 		addFractionPoint(winnerFraction(knightP1, knightP2));
@@ -209,9 +214,7 @@ System.out.println(p2);
 		}
 	}
 	
-	/*
-	 * David: Gibt die letzte Karte der Tischkarten zurück und löscht diese
-	 */
+	// David: Gibt die letzte Karte der Tischkarten zurück und löscht diese
 	public Card getNextTableCard() {
 	    Card card = (tableCards.size() > 0) ? tableCards.remove(tableCards.size()-1) : null;
         actualTableCard = card;
@@ -433,38 +436,38 @@ System.out.println(p2);
 	private void addFollowerCards(int win) {		
 		if(players.get(0).getPlayedCard().getSuit().toString().equals("undead") ||
 			players.get(1).getPlayedCard().getSuit().toString().equals("undead")) {
-			ArrayList<Card> tmpUnD = new ArrayList<>();
+			tmpUndeads.clear();
 			Boolean one = false;
-			if(players.get(0).getPlayedCard().getSuit().toString().equals("undead")) tmpUnD.add(players.get(0).getPlayedCard());
+			if(players.get(0).getPlayedCard().getSuit().toString().equals("undead")) tmpUndeads.add(players.get(0).getPlayedCard());
 			if(players.get(1).getPlayedCard().getSuit().toString().equals("undead")) {
-				tmpUnD.add(players.get(1).getPlayedCard());
+				tmpUndeads.add(players.get(1).getPlayedCard());
 				one = true;
 			}
-			switch(tmpUnD.size()) {
+			switch(tmpUndeads.size()) {
 			case 1: if(!one) {
 						if(win == 1) {
 							players.get(0).addFollowerCard(players.get(1).getPlayedCard());
-							players.get(0).addUndeadCard(tmpUnD.get(0));
+							players.get(0).addUndeadCard(tmpUndeads.get(0));
 						} else {
 							players.get(1).addFollowerCard(players.get(1).getPlayedCard());
-							players.get(1).addUndeadCard(tmpUnD.get(0));
+							players.get(1).addUndeadCard(tmpUndeads.get(0));
 						}
 					} else {
 						 if(win == 1) {
 							players.get(0).addFollowerCard(players.get(0).getPlayedCard());
-							players.get(0).addUndeadCard(tmpUnD.get(0));
+							players.get(0).addUndeadCard(tmpUndeads.get(0));
 						 } else {
 							players.get(1).addFollowerCard(players.get(0).getPlayedCard());
-							players.get(1).addUndeadCard(tmpUnD.get(0));
+							players.get(1).addUndeadCard(tmpUndeads.get(0));
 						 }
 					} 
 					break;	
 			case 2: if(win == 1) {
-						for(Card u : tmpUnD) {
+						for(Card u : tmpUndeads) {
 							players.get(0).addUndeadCard(u);;
 						}
 					} else {
-						for(Card u : tmpUnD) {
+						for(Card u : tmpUndeads) {
 							players.get(1).addUndeadCard(u);
 						}
 					} 
@@ -539,6 +542,7 @@ System.out.println(p2);
 		}
 	}
 	
+	// Getter & Setter
 	public SimpleIntegerProperty getPlayedCards() {
 		return playedCards;
 	}

@@ -92,8 +92,8 @@ System.out.println("Ich habe verloren");
 	}
 
 	//DS
+	// David: Fügt dem Spieler die allfällig gewonnenen Karten hinzu
 	private void cardCheck(Controller controller) {
-
 		if (followerCard1.getSuit().toString().equals("dwarf") && !controller.getUsername().equals(this.winner)) {
 			controller.getBoard().addDwarfCards(followerCard1);
 		} else if (!followerCard1.getSuit().toString().equals("dwarf") && controller.getUsername().equals(this.winner)) {
@@ -106,5 +106,4 @@ System.out.println("Ich habe verloren");
 			controller.getBoard().addCardToGroup(followerCard2);
 		}
 	}
-
 }
