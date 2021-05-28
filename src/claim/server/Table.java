@@ -14,22 +14,15 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 
 public class Table {
-	public ArrayList<Account> players = new ArrayList<>(); 						//private		
+	private ArrayList<Account> players = new ArrayList<>(); 						//private		
 	private SimpleIntegerProperty playedCards = new SimpleIntegerProperty();
-	public Account firstPlayer = null;											//private
-		
+	private Account firstPlayer = null;											//private
 	private DeckOfCards deck;
 	public ArrayList<Card> tableCards = new ArrayList<>();
-//	public ArrayList<Card> followerCardsP1 = new ArrayList<>();
-//	public ArrayList<Card> followerCardsP2 = new ArrayList<>();
 	public ArrayList<Card> tmpUndeads = new ArrayList<>();
 	private int fractionPointsP1;
 	private int fractionPointsP2;
 	public Card actualTableCard;
-
-//	public String roundWinner;
-//	public Card followerCardP1;
-//	public Card followerCardP2;
 	private String undeadString;
 	private boolean secondRoundStarted = false;
 
@@ -197,33 +190,21 @@ System.out.println(p2);
 	 */
 	private String winnerFraction(ArrayList<Card> cardsP1, ArrayList<Card> cardsP2) {
 		String win = "NONE";
-		
-		for(Card c1 :cardsP1) {
-System.out.println("WinnerFraction K1 :"+c1.toString());}
-System.out.println("");
-		for(Card c2 :cardsP2) {
-System.out.println("WinnerFraction K2 :"+c2.toString());}
-
-		
-		if(cardsP1.size() > cardsP2.size()) {
-System.out.println("IF STATMENT P1");
-			return "P1";
-		}
-		if(cardsP1.size() < cardsP2.size()) {
-System.out.println("IF STATMENT P2");
-			return "P2";
-		}
+		if(cardsP1.size() > cardsP2.size()) return "P1"; //{
+//			return "P1";
+//		}
+		if(cardsP1.size() < cardsP2.size()) return "P2";//{
+//			return "P2";
+//		}
 		if(cardsP1.size() == 0 && cardsP2.size() == 0) {
-System.out.println("IF STATMENT NONE");
 			return "NONE";
-		}
-		else 
+		} else {
 			switch (getHighestCard(cardsP1).compareTo(getHighestCard(cardsP2))) {
 			case  1: win = "P1";	break;
 			case  0: win = "NONE";	break; 
 			case -1: win = "P2";	break;
 			}
-System.out.println("ELSE höhere karte sieger :"+win);
+		}
 		return win;	
 	}
 	
@@ -329,7 +310,7 @@ System.out.println("ELSE höhere karte sieger :"+win);
 			
 			if(win ==  1) win =0;
 			if(win == -1) win *= (-1); 
-
+			
 			for(int i = 0; players.size() > i; i++) {
 				if(undeadString.equalsIgnoreCase("None")) {
 					String[] content = {"ResultBroadcastFinishRound", "true", players.get(win).getUsername(), tCard.toString()};
@@ -454,12 +435,12 @@ System.out.println("ELSE höhere karte sieger :"+win);
 			players.get(1).getPlayedCard().getSuit().toString().equals("undead")) {
 			ArrayList<Card> tmpUnD = new ArrayList<>();
 			Boolean one = false;
-			if(players.get(0).getPlayedCard().getSuit().toString().equals("undead")) tmpUndeads.add(players.get(0).getPlayedCard());
+			if(players.get(0).getPlayedCard().getSuit().toString().equals("undead")) tmpUnD.add(players.get(0).getPlayedCard());
 			if(players.get(1).getPlayedCard().getSuit().toString().equals("undead")) {
-				tmpUndeads.add(players.get(1).getPlayedCard());
+				tmpUnD.add(players.get(1).getPlayedCard());
 				one = true;
 			}
-			switch(tmpUndeads.size()) {
+			switch(tmpUnD.size()) {
 			case 1: if(!one) {
 						if(win == 1) {
 							players.get(0).addFollowerCard(players.get(1).getPlayedCard());
